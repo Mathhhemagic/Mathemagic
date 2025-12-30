@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+<style>
+
+body, html{
+        height: 100%;
+        margin: 0;
+}
+body{
+    margin:0;
+    padding:0;
+    background-color: #E8F9FF;
+}
+
+.video{
+    position: relative;
+    text-align: center;
+    padding-top: 50px;
+    text-decoration: none;
+    color: #00598A;
+    font-size: 100px;
+    font-family: "Playfair Display", serif;
+    margin-bottom: 2%;
+}
+ul{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #3B3B3B;
+        }
+
+        ul li{
+            float: left
+        }
+
+        ul li a {
+            display: block;
+            color: white; 
+            text-align: center;
+            font-family: "Playfair Display", serif;
+            padding: 20px 16px;
+        }
+        ul li a.active{
+            text-decoration: underline;
+            text-underline-offset: 6px;
+            color: #ADEDFF;
+        }
+        ul li a.inactive:hover{
+            background-color: #2f82c0;
+        }
+
+        a{
+            text-decoration: none;
+        }
+/* Videos */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.images{
+    overflow: hidden;
+    white-space: nowrap;
+    margin-bottom: 10%;
+}
+
+@keyframes slide{
+    from{
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+.images-slide{
+    display: inline-block;
+    animation: 35s slide infinite linear;
+}
+.images-slide img{
+    height: 500px;
+}
+
+.images:hover .images-slide{
+    animation-play-state:paused;
+}
+.subscribe{
+    position: relative;
+    text-align: center;
+    padding-top: 50px;
+    text-decoration: none;
+    color: #00598A;
+    font-size: 50px;
+    font-family: "Playfair Display", serif;
+    margin-bottom: 2%;
+}
+
+.bunny{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.bunny img{
+    height: 200px;
+    width: 200px;
+    transition: transform 0.3s ease;
+}
+
+.bunny img:hover{
+    transform: translateY(-15px)
+}
+</style>
+<body>
+<ul>
+    <li><a class = "inactive" href = "../HTML/home.html">Home</a></li>
+    <li><a class = "active" href = "videos.html">Videos</a></li>
+    </ul>
+<div class = "video">
+Videos
+</div>   
+<div class = "subscribe">
+    Click on the bunny to visit the channel or click on any of the videos below!
+</div>
+<div class = "bunny">
+    <a href = "https://youtube.com/@mathhhemagic?si=o6KcnAMeMG3JY0SJ" target ="_blank">
+        <img src = "../HTML/Images/mathemagic_circle_logo.png">
+    </a>
+</div>
+
+<div class = "images">
+    <div class = "images-slide">
+        <a href = "https://youtube.com/shorts/2TB_OXQMujk?si=37Ey6as2C-ZLSeCr" target ="_blank">
+            <img src = "../HTML/Images/video1.jpg">
+        </a>
+        <a href = "https://youtube.com/shorts/dHE9qt1-C_k?si=esumjN5EhhcK6rY4" target ="_blank">
+            <img src = "../HTML/Images/video2.jpg">
+        </a>
+        <a href = "https://youtube.com/shorts/TvFEHweu8q8?si=wDRT_mlxsVPMQBm8" target ="_blank">
+            <img src = "../HTML/Images/video3.jpg">
+        </a>
+        <a href = "https://youtube.com/shorts/C7xMnGbkBrA?si=3Z0advLhyoKntNDf" target ="_blank">
+            <img src = "../HTML/Images/video4.jpg">
+        </a>
+        <a href = "https://youtube.com/shorts/oeiXcehzQzQ?si=EjJqzlJtO_Sl74Qt" target ="_blank">
+            <img src = "../HTML/Images/video5.jpg">
+        </a>
+        <a href = "https://youtube.com/shorts/9CCb0BXTf3o?si=jcDMI7YP3F7s6NgS" target ="_blank">
+            <img src = "../HTML/Images/video6.jpg">
+        </a>
+        <a href = "https://youtube.com/shorts/2TB_OXQMujk?si=37Ey6as2C-ZLSeCr" target ="_blank">
+            <img src = "../HTML/Images/video1.jpg">
+        </a>
+        <a href = "https://youtube.com/shorts/9CCb0BXTf3o?si=6eorbL9S4aREoNm8" target ="_blank">
+            <img src = "../HTML/Images/video7.jpg">
+        </a>
+        <a href = "https://youtube.com/shorts/_IoLBpuXzuI?si=fszVLURuUtZZHvZ6" target ="_blank">
+            <img src = "../HTML/Images/video8.jpg">
+        </a>
+        <a href = "https://youtube.com/shorts/45SY03hXDH0?si=W8-Ue_dA--uE3I4P" target ="_blank">
+            <img src = "../HTML/Images/video9.jpg">
+        </a>
+        <a href = "https://youtube.com/shorts/ryZw1fGxcj8?si=FpjH7fViMD5FzAOA" target ="_blank">
+            <img src = "../HTML/Images/video10.jpg">
+        </a>
+    
+    </div>
+    <div class = "images-slide">
+        <a href = "https://youtube.com/shorts/2TB_OXQMujk?si=37Ey6as2C-ZLSeCr" target ="_blank">
+            <img src = "../HTML/Images/video1.jpg">
+        </a>
+        <a href = "https://youtube.com/shorts/dHE9qt1-C_k?si=esumjN5EhhcK6rY4" target ="_blank">
+            <img src = "../HTML/Images/video2.jpg">
+        </a>
+        <a href = "https://youtube.com/shorts/TvFEHweu8q8?si=wDRT_mlxsVPMQBm8" target ="_blank">
+            <img src = "../HTML/Images/video3.jpg">
+        </a>
+        <a href = "https://youtube.com/shorts/C7xMnGbkBrA?si=3Z0advLhyoKntNDf" target ="_blank">
+            <img src = "../HTML/Images/video4.jpg">
+        </a>
+        <a href = "https://youtube.com/shorts/2TB_OXQMujk?si=37Ey6as2C-ZLSeCr" target ="_blank">
+            <img src = "../HTML/Images/video1.jpg">
+        </a>
+        <a href = "https://youtube.com/shorts/oeiXcehzQzQ?si=EjJqzlJtO_Sl74Qt" target ="_blank">
+            <img src = "../HTML/Images/video5.jpg">
+        </a>
+        <a href = "https://youtube.com/shorts/9CCb0BXTf3o?si=jcDMI7YP3F7s6NgS" target ="_blank">
+            <img src = "../HTML/Images/video6.jpg">
+        </a>
+        <a href = "https://youtube.com/shorts/2TB_OXQMujk?si=37Ey6as2C-ZLSeCr" target ="_blank">
+            <img src = "../HTML/Images/video1.jpg">
+        </a>
+        <a href = "https://youtube.com/shorts/9CCb0BXTf3o?si=6eorbL9S4aREoNm8" target ="_blank">
+            <img src = "../HTML/Images/video7.jpg">
+        </a>
+        <a href = "https://youtube.com/shorts/_IoLBpuXzuI?si=fszVLURuUtZZHvZ6" target ="_blank">
+            <img src = "../HTML/Images/video8.jpg">
+        </a>
+        <a href = "https://youtube.com/shorts/45SY03hXDH0?si=W8-Ue_dA--uE3I4P" target ="_blank">
+            <img src = "../HTML/Images/video9.jpg">
+        </a>
+        <a href = "https://youtube.com/shorts/ryZw1fGxcj8?si=FpjH7fViMD5FzAOA" target ="_blank">
+            <img src = "../HTML/Images/video10.jpg">
+        </a>
+    
+    </div>
+</div>
+</body>
+</head>
+</html>

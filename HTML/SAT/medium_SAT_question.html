@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<!--Background image-->
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+<style>
+    body, html{
+        height: 100%;
+        margin: 0;
+    }
+    body{
+       background-color: #E8F9FF;
+    }
+</style>
+<!--Daily Question-->
+    <style>
+            a{
+                text-decoration: none;
+            }
+            h1{
+                font-size: 100px;
+                text-align: center;
+                margin-top: 1%;
+            }
+            .question{
+                text-align:center;
+                font-size: 100px;
+                margin-top:60px;
+                margin-left: 5%;
+                margin-right: 5%;
+                margin-bottom: 45px;
+                color: #00598A;
+            }
+           
+            .option{
+                display: flex;
+                text-align:center;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                margin-top: -50px;
+            }
+            .option-item{
+                position: relative;
+            }
+
+
+            .option-item img{
+                position: absolute;
+                left: 110%;
+                top:100%;
+                visibility: hidden;
+                width: 50px;
+                transform: translateY(-50%)scaleX(-1)rotate(15deg);
+            }
+
+
+            .answer-explanation{
+                justify-content: center;
+                margin-left: 25%;
+                margin-right:25%;
+                position: relative;
+                font-size: 30px;
+                font-family: "Playfair Display", serif;
+                opacity: 0;
+                transition:  2s ease;
+                padding-bottom: 20px;
+                color:#0b5394;
+                text-align: center;
+                top: -20px;
+            }
+
+
+            .option-item:not(.disabled):hover img{
+                visibility:visible;
+                transition-duration: 1s ease;
+                opacity: 1;
+            }
+
+
+
+
+            .option button{
+                cursor: pointer;
+                font-family: "Playfair Display", serif;
+                font-size: 24px;
+                border-radius: 50px;
+                margin-bottom: 20px;
+                padding: 10px 30px;
+                background-color: #f7f7f7;
+                box-shadow: 0 0 40px #00598A;
+                color: #00598A;
+                border: transparent;
+                transition: background-color 0.6s ease, box-shadow 0.6s ease;
+                min-width: 100px;
+            }
+           
+
+
+   
+
+
+            .option button:hover{
+                background:rgb(201, 244, 255, 0.5);
+            }
+
+
+
+
+            .answer-explanation.visible{
+            opacity:1;
+            }
+            body{
+                margin:0;
+                overflow-x: hidden;
+            }
+
+
+        .arrow{
+                margin-top: 2%;
+                margin-left: 5%;
+                position: relative;
+                display: block;
+            }
+
+
+            .arrow button{
+                cursor: pointer;
+                font-family: "Playfair Display", serif;
+                font-size: 30px;
+                display: block;
+                height: 50px;
+                width: 50px;
+                text-align: center;
+                border-radius: 50%;
+                border:transparent;
+                box-shadow: 0 0 40px grey;
+                margin-bottom: 20px;
+                background-color: transparent;
+                font-weight: bold;
+                color: #0b5394;
+                font-weight: bold;
+            }
+
+
+            .arrow button:hover{
+                color:#0b5394;
+                box-shadow: 0 0 40px #0b5394;
+                transform: translateY(-4px);
+            }
+
+
+            .medium-style{
+                position:relative;
+                margin-top: 50px;
+                display: flex;
+                justify-content: center;
+            }
+            .medium-style p{
+                display:block;
+                font-size:20px;
+                border-radius:50px;
+                text-align:center;
+                padding: 10px 25px;
+                box-shadow: 0 0 40px #FAD300;
+            }
+            .img{
+                display: block;
+                position: relative;
+                margin: 0 auto;
+                transform:scale(1.2);
+                margin-bottom: 5%;
+            }
+           
+            </style>
+</head>
+
+
+<body>
+            <div class = "arrow">
+            <a href = "../home.html">
+            <button>☚</button>
+            </a>
+            </div>
+            </div>
+            <div class = "medium-style">
+                <p>Medium</p>
+            </div>
+            <div class = "question">
+               <p id = "question"></p>
+            </div>
+            <div class = "option">
+                <div class = "option-item">
+                <button id ="A"></button>
+                <img src="../Images/rabbit_no_background.png">
+                </div>
+                <div class = "option-item">
+                <button id = "B"></button>
+                <img src="../Images/rabbit_no_background.png">
+                </div>
+                <div class = "option-item">
+                 <button id = "C"></button>
+                <img src="../Images/rabbit_no_background.png">
+                </div>
+                <div class = "option-item">
+                 <button id = "D"></button>
+                <img src="../Images/rabbit_no_background.png">
+                </div>
+            </div>
+            <div class = "answer-explanation">
+                <div class = "visible"></div>
+                <p id = "answer_explanation">
+               
+                </p>
+            </div>
+
+
+           
+
+
+<script>
+
+
+
+
+
+
+document.getElementById('A').innerText = 4;
+document.getElementById('B').innerText = 9;
+document.getElementById('C').innerText = 12;
+document.getElementById('D').innerText = 15;
+
+
+const correctAnswer = 'A';
+document.getElementById('question').innerText = "What is 2 x 2";
+
+
+document.getElementById('answer_explanation').innerText = "It is because it is even 4";
+
+
+const rabbits = document.querySelectorAll('.option-item img');
+
+
+const buttons = document.querySelectorAll('.option button');
+
+
+const explanation = document.querySelector(".answer-explanation");
+
+
+function hideImages()
+{
+    rabbits.forEach(img => {
+        img.style.visibility = 'hidden';
+       
+    });
+}
+
+
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+        buttons.forEach(button => {
+            button.disabled = true;
+            button.style.backgroundColor = "rgb(178, 190, 181, 0.5)";
+            button.style.boxShadow = "0 0 30px rgb(75, 75, 75, 0.5)";
+           
+
+
+       
+            if (button.id === correctAnswer){
+                button.style.backgroundColor = "rgb(48, 133, 24, 0.5)";
+                button.style.boxShadow = "0 0 30px rgb(48, 133, 24, 0.8)";
+            }
+
+
+            button.parentElement.classList.add("disabled");
+        });
+
+
+        if (button.id != correctAnswer ){
+            button.style.backgroundColor = "rgb(135, 24, 24, 0.5)";
+            button.style.boxShadow = "0 0 30px rgb(135, 24, 24, 0.5)";
+        }
+       
+        hideImages();
+        explanation.classList.add("visible")
+        });
+    });
+
+
+
+
+
+
+</script>
+</body>
+</html>
