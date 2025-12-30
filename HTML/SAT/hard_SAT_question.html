@@ -16,7 +16,7 @@
 </style>
 <!--Daily Question-->
     <style>
-            aa{
+            a{
                 text-decoration: none;
             }
             h1{
@@ -65,7 +65,7 @@
                 font-size: 30px;
                 font-family: "Playfair Display", serif;
                 opacity: 0;
-                transition:  2s ease;
+                transition:  0.5s ease;
                 padding-bottom: 20px;
                 color:#0b5394;
                 text-align: center;
@@ -173,7 +173,65 @@
                 transform:scale(1.2);
                 margin-bottom: 5%;
             }
+
+
+            .clear{
+                position: absolute;
+                top: 90%;
+                right: 5%;
+            }
+
+            .clear button{
+                cursor: pointer;
+                font-family: "Playfair Display", serif;
+                font-size: 30px;
+                display: block;
+                height: 50px;
+                width: 50px;
+                text-align: center;
+                border-radius: 50%;
+                border:transparent;
+                box-shadow: 0 0 40px grey;
+                margin-bottom: 20px;
+                background-color: transparent;
+                font-weight: bold;
+                color: #0b5394;
+                font-weight: bold;
+            }
            
+            .clear button:hover{
+                color:#0b5394;
+                box-shadow: 0 0 40px #0b5394;
+                transform: translateY(-4px);
+            }
+
+
+            .next{
+                position: absolute;
+                top: 50%;
+                right: 5%;
+            }
+
+            .next button{
+                cursor: pointer;
+                font-family: "Playfair Display", serif;
+                font-size: 16px;
+                border-radius: 50px;
+                margin-bottom: 20px;
+                padding: 10px 30px;
+                background-color: #f7f7f7;
+                color: black;
+                border: 2px solid rgb(255, 235, 134);
+                transition: background-color 0.6s ease, box-shadow 0.6s ease;
+                min-width: 50px;
+                box-shadow:  0 0 40px grey;
+            }
+
+            .next button:hover{
+                box-shadow: 0 0 40px rgb(255, 235, 134);
+                transform: translateY(-4px);
+            }
+            
             </style>
 </head>
 
@@ -211,10 +269,13 @@
             </div>
             <div class = "answer-explanation">
                 <div class = "visible"></div>
-                <p id = "answer_explanation">
-               
+                <p id = "answer_explanation"></p>
                 </p>
             </div>
+            <div class = "clear">
+                <button id = "clear">⟳</button>
+            </div>
+            
 
 
            
@@ -234,13 +295,12 @@ document.getElementById('D').innerText = 15;
 
 
 const correctAnswer = 'A';
+
+
 document.getElementById('question').innerText = "What is 2 x 2";
 
 
 document.getElementById('answer_explanation').innerText = "It is because it is even 4";
-
-
-const rabbits = document.querySelectorAll('.option-item img');
 
 
 const buttons = document.querySelectorAll('.option button');
@@ -249,50 +309,64 @@ const buttons = document.querySelectorAll('.option button');
 const explanation = document.querySelector(".answer-explanation");
 
 
-function hideImages()
-{
-    rabbits.forEach(img => {
-        img.style.visibility = 'hidden';
-       
-    });
-}
 
 
-buttons.forEach(button => {
-    button.addEventListener("click", () => {
-        buttons.forEach(button => {
-            button.disabled = true;
-            button.style.backgroundColor = "rgb(178, 190, 181, 0.5)";
-            button.style.boxShadow = "0 0 30px rgb(75, 75, 75, 0.5)";
-           
+function reload(choice){
+    buttons.forEach(button => {
+        button.disabled = true;
+        button.parentElement.classList.add("disabled");
 
 
-       
-            if (button.id === correctAnswer){
-                button.style.backgroundColor = "rgb(48, 133, 24, 0.5)";
-                button.style.boxShadow = "0 0 30px rgb(48, 133, 24, 0.8)";
-            }
-
-
-            button.parentElement.classList.add("disabled");
-        });
-
-
-        if (button.id != correctAnswer ){
+        if (button.id === correctAnswer){
+            button.style.backgroundColor = "rgb(48, 133, 24, 0.5)";
+            button.style.boxShadow = "0 0 30px rgb(48, 133, 24, 0.8)";
+        }
+        else if (button.id === choice){
             button.style.backgroundColor = "rgb(135, 24, 24, 0.5)";
             button.style.boxShadow = "0 0 30px rgb(135, 24, 24, 0.5)";
+
+
         }
-       
-        hideImages();
-        explanation.classList.add("visible")
-        });
+        else
+        {
+            button.style.backgroundColor = "rgb(178, 190, 181, 0.5)";
+            button.style.boxShadow = "0 0 30px rgb(75, 75, 75, 0.5)";
+        }
     });
+    explanation.classList.add("visible");
 
 
+}
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+        localStorage.setItem("hard_answer", button.id);
+        reload(button.id);
+    });
+});
 
 
+const previous = localStorage.getItem("hard_answer")
+if (previous) reload(previous);
+
+
+document.getElementById("clear").addEventListener("click", clear);
+
+
+function clear(){
+    buttons.forEach(button => {
+        button.style.backgroundColor = "#f7f7f7";
+        button.style.boxShadow = "0 0 40px #00598A";
+        button.parentElement.classList.remove("disabled");
+        button.disabled = false;
+        });
+        
+        explanation.classList.remove("visible");
+        localStorage.removeItem("hard_answer");
+        new Promise(resolve => setTimeout(resolve, 500)).then(() =>{window.location.reload();})
+}
 
 
 </script>
 </body>
 </html>
+

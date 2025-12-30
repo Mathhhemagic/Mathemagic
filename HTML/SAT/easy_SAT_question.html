@@ -65,7 +65,7 @@
                 font-size: 30px;
                 font-family: "Playfair Display", serif;
                 opacity: 0;
-                transition:  2s ease;
+                transition:  0.5s ease;
                 padding-bottom: 20px;
                 color:#0b5394;
                 text-align: center;
@@ -153,13 +153,12 @@
 
 
             .easy-style{
-                position:relative;
+                margin: auto;
                 margin-top: 50px;
                 display: flex;
                 justify-content: center;
             }
             .easy-style p{
-                display:block;
                 font-size:20px;
                 border-radius:50px;
                 text-align:center;
@@ -180,7 +179,58 @@
                 top: 90%;
                 right: 5%;
             }
+
+            .clear button{
+                cursor: pointer;
+                font-family: "Playfair Display", serif;
+                font-size: 30px;
+                display: block;
+                height: 50px;
+                width: 50px;
+                text-align: center;
+                border-radius: 50%;
+                border:transparent;
+                box-shadow: 0 0 40px grey;
+                margin-bottom: 20px;
+                background-color: transparent;
+                font-weight: bold;
+                color: #0b5394;
+                font-weight: bold;
+            }
            
+            .clear button:hover{
+                color:#0b5394;
+                box-shadow: 0 0 40px #0b5394;
+                transform: translateY(-4px);
+            }
+
+
+            .next{
+                position: absolute;
+                top: 50%;
+                right: 5%;
+            }
+
+            .next button{
+                cursor: pointer;
+                font-family: "Playfair Display", serif;
+                font-size: 16px;
+                border-radius: 50px;
+                margin-bottom: 20px;
+                padding: 10px 30px;
+                background-color: #f7f7f7;
+                color: black;
+                border: 2px solid rgb(255, 235, 134);
+                transition: background-color 0.6s ease, box-shadow 0.6s ease;
+                min-width: 50px;
+                box-shadow:  0 0 40px grey;
+            }
+
+            .next button:hover{
+                box-shadow: 0 0 40px rgb(255, 235, 134);
+                transform: translateY(-4px);
+            }
+
             </style>
 </head>
 
@@ -222,7 +272,12 @@
                 </p>
             </div>
             <div class = "clear">
-                <button id = "clear">Clear</button>
+                <button id = "clear">⟳</button>
+            </div>
+            <div class = "next">
+            <a href = "medium_SAT_question.html">
+                <button>Medium ☛</button>
+            </a>
             </div>
 
 
@@ -287,13 +342,13 @@ function reload(choice){
 }
 buttons.forEach(button => {
     button.addEventListener("click", () => {
-        localStorage.setItem("answer", button.id);
+        localStorage.setItem("easy_answer", button.id);
         reload(button.id);
     });
 });
 
 
-const previous = localStorage.getItem("answer")
+const previous = localStorage.getItem("easy_answer")
 if (previous) reload(previous);
 
 
@@ -307,8 +362,10 @@ function clear(){
         button.parentElement.classList.remove("disabled");
         button.disabled = false;
         });
+        
         explanation.classList.remove("visible");
-        localStorage.removeItem("answer");
+        localStorage.removeItem("easy_answer");
+        new Promise(resolve => setTimeout(resolve, 500)).then(() =>{window.location.reload();})
 }
 
 
