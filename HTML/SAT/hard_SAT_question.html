@@ -292,22 +292,22 @@
 
 
 
-document.getElementById('A').innerText = 4;
-document.getElementById('B').innerText = 9;
-document.getElementById('C').innerText = 12;
-document.getElementById('D').innerText = 15;
-document.getElementById('hint-explanation').innerText = "hint";
+document.getElementById('A').innerText = "50°";
+document.getElementById('B').innerText = "180°";
+document.getElementById('C').innerText = "100°";
+document.getElementById('D').innerText = "120°";
+document.getElementById('hint-explanation').innerText = "Think about the relationship between the central angle and its corresponding arc";
 const startingMinutes = 0.5;
-const correctAnswer = 'A';
+const correctAnswer = 'C';
+
+document.getElementById('question').innerText = "Point O is the center of a circle. The measure of arc RS on this circle is 100°. What is the measure, in degrees, of its associated angle ROS?";
+
+document.getElementById('answer_explanation').innerText = "The central angle of a circle is equal to its corresponding arc. We get 100";
+
+
 let points = 0;
 let hintsUsed = localStorage.getItem("hardhintSaved") === "true";
 let timeUp = false;
-
-document.getElementById('question').innerText = "What is 2 x 2";
-
-document.getElementById('answer_explanation').innerText = "Explanation";
-
-
 
 
 const buttons = document.querySelectorAll('.option button');

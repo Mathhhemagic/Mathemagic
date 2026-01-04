@@ -326,23 +326,24 @@
 
 
 
-document.getElementById('A').innerText = 4;
-document.getElementById('B').innerText = 9;
-document.getElementById('C').innerText = 12;
-document.getElementById('D').innerText = 15;
-document.getElementById('hint-explanation').innerText = "hint";
-const startingMinutes = 0.5;
+document.getElementById('A').innerText = 10;
+document.getElementById('B').innerText = 8;
+document.getElementById('C').innerText = 3;
+document.getElementById('D').innerText = 11;
+document.getElementById('hint-explanation').innerText = "A prime number is a number that is only divisible by 1 and itself!";
+const startingMinutes = 1.5;
 const correctAnswer = 'A';
+
+document.getElementById('question').innerText = "What percent of the non-negative integers less than 30 are prime?";
+
+document.getElementById('answer_explanation').innerText = "A prime number is a number that is only divisible by 1 and itself. This means that 1 is not a prime number, and the other prime numbers are 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, which gets us to 10 numbers";
+
+
+
+
 let points = 0;
 let hintsUsed = localStorage.getItem("mediumhintSaved") === "true";
 let timeUp = false;
-
-document.getElementById('question').innerText = "What is 2 x 2";
-
-document.getElementById('answer_explanation').innerText = "Explanation";
-
-
-
 
 const buttons = document.querySelectorAll('.option button');
 
