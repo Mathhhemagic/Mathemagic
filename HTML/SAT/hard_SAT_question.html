@@ -2,10 +2,12 @@
 <html>
 <!--Background image-->
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 <style>
+
     body, html{
         height: 100%;
         margin: 0;
@@ -20,17 +22,17 @@
                 text-decoration: none;
             }
             h1{
-                font-size: 100px;
+                font-size: 10rem;
                 text-align: center;
                 margin-top: 1%;
             }
             .question{
                 text-align:center;
-                font-size: 100px;
-                margin-top:60px;
+                font-size: 4rem;
+                margin-top: -5%;
                 margin-left: 5%;
                 margin-right: 5%;
-                margin-bottom: 45px;
+                margin-bottom: 0%;
                 color: #00598A;
             }
            
@@ -39,8 +41,8 @@
                 text-align:center;
                 flex-direction: column;
                 align-items: center;
-                gap: 10px;
-                margin-top: -50px;
+                gap: 1em;
+                margin-top: 0%;
             }
             .option-item{
                 position: relative;
@@ -62,14 +64,14 @@
                 margin-left: 25%;
                 margin-right:25%;
                 position: relative;
-                font-size: 30px;
+                font-size: 2em;
                 font-family: "Playfair Display", serif;
                 opacity: 0;
                 transition:  0.5s ease;
-                padding-bottom: 20px;
+                padding-bottom: 2%;
                 color:#0b5394;
                 text-align: center;
-                top: -20px;
+                top: -2%;
             }
 
 
@@ -85,9 +87,9 @@
             .option button{
                 cursor: pointer;
                 font-family: "Playfair Display", serif;
-                font-size: 24px;
+                font-size: 2em;
                 border-radius: 50px;
-                margin-bottom: 20px;
+                margin-bottom: 2%;
                 padding: 10px 30px;
                 background-color: #f7f7f7;
                 box-shadow: 0 0 40px #00598A;
@@ -129,15 +131,15 @@
             .arrow button{
                 cursor: pointer;
                 font-family: "Playfair Display", serif;
-                font-size: 30px;
+                font-size: 2rem;
                 display: block;
-                height: 50px;
-                width: 50px;
+                height: 3rem;
+                width: 3rem;
                 text-align: center;
                 border-radius: 50%;
                 border:transparent;
                 box-shadow: 0 0 40px grey;
-                margin-bottom: 20px;
+                margin-bottom: 2%;
                 background-color: transparent;
                 font-weight: bold;
                 color: #0b5394;
@@ -153,14 +155,13 @@
 
 
             .hard-style{
-                position:relative;
-                margin-top: 50px;
+                margin: auto;
+                margin-top: 2%;
                 display: flex;
                 justify-content: center;
             }
             .hard-style p{
-                display:block;
-                font-size:20px;
+                font-size:1em;
                 border-radius:50px;
                 text-align:center;
                 padding: 10px 25px;
@@ -175,79 +176,85 @@
             }
 
 
-            .clear{
-                position: absolute;
-                top: 90%;
-                right: 5%;
+            .header{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .timer{
+                margin-top: 0.5rem;
             }
 
-            .clear button{
+            .timer p{
+                font-size: 3rem;
+            }
+
+           .hint-container{
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            align-items: center;
+            gap: 0;
+           }
+
+           .hint button{
                 cursor: pointer;
                 font-family: "Playfair Display", serif;
-                font-size: 30px;
-                display: block;
-                height: 50px;
-                width: 50px;
-                text-align: center;
-                border-radius: 50%;
-                border:transparent;
-                box-shadow: 0 0 40px grey;
-                margin-bottom: 20px;
-                background-color: transparent;
-                font-weight: bold;
-                color: #0b5394;
-                font-weight: bold;
-            }
-           
-            .clear button:hover{
-                color:#0b5394;
-                box-shadow: 0 0 40px #0b5394;
-                transform: translateY(-4px);
-            }
-
-
-            .next{
-                position: absolute;
-                top: 50%;
-                right: 5%;
-            }
-
-            .next button{
-                cursor: pointer;
-                font-family: "Playfair Display", serif;
-                font-size: 16px;
+                font-size: 1em;
                 border-radius: 50px;
-                margin-bottom: 20px;
+                margin-bottom: 2%;
                 padding: 10px 30px;
                 background-color: #f7f7f7;
                 color: black;
-                border: 2px solid rgb(255, 235, 134);
+                border: 2px solid rgb(255, 166, 56);
                 transition: background-color 0.6s ease, box-shadow 0.6s ease;
-                min-width: 50px;
+                min-width: 1rem;
                 box-shadow:  0 0 40px grey;
-            }
+                opacity: 1;
+           }
 
-            .next button:hover{
-                box-shadow: 0 0 40px rgb(255, 235, 134);
-                transform: translateY(-4px);
-            }
-            
-            </style>
+           .hint button:hover{
+                box-shadow: 0 0 100px rgb(255, 166, 56);
+           }
+           .hint-explanation{
+                font-size: 2em;
+                font-family: "Playfair Display", serif;
+                color:#0b5394;
+                opacity: 0;
+                transition: 0.5s ease;
+           }
+
+        
+</style>
 </head>
 
 
 <body>
             <div class = "arrow">
             <a href = "/Mathemagic/">
-            <button>☚</button>
+            <button>
+            🡤</button>
             </a>
             </div>
-            </div>
-            <div class = "hard-style">
-                <p>Hard</p>
-            </div>
-            <div class = "question">
-               <p id = "question"></p>
+            <div class = "header">
+                <div class = "hard-style">
+                    <p>Hard</p>
+                </div>
+                <div class = "timer">
+                    <p id = "timer"></p>
+                </div>
+                <div class = "question">
+                <p id = "question">
+                </p>
+                </div>
+                <div class = "hint-container">
+                    <div class = "hint">
+                        <button id = "hint">Hint 💡</button>
+                    </div>
+                    <div class = "hint-explanation">
+                        <p id = "hint-explanation"></p>
+                    </div>
+                </div>
             </div>
             <div class = "option">
                 <div class = "option-item">
@@ -272,10 +279,6 @@
                 <p id = "answer_explanation"></p>
                 </p>
             </div>
-            <div class = "clear">
-                <button id = "clear">⟳</button>
-            </div>
-            
 
 
            
@@ -290,17 +293,20 @@
 
 document.getElementById('A').innerText = 4;
 document.getElementById('B').innerText = 9;
-document.getElementById('C').innerText = 25;
+document.getElementById('C').innerText = 12;
 document.getElementById('D').innerText = 15;
+document.getElementById('hint-explanation').innerText = "hint";
+const startingMinutes = 0.5;
+const correctAnswer = 'A';
+let points = 0;
+let hintsUsed = localStorage.getItem("hardhintSaved") === "true";
+let timeUp = false;
 
-
-const correctAnswer = 'C';
-
-
-document.getElementById('question').innerText = "What is 5 * 5?";
-
+document.getElementById('question').innerText = "What is 2 x 2";
 
 document.getElementById('answer_explanation').innerText = "Explanation";
+
+
 
 
 const buttons = document.querySelectorAll('.option button');
@@ -309,17 +315,54 @@ const buttons = document.querySelectorAll('.option button');
 const explanation = document.querySelector(".answer-explanation");
 
 
+const hintButton = document.getElementById("hint");
+const answer = document.querySelector(".hint-explanation");
 
+
+function disableHintButton(){
+    hintButton.disabled = true;
+    hintButton.style.backgroundColor = "rgb(178, 190, 181, 0.5)";
+    hintButton.style.boxShadow = "0 0 30px rgb(75, 75, 75, 0.5)";
+    hintButton.style.borderColor = "grey";
+}
+
+function enableHintButton(){
+    hintButton.disabled = false;
+    hintButton.style.borderColor = "rgb(255,166,56)"
+}
+
+if (hintsUsed){
+    disableHintButton();
+    answer.style.opacity = 1;
+}
+else{
+        enableHintButton();
+        answer.style.opacity = 0;
+    }
+
+hintButton.addEventListener("click", () => {
+    if (hintsUsed) return;
+
+    hintsUsed = true;
+    localStorage.setItem("hardhintSaved", "true");
+
+    disableHintButton();
+    answer.style.opacity = 1;
+
+})
 
 function reload(choice){
     buttons.forEach(button => {
         button.disabled = true;
         button.parentElement.classList.add("disabled");
 
+        
+    
 
         if (button.id === correctAnswer){
             button.style.backgroundColor = "rgb(48, 133, 24, 0.5)";
-            button.style.boxShadow = "0 0 30px rgb(48, 133, 24, 0.8)";
+            button.style.boxShadow = "0 0 30px rgb(75, 75, 75, 0.5)";
+
         }
         else if (button.id === choice){
             button.style.backgroundColor = "rgb(135, 24, 24, 0.5)";
@@ -332,38 +375,108 @@ function reload(choice){
             button.style.backgroundColor = "rgb(178, 190, 181, 0.5)";
             button.style.boxShadow = "0 0 30px rgb(75, 75, 75, 0.5)";
         }
+
     });
     explanation.classList.add("visible");
-
-
+    disableHintButton();
 }
+const previous = localStorage.getItem("hard_answer")
+if (previous) reload(previous);
+
+
+
 buttons.forEach(button => {
     button.addEventListener("click", () => {
+        if (timeInterval){
+            clearInterval(timeInterval);
+            timeInterval = null;
+        }
+        if (button.id === correctAnswer){
+            points++;
+                if (!timeUp){
+                points ++;
+            }
+
+            if (!hintsUsed){
+                points++;
+            }
+            localStorage.setItem("hard_points", points)
+        }
+    
         localStorage.setItem("hard_answer", button.id);
         reload(button.id);
     });
 });
 
 
-const previous = localStorage.getItem("hard_answer")
-if (previous) reload(previous);
 
-
-document.getElementById("clear").addEventListener("click", clear);
+refresh = setInterval(clear, 1000)
 
 
 function clear(){
-    buttons.forEach(button => {
-        button.style.backgroundColor = "#f7f7f7";
-        button.style.boxShadow = "0 0 40px #00598A";
-        button.parentElement.classList.remove("disabled");
-        button.disabled = false;
-        });
-        
-        explanation.classList.remove("visible");
-        localStorage.removeItem("hard_answer");
-        new Promise(resolve => setTimeout(resolve, 500)).then(() =>{window.location.reload();})
+    const y = new Date;
+    h = y.getHours()
+    m = y.getMinutes()
+    s = y.getSeconds()
+    hour_minute = `${h}:${m}`
+    if(hour_minute === "12:40" && s < 2){
+    
+        buttons.forEach(button => {
+            button.style.backgroundColor = "#f7f7f7";
+            button.style.boxShadow = "0 0 40px #00598A";
+            button.parentElement.classList.remove("disabled");
+            button.disabled = false;
+            });
+            
+            explanation.classList.remove("visible");
+            localStorage.removeItem("hard_answer");
+            localStorage.removeItem("hard_points");
+            localStorage.removeItem("hard_time");
+            localStorage.removeItem("hard_timer_started");
+            localStorage.removeItem("hardhintSaved");
+            localStorage.setItem("hardhintSaved", "false");
+            points = 0;
+            new Promise(resolve => setTimeout(resolve, 500)).then(() =>{window.location.reload();})
+
+            
+        }
+    }
+
+
+//Timer
+
+let time = localStorage.getItem("hard_time")  ? Number(localStorage.getItem("hard_time")) : startingMinutes * 60;
+
+
+
+const timer = document.getElementById("timer")
+updateCountdown();
+
+let timeInterval = null;
+if (!previous){
+    timeInterval = setInterval(updateCountdown, 1000);
 }
+
+function updateCountdown(){
+    if (time<=0){
+        timer.innerHTML = "0:00";
+        timer.style.color = "red";
+        timeUp = true;
+        clearInterval(timeInterval);
+        timeInterval = null;
+        return;
+    }
+    const minutes = Math.floor(time/60);
+    let seconds = time % 60;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    timer.innerHTML = `${minutes}:${seconds}`;
+    localStorage.setItem("hard_time", time)
+    time--
+
+
+
+}
+
 
 
 </script>

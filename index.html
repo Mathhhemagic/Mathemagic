@@ -238,13 +238,17 @@ Mathemagic
             <a href = "HTML/SAT/medium_SAT_question.html">
                 <button>Medium →</button>
             </a>
-            <div class = "stars"> ☆ ☆ ☆</div>
+            <div class = "stars"><p id = "medium_stars"> ☆ ☆ ☆ 
+            </p>
+            </div>
         </div>
         <div class = "hard difficulty-box">
             <a href = "HTML/SAT/hard_SAT_question.html">
                 <button>Hard →</button>
             </a>
-            <div class = "stars"> ☆ ☆ ☆</div>
+            <div class = "stars"><p id = "hard_stars"> ☆ ☆ ☆ 
+            </p>
+            </div>
         </div>
 </div>
 </div>
@@ -290,6 +294,38 @@ else if (easy === 2){
 else{
     document.getElementById("easy_stars").textContent = "★ ★ ★";
 }
+
+medium = Number(localStorage.getItem("medium_points") ?? "0");
+
+if (medium === 0){
+    document.getElementById("medium_stars").textContent = "☆ ☆ ☆";
+}
+else if (medium === 1){
+    document.getElementById("medium_stars").textContent = "★ ☆ ☆";
+}
+else if (medium === 2){
+    document.getElementById("medium_stars").textContent = "★ ★ ☆";
+}
+else{
+    document.getElementById("medium_stars").textContent = "★ ★ ★";
+}
+
+hard = Number(localStorage.getItem("hard_points") ?? "0");
+
+if (hard === 0){
+    document.getElementById("hard_stars").textContent = "☆ ☆ ☆";
+}
+else if (hard === 1){
+    document.getElementById("hard_stars").textContent = "★ ☆ ☆";
+}
+else if (hard === 2){
+    document.getElementById("hard_stars").textContent = "★ ★ ☆";
+}
+else{
+    document.getElementById("hard_stars").textContent = "★ ★ ★";
+}
+
+
 </script>
 </body>
 </html>

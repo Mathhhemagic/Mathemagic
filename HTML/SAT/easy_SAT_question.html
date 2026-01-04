@@ -176,13 +176,13 @@
             }
 
 
-            .clear{
+            .medium{
                 position: absolute;
-                top: 90%;
+                top: 50%;
                 right: 5%;
             }
 
-            .clear button{
+            .medium button{
                 cursor: pointer;
                 font-family: "Playfair Display", serif;
                 font-size: 2rem;
@@ -191,44 +191,15 @@
                 width: 3rem;
                 text-align: center;
                 border-radius: 50%;
-                border:transparent;
-                box-shadow: 0 0 40px grey;
+                border: 2px solid rgb(255, 235, 134);
                 margin-bottom: 2%;
                 background-color: transparent;
                 font-weight: bold;
-                color: #0b5394;
-                font-weight: bold;
+                color:black;
+                box-shadow: 0 0 40px grey
             }
            
-            .clear button:hover{
-                color:#0b5394;
-                box-shadow: 0 0 40px #0b5394;
-                transform: translateY(-4px);
-            }
-
-
-            .next{
-                position: absolute;
-                top: 75%;
-                right: 1rem;
-            }
-
-            .next button{
-                cursor: pointer;
-                font-family: "Playfair Display", serif;
-                font-size: 1rem;
-                border-radius: 50px;
-                margin-bottom: 2%;
-                padding: 10px 30px;
-                background-color: #f7f7f7;
-                color: black;
-                border: 2px solid rgb(255, 235, 134);
-                transition: background-color 0.6s ease, box-shadow 0.6s ease;
-                min-width: 50px;
-                box-shadow:  0 0 40px grey;
-            }
-
-            .next button:hover{
+            .medium button:hover{
                 box-shadow: 0 0 40px rgb(255, 235, 134);
                 transform: translateY(-4px);
             }
@@ -251,14 +222,13 @@
             flex-direction: column;
             position: relative;
             align-items: center;
-            margin-top: 0.5rem;
-            margin-bottom: 1rem;
+            gap: 0;
            }
 
            .hint button{
                 cursor: pointer;
                 font-family: "Playfair Display", serif;
-                font-size: 1rem;
+                font-size: 1em;
                 border-radius: 50px;
                 margin-bottom: 2%;
                 padding: 10px 30px;
@@ -266,22 +236,22 @@
                 color: black;
                 border: 2px solid rgb(255, 166, 56);
                 transition: background-color 0.6s ease, box-shadow 0.6s ease;
-                min-width: 50px;
+                min-width: 1rem;
                 box-shadow:  0 0 40px grey;
                 opacity: 1;
            }
 
            .hint button:hover{
-             box-shadow: 0 0 40px rgb(255, 166, 56);
-                transform: translateY(-4px);
+                box-shadow: 0 0 100px rgb(255, 166, 56);
            }
-
            .hint-explanation{
-                font-size: 1rem;
+                font-size: 2em;
                 font-family: "Playfair Display", serif;
                 color:#0b5394;
                 opacity: 0;
+                transition: 0.5s ease;
            }
+
         
 </style>
 </head>
@@ -291,7 +261,7 @@
             <div class = "arrow">
             <a href = "/Mathemagic/">
             <button>
-            ☚</button>
+            🡤</button>
             </a>
             </div>
             <div class = "header">
@@ -337,13 +307,12 @@
                 <p id = "answer_explanation"></p>
                 </p>
             </div>
-            <div class = "clear">
-                <button id = "clear">⟳</button>
+            <div class = "medium">
+                <a href = "medium_SAT_question.html">
+                <button>🡢</button>
+                </a>
             </div>
-            <div class = "next">
-            <a href = "medium_SAT_question.html">
-                <button>Medium ☛</button>
-            </a>
+            
             </div>
 
 
@@ -365,7 +334,7 @@ document.getElementById('hint-explanation').innerText = "hint";
 const startingMinutes = 0.5;
 const correctAnswer = 'A';
 let points = 0;
-let hintsUsed = false;
+let hintsUsed = localStorage.getItem("easyhintSaved") === "true";
 let timeUp = false;
 
 document.getElementById('question').innerText = "What is 2 x 2";
@@ -381,7 +350,41 @@ const buttons = document.querySelectorAll('.option button');
 const explanation = document.querySelector(".answer-explanation");
 
 
+const hintButton = document.getElementById("hint");
+const answer = document.querySelector(".hint-explanation");
 
+
+function disableHintButton(){
+    hintButton.disabled = true;
+    hintButton.style.backgroundColor = "rgb(178, 190, 181, 0.5)";
+    hintButton.style.boxShadow = "0 0 30px rgb(75, 75, 75, 0.5)";
+    hintButton.style.borderColor = "grey";
+}
+
+function enableHintButton(){
+    hintButton.disabled = false;
+    hintButton.style.borderColor = "rgb(255,166,56)"
+}
+
+if (hintsUsed){
+    disableHintButton();
+    answer.style.opacity = 1;
+}
+else{
+        enableHintButton();
+        answer.style.opacity = 0;
+    }
+
+hintButton.addEventListener("click", () => {
+    if (hintsUsed) return;
+
+    hintsUsed = true;
+    localStorage.setItem("easyhintSaved", "true");
+
+    disableHintButton();
+    answer.style.opacity = 1;
+
+})
 
 function reload(choice){
     buttons.forEach(button => {
@@ -393,7 +396,7 @@ function reload(choice){
 
         if (button.id === correctAnswer){
             button.style.backgroundColor = "rgb(48, 133, 24, 0.5)";
-            button.style.boxShadow = "0 0 30px rgb(48, 133, 24, 0.8)";
+            button.style.boxShadow = "0 0 30px rgb(75, 75, 75, 0.5)";
 
         }
         else if (button.id === choice){
@@ -410,8 +413,10 @@ function reload(choice){
 
     });
     explanation.classList.add("visible");
+    disableHintButton();
 }
-
+const previous = localStorage.getItem("easy_answer")
+if (previous) reload(previous);
 
 
 
@@ -439,32 +444,39 @@ buttons.forEach(button => {
 });
 
 
-const previous = localStorage.getItem("easy_answer")
-if (previous) reload(previous);
 
-
-document.getElementById("clear").addEventListener("click", clear);
+refresh = setInterval(clear, 1000)
 
 
 function clear(){
-    buttons.forEach(button => {
-        button.style.backgroundColor = "#f7f7f7";
-        button.style.boxShadow = "0 0 40px #00598A";
-        button.parentElement.classList.remove("disabled");
-        button.disabled = false;
-        });
-        
-        explanation.classList.remove("visible");
-        localStorage.removeItem("easy_answer");
-        localStorage.removeItem("easy_points");
-        localStorage.removeItem("easy_time");
-        localStorage.removeItem("easy_timer_started");
-        hintButton.style.opacity = 1;
-        answer.style.opacity = 0;
-        localStorage.setItem("easyhintSaved", "false");
-        points = 0;
-        new Promise(resolve => setTimeout(resolve, 500)).then(() =>{window.location.reload();})
-}
+    const y = new Date;
+    h = y.getHours()
+    m = y.getMinutes()
+    s = y.getSeconds()
+    hour_minute = `${h}:${m}`
+    if(hour_minute === "12:40" && s < 2){
+    
+        buttons.forEach(button => {
+            button.style.backgroundColor = "#f7f7f7";
+            button.style.boxShadow = "0 0 40px #00598A";
+            button.parentElement.classList.remove("disabled");
+            button.disabled = false;
+            });
+            
+            explanation.classList.remove("visible");
+            localStorage.removeItem("easy_answer");
+            localStorage.removeItem("easy_points");
+            localStorage.removeItem("easy_time");
+            localStorage.removeItem("easy_timer_started");
+            localStorage.removeItem("easyhintSaved");
+            localStorage.setItem("easyhintSaved", "false");
+            points = 0;
+            new Promise(resolve => setTimeout(resolve, 500)).then(() =>{window.location.reload();})
+
+            
+        }
+    }
+
 
 //Timer
 
@@ -500,21 +512,8 @@ function updateCountdown(){
 
 }
 
-const hintButton = document.querySelector(".hint");
-const answer = document.querySelector(".hint-explanation");
 
-if (localStorage.getItem("easyhintSaved") === "true") {
-    hintButton.style.opacity = 0;
-    answer.style.opacity = 1;
-    hintsUsed = true;
-}
 
-hintButton.addEventListener("click", () =>{
-    hintsUsed = true;
-    hintButton.style.opacity = 0;
-    answer.style.opacity = 1;
-    localStorage.setItem("easyhintSaved", "true")
-});
 </script>
 </body>
 </html>
