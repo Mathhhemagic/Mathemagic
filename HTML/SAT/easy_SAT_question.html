@@ -28,7 +28,7 @@
             }
             .question{
                 text-align:center;
-                font-size: 4rem;
+                font-size: 2em;
                 margin-top: -5%;
                 margin-left: 5%;
                 margin-right: 5%;
@@ -133,8 +133,8 @@
                 font-family: "Playfair Display", serif;
                 font-size: 2rem;
                 display: block;
-                height: 3rem;
-                width: 3rem;
+                height: 4rem;
+                width: 4rem;
                 text-align: center;
                 border-radius: 50%;
                 border:transparent;
@@ -144,13 +144,14 @@
                 font-weight: bold;
                 color: #0b5394;
                 font-weight: bold;
+                transform: scaleX(-1)
             }
 
 
             .arrow button:hover{
                 color:#0b5394;
                 box-shadow: 0 0 40px #0b5394;
-                transform: translateY(-4px);
+                transform: translateY(-4px) scaleX(-1);
             }
 
 
@@ -177,9 +178,10 @@
 
 
             .medium{
-                position: absolute;
-                top: 50%;
-                right: 5%;
+                position: relative;
+                display: block;
+                margin-top: -5%;
+                margin-left: 95%;
             }
 
             .medium button{
@@ -187,8 +189,8 @@
                 font-family: "Playfair Display", serif;
                 font-size: 2rem;
                 display: block;
-                height: 3rem;
-                width: 3rem;
+                height: 4rem;
+                width: 4rem;
                 text-align: center;
                 border-radius: 50%;
                 border: 2px solid rgb(255, 235, 134);
@@ -260,9 +262,15 @@
 <body>
             <div class = "arrow">
             <a href = "/Mathemagic/">
-            <button>
-            🡤</button>
+            <button>➢
+            </button>
             </a>
+            </div>
+            <div class = "medium">
+                <a href = "medium_SAT_question.html">
+                <button>➢</button>
+                </a>
+            </div>
             </div>
             <div class = "header">
                 <div class = "easy-style">
@@ -307,13 +315,7 @@
                 <p id = "answer_explanation"></p>
                 </p>
             </div>
-            <div class = "medium">
-                <a href = "medium_SAT_question.html">
-                <button>🡢</button>
-                </a>
-            </div>
-            
-            </div>
+    
 
 
            
@@ -326,22 +328,23 @@
 
 
 
-document.getElementById('A').innerText = 4;
+document.getElementById('A').innerText = 6;
 document.getElementById('B').innerText = 9;
 document.getElementById('C').innerText = 12;
 document.getElementById('D').innerText = 15;
-document.getElementById('hint-explanation').innerText = "hint";
-const startingMinutes = 0.5;
-const correctAnswer = 'A';
+document.getElementById('hint-explanation').innerText = "There are 60 minutes in 1 hour!";
+const startingMinutes = 2;
+const correctAnswer = 'B';
+
+document.getElementById('question').innerText = "Aubrey can run at a pace of 6 miles per hour. Running at the same rate, how many miles can she run in 90 minutes?";
+
+document.getElementById('answer_explanation').innerText = "First, let's convert 90 minutes into hours. \n 1 hour = 60 minutes \n 90 minutes = 1.5 hours \n Then, becasue she can run 6 miles per hour, we multiply 6 by 1.5, which gets us to 9 miles.";
+
+
+
 let points = 0;
 let hintsUsed = localStorage.getItem("easyhintSaved") === "true";
 let timeUp = false;
-
-document.getElementById('question').innerText = "What is 2 x 2";
-
-document.getElementById('answer_explanation').innerText = "Explanation";
-
-
 
 
 const buttons = document.querySelectorAll('.option button');
@@ -495,7 +498,7 @@ if (!previous){
 function updateCountdown(){
     if (time<=0){
         timer.innerHTML = "0:00";
-        timer.style.color = "red";
+        timer.style.color = "#EB5E5E";
         timeUp = true;
         clearInterval(timeInterval);
         timeInterval = null;

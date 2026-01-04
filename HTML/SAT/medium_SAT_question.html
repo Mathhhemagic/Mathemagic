@@ -28,7 +28,7 @@
             }
             .question{
                 text-align:center;
-                font-size: 4rem;
+                font-size: 2em;
                 margin-top: -5%;
                 margin-left: 5%;
                 margin-right: 5%;
@@ -133,8 +133,8 @@
                 font-family: "Playfair Display", serif;
                 font-size: 2rem;
                 display: block;
-                height: 3rem;
-                width: 3rem;
+                height: 4rem;
+                width: 4rem;
                 text-align: center;
                 border-radius: 50%;
                 border:transparent;
@@ -144,13 +144,14 @@
                 font-weight: bold;
                 color: #0b5394;
                 font-weight: bold;
+                transform: scaleX(-1)
             }
 
 
             .arrow button:hover{
                 color:#0b5394;
                 box-shadow: 0 0 40px #0b5394;
-                transform: translateY(-4px);
+                transform: translateY(-4px), scaleX(-1);
             }
 
 
@@ -177,9 +178,10 @@
 
 
             .hard{
-                position: absolute;
-                top: 50%;
-                right: 5%;
+                position: relative;
+                display: block;
+                margin-top: -5%;
+                margin-left: 95%;
             }
 
             .hard button{
@@ -187,8 +189,8 @@
                 font-family: "Playfair Display", serif;
                 font-size: 2rem;
                 display: block;
-                height: 3rem;
-                width: 3rem;
+                height: 4rem;
+                width: 4rem;
                 text-align: center;
                 border-radius: 50%;
                 border: 2px solid #C72306;
@@ -261,8 +263,13 @@
             <div class = "arrow">
             <a href = "/Mathemagic/">
             <button>
-            🡤</button>
+            ➢</button>
             </a>
+            </div>
+            <div class = "hard">
+                <a href = "hard_SAT_question.html">
+                <button>➢</button>
+                </a>
             </div>
             <div class = "header">
                 <div class = "medium-style">
@@ -306,13 +313,6 @@
                 <div class = "visible"></div>
                 <p id = "answer_explanation"></p>
                 </p>
-            </div>
-            <div class = "hard">
-                <a href = "hard_SAT_question.html">
-                <button>🡢</button>
-                </a>
-            </div>
-            
             </div>
 
 
@@ -495,7 +495,7 @@ if (!previous){
 function updateCountdown(){
     if (time<=0){
         timer.innerHTML = "0:00";
-        timer.style.color = "red";
+        timer.style.color = "#EB5E5E";
         timeUp = true;
         clearInterval(timeInterval);
         timeInterval = null;
