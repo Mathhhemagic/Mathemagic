@@ -137,11 +137,19 @@ padding: 4% 0%;
                 border-radius: 5vw;
                 padding: 1vw 3vw;
                 border-color: transparent;      
-                margin-bottom: 10%;
-                margin-top: 10%
+                margin-bottom: 0.5rem;
         }
 
+        .difficulty-box{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
+        .stars{
+            font-size: 2rem;
+            letter-spacing: 0.25rem;
+        }
         .easy button{
             background-color: #2f82c0;
             box-shadow: 0 0 40px #2f82c0;
@@ -170,6 +178,7 @@ padding: 4% 0%;
             ul li a.inactive:hover{
             background-color: #2f82c0;
             }
+    
         
             @media (max-width: 600px){
                 .difficulty{
@@ -216,23 +225,31 @@ Mathemagic
 <div class ="whole">
     <p>Daily SAT challenge:</p>
     <div class = "difficulty">
-        <div class = "easy">
+        <div class = "easy difficulty-box">
             <a href = "HTML/SAT/easy_SAT_question.html">
                 <button>Easy →</button>
             </a>
+            <div class = "stars">
+                <p id = "easy_stars">☆ ☆ ☆
+            </p> 
+            </div>
         </div>
-        <div class = "medium">
+        <div class = "medium difficulty-box">
             <a href = "HTML/SAT/medium_SAT_question.html">
                 <button>Medium →</button>
             </a>
+            <div class = "stars"> ☆ ☆ ☆</div>
         </div>
-        <div class = "hard">
+        <div class = "hard difficulty-box">
             <a href = "HTML/SAT/hard_SAT_question.html">
                 <button>Hard →</button>
             </a>
+            <div class = "stars"> ☆ ☆ ☆</div>
         </div>
 </div>
 </div>
+
+
 
 
 <script defer>
@@ -259,7 +276,20 @@ updateClock();
 
 setInterval(updateClock,1000);
 
+easy = Number(localStorage.getItem("easy_points") ?? "0");
 
+if (easy === 0){
+    document.getElementById("easy_stars").textContent = "☆ ☆ ☆";
+}
+else if (easy === 1){
+    document.getElementById("easy_stars").textContent = "★ ☆ ☆";
+}
+else if (easy === 2){
+    document.getElementById("easy_stars").textContent = "★ ★ ☆";
+}
+else{
+    document.getElementById("easy_stars").textContent = "★ ★ ★";
+}
 </script>
 </body>
 </html>
