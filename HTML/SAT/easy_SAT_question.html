@@ -327,26 +327,72 @@
 <script>
 
 
+const questions = [
+
+{
+
+    question: "g",
+    answer: {A:6, B:9, C:12, D:15},
+    correct: "B",
+    hint:"Convert minutes to hours",
+    explanation: "90 minutes is 1.5 hours. 6 x 1.5 = 9 miles.",
+    minutes: 2
+}
+,
+{
+    question: "h",
+    answer: {A:7, B:9, C:12, D: 15},
+    correct: "A",
+    hint: "yrfrhf",
+    explanation: "ehdbedhb",
+    minutes: 3
+}
+
+]
+
+function getDailyDate(resetHour, resetMinute){
+    const now = new Date();
+    const reset = new Date(now);
+
+    reset.setHours(resetHour, resetMinute, 0, 0);
+
+    if (now < reset){
+        reset.setDate(reset.getDate()-1);
+
+    }
+
+    return reset;
+}
+
+const startDate = new Date("2026-01-04T08:00:00");
+const dailyDate = getDailyDate(8, 0);
+
+
+const dailyIndex = Math.floor((dailyDate - startDate) / 86400000) % questions.length;
+
+
+const q = questions[dailyIndex];
+
+
+const dayKey = dailyDate.toISOString().split("T")[0];
+const answer_key = "easy_answer" + dayKey;
+const hint_key = "easy_hint" + dayKey;
+const time_key = "easy_time" + dayKey;
 
 
 
-
-document.getElementById('A').innerText = 6;
-document.getElementById('B').innerText = 9;
-document.getElementById('C').innerText = 12;
-document.getElementById('D').innerText = 15;
-document.getElementById('hint-explanation').innerText = "There are 60 minutes in 1 hour!";
-const startingMinutes = 2;
-const correctAnswer = 'B';
-
-document.getElementById('question').innerText = "Anna can run at a pace of 5 miles per hour. Running at the same rate, how many miles can she run in 90 minutes?";
-
-document.getElementById('answer_explanation').innerText = "First, let's convert 90 minutes into hours. \n 1 hour = 60 minutes \n 90 minutes = 1.5 hours \n Then, becasue she can run 6 miles per hour, we multiply 6 by 1.5, which gets us to 9 miles.";
+document.getElementById('A').innerText = q.answer.A;
+document.getElementById('B').innerText = q.answer.B;
+document.getElementById('C').innerText = q.answer.C;
+document.getElementById('D').innerText = q.answer.D;
+document.getElementById('hint-explanation').innerText = q.hint;
+document.getElementById('question').innerText = q.question;
+document.getElementById('answer_explanation').innerText = q.explanation;
+const startingMinutes = q.minutes;
+const correctAnswer = q.correct;
 
 
-
-let points = 0;
-let hintsUsed = localStorage.getItem("easyhintSaved") === "true";
+let hintsUsed = localStorage.getItem(hint_key) === "true";
 let timeUp = false;
 
 
@@ -355,9 +401,10 @@ const buttons = document.querySelectorAll('.option button');
 
 const explanation = document.querySelector(".answer-explanation");
 
-
+ let points = Number(localStorage.getItem("easy_points")) || 0;
 const hintButton = document.getElementById("hint");
 const answer = document.querySelector(".hint-explanation");
+
 
 
 function disableHintButton(){
@@ -385,7 +432,7 @@ hintButton.addEventListener("click", () => {
     if (hintsUsed) return;
 
     hintsUsed = true;
-    localStorage.setItem("easyhintSaved", "true");
+    localStorage.setItem(hint_key, "true");
 
     disableHintButton();
     answer.style.opacity = 1;
@@ -421,7 +468,7 @@ function reload(choice){
     explanation.classList.add("visible");
     disableHintButton();
 }
-const previous = localStorage.getItem("easy_answer")
+const previous = localStorage.getItem(answer_key)
 if (previous) reload(previous);
 
 
@@ -441,52 +488,16 @@ buttons.forEach(button => {
             if (!hintsUsed){
                 points++;
             }
-            localStorage.setItem("easy_points", points)
+            localStorage.setItem("easy_points", points);
         }
     
-        localStorage.setItem("easy_answer", button.id);
+        localStorage.setItem(answer_key, button.id);
         reload(button.id);
     });
 });
 
 
-
-refresh = setInterval(clear, 1000)
-
-
-function clear(){
-    const y = new Date;
-    h = y.getHours()
-    m = y.getMinutes()
-    s = y.getSeconds()
-    hour_minute = `${h}:${m}`
-    if(hour_minute === "12:40" && s < 2){
-    
-        buttons.forEach(button => {
-            button.style.backgroundColor = "#f7f7f7";
-            button.style.boxShadow = "0 0 40px #00598A";
-            button.parentElement.classList.remove("disabled");
-            button.disabled = false;
-            });
-            
-            explanation.classList.remove("visible");
-            localStorage.removeItem("easy_answer");
-            localStorage.removeItem("easy_points");
-            localStorage.removeItem("easy_time");
-            localStorage.removeItem("easy_timer_started");
-            localStorage.removeItem("easyhintSaved");
-            localStorage.setItem("easyhintSaved", "false");
-            points = 0;
-            new Promise(resolve => setTimeout(resolve, 500)).then(() =>{window.location.reload();})
-
-            
-        }
-    }
-
-
-//Timer
-
-let time = localStorage.getItem("easy_time")  ? Number(localStorage.getItem("easy_time")) : startingMinutes * 60;
+let time = localStorage.getItem(time_key)  ? Number(localStorage.getItem(time_key)) : startingMinutes * 60;
 
 
 
@@ -511,7 +522,7 @@ function updateCountdown(){
     let seconds = time % 60;
     seconds = seconds < 10 ? "0" + seconds : seconds;
     timer.innerHTML = `${minutes}:${seconds}`;
-    localStorage.setItem("easy_time", time)
+    localStorage.setItem(time_key, time)
     time--
 
 

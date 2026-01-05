@@ -296,22 +296,72 @@
 
 
 
+const questions = [
 
-document.getElementById('A').innerText = "50°";
-document.getElementById('B').innerText = "180°";
-document.getElementById('C').innerText = "100°";
-document.getElementById('D').innerText = "120°";
-document.getElementById('hint-explanation').innerText = "Think about the relationship between the central angle and its corresponding arc";
-const startingMinutes = 0.5;
-const correctAnswer = 'C';
+{
 
-document.getElementById('question').innerText = "Point O is the center of a circle. The measure of arc RS on this circle is 100°. What is the measure, in degrees, of its associated angle ROS?";
+    question: "g",
+    answer: {A:6, B:9, C:12, D:15},
+    correct: "B",
+    hint:"Convert minutes to hours",
+    explanation: "90 minutes is 1.5 hours. 6 x 1.5 = 9 miles.",
+    minutes: 2
+}
+,
+{
+    question: "h",
+    answer: {A:7, B:9, C:12, D: 15},
+    correct: "A",
+    hint: "yrfrhf",
+    explanation: "ehdbedhb",
+    minutes: 3
+}
 
-document.getElementById('answer_explanation').innerText = "The central angle of a circle is equal to its corresponding arc. We get 100";
+]
+
+function getDailyDate(resetHour, resetMinute){
+    const now = new Date();
+    const reset = new Date(now);
+
+    reset.setHours(resetHour, resetMinute, 0, 0);
+
+    if (now < reset){
+        reset.setDate(reset.getDate()-1);
+
+    }
+
+    return reset;
+}
+
+const startDate = new Date("2026-01-04T08:00:00");
+const dailyDate = getDailyDate(8, 0);
 
 
-let points = 0;
-let hintsUsed = localStorage.getItem("hardhintSaved") === "true";
+const dailyIndex = Math.floor((dailyDate - startDate) / 86400000) % questions.length;
+
+
+const q = questions[dailyIndex];
+
+
+const dayKey = dailyDate.toISOString().split("T")[0];
+const answer_key = "hard_answer" + dayKey;
+const hint_key = "hard_hint" + dayKey;
+const time_key = "hard_time" + dayKey;
+
+
+
+document.getElementById('A').innerText = q.answer.A;
+document.getElementById('B').innerText = q.answer.B;
+document.getElementById('C').innerText = q.answer.C;
+document.getElementById('D').innerText = q.answer.D;
+document.getElementById('hint-explanation').innerText = q.hint;
+document.getElementById('question').innerText = q.question;
+document.getElementById('answer_explanation').innerText = q.explanation;
+const startingMinutes = q.minutes;
+const correctAnswer = q.correct;
+
+
+let hintsUsed = localStorage.getItem(hint_key) === "true";
 let timeUp = false;
 
 
@@ -320,9 +370,10 @@ const buttons = document.querySelectorAll('.option button');
 
 const explanation = document.querySelector(".answer-explanation");
 
-
+ let points = Number(localStorage.getItem("hard_points")) || 0;
 const hintButton = document.getElementById("hint");
 const answer = document.querySelector(".hint-explanation");
+
 
 
 function disableHintButton(){
@@ -350,7 +401,7 @@ hintButton.addEventListener("click", () => {
     if (hintsUsed) return;
 
     hintsUsed = true;
-    localStorage.setItem("hardhintSaved", "true");
+    localStorage.setItem(hint_key, "true");
 
     disableHintButton();
     answer.style.opacity = 1;
@@ -386,7 +437,7 @@ function reload(choice){
     explanation.classList.add("visible");
     disableHintButton();
 }
-const previous = localStorage.getItem("hard_answer")
+const previous = localStorage.getItem(answer_key)
 if (previous) reload(previous);
 
 
@@ -406,52 +457,16 @@ buttons.forEach(button => {
             if (!hintsUsed){
                 points++;
             }
-            localStorage.setItem("hard_points", points)
+            localStorage.setItem("hard_points", points);
         }
     
-        localStorage.setItem("hard_answer", button.id);
+        localStorage.setItem(answer_key, button.id);
         reload(button.id);
     });
 });
 
 
-
-refresh = setInterval(clear, 1000)
-
-
-function clear(){
-    const y = new Date;
-    h = y.getHours()
-    m = y.getMinutes()
-    s = y.getSeconds()
-    hour_minute = `${h}:${m}`
-    if(hour_minute === "12:40" && s < 2){
-    
-        buttons.forEach(button => {
-            button.style.backgroundColor = "#f7f7f7";
-            button.style.boxShadow = "0 0 40px #00598A";
-            button.parentElement.classList.remove("disabled");
-            button.disabled = false;
-            });
-            
-            explanation.classList.remove("visible");
-            localStorage.removeItem("hard_answer");
-            localStorage.removeItem("hard_points");
-            localStorage.removeItem("hard_time");
-            localStorage.removeItem("hard_timer_started");
-            localStorage.removeItem("hardhintSaved");
-            localStorage.setItem("hardhintSaved", "false");
-            points = 0;
-            new Promise(resolve => setTimeout(resolve, 500)).then(() =>{window.location.reload();})
-
-            
-        }
-    }
-
-
-//Timer
-
-let time = localStorage.getItem("hard_time")  ? Number(localStorage.getItem("hard_time")) : startingMinutes * 60;
+let time = localStorage.getItem(time_key)  ? Number(localStorage.getItem(time_key)) : startingMinutes * 60;
 
 
 
@@ -476,7 +491,7 @@ function updateCountdown(){
     let seconds = time % 60;
     seconds = seconds < 10 ? "0" + seconds : seconds;
     timer.innerHTML = `${minutes}:${seconds}`;
-    localStorage.setItem("hard_time", time)
+    localStorage.setItem(time_key, time)
     time--
 
 

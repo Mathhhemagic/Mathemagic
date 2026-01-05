@@ -327,35 +327,84 @@
 
 
 
+const questions = [
+
+{
+
+    question: "g",
+    answer: {A:6, B:9, C:12, D:15},
+    correct: "B",
+    hint:"Convert minutes to hours",
+    explanation: "90 minutes is 1.5 hours. 6 x 1.5 = 9 miles.",
+    minutes: 2
+}
+,
+{
+    question: "h",
+    answer: {A:7, B:9, C:12, D: 15},
+    correct: "A",
+    hint: "yrfrhf",
+    explanation: "ehdbedhb",
+    minutes: 3
+}
+
+]
+
+function getDailyDate(resetHour, resetMinute){
+    const now = new Date();
+    const reset = new Date(now);
+
+    reset.setHours(resetHour, resetMinute, 0, 0);
+
+    if (now < reset){
+        reset.setDate(reset.getDate()-1);
+
+    }
+
+    return reset;
+}
+
+const startDate = new Date("2026-01-04T08:00:00");
+const dailyDate = getDailyDate(8, 0);
 
 
-document.getElementById('A').innerText = 10;
-document.getElementById('B').innerText = 8;
-document.getElementById('C').innerText = 3;
-document.getElementById('D').innerText = 11;
-document.getElementById('hint-explanation').innerText = "A prime number is a number that is only divisible by 1 and itself!";
-const startingMinutes = 1.5;
-const correctAnswer = 'A';
+const dailyIndex = Math.floor((dailyDate - startDate) / 86400000) % questions.length;
 
-document.getElementById('question').innerText = "How many non-negative integers less than 30 are prime?";
 
-document.getElementById('answer_explanation').innerText = "A prime number is a number that is only divisible by 1 and itself. This means that 1 is not a prime number, and the other prime numbers are 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, which gets us to 10 numbers";
+const q = questions[dailyIndex];
 
+
+const dayKey = dailyDate.toISOString().split("T")[0];
+const answer_key = "medium_answer" + dayKey;
+const hint_key = "medium_hint" + dayKey;
+const time_key = "medium_time" + dayKey;
 
 
 
-let points = 0;
-let hintsUsed = localStorage.getItem("mediumhintSaved") === "true";
+document.getElementById('A').innerText = q.answer.A;
+document.getElementById('B').innerText = q.answer.B;
+document.getElementById('C').innerText = q.answer.C;
+document.getElementById('D').innerText = q.answer.D;
+document.getElementById('hint-explanation').innerText = q.hint;
+document.getElementById('question').innerText = q.question;
+document.getElementById('answer_explanation').innerText = q.explanation;
+const startingMinutes = q.minutes;
+const correctAnswer = q.correct;
+
+
+let hintsUsed = localStorage.getItem(hint_key) === "true";
 let timeUp = false;
+
 
 const buttons = document.querySelectorAll('.option button');
 
 
 const explanation = document.querySelector(".answer-explanation");
 
-
+ let points = Number(localStorage.getItem("medium_points")) || 0;
 const hintButton = document.getElementById("hint");
 const answer = document.querySelector(".hint-explanation");
+
 
 
 function disableHintButton(){
@@ -383,7 +432,7 @@ hintButton.addEventListener("click", () => {
     if (hintsUsed) return;
 
     hintsUsed = true;
-    localStorage.setItem("mediumhintSaved", "true");
+    localStorage.setItem(hint_key, "true");
 
     disableHintButton();
     answer.style.opacity = 1;
@@ -419,7 +468,7 @@ function reload(choice){
     explanation.classList.add("visible");
     disableHintButton();
 }
-const previous = localStorage.getItem("medium_answer")
+const previous = localStorage.getItem(answer_key)
 if (previous) reload(previous);
 
 
@@ -439,52 +488,16 @@ buttons.forEach(button => {
             if (!hintsUsed){
                 points++;
             }
-            localStorage.setItem("medium_points", points)
+            localStorage.setItem("medium_points", points);
         }
     
-        localStorage.setItem("medium_answer", button.id);
+        localStorage.setItem(answer_key, button.id);
         reload(button.id);
     });
 });
 
 
-
-refresh = setInterval(clear, 1000)
-
-
-function clear(){
-    const y = new Date;
-    h = y.getHours()
-    m = y.getMinutes()
-    s = y.getSeconds()
-    hour_minute = `${h}:${m}`
-    if(hour_minute === "12:40" && s < 2){
-    
-        buttons.forEach(button => {
-            button.style.backgroundColor = "#f7f7f7";
-            button.style.boxShadow = "0 0 40px #00598A";
-            button.parentElement.classList.remove("disabled");
-            button.disabled = false;
-            });
-            
-            explanation.classList.remove("visible");
-            localStorage.removeItem("medium_answer");
-            localStorage.removeItem("medium_points");
-            localStorage.removeItem("medium_time");
-            localStorage.removeItem("medium_timer_started");
-            localStorage.removeItem("mediumhintSaved");
-            localStorage.setItem("mediumhintSaved", "false");
-            points = 0;
-            new Promise(resolve => setTimeout(resolve, 500)).then(() =>{window.location.reload();})
-
-            
-        }
-    }
-
-
-//Timer
-
-let time = localStorage.getItem("medium_time")  ? Number(localStorage.getItem("medium_time")) : startingMinutes * 60;
+let time = localStorage.getItem(time_key)  ? Number(localStorage.getItem(time_key)) : startingMinutes * 60;
 
 
 
@@ -509,7 +522,7 @@ function updateCountdown(){
     let seconds = time % 60;
     seconds = seconds < 10 ? "0" + seconds : seconds;
     timer.innerHTML = `${minutes}:${seconds}`;
-    localStorage.setItem("medium_time", time)
+    localStorage.setItem(time_key, time)
     time--
 
 

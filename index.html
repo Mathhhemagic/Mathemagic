@@ -112,7 +112,6 @@ padding: 4% 0%;
         .time-content{
             display: flex;
             text-align: center;
-            margin-bottom: 1rem;
             justify-content: center;
             gap: 0.75rem;
         }
@@ -120,7 +119,6 @@ padding: 4% 0%;
             font-family: "Playfair Display", serif;
             font-size: 2rem;
             color: #00598A;
-            padding: 0 2%;
         }
 
         .time p{
@@ -262,28 +260,50 @@ Mathemagic
 
 
 <script defer>
-    var countDown = new Date("2026-01-05T08:00:00").getTime();
-    function updateClock(){
+   const reset_hour = 8;
+   const reset_minute = 0;
+
+   function getNextResetTime(){
+    const now = new Date();
+    const reset = new Date();
+
+    reset.setHours(reset_hour, reset_minute, 0, 0)
 
 
-        var today = new Date().getTime();
-        var until = countDown - today;
+   if (now >= reset){
+        reset.setDate(reset.getDate() + 1);
+   }
+   return reset;
+   }
+
+   function updateClock(){
+    const now = new Date();
+    const nextReset = getNextResetTime();
+    const until = nextReset - now;
+
+    if (until <= 0){
+        document.getElementById("stopwatch").textContent = "00:00:00";
+        return;
+    }
+
+    const hours = Math.floor(until / (1000 * 60 * 60));
+    const minutes = Math.floor((until % (1000 * 60 *60)) / (1000 * 60));
+    const seconds = Math.floor((until % (1000 * 60)) / 1000);
+
+    document.getElementById("stopwatch").textContent = 
+        String(hours).padStart(2, "0") + ":" + String(minutes).padStart(2, "0") + ":" + String(seconds).padStart(2, "0");
+   }
+
+   updateClock();
+   setInterval(updateClock, 1000);
 
 
-        var hour = Math.floor((until % (1000*60*60*24))/(1000*60*60));
-        var minute = Math.floor((until % (1000 * 60 * 60))/(1000*60));
-        var second = Math.floor((until % (1000*60))/1000);
 
 
-        hour = hour.toString().padStart(2,'0');
-        minute = minute.toString().padStart(2,'0');
-        second = second.toString().padStart(2,'0');
-        document.getElementById("stopwatch").innerHTML = hour + ":" + minute + ":" + second;
-        }
-updateClock();
 
 
-setInterval(updateClock,1000);
+
+
 
 easy = Number(localStorage.getItem("easy_points") ?? "0");
 
