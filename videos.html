@@ -10,13 +10,23 @@ body, html{
         margin: 0;
     }
     body{
-        background-image:url("/Mathemagic/HTML/Images/final_background.jpg");
+        background-image: url("/Mathemagic/HTML/Images/background_final_2.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         background-attachment: fixed;
         padding-bottom: 2rem;
     }
+
+    @media(max-width: 1080px){
+        .body{
+            background-image: url("/Mathemagic/HTML/Images/phone_background.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+     }
 
 ul{
             list-style-type: none;

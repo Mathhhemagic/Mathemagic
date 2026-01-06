@@ -12,13 +12,12 @@
         margin: 0;
     }
     body{
-        background-image: url("/Mathemagic/HTML/Images/final_background.jpg");
+        background-image: url("/Mathemagic/HTML/Images/background_final_2.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         background-attachment: fixed;
     }
-
 
 .mathemagic{
     text-align: center;
@@ -70,7 +69,8 @@ padding: 4% 0%;
     color:white;
     font-size: 3rem;
     font-family: "Playfair Display", serif;
-    margin: 0;
+    margin-top: 0;
+    margin-bottom: 2%;
 }
 
     
@@ -203,6 +203,13 @@ padding: 4% 0%;
                 .whole p{
                     font-size: 2.5rem;
                 }
+                .body{
+                    background-image: url("/Mathemagic/HTML/Images/phone_background.jpg");
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-attachment: fixed;
+                }
             }
 
 
@@ -306,10 +313,25 @@ Mathemagic
 
 
 
+function getDailyDate(resetHour, resetMinute){
+    const now = new Date();
+    const reset = new Date(now);
+    reset.setHours(resetHour, resetMinute, 0, 0)
+
+    if (now < reset){
+        reset.setDate(reset.getDate()-1);
+    }
+    return reset;
+}
+
+const todayKey = getDailyDate(8, 0).toISOString().split("T")[0];
 
 
+const easy = Number(localStorage.getItem("easy_points_" + todayKey)) || 0;
 
-easy = Number(localStorage.getItem("easy_points") ?? "0");
+const medium = Number(localStorage.getItem("medium_points_" + todayKey)) || 0;
+
+const hard = Number(localStorage.getItem("hard_points_" + todayKey)) || 0;
 
 if (easy === 0){
     document.getElementById("easy_stars").textContent = "☆ ☆ ☆";
@@ -324,7 +346,6 @@ else{
     document.getElementById("easy_stars").textContent = "★ ★ ★";
 }
 
-medium = Number(localStorage.getItem("medium_points") ?? "0");
 
 if (medium === 0){
     document.getElementById("medium_stars").textContent = "☆ ☆ ☆";
@@ -339,7 +360,6 @@ else{
     document.getElementById("medium_stars").textContent = "★ ★ ★";
 }
 
-hard = Number(localStorage.getItem("hard_points") ?? "0");
 
 if (hard === 0){
     document.getElementById("hard_stars").textContent = "☆ ☆ ☆";
