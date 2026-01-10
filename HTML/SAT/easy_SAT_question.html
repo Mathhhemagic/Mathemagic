@@ -3,17 +3,30 @@
 <!--Background image-->
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cause:wght@100..900&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
 <style>
 
+
+  .anim{
+            opacity: 0;
+            transform: translateY(30px);
+            animation: moveUp 0.5s linear forwards
+        }
+        @keyframes moveUp{
+            to{
+                opacity: 1;
+                transform: translateY(0px);
+            }
+        }
     body, html{
         height: 100%;
         margin: 0;
     }
     body{
-        background-image: url("/Mathemagic/HTML/Images/background_final_2.jpg");
+        background-image: url("/Mathemagic/HTML/Images/lighter_background.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -39,6 +52,7 @@
                 font-size: 10rem;
                 text-align: center;
                 margin-top: 1%;
+                font-family: "Zilla Slab", serif;
             }
             .question{
                 text-align:center;
@@ -48,6 +62,7 @@
                 margin-right: 5%;
                 margin-bottom: 0%;
                 color: #00598A;
+                font-family: "Zilla Slab", serif;
             }
            
             .option{
@@ -79,7 +94,7 @@
                 margin-right:25%;
                 position: relative;
                 font-size: 2em;
-                font-family: "Playfair Display", serif;
+                font-family: "Zilla Slab", serif;
                 opacity: 0;
                 transition:  0.5s ease;
                 padding-bottom: 2%;
@@ -100,7 +115,7 @@
 
             .option button{
                 cursor: pointer;
-                font-family: "Playfair Display", serif;
+                font-family: "Zilla Slab", serif;
                 font-size: 2em;
                 border-radius: 50px;
                 margin-bottom: 2%;
@@ -139,12 +154,13 @@
                 margin-left: 5%;
                 position: relative;
                 display: block;
+                font-family: "Cause", cursive;
             }
 
 
             .arrow button{
                 cursor: pointer;
-                font-family: "Playfair Display", serif;
+                font-family: "Zilla Slab", serif;
                 font-size: 2rem;
                 display: block;
                 height: 4rem;
@@ -181,6 +197,7 @@
                 text-align:center;
                 padding: 10px 25px;
                 box-shadow: 0 0 40px #158C00;
+                font-family: "Zilla Slab", serif;
             }
             .img{
                 display: block;
@@ -200,7 +217,7 @@
 
             .medium button{
                 cursor: pointer;
-                font-family: "Playfair Display", serif;
+                font-family: "Zilla Slab", serif;
                 font-size: 2rem;
                 display: block;
                 height: 4rem;
@@ -231,6 +248,7 @@
 
             .timer p{
                 font-size: 3rem;
+                font-family: "Zilla Slab", serif;
             }
 
            .hint-container{
@@ -244,7 +262,7 @@
 
            .hint button{
                 cursor: pointer;
-                font-family: "Playfair Display", serif;
+                font-family: "Zilla Slab", serif;
                 font-size: 1em;
                 border-radius: 50px;
                 margin-bottom: 2%;
@@ -263,7 +281,7 @@
            }
            .hint-explanation{
                 font-size: 2em;
-                font-family: "Playfair Display", serif;
+                font-family: "Zilla Slab", serif;
                 color:#0b5394;
                 opacity: 0;
                 transition: 0.5s ease;
@@ -277,6 +295,7 @@
 
 
 <body>
+    <div class = "anim">
             <div class = "arrow">
             <a href = "/Mathemagic/">
             <button>➢
@@ -287,7 +306,6 @@
                 <a href = "medium_SAT_question.html">
                 <button>➢</button>
                 </a>
-            </div>
             </div>
             <div class = "header">
                 <div class = "easy-style">
@@ -332,6 +350,7 @@
                 <p id = "answer_explanation"></p>
                 </p>
             </div>
+        </div>
     
 
 
@@ -415,7 +434,7 @@ const buttons = document.querySelectorAll('.option button');
 
 const explanation = document.querySelector(".answer-explanation");
 
- let points = Number(localStorage.getItem("easy_points")) || 0;
+ let points = Number(localStorage.getItem("easy_points_" + dayKey)) || 0;
 const hintButton = document.getElementById("hint");
 const answer = document.querySelector(".hint-explanation");
 
@@ -502,7 +521,7 @@ buttons.forEach(button => {
             if (!hintsUsed){
                 points++;
             }
-            localStorage.setItem("easy_points", points);
+            localStorage.setItem("easy_points_" + dayKey, points);
         }
     
         localStorage.setItem(answer_key, button.id);
