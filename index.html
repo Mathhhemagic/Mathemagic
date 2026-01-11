@@ -13,22 +13,41 @@
     body{
        background-color: rgb(249, 249, 249);
        background-image: 
-       linear-gradient(rgba(0,0,0,0.035) 1px, transparent 1px),
-       linear-gradient(90deg,rgba(0,0,0,0.035) 1px, transparent 1px);
+        linear-gradient(rgba(0,0,0,0.035) 1px, transparent 1px),
+        linear-gradient(90deg,rgba(0,0,0,0.035) 1px, transparent 1px);
      background-size: 40px 40px;
     }
-
    
-.mathemagic{
-    text-align: center;
-    padding-top: 4%;
-    text-decoration: none;
-    color: #00598A;
-    font-size: 4rem;
-    font-family: "Zilla Slab", serif;
-    margin-bottom: 2%;
-    margin-top: 2%;
-}
+    .mathemagic{
+        text-align: center;
+        padding-top: 4%;
+        font-size: 4rem;
+        margin-bottom: 2%;
+        margin-top: 2%;
+    }
+    .mathemagic-color{
+        background-image: linear-gradient(45deg,rgb(36, 92, 113),rgb(54, 193, 243),rgb(60, 122, 247));
+        background-clip: text;
+        font-family: "Zilla Slab", serif;
+        background-size: 400% 400%;
+        text-decoration: none;
+        color: transparent;
+        animation: gradient 5s linear infinite;
+    }
+
+    @keyframes gradient{
+        0%{
+            background-position: 0% 50%;
+        }
+
+        50%{
+            background-position: 100% 50%;
+        }
+
+        100%{
+            background-position: 0% 50%;
+        }
+    }
 
 
 .mathemagic-logo{
@@ -119,9 +138,14 @@ padding: 4% 0%;
        }
 
        .time p{
-        color:#2f82c0;
         font-size: 2rem;
         font-family: "Zilla Slab", serif;
+        text-decoration: none;
+        background-image: linear-gradient(45deg,rgb(36, 92, 113),rgb(54, 193, 243),rgb(60, 122, 247));
+        background-clip: text;
+        -webkit-background-clip: text;
+        background-size: 100% 100%;
+        color: transparent;
         
        }
         .difficulty{
@@ -258,7 +282,9 @@ padding: 4% 0%;
     </ul>
 <div class = "anim">
 <div class = "mathemagic">
+<div class = "mathemagic-color">
 Mathemagic
+</div>
 </div>  
     <div class = "time">
     <p id = "time"></p>
