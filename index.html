@@ -11,13 +11,14 @@
         margin: 0;
     }
     body{
-        background-image: url("/Mathemagic/HTML/Images/lighter_background.jpg");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
+       background-color: rgb(249, 249, 249);
+       background-image: 
+       linear-gradient(rgba(0,0,0,0.035) 1px, transparent 1px),
+       linear-gradient(90deg,rgba(0,0,0,0.035) 1px, transparent 1px);
+     background-size: 40px 40px;
     }
 
+   
 .mathemagic{
     text-align: center;
     padding-top: 4%;
@@ -111,22 +112,18 @@ padding: 4% 0%;
             text-decoration: none;
         }
 
-        .time-content{
-            display: flex;
+       .time{
+            margin: 0 auto;
             text-align: center;
-            justify-content: center;
-            gap: 0.75rem;
-        }
-        .time, .in-time{
-            font-family: "Zilla Slab", serif;
-            font-size: 2rem;
-            color: #00598A;
-        }
+        
+       }
 
-        .time p{
-            margin: 0;
-        }
-
+       .time p{
+        color:#2f82c0;
+        font-size: 2rem;
+        font-family: "Zilla Slab", serif;
+        
+       }
         .difficulty{
                 display: flex;
                 justify-content: center;
@@ -199,13 +196,13 @@ padding: 4% 0%;
                 .whole p{
                     font-size: 2.5rem;
                 }
-                .body{
-                    background-image: url("/Mathemagic/HTML/Images/phone_background.jpg");
-                    background-size: cover;
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    background-attachment: fixed;
-                }
+                body{
+                    background-color: rgb(249, 249, 249);
+                    background-image: 
+                    linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+                    linear-gradient(90deg,rgba(0,0,0,0.05) 1px, transparent 1px);
+                    background-size: 40px 40px;
+    }
             }
 
              .anim{
@@ -219,7 +216,33 @@ padding: 4% 0%;
                 transform: translateY(0px);
             }
         }
-        
+    
+    .math-container{
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+    }
+
+    .math-float{
+        position: absolute;
+        bottom: -2rem;
+        font-size: 3rem;
+        font-family: "Zilla Slab", serif;
+        animation: floatUp linear forwards;
+        color:rgb(21, 41, 47)
+    }
+
+    @keyframes floatUp{
+        from{
+            transform: translateY(0);
+            opacity: 0.15;
+        }
+        to{
+            transform: translateY(-110vh);
+            opacity:0;
+        }
+    }
     
 
 
@@ -228,6 +251,7 @@ padding: 4% 0%;
 </style>
 </head>
 <body>
+<div class = "math-container"></div>
 <ul>
     <li><a class = "active" href = "index.html">Home</a></li>
     <li><a class = "inactive" href = "videos.html">Videos</a></li>
@@ -236,14 +260,9 @@ padding: 4% 0%;
 <div class = "mathemagic">
 Mathemagic
 </div>  
-<div class = "time-content">
-    <div class = "in-time">
-        The next challenge is in:
-    </div>
     <div class = "time">
-    <p id = "stopwatch">--:--:--</p>
+    <p id = "time"></p>
     </div>
-</div>
 <div class = "mathemagic-logo">
 <img src = "/Mathemagic/HTML/Images/mathemagic_circle_logo.png">
 </div>
@@ -283,43 +302,93 @@ Mathemagic
 
 
 <script defer>
-   const reset_hour = 8;
-   const reset_minute = 0;
+const container = document.querySelector(".math-container");
+const symbols = ["+", "-", "x", "/", "±", "∞", "π","Σ", "√", "∛", "∜", "ε", "⊾", "⊢", "≠","≅", "≈",
+"≡",
+"≋",
+"≢",
+"≃",
+"≂",
+"≒",
+"≗",
+"≎",
+"≚",
+"≟",
+"≜",
+"≔",
+"≐",
+"≆",
+"≑",
+"≖",
+"≓",
+"⋕",
+"≉",
+"≙",
+"⋍",
+"□",
+"○",
+"⋄",
+"△",
+"▷",
+"◊",
+"▱",
+"◡",
+"⌒",
+"▽",
+"◠",
+"▭",
+"◁",
+"⊿", "+", "-", "x", "/", "±", "∞", "π","Σ", "√", "∛", "∜", "ε", "⊾", "⊢"];
 
-   function getNextResetTime(){
-    const now = new Date();
-    const reset = new Date();
+function spawnMath(){
+    const shape = document.createElement("div");
+    shape.className = "math-float";
+    shape.textContent = symbols[Math.floor(Math.random() * symbols.length)];
 
-    reset.setHours(reset_hour, reset_minute, 0, 0)
+    shape.style.left = Math.random() * 100 + "vw";
+
+    shape.style.fontSize = (2 + Math.random() *2) + "rem";
+
+    const duration = 16 + Math.random() * 8;
+
+    shape.style.animationDuration = duration + "s"
+
+    container.appendChild(shape);
+
+    setTimeout(() => {
+        shape.remove();
+    }, duration * 1000);
+}
+
+setInterval(spawnMath, 1000);
 
 
-   if (now >= reset){
-        reset.setDate(reset.getDate() + 1);
-   }
-   return reset;
-   }
 
-   function updateClock(){
-    const now = new Date();
-    const nextReset = getNextResetTime();
-    const until = nextReset - now;
 
-    if (until <= 0){
-        document.getElementById("stopwatch").textContent = "00:00:00";
-        return;
-    }
 
-    const hours = Math.floor(until / (1000 * 60 * 60));
-    const minutes = Math.floor((until % (1000 * 60 *60)) / (1000 * 60));
-    const seconds = Math.floor((until % (1000 * 60)) / 1000);
 
-    document.getElementById("stopwatch").textContent = 
-        String(hours).padStart(2, "0") + ":" + String(minutes).padStart(2, "0") + ":" + String(seconds).padStart(2, "0");
-   }
 
-   updateClock();
-   setInterval(updateClock, 1000);
 
+
+
+
+
+
+
+
+
+const today_text = document.getElementById("time");
+const today = new Date();
+
+const formattedDate = today.toLocaleDateString(undefined, {
+    weekday: "short",
+    month: "long",
+    day: "numeric",
+    year: "numeric"
+
+});
+
+today_text.textContent = formattedDate;
 
 
 
@@ -336,7 +405,7 @@ function getDailyDate(resetHour, resetMinute){
     return reset;
 }
 
-const todayKey = getDailyDate(8, 0).toISOString().split("T")[0];
+const todayKey = getDailyDate(0, 0).toISOString().split("T")[0];
 
 
 const easy = Number(localStorage.getItem("easy_points_" + todayKey)) || 0;
