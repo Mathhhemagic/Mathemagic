@@ -58,6 +58,12 @@
                 margin-bottom: 0%;
                 color: #00598A;
             }
+             .img_question{
+                text-align: center;
+                margin-top: 1rem;
+                transform:scale(1.2);
+            }
+           
            
             .option{
                 display: flex;
@@ -305,6 +311,10 @@
                 <div class = "timer">
                     <p id = "timer"></p>
                 </div>
+                <div class = "img_question">
+                    <img id = "img_question">
+                </img>
+                </div>
                 <div class = "question">
                 <p id = "question">
                 </p>
@@ -356,21 +366,24 @@ const questions = [
 
 {
 
-    question: "g",
-    answer: {A:6, B:9, C:12, D:15},
-    correct: "B",
-    hint:"Convert minutes to hours",
-    explanation: "90 minutes is 1.5 hours. 6 x 1.5 = 9 miles.",
-    minutes: 2
+    question: "In the figure above, l and m are parallel, y = 20, and z = 60. What is the value of x?",
+    answer: {A:"100°", B:"90°", C:"20°", D:"80°"},
+    correct: "A",
+    hint:"Angle y and the missing angle of the triangle made from transversal l are congruent",
+    explanation: "Angle y and the missing angle of the triangle made from transversal l are congruent, because lines l and m are parallel and the two angles are corresponding. The angles of a triangle add up to 180°, so 180 - 20 - 60 = 100°",
+    minutes: 1.5,
+    img_question: "question1.jpg"
+
 }
 ,
 {
-    question: "h",
-    answer: {A:7, B:9, C:12, D: 15},
-    correct: "A",
-    hint: "yrfrhf",
-    explanation: "ehdbedhb",
-    minutes: 3
+   question: "If √x = √a + √b, what is x in terms of a and b?",
+    answer: {A:"√a + 2√a√b + √b", B:"a + b", C:"a² + b²", D:"a + 2√(ab) + b"},
+    correct: "D",
+    hint:"(x + y)² = x² +2xy + y²",
+    explanation: "In order to solve this problem, we need to square both sides. Use  (x + y)² = x² +2xy + y²/nx = a + a + 2√(ab) + b",
+    minutes: 1.5,
+    img_question: ""
 }
 
 ]

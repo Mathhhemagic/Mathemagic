@@ -59,7 +59,11 @@
                 margin-bottom: 0%;
                 color: #00598A;
             }
-           
+           .img_question{
+                text-align: center;
+                margin-top: 1rem;
+                transform:scale(1.2);
+            }
             .option{
                 display: flex;
                 text-align:center;
@@ -274,6 +278,10 @@
                 <div class = "timer">
                     <p id = "timer"></p>
                 </div>
+                <div class = "img_question">
+                    <img id = "img_question">
+                </img>
+                </div>
                 <div class = "question">
                 <p id = "question">
                 </p>
@@ -326,24 +334,28 @@ const questions = [
 
 {
 
-    question: "g",
-    answer: {A:6, B:9, C:12, D:15},
-    correct: "B",
-    hint:"Convert minutes to hours",
-    explanation: "90 minutes is 1.5 hours. 6 x 1.5 = 9 miles.",
-    minutes: 2
+    question: "John is running at 10 miles per hour. How many miles does he run in 210 minutes?",
+    answer: {A:15, B:17, C:35, D:45},
+    correct: "C",
+    hint:"There are 60 minutes in one hour",
+    explanation: " Let’s convert the minutes to hours. There are 60 minutes in an hour. That means 210 minutes is 3.5 hours. 3.5 * 10 = 35 miles. ",
+    minutes: 1.5,
+    img_question: ""
+
 }
 ,
 {
-    question: "h",
-    answer: {A:7, B:9, C:12, D: 15},
+   question: "What is a factor of 35 + 25?",
+    answer: {A:12, B:9, C:25, D:35},
     correct: "A",
-    hint: "yrfrhf",
-    explanation: "ehdbedhb",
-    minutes: 3
+    hint:"A factor is a whole number that, if multiplied by another “x” whole number, will result in the larger number.",
+    explanation: "Let’s add 35 and 25 to get 60. 12 is a factor of 60, as it is a whole number when multiplied by another whole number (5), gets us 60",
+    minutes: 1,
+    img_question: ""
 }
 
 ]
+
 
 function getDailyDate(resetHour, resetMinute){
     const now = new Date();
