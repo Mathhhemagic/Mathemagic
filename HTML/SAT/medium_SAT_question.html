@@ -438,9 +438,9 @@ const q = questions[dailyIndex];
 
 
 const dayKey = dailyDate.toISOString().split("T")[0];
-const answer_key = "easy_answer" + dayKey;
-const hint_key = "easy_hint" + dayKey;
-const time_key = "easy_time" + dayKey;
+const answer_key = "medium_answer" + dayKey;
+const hint_key = "medium_hint" + dayKey;
+const time_key = "medium_time" + dayKey;
 
 
 
@@ -475,7 +475,7 @@ const buttons = document.querySelectorAll('.option button');
 
 const explanation = document.querySelector(".answer-explanation");
 
- let points = Number(localStorage.getItem("easy_points_" + dayKey)) || 0;
+ let points = Number(localStorage.getItem("medium_points_" + dayKey)) || 0;
 const hintButton = document.getElementById("hint");
 const answer = document.querySelector(".hint-explanation");
 
@@ -562,7 +562,7 @@ buttons.forEach(button => {
             if (!hintsUsed){
                 points++;
             }
-            localStorage.setItem("easy_points_" + dayKey, points);
+            localStorage.setItem("medium_points_" + dayKey, points);
         }
     
         localStorage.setItem(answer_key, button.id);

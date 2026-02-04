@@ -374,7 +374,7 @@ const questions = [
     correct: "A",
     hint:"A factor is a whole number that, if multiplied by another “x” whole number, will result in the larger number.",
     explanation: "Let’s add 35 and 25 to get 60. 12 is a factor of 60, as it is a whole number when multiplied by another whole number (5), gets us 60",
-    minutes: 10,
+    minutes: 1,
     img_question: ""
 }
 
@@ -405,9 +405,9 @@ const q = questions[dailyIndex];
 
 
 const dayKey = dailyDate.toISOString().split("T")[0];
-const answer_key = "easy_answer" + dayKey;
-const hint_key = "easy_hint" + dayKey;
-const time_key = "easy_time" + dayKey;
+const answer_key = "hard_answer" + dayKey;
+const hint_key = "hard_hint" + dayKey;
+const time_key = "hard_time" + dayKey;
 
 
 
@@ -442,7 +442,7 @@ const buttons = document.querySelectorAll('.option button');
 
 const explanation = document.querySelector(".answer-explanation");
 
- let points = Number(localStorage.getItem("easy_points_" + dayKey)) || 0;
+ let points = Number(localStorage.getItem("hard_points_" + dayKey)) || 0;
 const hintButton = document.getElementById("hint");
 const answer = document.querySelector(".hint-explanation");
 
@@ -529,7 +529,7 @@ buttons.forEach(button => {
             if (!hintsUsed){
                 points++;
             }
-            localStorage.setItem("easy_points_" + dayKey, points);
+            localStorage.setItem("hard_points_" + dayKey, points);
         }
     
         localStorage.setItem(answer_key, button.id);
