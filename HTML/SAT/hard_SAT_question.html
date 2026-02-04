@@ -6,8 +6,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cause:wght@100..900&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libertinus+Math&display=swap" rel="stylesheet">
 <style>
- .anim{
+
+
+  .anim{
             opacity: 0;
             transform: translateY(30px);
             animation: moveUp 0.5s linear forwards
@@ -30,14 +35,14 @@
      background-size: 40px 40px;
     }
 
-    @media(max-width: 600px){
-        .body{
-            background-image: url("/Mathemagic/HTML/Images/phone_background.jpg");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
+     @media(max-width: 600px){
+        body{
+       background-color: rgb(249, 249, 249);
+       background-image: 
+       linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+       linear-gradient(90deg,rgba(0,0,0,0.05) 1px, transparent 1px);
+     background-size: 40px 40px;
+    }
      }
 </style>
 <!--Daily Question-->
@@ -49,21 +54,34 @@
                 font-size: 10rem;
                 text-align: center;
                 margin-top: 1%;
+                font-family: "Libertinus Math", system-ui;
+
             }
-            .question{
-                text-align:center;
-                font-size: 2em;
-                margin-top: -5%;
-                margin-left: 5%;
-                margin-right: 5%;
-                margin-bottom: 0%;
-                color: #00598A;
+            .question_container{
+                padding: 3em;
+                container: flex;
+                flex-direction: row;
+                background-color: white;
+                border: solid 1px black;
+                margin-bottom: 1rem;
             }
-           .img_question{
+             .img_question{
                 text-align: center;
                 margin-top: 1rem;
                 transform:scale(1.2);
             }
+           
+            .question{
+                text-align:center;
+                font-size: 2em;
+                margin-left: 5%;
+                margin-right: 5%;
+                margin-bottom: 0%;
+                color: #333535;
+                font-family: "Libertinus Math", system-ui;
+
+            }
+           
             .option{
                 display: flex;
                 text-align:center;
@@ -93,11 +111,12 @@
                 margin-right:25%;
                 position: relative;
                 font-size: 2em;
-                font-family: "Zilla Slab", serif;
+                font-family: "Libertinus Math", system-ui;
+
                 opacity: 0;
                 transition:  0.5s ease;
                 padding-bottom: 2%;
-                color:#0b5394;
+                color:#333535;
                 text-align: center;
                 top: -2%;
             }
@@ -114,17 +133,18 @@
 
             .option button{
                 cursor: pointer;
-                font-family: "Zilla Slab", serif;
+                font-family: "Libertinus Math", system-ui;
                 font-size: 2em;
                 border-radius: 50px;
                 margin-bottom: 2%;
                 padding: 10px 30px;
                 background-color: #f7f7f7;
-                box-shadow: 0 0 40px #00598A;
-                color: #00598A;
+                color: #333535;
                 border: transparent;
+                   box-shadow: 0 0 15px #0b5394;
                 transition: background-color 0.6s ease, box-shadow 0.6s ease;
                 min-width: 100px;
+                
             }
            
 
@@ -153,12 +173,14 @@
                 margin-left: 5%;
                 position: relative;
                 display: block;
+                font-family: "Libertinus Math", system-ui;
+
             }
 
 
             .arrow button{
                 cursor: pointer;
-                font-family: "Zilla Slab", serif;
+                font-family: "Libertinus Math", system-ui;
                 font-size: 2rem;
                 display: block;
                 height: 4rem;
@@ -179,7 +201,7 @@
             .arrow button:hover{
                 color:#0b5394;
                 box-shadow: 0 0 40px #0b5394;
-                transform: translateY(-4px), scaleX(-1);
+                transform: translateY(-4px) scaleX(-1);
             }
 
 
@@ -194,7 +216,8 @@
                 border-radius:50px;
                 text-align:center;
                 padding: 10px 25px;
-                box-shadow: 0 0 40px #C72306;
+                box-shadow: 0 0 40px #ff5b5b;
+                font-family: "Libertinus Math", system-ui;
             }
             .img{
                 display: block;
@@ -205,19 +228,20 @@
             }
 
 
+
             .header{
                 display: flex;
                 flex-direction: column;
                 align-items: center;
             }
 
-            
             .timer{
                 margin-top: 0.5rem;
             }
 
             .timer p{
-                font-size: 3rem;
+                font-size: 2rem;
+                font-family: "Libertinus Math", system-ui;
             }
 
            .hint-container{
@@ -226,14 +250,14 @@
             position: relative;
             align-items: center;
             gap: 0;
+            justify-content: center;
            }
 
            .hint button{
                 cursor: pointer;
-                font-family: "Zilla Slab", serif;
+                font-family: "Libertinus Math", system-ui;
                 font-size: 1em;
                 border-radius: 50px;
-                margin-bottom: 2%;
                 padding: 10px 30px;
                 background-color: #f7f7f7;
                 color: black;
@@ -249,14 +273,15 @@
            }
            .hint-explanation{
                 font-size: 2em;
-                font-family: "Zilla Slab", serif;
-                color:#0b5394;
+                font-family: "Libertinus Math", system-ui;
+                color:#333535;
                 opacity: 0;
                 transition: 0.5s ease;
                 align-content: center;
-                justify-content: center;
                 text-align: center;
+                width: 80%;
            }
+           
 
         
 </style>
@@ -267,24 +292,25 @@
     <div class = "anim">
             <div class = "arrow">
             <a href = "/Mathemagic/">
-            <button>
-            ➢</button>
+            <button>➢
+            </button>
             </a>
             </div>
+            <div class = "hard-style">
+                <p>Hard</p>
+            </div>
             <div class = "header">
-                <div class = "hard-style">
-                    <p>Hard</p>
-                </div>
-                <div class = "timer">
+                 <div class = "timer">
                     <p id = "timer"></p>
                 </div>
+                <div class = "question_container">
                 <div class = "img_question">
                     <img id = "img_question">
-                </img>
                 </div>
                 <div class = "question">
                 <p id = "question">
                 </p>
+                </div>
                 </div>
                 <div class = "hint-container">
                     <div class = "hint">
@@ -318,16 +344,14 @@
                 <p id = "answer_explanation"></p>
                 </p>
             </div>
-            </div>
+        </div>
+    
 
 
            
 
 
 <script>
-
-
-
 
 
 const questions = [
@@ -340,7 +364,7 @@ const questions = [
     hint:"There are 60 minutes in one hour",
     explanation: " Let’s convert the minutes to hours. There are 60 minutes in an hour. That means 210 minutes is 3.5 hours. 3.5 * 10 = 35 miles. ",
     minutes: 1.5,
-    img_question: ""
+    img_question: "../Images/question2.jpg"
 
 }
 ,
@@ -350,12 +374,11 @@ const questions = [
     correct: "A",
     hint:"A factor is a whole number that, if multiplied by another “x” whole number, will result in the larger number.",
     explanation: "Let’s add 35 and 25 to get 60. 12 is a factor of 60, as it is a whole number when multiplied by another whole number (5), gets us 60",
-    minutes: 1,
+    minutes: 10,
     img_question: ""
 }
 
 ]
-
 
 function getDailyDate(resetHour, resetMinute){
     const now = new Date();
@@ -371,7 +394,7 @@ function getDailyDate(resetHour, resetMinute){
     return reset;
 }
 
-const startDate = new Date("2026-01-04T00:00:00");
+const startDate = new Date("2026-01-05T00:00:00");
 const dailyDate = getDailyDate(0, 0);
 
 
@@ -382,9 +405,9 @@ const q = questions[dailyIndex];
 
 
 const dayKey = dailyDate.toISOString().split("T")[0];
-const answer_key = "hard_answer" + dayKey;
-const hint_key = "hard_hint" + dayKey;
-const time_key = "hard_time" + dayKey;
+const answer_key = "easy_answer" + dayKey;
+const hint_key = "easy_hint" + dayKey;
+const time_key = "easy_time" + dayKey;
 
 
 
@@ -396,6 +419,17 @@ document.getElementById('hint-explanation').innerText = q.hint;
 document.getElementById('question').innerText = q.question;
 document.getElementById('answer_explanation').innerText = q.explanation;
 const startingMinutes = q.minutes;
+const img = document.getElementById("img_question");
+const imgWrapper = document.querySelector(".img_question");
+
+if (q.img_question){
+    img.src = q.img_question;
+    imgWrapper.style.display = "block";
+}
+else{
+    img.removeAttribute("src");
+    imgWrapper.style.display = "none";
+}
 const correctAnswer = q.correct;
 
 
@@ -408,7 +442,7 @@ const buttons = document.querySelectorAll('.option button');
 
 const explanation = document.querySelector(".answer-explanation");
 
- let points = Number(localStorage.getItem("hard_points_" + dayKey)) || 0;
+ let points = Number(localStorage.getItem("easy_points_" + dayKey)) || 0;
 const hintButton = document.getElementById("hint");
 const answer = document.querySelector(".hint-explanation");
 
@@ -495,7 +529,7 @@ buttons.forEach(button => {
             if (!hintsUsed){
                 points++;
             }
-            localStorage.setItem("hard_points_" + dayKey, points);
+            localStorage.setItem("easy_points_" + dayKey, points);
         }
     
         localStorage.setItem(answer_key, button.id);
@@ -518,7 +552,7 @@ if (!previous){
 
 function updateCountdown(){
     if (time<=0){
-        timer.innerHTML = "0:00";
+        timer.innerHTML = "⏱️0:00";
         timer.style.color = "#EB5E5E";
         timeUp = true;
         clearInterval(timeInterval);
@@ -528,7 +562,7 @@ function updateCountdown(){
     const minutes = Math.floor(time/60);
     let seconds = time % 60;
     seconds = seconds < 10 ? "0" + seconds : seconds;
-    timer.innerHTML = `${minutes}:${seconds}`;
+    timer.innerHTML = `⏱️${minutes}:${seconds}`;
     localStorage.setItem(time_key, time)
     time--
 
