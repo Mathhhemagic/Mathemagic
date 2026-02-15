@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<link href="https://fonts.googleapis.com/css2?family=Cause:wght@100..900&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+<head>
+    
+<title>Login</title>
+</head>
+
+<style>
+
+
+.login-container{
+    border:solid 1px rgb(44, 135, 162);
+    align-items: center;
+    margin: 0 auto;
+    width:fit-content;
+    padding: 5rem 5rem;
+    margin-top: 2%;
+    background-color: #ffffff;
+
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    font-family: "Zilla Slab", serif;
+    text-align: center;
+    color:rgb(44, 135, 162);
+}
+
+.login{
+    font-size: 2rem;
+}
+
+body{
+    min-height: 100vh;
+       background-color: rgb(249, 249, 249);
+       background-image: 
+        linear-gradient(rgba(0,0,0,0.035) 1px, transparent 1px),
+        linear-gradient(90deg,rgba(0,0,0,0.035) 1px, transparent 1px);
+     background-size: 40px 40px;
+    
+}
+ @keyframes gradient{
+        0%{
+            background-position: 0% 50%;
+        }
+
+        50%{
+            background-position: 100% 50%;
+        }
+
+        100%{
+            background-position: 0% 50%;
+        }
+    }
+
+     .math-container{
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+    }
+
+    .math-float{
+        position: absolute;
+        bottom: -2rem;
+        font-size: 3rem;
+        font-family: "Zilla Slab", serif;
+        animation: floatUp linear forwards;
+        color:rgb(21, 41, 47)
+    }
+
+    @keyframes floatUp{
+        from{
+            transform: translateY(0);
+            opacity: 0.2;
+        }
+        to{
+            transform: translateY(-110vh);
+            opacity:0;
+        }
+    }
+form{
+    margin: 0 auto;
+    width: min(400px, 100%);
+    margin-top: 10%;
+    font-family: "Zilla Slab", serif;
+}
+
+form input{
+    box-sizing: border-box;
+    border-radius: 2%;
+    background-color:rgb(21, 41, 47, 0.1) ;
+    border: none;
+    margin-bottom: 2rem;
+    padding: 5% 5%;
+    font-size: 1rem;
+    font-family: "Zilla Slab", serif;
+    border: 2px solid white;
+
+    
+
+}
+
+form input:hover{
+    border: 2px solid rgb(41, 144, 203);
+    outline: none;
+    font-family: "Zilla Slab", serif;
+
+}
+
+form input:focus{
+    outline: none;
+    border-color: rgb(41, 144, 203);
+    outline: none;
+    font-family: "Zilla Slab", serif;
+}
+
+
+form div.incorrect input{
+    border: solid 2px rgb(130, 4, 4);
+}
+
+.save{
+    font-size: 2rem;
+    margin-top: -10%;
+    margin-bottom: 2%;
+
+}
+
+.logo-color{
+        background-image: linear-gradient(45deg,rgb(36, 92, 113),rgb(54, 193, 243),rgb(60, 122, 247));
+        background-clip: text;
+        font-family: "Zilla Slab", serif;
+        background-size: 400% 400%;
+        text-decoration: none;
+        color: transparent;
+        animation: gradient 5s linear infinite;
+    }
+
+    @keyframes gradient{
+        0%{
+            background-position: 0% 50%;
+        }
+
+        50%{
+            background-position: 100% 50%;
+        }
+
+        100%{
+            background-position: 0% 50%;
+        }
+    }
+
+@media (max-width: 600px){
+    .login-container{
+    border:solid 1px rgb(44, 135, 162);
+    align-items: center;
+    margin: 0 auto;
+    width:fit-content;
+    padding: 2% 2%;
+    margin-top: 2%;
+    width: 80%;
+    height: 90%;
+
+}
+}
+
+.login-button button{
+    margin-top: 2%;
+    font-family: "Zilla Slab", serif;
+    padding: 1rem 2rem;
+    border-radius: 35%;
+    cursor: pointer;
+    border: transparent;
+    box-shadow: 0 0 20px #2f82c0;
+    margin-bottom: 4%;
+    background-image: linear-gradient(45deg,rgba(0, 141, 193, 0.2),rgb(54, 193, 243, 0.2));
+    color: rgb(0, 39, 81);
+    font-weight: bold;
+    
+}
+
+.login-button button:hover{
+
+    transform: translateY(-4px);
+}
+
+.error-message{
+    margin-top: 2%;
+    font-size: 1rem;
+}
+
+.new a{
+    color:rgb(44, 135, 162);
+}
+
+.new a:hover{
+    color: rgb(14, 47, 57);
+
+}
+
+.mathemagic-container{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+    flex-direction: row;
+    margin-right: 2%;
+    margin-top: 0%;
+}
+
+.mathemagic-img img{
+    height: 3rem;
+    width: 3rem;
+    margin-top: 0.5rem;
+}
+.mathemagic{
+ text-decoration: none;
+        background-image: linear-gradient(45deg,rgb(36, 92, 113),rgb(54, 193, 243),rgb(60, 122, 247));
+        background-clip: text;
+        font-size: 3rem;
+        font-family: "Zilla Slab", serif;
+        -webkit-background-clip: text;
+        background-size: 100% 100%;
+        color: transparent;
+        
+}
+
+
+</style>
+<body>
+    <div class = "wrapper">
+    <div class = "login">
+    <div class = "logo-color">
+        <div class = mathemagic-container>
+        <div class = "mathemagic-img">
+        <img src = "HTML/Images/mathemagic_circle_logo.png">
+        </div>
+        <div class = "mathemagic">Mathemagic</div>
+
+    </div>
+    <h1>Login</h1>
+    </div>
+    </div>
+    <div class = "error-message">
+    <p id = "error-message"></p>
+    </div>
+    </div>
+    <div class = "login-container">
+    <form id = "form">
+        <div class = "save">
+        <p>Welcome back!</p>
+        </div>
+        <div>
+            <input type ="email" name = "email" id = "email-input" placeholder="Email">
+        </div>
+        <div>
+            <input type ="password" name = "password" id = "password-input" placeholder="Password">
+        </div>
+        <div class = "login-button">
+        <button type = "submit">Login</button>
+        </div>
+    </form>
+    <div class = "new">
+    <p>New here?</p><a href = "signup.html">Create an account</a></p>
+    </div>
+    <div class = "math-container"></div>
+</body>
+
+
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
+    
+const firebaseConfig = {
+            apiKey: "AIzaSyDRjjvLABEFL-PgbChUFNZW6u38U6c7jP4",
+            authDomain: "mathemagic-fcb1d.firebaseapp.com",
+            projectId: "mathemagic-fcb1d",
+            storageBucket: "mathemagic-fcb1d.appspot.com",
+            messagingSenderId: "313453456371",
+            appId: "1:313453456371:web:21e60d301936c2333f8086"
+        };
+        firebase.initializeApp(firebaseConfig);
+</script>
+<script defer>
+    const form = document.getElementById('form')
+    const email_input = document.getElementById('email-input')
+    const password_input = document.getElementById('password-input')
+    const error_message = document.getElementById("error-message")
+
+
+    function getLoginErrors(email,password){
+    let errors = []
+    if(email === '' || email === null){
+        errors.push("Email is required")
+        email_input.parentElement.classList.add("incorrect")
+    }
+    if(password === '' || password === null){
+        errors.push("Password is required")
+        password_input.parentElement.classList.add("incorrect") 
+    }
+    return errors
+}
+    form.addEventListener('submit', async(e) =>{
+        e.preventDefault()
+        const errors = getLoginErrors(email_input.value, password_input.value);
+        if (errors.length > 0){
+            error_message.innerText = errors.join(". ")
+            return;
+        
+
+    }
+    try {
+        await firebase.auth().signInWithEmailAndPassword(email_input.value, password_input.value);
+        window.location.href = "index.html"
+    }
+    catch(error){
+        error_message.innerText = "Invalid email or password";
+
+        if(error.code === "auth/invalid-login-credentials"){
+            email_input.parentElement.classList.add("incorrect");
+            password_input.parentElement.classList.add("incorrect");
+        }
+
+        if(error.code === "auth/user-not-found"){
+            email_input.parentElement.classList.add("incorrect");
+        }
+
+        if(error.code === "auth/wrong-password"){
+            password_input.parentElement.classList.add("incorrect");
+        }
+        if(error.code === "auth/invalid-email"){
+            email_input.parentElement.classList.add("incorrect");
+        }
+    }
+
+
+    });
+
+
+
+[email_input, password_input].forEach(input => {
+    input.addEventListener("input", () => {
+        if(input.parentElement.classList.contains("incorrect")){
+            input.parentElement.classList.remove("incorrect");
+            error_message.innerText = "";
+        }
+    });
+});
+const container = document.querySelector(".math-container");
+const symbols = ["+", "-", "x", "/", "±", "∞", "π","Σ", "√", "∛", "∜", "ε", "⊾", "⊢", "≠","≅", "≈",
+"≡",
+"≋",
+"≢",
+"≃",
+"≂",
+"≒",
+"≗",
+"≎",
+"≚",
+"≟",
+"≜",
+"≔",
+"≐",
+"≆",
+"≑",
+"≖",
+"≓",
+"⋕",
+"≉",
+"≙",
+"⋍",
+"□",
+"○",
+"⋄",
+"△",
+"▷",
+"◊",
+"▱",
+"◡",
+"⌒",
+"▽",
+"◠",
+"▭",
+"◁",
+"⊿", "+", "-", "x", "/", "±", "∞", "π","Σ", "√", "∛", "∜", "ε", "⊾", "⊢", "+","−","×","÷",
+"=","≠","≈","≡",
+"<",">","≤","≥",
+"±","∓","∞",
+"√","∛","∜",
+"∑","∏","∫","∬",
+"∂","∇","∆",
+"∈","∉","∋","⊂","⊃","⊆","⊇",
+"∪","∩","∅",
+"∀","∃","∄",
+"¬","∧","∨","⊕","⊗",
+"→","←","↔","⇒","⇔",
+"ℝ","ℤ","ℚ","ℕ","ℂ",
+"π","θ","λ","μ","σ",
+"α","β","γ","δ","ε",
+"φ","ψ","ω"] ;
+
+function spawnMath(){
+    const shape = document.createElement("div");
+    shape.className = "math-float";
+    shape.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+
+    shape.style.left = Math.random() * 100 + "vw";
+
+    shape.style.fontSize = (2 + Math.random() *2) + "rem";
+
+    const duration = 16 + Math.random() * 8;
+
+    shape.style.animationDuration = duration + "s"
+
+    container.appendChild(shape);
+
+setTimeout(() => {
+        shape.remove();
+    }, duration * 1000);
+
+}
+setInterval(spawnMath, 2000);
+
+
+</script>

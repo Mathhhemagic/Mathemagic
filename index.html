@@ -62,6 +62,7 @@ padding: 4% 0%;
     margin: 0 auto;
     padding-top: 1%;
     visibility: visible;
+
 }
 
 
@@ -79,8 +80,7 @@ padding: 4% 0%;
     margin-top: 2rem;
     margin-bottom: 2rem;
     max-width: 90vw;
-
-
+    box-shadow: 0 15px 40px rgba(0,0,0,0,.08)
 }
 .whole p{
     text-align: center;
@@ -93,20 +93,23 @@ padding: 4% 0%;
 }
 
         ul{
+            display: flex;
             list-style-type: none;
             margin: 0;
             padding: 0;
             overflow: hidden;
+            position: sticky;
             background-color: rgba(58, 58, 58, 0.1);
             position: sticky;
             z-index: 1000;
             top: 0;
             border-color: rgb(58, 58, 58, 1);
+            overflow: visible;
         }
 
 
         ul li{
-            float: left;
+            position: relative;
         }
 
 
@@ -138,7 +141,7 @@ padding: 4% 0%;
        }
 
        .time p{
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-family: "Zilla Slab", serif;
         text-decoration: none;
         background-image: linear-gradient(45deg,rgb(36, 92, 113),rgb(54, 193, 243),rgb(60, 122, 247));
@@ -260,7 +263,7 @@ padding: 4% 0%;
     @keyframes floatUp{
         from{
             transform: translateY(0);
-            opacity: 0.15;
+            opacity: 0.2;
         }
         to{
             transform: translateY(-110vh);
@@ -268,6 +271,73 @@ padding: 4% 0%;
         }
     }
     
+.icon{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    float: right;
+    font-size:  1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: solid white;
+    color: rgb(41, 41, 41);
+    background-color: gray;
+    border-radius: 50%;
+    font-weight: bold;
+    margin: 0.5rem;
+    cursor: pointer;
+    
+
+}
+
+ul li.icon{
+    margin-left: auto;
+    position: relative;
+}
+
+.icon span{
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 2.5rem;
+}
+.icon #user-icon{
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    text-align: center;
+    line-height: center;
+    border-radius: 50%;
+    display: block;
+}
+.icon .dropdown{
+display: none;
+position: absolute;
+top: 100%;
+right: 0;
+background-color: white;
+min-width: 100px;
+border-radius: 0.5rem;
+z-index: 100;
+flex-direction: column;
+}
+
+.icon .dropdown a{
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color:black;
+    display: block
+}
+
+.icon .dropdown a:hover{
+    background-color: rgb(215, 226, 251)
+}
+
+.icon:hover .dropdown, .icon .dropdown:hover{
+    display: flex;
+}
 
 
 
@@ -279,6 +349,10 @@ padding: 4% 0%;
 <ul>
     <li><a class = "active" href = "index.html">Home</a></li>
     <li><a class = "inactive" href = "videos.html">Videos</a></li>
+    <li class = "icon">
+        <span id = "user-icon"></span>
+    <div class = "dropdown"></div>
+    </li>
     </ul>
 <div class = "anim">
 <div class = "mathemagic">
@@ -290,7 +364,7 @@ Mathemagic
     <p id = "time"></p>
     </div>
 <div class = "mathemagic-logo">
-<img src = "/Mathemagic/HTML/Images/mathemagic_circle_logo.png">
+<img src = "HTML/Images/mathemagic_circle_logo.png">
 </div>
 <div class ="whole">
     <p>Daily SAT challenge:</p>
@@ -327,6 +401,20 @@ Mathemagic
 
 
 
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyDRjjvLABEFL-PgbChUFNZW6u38U6c7jP4",
+    authDomain: "mathemagic-fcb1d.firebaseapp.com",
+    projectId: "mathemagic-fcb1d",
+    storageBucket: "mathemagic-fcb1d.appspot.com",
+    messagingSenderId: "313453456371",
+    appId: "1:313453456371:web:21e60d301936c2333f8086"
+  };
+  firebase.initializeApp(firebaseConfig);
+</script>
 <script defer>
 const container = document.querySelector(".math-container");
 const symbols = ["+", "-", "x", "/", "±", "∞", "π","Σ", "√", "∛", "∜", "ε", "⊾", "⊢", "≠","≅", "≈",
@@ -429,11 +517,17 @@ const formattedDate = today.toLocaleDateString(undefined, {
 
 });
 
+function calculateStars(points, hintsUsed, timeRemaining, questionMinutes){
+    const fullTime = questionMinutes * 60;
+
+    if (points === 0) return 0
+
+    if (!hintsUsed && timeRemaining >0) return 3;
+    if(hintsUsed && timeRemaining <= 0) return 1;
+    return 2;
+}
+
 today_text.textContent = formattedDate;
-
-
-
-
 
 function getDailyDate(resetHour, resetMinute){
     const now = new Date();
@@ -446,56 +540,77 @@ function getDailyDate(resetHour, resetMinute){
     return reset;
 }
 
-const todayKey = getDailyDate(0, 0).toISOString().split("T")[0];
 
 
-const easy = Number(localStorage.getItem("easy_points_" + todayKey)) || 0;
-
-const medium = Number(localStorage.getItem("medium_points_" + todayKey)) || 0;
-
-const hard = Number(localStorage.getItem("hard_points_" + todayKey)) || 0;
-
-if (easy === 0){
-    document.getElementById("easy_stars").textContent = "☆ ☆ ☆";
-}
-else if (easy === 1){
-    document.getElementById("easy_stars").textContent = "★ ☆ ☆";
-}
-else if (easy === 2){
-    document.getElementById("easy_stars").textContent = "★ ★ ☆";
-}
-else{
-    document.getElementById("easy_stars").textContent = "★ ★ ★";
-}
 
 
-if (medium === 0){
-    document.getElementById("medium_stars").textContent = "☆ ☆ ☆";
-}
-else if (medium === 1){
-    document.getElementById("medium_stars").textContent = "★ ☆ ☆";
-}
-else if (medium === 2){
-    document.getElementById("medium_stars").textContent = "★ ★ ☆";
-}
-else{
-    document.getElementById("medium_stars").textContent = "★ ★ ★";
-}
 
+firebase.auth().onAuthStateChanged(async user => {
+    const colors = ["#ffb5b0", "#ffd6b0", "#f8ffb0", "#ccffb0", "#b0ffd8", "#b0ffd8", "#b0f8ff", "#b0deff", "#b0deff", "#bbb0ff", "#c5b0ff", "#e6b0ff", "#f5b8ec", "#eba9b7"]
+    const icon = document.getElementById("user-icon");
+    const dropdown = icon.nextElementSibling;
+    if (user){
+    const uid = user.uid
+    icon.textContent = user.displayName ? user.displayName[0].toUpperCase(): "U";
+    let hash = 0;
+    const str = user.uid || user.email;
+    for (let i=0; i<str.length; i++) hash += str.charCodeAt(i);
+    const colorIndex = hash % colors.length;
+    icon.style.backgroundColor = colors[colorIndex];
+    dropdown.innerHTML = 
+    `<a href = "profile.html">Profile</a>
+    <a href = "login.html" id = "logout">Logout</a>`;
+     const logout = document.getElementById("logout");
+    logout.addEventListener("click", async (e) => {
+        e.preventDefault();
+        try{
+            await firebase.auth().signOut();
+            window.location.href = "login.html";
+        }
+        catch(error){
+            console.error("Logout error:", error);
+            alert("Failed to logout: " + error.message);
+        }
+    })
+    const todayKey = new Date().toISOString().split("T")[0];
 
-if (hard === 0){
-    document.getElementById("hard_stars").textContent = "☆ ☆ ☆";
-}
-else if (hard === 1){
-    document.getElementById("hard_stars").textContent = "★ ☆ ☆";
-}
-else if (hard === 2){
-    document.getElementById("hard_stars").textContent = "★ ★ ☆";
-}
-else{
-    document.getElementById("hard_stars").textContent = "★ ★ ★";
-}
+    const difficulties = ["easy", "medium", "hard"];
 
+    for (let diff of difficulties){
+        try{
+        const docRef = firebase.firestore().collection("users").doc(uid).collection(diff).doc(todayKey);
+        const docSnap = await docRef.get();
+        let stars = 0;
+        if (docSnap.exists){
+            const data = docSnap.data();
+            const points = data.points ?? 0;
+            const hintsUsed = data.hintsUsed ?? false;
+            const remainingTime = data.remainingTime ?? 0;
+
+            const questionMinutes = diff === "easy" ? 2: diff === "medium" ? 3 : 4;
+
+            stars = calculateStars(points, hintsUsed, remainingTime, questionMinutes);
+        }
+        const starText = "★".repeat(stars) +"☆".repeat(3 - stars);
+        document.getElementById(diff + "_stars").textContent = starText;
+    }
+    catch(err){
+        console.error(`Error loading ${diff} stars:`, err);
+        document.getElementById(diff + "_stars").textContent = "☆ ☆ ☆";
+    }
+    
+}
+    }
+    else{
+        icon.textContent = "";
+        icon.style.backgroundColor = "gray";
+        dropdown.innerHTML = 
+        `<a href = "login.html">Login</a>
+        <a href = "signup.html">Signup</a>
+        `
+    }
+    
+    });
 
 </script>
 </body>

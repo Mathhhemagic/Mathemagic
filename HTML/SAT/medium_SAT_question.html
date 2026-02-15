@@ -10,12 +10,54 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libertinus+Math&display=swap" rel="stylesheet">
 <style>
+.medium-style{
+                margin: auto;
+                margin-top: 2%;
+                display: flex;
+                justify-content: center;
+            }
+            .medium-style p{
+                font-size:1em;
+                border-radius:50px;
+                text-align:center;
+                padding: 10px 25px;
+                box-shadow: 0 0 40px #ffe251;
+                font-family: "Libertinus Math", system-ui;
+            }
+.hard{
+                position: relative;
+                display: block;
+                margin-top: -5%;
+                margin-left: 80%;
+            }
+
+            .hard button{
+                cursor: pointer;
+                font-family: "Libertinus Math", system-ui;
+                font-size: 2rem;
+                display: block;
+                height: 4rem;
+                width: 4rem;
+                text-align: center;
+                border-radius: 50%;
+                border: 2px solid rgb(166, 0, 0);
+                margin-bottom: 2%;
+                background-color: white;
+                font-weight: bold;
+                color:black;
+                box-shadow: 0 0 40px grey
+            }
+           
+            .hard button:hover{
+                box-shadow: 0 0 40px rgb(255, 235, 134);
+                transform: translateY(-4px);
+            }
 
 
-  .anim{
+ .anim{
             opacity: 0;
             transform: translateY(30px);
-            animation: moveUp 0.5s linear forwards
+            animation: moveUp 0.5s linear forwards;
         }
         @keyframes moveUp{
             to{
@@ -24,8 +66,12 @@
             }
         }
     body, html{
-        height: 100%;
+        min-height: 100%;
         margin: 0;
+        padding-top: 0px;
+        padding-right: 1rem;
+        padding-left: 1rem;
+        padding-bottom: 1.2rem;
     }
     body{
        background-color: rgb(249, 249, 249);
@@ -42,6 +88,7 @@
        linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
        linear-gradient(90deg,rgba(0,0,0,0.05) 1px, transparent 1px);
      background-size: 40px 40px;
+     padding-bottom: 2rem;
     }
      }
 </style>
@@ -58,17 +105,25 @@
 
             }
             .question_container{
-                padding: 3em;
-                container: flex;
-                flex-direction: row;
+                padding: 1.5em;
+                display: flex;
+                flex-direction: column;
                 background-color: white;
                 border: solid 1px black;
                 margin-bottom: 1rem;
+                width: 90%;
+                max-width: 900px;
             }
-             .img_question{
+
+            .img_question{
                 text-align: center;
                 margin-top: 1rem;
-                transform:scale(1.2);
+            }
+             .img_question img{
+                display: block;
+                max-width: 100%;
+                height: auto;
+                margin: 0 auto;
             }
            
             .question{
@@ -107,18 +162,36 @@
 
             .answer-explanation{
                 justify-content: center;
-                margin-left: 25%;
-                margin-right:25%;
+                max-width: 800px;
+                width: 90%;
+                max-height: 0;
+                overflow:hidden;
+                margin: 0 auto;
                 position: relative;
-                font-size: 2em;
+                font-size: 1.75rem;
                 font-family: "Libertinus Math", system-ui;
-
+                transform: translateY(-10px);
+                transition: max-height 0.9s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.9s ease, transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
                 opacity: 0;
-                transition:  0.5s ease;
-                padding-bottom: 2%;
                 color:#333535;
                 text-align: center;
-                top: -2%;
+                padding: 0;
+                min-width: 1rem;
+                margin-bottom: 1.5%;
+                align-items: center;
+
+            }
+
+            .answer-explanation p.step{
+                background: #ffffff;
+                padding: 0.8em 1em;
+                border-left: 10px solid #6e88cf;
+                margin: 0.5em 0;
+                border-radius: 5px;
+                font-size: 1.5rem;
+                border-top: 1px solid black;
+                border-right: 1px solid black;
+                border-bottom: 1px solid black;
             }
 
 
@@ -141,7 +214,7 @@
                 background-color: #f7f7f7;
                 color: #333535;
                 border: transparent;
-                   box-shadow: 0 0 15px #0b5394;
+                box-shadow: 0 0 15px #0b5394;
                 transition: background-color 0.6s ease, box-shadow 0.6s ease;
                 min-width: 100px;
                 
@@ -160,7 +233,10 @@
 
 
             .answer-explanation.visible{
-            opacity:1;
+            max-height: none;
+            overflow: visible;
+            opacity: 1;
+            transform: translateY(0);
             }
             body{
                 margin:0;
@@ -205,20 +281,7 @@
             }
 
 
-            .medium-style{
-                margin: auto;
-                margin-top: 2%;
-                display: flex;
-                justify-content: center;
-            }
-            .medium-style p{
-                font-size:1em;
-                border-radius:50px;
-                text-align:center;
-                padding: 10px 25px;
-                box-shadow: 0 0 40px #ffe251;
-                font-family: "Libertinus Math", system-ui;
-            }
+           
             .img{
                 display: block;
                 position: relative;
@@ -228,34 +291,6 @@
             }
 
 
-            .hard{
-                position: relative;
-                display: block;
-                margin-top: -5%;
-                margin-left: 80%;
-            }
-
-            .hard button{
-                cursor: pointer;
-                font-family: "Libertinus Math", system-ui;
-                font-size: 2rem;
-                display: block;
-                height: 4rem;
-                width: 4rem;
-                text-align: center;
-                border-radius: 50%;
-                border: 2px solid rgb(166, 0, 0);
-                margin-bottom: 2%;
-                background-color: white;
-                font-weight: bold;
-                color:black;
-                box-shadow: 0 0 40px grey
-            }
-           
-            .hard button:hover{
-                box-shadow: 0 0 40px rgb(255, 235, 134);
-                transform: translateY(-4px);
-            }
 
             .header{
                 display: flex;
@@ -294,6 +329,7 @@
                 min-width: 1rem;
                 box-shadow:  0 0 40px grey;
                 opacity: 1;
+                margin-bottom: 1rem;
            }
 
            .hint button:hover{
@@ -308,9 +344,45 @@
                 align-content: center;
                 text-align: center;
                 width: 80%;
-           }
-           
+                height: 0;
+                overflow: hidden;
+                opacity: 0;
+                transform: translateY(-10px);
+                transition: height 0.9s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.9s ease, transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
 
+           }
+
+           .hint-explanation.visible{
+                height: auto;
+                opacity: 1;
+           }
+
+           .copyright{
+            text-align: center;
+            font-size: 1rem;
+            color: black;
+            margin-bottom: 0;
+           }
+           .contact{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 1rem;
+            align-items: center;
+           }
+           .contact a{
+            text-align: center;
+            font-size: 1rem;
+            color: rgb(120, 172, 255);
+            text-decoration: none;
+            margin: 0;
+           }
+
+           .contact a:hover{
+            text-decoration: underline;
+           }
+
+           
         
 </style>
 </head>
@@ -378,36 +450,75 @@
                 </p>
             </div>
         </div>
+             <div class = "copyright">
+            <p><br><br>© 2026 Mathemagic. All rights reserved.
+            </p>
+        </div>
+        <div class = "contact">
+            <a href="mailto:webmaster@example.com">Email</a>
+            <a href = "https://youtube.com/@mathhhemagic?si=saFxbbJ1ndVRRasb">Youtube</a>
+        </div>
+        <div class = "copyright">
+            <p>Practice questions inspired by standardized tests. Not affiliated with CollegeBoard.</p>
+        </div>
+       
     
 
 
            
 
 
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script>
+ 
+const firebaseConfig = {
 
+  apiKey: "AIzaSyDRjjvLABEFL-PgbChUFNZW6u38U6c7jP4",
+
+  authDomain: "mathemagic-fcb1d.firebaseapp.com",
+
+  projectId: "mathemagic-fcb1d",
+
+  storageBucket: "mathemagic-fcb1d.firebasestorage.app",
+
+  messagingSenderId: "313453456371",
+
+  appId: "1:313453456371:web:21e60d301936c2333f8086"
+
+};
+
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
 
 const questions = [
 
 {
 
-    question: "In the figure above, l and m are parallel, y = 20, and z = 60. What is the value of x?",
-    answer: {A:"100°", B:"90°", C: "20°", D: "80°"},
-    correct: "A",
-    hint:"Angle y and the missing angle of the triangle made from transversal l are congruent",
-    explanation: " Angle y and the missing angle of the triangle made from transversal l are congruent, because lines l and m are parallel and the two angles are corresponding. The angles of a triangle add up to 180°, so 180 - 20 - 60 = 100°",
-    minutes: 1.5,
-    img_question: "../Images/question1.jpg"
+    question: "The product of two positive integers is 200. If the first integer is 96 greater than twice the second integer, what is the smaller of the two integers?",
+    answer: {A:4, B:50, C:100, D:2},
+    correct: "D",
+    hint:"Set the two equations:\nxy =  200\nx = 96 + 2y\nThen plug x into the first equation",
+    steps: ["Set the first equation:\nxy = 200","Set the second equation:\nx = 96 + 2y", "Plug the second equation into the first equation:\n(96 + 2y)y = 200\n2y² + 96y = 200\n"," Divide the equation by 2:\ny² + 48y = 100","Subtract 100 on both sides:\ny² + 48y - 100 = 0","Factor:\n(y + 50)(y - 2) = 0","Find y:\n y = -50\ny = 2", "Take the positive answer because the variables are positive integers. In order to make sure y is the smallest integer, find x:\nxy = 200\n2x = 200\nx = 100", "Y is the smallest answer, so the answer is 2"
+
+    ],
+    minutes: 2,
+    img_question: ""
 
 }
 ,
 {
-   question: "If √x = √a + √b, what is x in terms of a and b?",
-    answer: {A:"√a + 2√a√b + √b", B:"a + b", C:"a² + b²", D:"a + 2√(ab) + b"},
+     question: "The product of two positive integers is 200. If the first integer is 96 greater than twice the second integer, what is the smaller of the two integers?",
+    answer: {A:4, B:50, C:100, D:2},
     correct: "D",
-    hint:"(x + y)² = x² +2xy + y²",
-    explanation: "In order to solve this problem, we need to square both sides. Use  (x + y)² = x² +2xy + y²/nx = a + a + 2√(ab) + b",
-    minutes: 1.5,
+    hint:"Set the two equations:\nxy =  200\nx = 96 + 2y\nThen plug x into the first equation",
+    steps: ["Set the first equation:\nxy = 200","Set the second equation:\nx = 96 + 2y", "Plug the second equation into the first equation:\n(96 + 2y)y = 200\n2y² + 96y = 200\n"," Divide the equation by 2:\ny² + 48y = 100","Subtract 100 on both sides:\ny² + 48y - 100 = 0","Factor:\n(y + 50)(y - 2) = 0","Find y:\n y = -50\ny = 2", "Take the positive answer because the variables are positive integers. In order to make sure y is the smallest integer, find x:\nxy = 200\n2x = 200\nx = 100", "Y is the smallest answer, so the answer is 2"
+
+    ],
+    minutes: 2,
     img_question: ""
 }
 
@@ -429,29 +540,28 @@ function getDailyDate(resetHour, resetMinute){
 
 const startDate = new Date("2026-01-05T00:00:00");
 const dailyDate = getDailyDate(0, 0);
-
-
 const dailyIndex = Math.floor((dailyDate - startDate) / 86400000) % questions.length;
-
-
-const q = questions[dailyIndex];
-
-
 const dayKey = dailyDate.toISOString().split("T")[0];
-const answer_key = "medium_answer" + dayKey;
-const hint_key = "medium_hint" + dayKey;
-const time_key = "medium_time" + dayKey;
-
-
-
+const q = questions[dailyIndex];
+const buttons = document.querySelectorAll('.option button');
+const explanation = document.querySelector(".answer-explanation");
+const hintButton = document.getElementById("hint");
+const timer = document.getElementById("timer");
+const hintExplanation = document.querySelector(".hint-explanation");
+document.getElementById('hint-explanation').innerText = q.hint;
 document.getElementById('A').innerText = q.answer.A;
 document.getElementById('B').innerText = q.answer.B;
 document.getElementById('C').innerText = q.answer.C;
 document.getElementById('D').innerText = q.answer.D;
-document.getElementById('hint-explanation').innerText = q.hint;
+
 document.getElementById('question').innerText = q.question;
-document.getElementById('answer_explanation').innerText = q.explanation;
-const startingMinutes = q.minutes;
+let hintsUsed = false;
+let points = 0;
+let timeUp = false;
+let timeInterval = null;
+let paused = false;
+let time = q.minutes * 60;
+let hintClicked = false;
 const img = document.getElementById("img_question");
 const imgWrapper = document.querySelector(".img_question");
 
@@ -465,55 +575,168 @@ else{
 }
 const correctAnswer = q.correct;
 
-
-let hintsUsed = localStorage.getItem(hint_key) === "true";
-let timeUp = false;
-
-
-const buttons = document.querySelectorAll('.option button');
-
-
-const explanation = document.querySelector(".answer-explanation");
-
- let points = Number(localStorage.getItem("medium_points_" + dayKey)) || 0;
-const hintButton = document.getElementById("hint");
-const answer = document.querySelector(".hint-explanation");
+auth.onAuthStateChanged(async user => {
+  if (!user) {
+    window.location.href = "../../login.html";
+    return;
+  }
+  
 
 
-
-function disableHintButton(){
-    hintButton.disabled = true;
-    hintButton.style.backgroundColor = "rgb(178, 190, 181, 0.5)";
-    hintButton.style.boxShadow = "0 0 30px rgb(75, 75, 75, 0.5)";
-    hintButton.style.borderColor = "grey";
+const userRef = db.collection("users").doc(user.uid);
+const userDoc = await userRef.get();
+if (!userDoc.exists){
+    await userRef.set({
+        email: user.email,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
 }
+const dayRef = userRef.collection("medium").doc(dayKey);
+const dayDoc = await dayRef.get()
+if(!dayDoc.exists){
+    const now = Date.now();
+    await dayRef.set({
+        timerStart: now,
+        points: points,
+        hintsUsed:hintsUsed
+    })
 
-function enableHintButton(){
-    hintButton.disabled = false;
-    hintButton.style.borderColor = "rgb(255,166,56)"
-}
+    time = q.minutes * 60
+    startTimer();
+} else{
+    const data = dayDoc.data();
+    hintsUsed = data.hintsUsed || false;
+    points = data.points || 0;
+      if (!data.timerStart){
+         await dayRef.update({timerStart: Date.now()});
+         time = q.minutes * 60
+         startTimer();
+         return;
+      } 
+      if (data.answer){
 
-if (hintsUsed){
-    disableHintButton();
-    answer.style.opacity = 1;
-}
-else{
-        enableHintButton();
-        answer.style.opacity = 0;
+        reload(data.answer);
+        time = data.remainingTime ?? 0;
+        updateCountdown();
+        return;
+      }
+      if (data.paused){
+        time = data.remainingTime ?? q.minutes * 60;
+        updateCountdown();
+      }
+      else{
+
+      }
+        const elapsed = Math.floor((Date.now() - data.timerStart)/1000);
+          time = q.minutes * 60 - elapsed;
+          if (time > 0) startTimer();
+            else updateCountdown();
     }
+    updateHintButton();
+}
 
-hintButton.addEventListener("click", () => {
+    
+);
+
+
+
+
+
+
+
+async function loadUserData(uid){
+    const doc = await db
+    .collection("users")
+    .doc(uid)
+    .collection("medium")
+    .doc(dayKey)
+    .get();
+
+    if (doc.exists){
+        const data = doc.data();
+        hintsUsed = data.hintsUsed;
+        points = data.points || 0;
+
+        if (data.answer){
+            reload(data.answer);
+        }
+
+    }
+}
+
+function updateHintButton(){
+    if(hintsUsed){
+        hintButton.disabled = true;
+        hintExplanation.classList.add("disabled-after-answer");
+
+        hintButton.style.backgroundColor = "rgb(178, 190, 181, 0.5)";
+        hintButton.style.boxShadow = "0 0 30px rgb(75, 75, 75, 0.5)";
+        hintButton.style.borderColor = "grey";
+
+    if (hintClicked){
+        hintExplanation.classList.add("visible");
+        hintExplanation.style.height = hintExplanation.scrollHeight + "px";
+        hintExplanation.style.opacity = "1";
+        hintExplanation.style.transform = "translateY(0)"
+    }
+        
+        
+
+    
+    else{
+        hintExplanation.classList.remove("visible")
+        hintExplanation.style.height = "0px";
+        hintExplanation.style.opacity = "0";
+        hintExplanation.style.transform = "translateY(-10px)";
+
+    }
+}
+    else{
+    hintButton.disabled = false;
+    hintButton.classList.remove("disabled-after-answer");
+
+    hintButton.style.backgroundColor = "#f7f7f7";
+    hintButton.style.boxShadow = "0 0 40px grey";
+    hintButton.style.borderColor = "rgb(255,166,56)";
+
+    hintExplanation.classList.remove("visible");
+    hintExplanation.style.height = "0px";
+    hintExplanation.style.opacity = "0";
+    hintExplanation.style.transform = "translateY(-10px)"
+    }
+}
+hintButton.addEventListener("click", async () => {
     if (hintsUsed) return;
-
     hintsUsed = true;
-    localStorage.setItem(hint_key, "true");
+    hintClicked = true;
+    updateHintButton();
 
-    disableHintButton();
-    answer.style.opacity = 1;
+    const user = auth.currentUser;
+    if (user){
+        await db.collection("users").doc(user.uid).collection("medium").doc(dayKey).set({hintsUsed: true, points: points}, {merge:true});
+    }
+});
 
-})
+function showAnswerExplanation(){
+    explanation.innerHTML = "";
+    q.steps.forEach((step, index) => {
+        const stepDiv = document.createElement("p");
+        stepDiv.classList.add("step");
+        stepDiv.innerHTML = `<strong>Step ${index +1}:</strong><br><br>${step}`;
+        explanation.appendChild(stepDiv);
+    });
+    explanation.classList.add("visible")
 
+}
 function reload(choice){
+    if (timeInterval){
+        clearInterval(timeInterval);
+        timeInterval = null;
+        timer.style.color = "black";
+    }
+    hintsUsed = true;
+    hintClicked = hintClicked || false;
+    updateHintButton();
     buttons.forEach(button => {
         button.disabled = true;
         button.parentElement.classList.add("disabled");
@@ -539,19 +762,29 @@ function reload(choice){
         }
 
     });
-    explanation.classList.add("visible");
-    disableHintButton();
+    showAnswerExplanation();
 }
-const previous = localStorage.getItem(answer_key)
-if (previous) reload(previous);
+
+
+const startingMinutes = q.minutes;
+
+
+
+const answer = document.querySelector(".hint-explanation");
+
+
+
+
+
 
 
 
 buttons.forEach(button => {
-    button.addEventListener("click", () => {
+    button.addEventListener( "click", async () => {
+
+        paused = true;
         if (timeInterval){
             clearInterval(timeInterval);
-            timeInterval = null;
         }
         if (button.id === correctAnswer){
             points++;
@@ -562,28 +795,35 @@ buttons.forEach(button => {
             if (!hintsUsed){
                 points++;
             }
-            localStorage.setItem("medium_points_" + dayKey, points);
         }
+        paused = true;
+        if (timeInterval) clearInterval (timeInterval);
     
-        localStorage.setItem(answer_key, button.id);
+        const user = auth.currentUser;
+        if (user){
+            await db.collection("users").doc(user.uid).collection("medium").doc(dayKey).set({
+                answer: button.id,
+                points: points,
+                hintsUsed: hintsUsed,
+                paused: true,
+                remainingTime: time
+
+
+            }, {merge:true});
+        }
         reload(button.id);
     });
 });
 
-
-let time = localStorage.getItem(time_key)  ? Number(localStorage.getItem(time_key)) : startingMinutes * 60;
-
-
-
-const timer = document.getElementById("timer")
-updateCountdown();
-
-let timeInterval = null;
-if (!previous){
+function startTimer(){
+    updateCountdown();
     timeInterval = setInterval(updateCountdown, 1000);
 }
 
+
 function updateCountdown(){
+
+    if (paused) return;
     if (time<=0){
         timer.innerHTML = "⏱️0:00";
         timer.style.color = "#EB5E5E";
@@ -593,15 +833,14 @@ function updateCountdown(){
         return;
     }
     const minutes = Math.floor(time/60);
-    let seconds = time % 60;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
-    timer.innerHTML = `⏱️${minutes}:${seconds}`;
-    localStorage.setItem(time_key, time)
+    const seconds = time % 60;
+    timer.innerHTML = `⏱️${minutes}:${seconds.toString().padStart(2, "0")}`;
     time--
 
 
 
 }
+
 
 
 
