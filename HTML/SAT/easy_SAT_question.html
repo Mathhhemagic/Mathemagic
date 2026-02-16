@@ -598,52 +598,29 @@ if (!userDoc.exists){
         createdAt: firebase.firestore.FieldValue.serverTimestamp()
     });
 }
-const dayRef = userRef.collection("easy").doc(dayKey);
-const dayDoc = await dayRef.get()
-if(!dayDoc.exists){
-    const now = Date.now();
-    await dayRef.set({
-        timerStart: now,
-        points: points,
-        hintsUsed:hintsUsed
-    })
+const dayRef = db.collection("users").doc(user.uid).collection("easy").doc(dayKey);
+const dayDoc = await dayRef.get();
 
-    time = q.minutes * 60
-    startTimer();
-} else{
+if (dayDoc.exists){
     const data = dayDoc.data();
-    hintsUsed = data.hintsUsed || false;
-    points = data.points || 0;
-      if (!data.timerStart){
-         await dayRef.update({timerStart: Date.now()});
-         time = q.minutes * 60
-         startTimer();
-         return;
-      } 
-      if (data.answer){
-
-        reload(data.answer);
-        time = data.remainingTime ?? 0;
-        updateCountdown();
-        return;
-      }
-      if (data.paused){
-        time = data.remainingTime ?? q.minutes * 60;
-        updateCountdown();
-      }
-      else{
-
-      }
-        const elapsed = Math.floor((Date.now() - data.timerStart)/1000);
-          time = q.minutes * 60 - elapsed;
-          if (time > 0) startTimer();
-            else updateCountdown();
-    }
-    updateHintButton();
+    time = data.remainingTime ?? q.minutes * 60;
+    paused = data.paused ?? false;
+    updateCountdown();
+    if (!paused) startTimer();
+    loadUserData(user.uid);
 }
+else
+{
+    time = q.minutes * 60;
+    paused = false;
+    await dayRef.set({remainingTime: time, paused: false, hintsUsed: false, points: 0});
+    updateCountdown(0);
+    startTimer(0);
 
+}
+});
     
-);
+
 
 
 
@@ -788,19 +765,19 @@ const answer = document.querySelector(".hint-explanation");
 
 buttons.forEach(button => {
     button.addEventListener( "click", async () => {
-
+        let starsEarned = 0;
         paused = true;
         if (timeInterval){
             clearInterval(timeInterval);
         }
         if (button.id === correctAnswer){
-            points++;
+            starsEarned = 1;
                 if (!timeUp){
-                points ++;
+                starsEarned++;
             }
 
             if (!hintsUsed){
-                points++;
+                starsEarned++;
             }
         }
         paused = true;
@@ -810,7 +787,7 @@ buttons.forEach(button => {
         if (user){
             await db.collection("users").doc(user.uid).collection("easy").doc(dayKey).set({
                 answer: button.id,
-                points: points,
+                stars: starsEarned,
                 hintsUsed: hintsUsed,
                 paused: true,
                 remainingTime: time
@@ -822,15 +799,28 @@ buttons.forEach(button => {
     });
 });
 
+window.addEventListener("focus", () => {
+    if(!timeUp && !paused) startTimer();
+});
+
 function startTimer(){
-    updateCountdown();
-    timeInterval = setInterval(updateCountdown, 1000);
-}
+    if (!timeInterval){
+    timeInterval = setInterval(async ()=>{
+        updateCountdown();
+
+        const user = auth.currentUser;
+        if(user){
+            await db.collection("users").doc(user.uid).collection("easy").doc(dayKey).set({
+                remainingTime: time, paused: paused,}, {merge:true});
+            
+            }
+        }, 1000);
+        }
+    }
+    
 
 
 function updateCountdown(){
-
-    if (paused) return;
     if (time<=0){
         timer.innerHTML = "⏱️0:00";
         timer.style.color = "#EB5E5E";
@@ -847,6 +837,10 @@ function updateCountdown(){
 
 
 }
+
+window.addEventListener("load", () => {
+    startTimer();
+})
 
 
 
