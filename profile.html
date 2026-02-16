@@ -1,19 +1,480 @@
 <!DOCTYPE html>
-<head>
-
 <html>
-<p>Email: </p>
-<p>Username: </p>
-<p>Daily Streak: </p>
-<p>Easy questions done: </p>
-<p>Medium questions done: </p>
-<p>Hard questions done: </p>
-<p>Stars earned: </p>
-<a href = "index.html"><button>There is nothing on this page right now!</button>
-</html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cause:wght@100..900&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+<title>Profile</title>
+
+<style>
+body{
+    margin: 0px;
+       background-color: rgb(249, 249, 249);
+       background-image: 
+        linear-gradient(rgba(0,0,0,0.035) 1px, transparent 1px),
+        linear-gradient(90deg,rgba(0,0,0,0.035) 1px, transparent 1px);
+     background-size: 40px 40px;
+    }
+
+
+
+ ul{
+            display: flex;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            position: sticky;
+            background-color: rgba(58, 58, 58, 0.1);
+            position: sticky;
+            z-index: 1000;
+            top: 0;
+            border-color: rgb(58, 58, 58, 1);
+            overflow: visible;
+        }
+
+
+        ul li{
+            position: relative;
+        }
+
+
+        ul li a {
+            display: block;
+            color: rgba(58, 58, 58, 1);
+            text-align: center;
+            font-family: "Zilla Slab", serif;
+            padding: 20px 16px;
+        }
+        ul li a.active{
+            text-decoration: underline;
+            text-underline-offset: 1em;
+            color:#2f82c0;
+        }
+        ul li a.inactive:hover{
+            background-color: #9ed5ff;
+        }
+
+
+        a{
+            text-decoration: none;
+        }
+.icon{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    float: right;
+    font-size:  1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: solid white;
+    color: rgb(41, 41, 41);
+    background-color: gray;
+    border-radius: 50%;
+    font-weight: bold;
+    margin: 0.5rem;
+    cursor: pointer;
+    
+
+}
+
+ul li.icon{
+    margin-left: auto;
+    position: relative;
+}
+
+.icon span{
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 2.5rem;
+}
+.icon #user-icon{
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    text-align: center;
+    line-height: center;
+    border-radius: 50%;
+    display: block;
+}
+.icon .dropdown{
+display: none;
+position: absolute;
+top: 100%;
+right: 0;
+background-color: white;
+min-width: 100px;
+border-radius: 0.5rem;
+z-index: 100;
+flex-direction: column;
+}
+
+.icon .dropdown a{
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color:black;
+    display: block
+}
+
+.icon .dropdown a:hover{
+    background-color: rgb(215, 226, 251)
+}
+
+.icon:hover .dropdown, .icon .dropdown:hover{
+    display: flex;
+}
+
+
+
+       .math-container{
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+    }
+
+    .math-float{
+        position: absolute;
+        bottom: -2rem;
+        font-size: 3rem;
+        font-family: "Zilla Slab", serif;
+        animation: floatUp linear forwards;
+        color:rgb(21, 41, 47)
+    }
+
+    @keyframes floatUp{
+        from{
+            transform: translateY(0);
+            opacity: 0.2;
+        }
+        to{
+            transform: translateY(-110vh);
+            opacity:0;
+        }
+    }
+
+.profile{
+    font-family: "Zilla Slab", serif;
+    text-align: center;
+    color:rgb(44, 135, 162);
+}
+
+.email-username-streak-stars{
+    font-family: "Zilla Slab", serif;
+    text-align: center;
+    color:rgb(44, 135, 162);
+    font-size: 1.5rem;
+}
+
+.difficulty-container{
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 3rem auto;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    flex-direction: row;
+}
+
+.card .easy{
+    background: rgb(255, 255, 255);
+    padding: 2rem;
+    border-radius: 20px;
+    min-width: 220px;
+    text-align: center;
+    font-family: "Zilla Slab", serif;
+    font-size: 1.5rem;
+     border: solid 2px rgb(164, 255, 164);
+}
+
+.card .medium{
+
+    background: rgb(255, 255, 255);
+    padding: 2rem;
+    border-radius: 20px;
+    min-width: 220px;
+    text-align: center;
+    font-family: "Zilla Slab", serif;
+    font-size: 1.5rem;
+    border: solid 2px rgb(255, 245, 193);
+}
+
+.card .hard{
+    background: rgb(255, 255, 255);
+    padding: 2rem;
+    border-radius: 20px;
+    min-width: 220px;
+    text-align: center;
+    font-family: "Zilla Slab", serif;
+    font-size: 1.5rem;;
+    border: solid 2px rgb(255, 160, 160);
+}
+.card:hover{
+    transform: translateY(-5px);
+}
+
+.card .star{
+    justify-content: center;
+    margin: 3rem auto;
+    max-width: 1000px;
+    background: rgb(255, 255, 255);
+    padding: 2rem;
+    border-radius: 20px;
+    min-width: 220px;
+    text-align: center;
+    font-family: "Zilla Slab", serif;
+    font-size: 1.5rem;
+    border: solid 2px rgb(149, 234, 255);
+    max-width: 1000px;
+    justify-content: center;
+}
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+</style>
 </head>
+<ul>
+    <li><a class = "active" href = "index.html">Home</a></li>
+    <li><a class = "inactive" href = "videos.html">Videos</a></li>
+    <li class = "icon">
+        <span id = "user-icon"></span>
+    <div class = "dropdown"></div>
+    </li>
+    </ul>
+<div class = "math-container"></div>
+<div class = "profile">
+<h1>Profile</h1>
+</div>
+<div class = "email-username-streak-stars">
+<p>Email: <span id = "profile-email"></span></p>
+<p>Username: <span id = "profile-username"></span></p>
+<p>Daily Streak 🔥: <span id = "profile-streak"></span> </p>
+</div>
+<div class = difficulty-container>
+<div class = "card">
+<div class = "easy">
+<p>Easy questions done: <span id = "profile-easy-done"></span></p>
+</div>
+</div>
+<div class = "card">
+<div class = "medium">
+<p>Medium questions done: <span id = "profile-medium-done"></span></p>
+</div>
+</div>
+<div class = "card">
+<div class = "hard">
+<p>Hard questions done: <span id = "profile-hard-done"></span></p>
+</div>
+</div>
+</div>
+<div class = "card">
+<div class = "star">
+<div class = "email-username-streak-stars">
+<p>Stars earned: <span id = "profile-stars"></span></p>
+</div>
+</div>
+</div>
 
+
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyDRjjvLABEFL-PgbChUFNZW6u38U6c7jP4",
+    authDomain: "mathemagic-fcb1d.firebaseapp.com",
+    projectId: "mathemagic-fcb1d",
+    storageBucket: "mathemagic-fcb1d.appspot.com",
+    messagingSenderId: "313453456371",
+    appId: "1:313453456371:web:21e60d301936c2333f8086"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  function calculateStars(points, hintsUsed, timeRemaining, questionMinutes){
+    if(points === 0) return 0;
+    if(!hintsUsed && timeRemaining > 0) return 3;
+    if (hintsUsed && timeRemaining <= 0) return 1;
+    return 2;
+  }
+
+  firebase.auth().onAuthStateChanged(async (user) =>{
+
+    const colors = ["#ffb5b0", "#ffd6b0", "#f8ffb0", "#ccffb0", "#b0ffd8", "#b0ffd8", "#b0f8ff", "#b0deff", "#b0deff", "#bbb0ff", "#c5b0ff", "#e6b0ff", "#f5b8ec", "#eba9b7"]
+    const icon = document.getElementById("user-icon");
+    const dropdown = icon.nextElementSibling;
+    if (user){
+    const uid = user.uid
+    icon.textContent = user.displayName ? user.displayName[0].toUpperCase(): "U";
+    let hash = 0;
+    const str = user.uid || user.email;
+    for (let i=0; i<str.length; i++) hash += str.charCodeAt(i);
+    const colorIndex = hash % colors.length;
+    icon.style.backgroundColor = colors[colorIndex];
+    dropdown.innerHTML = 
+    `<a href = "profile.html">Profile</a>
+    <a href = "login.html" id = "logout">Logout</a>`;
+     const logout = document.getElementById("logout");
+    logout.addEventListener("click", async (e) => {
+        e.preventDefault();
+        try{
+            await firebase.auth().signOut();
+            window.location.href = "login.html";
+        }
+        catch(error){
+            console.error("Logout error:", error);
+            alert("Failed to logout: " + error.message);
+        }
+    })
+    if(!user){
+        alert("Please log in first");
+        window.location.href = "login.html";
+        return;
+    }
+    document.getElementById("profile-email").textContent = user.email || "-";
+    document.getElementById("profile-username").textContent = user.displayName || "-";
+    const todayKey = new Date().toISOString().split("T")[0];
+    const difficulties = ["easy", "medium", "hard"];
+
+    let totalStars = 0;
+    let totalDone = {easy: 0, medium: 0, hard: 0};
+    let streak = 0;
+
+    for (let diff of difficulties){
+        try{
+            const colRef = db.collection("users").doc(uid).collection(diff);
+            const snapshot = await colRef.get();
+            totalDone[diff] = snapshot.size;
+            for(let doc of snapshot.docs){
+                const data = doc.data();
+                const points = data.points ?? 0;
+                const hintsUsed = data.hintsUsed ?? false;
+                const remainingTime = data.remainingTime ?? 0;
+                const questionMinutes = diff === "easy" ? 2 : diff === "medium" ? 3 : 4;
+                totalStars += calculateStars(points, hintsUsed, remainingTime, questionMinutes);
+            } 
+        } catch(err){
+            console.error(`Error fetching ${diff} questions:`, err);
+        }
+    }
+
+    const yesterdayKey = new Date(Date.now() - 24*60*60*1000).toISOString().split("T")[0];
+    try{
+        const easyYesterday = await db.collection("users").doc(uid).collection("easy").doc(yesterdayKey).get();
+        const mediumYesterday = await db.collection("users").doc(uid).collection("medium").doc(yesterdayKey).get();
+        const hardYesterday = await db.collection("users").doc(uid).collection("hard").doc(yesterdayKey).get();
+        streak = (easyYesterday.exists || mediumYesterday.exists || hardYesterday.exists) ? 1 : 0;
+    }
+    catch(err){
+        console.error(err);
+    }
+    if (streak === 1){
+        document.getElementById("profile-streak").textContent = streak + " day";
+    }
+    else{
+        document.getElementById("profile-streak").textContent = streak + " days";
+    }
+    document.getElementById("profile-easy-done").textContent= totalDone.easy;
+    document.getElementById("profile-medium-done").textContent= totalDone.medium;
+    document.getElementById("profile-hard-done").textContent= totalDone.hard;
+    document.getElementById("profile-stars").textContent = totalStars + "★";
+} 
+});
+const container = document.querySelector(".math-container");
+const symbols = ["+", "-", "x", "/", "±", "∞", "π","Σ", "√", "∛", "∜", "ε", "⊾", "⊢", "≠","≅", "≈",
+"≡",
+"≋",
+"≢",
+"≃",
+"≂",
+"≒",
+"≗",
+"≎",
+"≚",
+"≟",
+"≜",
+"≔",
+"≐",
+"≆",
+"≑",
+"≖",
+"≓",
+"⋕",
+"≉",
+"≙",
+"⋍",
+"□",
+"○",
+"⋄",
+"△",
+"▷",
+"◊",
+"▱",
+"◡",
+"⌒",
+"▽",
+"◠",
+"▭",
+"◁",
+"⊿", "+", "-", "x", "/", "±", "∞", "π","Σ", "√", "∛", "∜", "ε", "⊾", "⊢", "+","−","×","÷",
+"=","≠","≈","≡",
+"<",">","≤","≥",
+"±","∓","∞",
+"√","∛","∜",
+"∑","∏","∫","∬",
+"∂","∇","∆",
+"∈","∉","∋","⊂","⊃","⊆","⊇",
+"∪","∩","∅",
+"∀","∃","∄",
+"¬","∧","∨","⊕","⊗",
+"→","←","↔","⇒","⇔",
+"ℝ","ℤ","ℚ","ℕ","ℂ",
+"π","θ","λ","μ","σ",
+"α","β","γ","δ","ε",
+"φ","ψ","ω"] ;
+
+function spawnMath(){
+    const shape = document.createElement("div");
+    shape.className = "math-float";
+    shape.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+
+    shape.style.left = Math.random() * 100 + "vw";
+
+    shape.style.fontSize = (2 + Math.random() *2) + "rem";
+
+    const duration = 16 + Math.random() * 8;
+
+    shape.style.animationDuration = duration + "s"
+
+    container.appendChild(shape);
+
+    setTimeout(() => {
+        shape.remove();
+    }, duration * 1000);
+}
+
+setInterval(spawnMath, 2000);
+
+
+
+
+</script>
+</body>
+</html>
