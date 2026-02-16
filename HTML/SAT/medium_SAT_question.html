@@ -498,27 +498,43 @@ const questions = [
 
 {
 
-    question: "The product of two positive integers is 200. If the first integer is 96 greater than twice the second integer, what is the smaller of the two integers?",
-    answer: {A:4, B:50, C:100, D:2},
-    correct: "D",
-    hint:"Set the two equations:\nxy =  200\nx = 96 + 2y\nThen plug x into the first equation",
-    steps: ["Set the first equation:\nxy = 200","Set the second equation:\nx = 96 + 2y", "Plug the second equation into the first equation:\n(96 + 2y)y = 200\n2y² + 96y = 200\n"," Divide the equation by 2:\ny² + 48y = 100","Subtract 100 on both sides:\ny² + 48y - 100 = 0","Factor:\n(y + 50)(y - 2) = 0","Find y:\n y = -50\ny = 2", "Take the positive answer because the variables are positive integers. In order to make sure y is the smallest integer, find x:\nxy = 200\n2x = 200\nx = 100", "Y is the smallest answer, so the answer is 2"
-
-    ],
+    question: "In the figure above, l and m are parallel, y = 20, and z = 60. What is the value of x?",
+    answer: {A:"100°", B:"90°", C: "20°", D: "80°"},
+    correct: "A",
+    hint: "Angle y and the missing angle of the triangle made from transversal l are congruent",
+    steps: ["Angle y and the missing angle of the triangle made from transversal l are congruent, because lines l and m are parallel and the two angles are corresponding.", "The angles of a triangle add up to 180°, so 180 - 20 - 60 = 100°"],
     minutes: 2,
-    img_question: ""
+    img_question: "question1.jpg"
 
 }
 ,
 {
-     question: "The product of two positive integers is 200. If the first integer is 96 greater than twice the second integer, what is the smaller of the two integers?",
-    answer: {A:4, B:50, C:100, D:2},
+    question:  "If √x = √a + √b, what is x in terms of a and b?",
+    answer: {A:"√a + 2√a√b + √b", B:"a + b", C: "a² + b²", D: "a + 2√(ab) + b"},
     correct: "D",
-    hint:"Set the two equations:\nxy =  200\nx = 96 + 2y\nThen plug x into the first equation",
-    steps: ["Set the first equation:\nxy = 200","Set the second equation:\nx = 96 + 2y", "Plug the second equation into the first equation:\n(96 + 2y)y = 200\n2y² + 96y = 200\n"," Divide the equation by 2:\ny² + 48y = 100","Subtract 100 on both sides:\ny² + 48y - 100 = 0","Factor:\n(y + 50)(y - 2) = 0","Find y:\n y = -50\ny = 2", "Take the positive answer because the variables are positive integers. In order to make sure y is the smallest integer, find x:\nxy = 200\n2x = 200\nx = 100", "Y is the smallest answer, so the answer is 2"
-
-    ],
+    hint: " (x + y)² = x² +2xy + y²",
+    steps: ["Square both sides. Use  (x + y)² = x² +2xy + y²", " x = a + a + 2√(ab) + b"],
     minutes: 2,
+    img_question: "question1.jpg"
+}
+,
+{
+    question: "What is 8% of 75?",
+    answer: {A:"3.5", B:"7.5", C:"6", D:"5"},
+    correct: "D",
+    hint:"8% of 75 = 75% of 8",
+    steps: [" Use the reversible trick. 8% of 75 = 75% of 8."," 75% is just ¾", "¾ of 8 is 6."],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "What is the value of x in the equation 4² + 4² + 4² + 4² = 2ˣ?",
+    answer: {A:8, B:6, C:10, D:4},
+    correct: "B",
+    hint: "First, add the 4²’s together, and then make it into a base of 2",
+    steps: [" Add the 4²’s together, and then make it into a base of 2", "4(4²) = 2ˣ","Make the 4’s into 2²’s", "2²(2²)² =  2ˣ", "2²(2⁴) = 2ˣ", "2⁶ = 2ˣ", "x = 6"],
+    minutes: 1.5,
     img_question: ""
 }
 

@@ -505,27 +505,43 @@ const questions = [
 
 {
 
-    question: "The product of two positive integers is 200. If the first integer is 96 greater than twice the second integer, what is the smaller of the two integers?",
-    answer: {A:4, B:50, C:100, D:2},
-    correct: "D",
-    hint:"Set the two equations:\nxy =  200\nx = 96 + 2y\nThen plug x into the first equation",
-    steps: ["Set the first equation:\nxy = 200","Set the second equation:\nx = 96 + 2y", "Plug the second equation into the first equation:\n(96 + 2y)y = 200\n2y² + 96y = 200\n"," Divide the equation by 2:\ny² + 48y = 100","Subtract 100 on both sides:\ny² + 48y - 100 = 0","Factor:\n(y + 50)(y - 2) = 0","Find y:\n y = -50\ny = 2", "Take the positive answer because the variables are positive integers. In order to make sure y is the smallest integer, find x:\nxy = 200\n2x = 200\nx = 100", "Y is the smallest answer, so the answer is 2"
-
-    ],
+    question: "John is running at 10 miles per hour. How many miles does he run in 210 minutes?",
+    answer: {A:15, B:17, C:35, D:45},
+    correct: "C",
+    hint: "There are 60 minutes in one hour",
+    steps: ["Convert the minutes to hours. There are 60 minutes in an hour. That means 210 minutes is 3.5 hours", "3.5 * 10 = 35 miles."],
     minutes: 2,
     img_question: ""
 
 }
 ,
 {
-     question: "The product of two positive integers is 200. If the first integer is 96 greater than twice the second integer, what is the smaller of the two integers?",
-    answer: {A:4, B:50, C:100, D:2},
+    question: "What is a factor of 35 + 25?",
+    answer: {A:12, B:9, C:25, D:35},
+    correct: "A",
+    hint:"A factor is a whole number that, if multiplied by another “x” whole number, will result in the larger number.",
+    steps: ["Add 35 and 25 to get 60","12 is a factor of 60, as it is a whole number when multiplied by another whole number (5), gets us 60"],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "John can walk 6000 meters in 100 minutes. At the same rate, how many meters can he walk in 10 seconds?",
+    answer: {A:"60 meters", B:"100 meters", C:"6 meters", D:"10 meters"},
     correct: "D",
-    hint:"Set the two equations:\nxy =  200\nx = 96 + 2y\nThen plug x into the first equation",
-    steps: ["Set the first equation:\nxy = 200","Set the second equation:\nx = 96 + 2y", "Plug the second equation into the first equation:\n(96 + 2y)y = 200\n2y² + 96y = 200\n"," Divide the equation by 2:\ny² + 48y = 100","Subtract 100 on both sides:\ny² + 48y - 100 = 0","Factor:\n(y + 50)(y - 2) = 0","Find y:\n y = -50\ny = 2", "Take the positive answer because the variables are positive integers. In order to make sure y is the smallest integer, find x:\nxy = 200\n2x = 200\nx = 100", "Y is the smallest answer, so the answer is 2"
-
-    ],
-    minutes: 2,
+    hint:" Find the amount of meters John walks in one minute, and then convert to seconds.",
+    steps: ["Convert 6000 meters per 100 minutes into meters per minute. 6000/100 = 60 meters per minute.","Then, convert into seconds. There are 60 seconds per minute. 60/60 = 1. This means he walks 1 meter per second.", "Convert this into 10 seconds. 1 * 10 = 10 meters in 10 seconds."],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "If x + 2 = 24, what is 3x + 8?",
+    answer: {A:74, B:78, C:72, D:70},
+    correct: "A",
+    hint:" Isolate x in the original equation",
+    steps: [" Isolate x in the original equation:\nx + 2 = 24\nx = 22.", "Plug x into the next equation:\n3(22) + 8\n66 + 8 = 74."],
+    minutes: 1,
     img_question: ""
 }
 
