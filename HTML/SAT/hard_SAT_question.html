@@ -486,7 +486,7 @@ const questions = [
 }
 ,
 {
-    question: "A cube has an edge length of 50 inches. A solid sphere with a radius of 12 inches is inside the cube, such that the sphere touches the center of each face of the cube. To the nearest cubic inch, what is the volume of the space in the cube not taken up by the sphere? (The volume of a sphere is ⁴⁄₃πr³)",
+    question: "A cube has an edge length of 50 inches. A solid sphere with a radius of 12 inches is inside the cube. To the nearest cubic inch, what is the volume of the space in the cube not taken up by the sphere? (The volume of a sphere is ⁴⁄₃πr³)",
     answer: {A:"117,762", B:"122,696", C:"125,604", D:"118,023"},
     correct: "A",
     hint:"Find the volume of the sphere and subtract it from the volume of the cube",
@@ -522,7 +522,7 @@ function getDailyDate(resetHour, resetMinute){
     return reset;
 }
 
-const startDate = new Date("2026-01-05T00:00:00");
+const startDate = new Date("2026-02-16T00:00:00");
 const dailyDate = getDailyDate(0, 0);
 const dailyIndex = Math.floor((dailyDate - startDate) / 86400000) % questions.length;
 const dayKey = dailyDate.toISOString().split("T")[0];

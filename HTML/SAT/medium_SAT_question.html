@@ -513,7 +513,7 @@ const questions = [
     answer: {A:"√a + 2√a√b + √b", B:"a + b", C: "a² + b²", D: "a + 2√(ab) + b"},
     correct: "D",
     hint: " (x + y)² = x² +2xy + y²",
-    steps: ["Square both sides. Use  (x + y)² = x² +2xy + y²", " x = a + a + 2√(ab) + b"],
+    steps: ["Square both sides. Use  (x + y)² = x² +2xy + y²", " x = a + 2√(ab) + b"],
     minutes: 2,
     img_question: "question1.jpg"
 }
@@ -521,7 +521,7 @@ const questions = [
 {
     question: "What is 8% of 75?",
     answer: {A:"3.5", B:"7.5", C:"6", D:"5"},
-    correct: "D",
+    correct: "C",
     hint:"8% of 75 = 75% of 8",
     steps: [" Use the reversible trick. 8% of 75 = 75% of 8."," 75% is just ¾", "¾ of 8 is 6."],
     minutes: 1,
@@ -554,7 +554,7 @@ function getDailyDate(resetHour, resetMinute){
     return reset;
 }
 
-const startDate = new Date("2026-01-05T00:00:00");
+const startDate = new Date("2026-02-16T00:00:00");
 const dailyDate = getDailyDate(0, 0);
 const dailyIndex = Math.floor((dailyDate - startDate) / 86400000) % questions.length;
 const dayKey = dailyDate.toISOString().split("T")[0];
