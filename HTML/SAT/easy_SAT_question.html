@@ -9,6 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libertinus+Math&display=swap" rel="stylesheet">
+
+
 <style>
 
 
@@ -26,12 +28,7 @@
                 box-shadow: 0 0 40px #158C00;
                 font-family: "Libertinus Math", system-ui;
             }
- .medium{
-                position: relative;
-                display: block;
-                margin-top: -5%;
-                margin-left: 80%;
-            }
+
 
             .medium button{
                 cursor: pointer;
@@ -42,16 +39,18 @@
                 width: 4rem;
                 text-align: center;
                 border-radius: 50%;
-                border: 2px solid rgb(255, 235, 134);
+                border: 2px solid rgb(255, 210, 159);
                 margin-bottom: 2%;
                 background-color: white;
                 font-weight: bold;
-                color:black;
-                box-shadow: 0 0 40px grey
+                color:rgb(255, 210, 159);
+                margin-bottom: 2%;;
+                box-shadow: 0 0 40px grey;
+                line-height: 1;
             }
            
             .medium button:hover{
-                box-shadow: 0 0 40px rgb(255, 235, 134);
+                box-shadow: 0 0 40px rgb(255, 210, 159);
                 transform: translateY(-4px);
             }
 
@@ -247,14 +246,6 @@
             }
 
 
-        .arrow{
-                margin-top: 2%;
-                margin-left: 5%;
-                position: relative;
-                display: block;
-                font-family: "Libertinus Math", system-ui;
-
-            }
 
 
             .arrow button{
@@ -266,21 +257,21 @@
                 width: 4rem;
                 text-align: center;
                 border-radius: 50%;
-                border:transparent;
+                border: 2px solid transparent;
                 box-shadow: 0 0 40px grey;
                 margin-bottom: 2%;
                 background-color: white;
                 font-weight: bold;
                 color: #0b5394;
                 font-weight: bold;
-                transform: scaleX(-1)
+                line-height: 1;
             }
 
 
             .arrow button:hover{
                 color:#0b5394;
                 box-shadow: 0 0 40px #0b5394;
-                transform: translateY(-4px) scaleX(-1);
+                transform: translateY(-4px);
             }
 
 
@@ -392,6 +383,13 @@
             pointer-events: none;
            }
 
+           .top-arrows{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2%;
+           }
+
            
         
 </style>
@@ -400,16 +398,18 @@
 
 <body>
     <div class = "anim">
+    <div class = "top-arrows">
             <div class = "arrow">
             <a href = "../../index.html">
-            <button>➢
+            <button>←
             </button>
             </a>
             </div>
             <div class = "medium">
                 <a href = "medium_SAT_question.html">
-                <button>➢</button>
+                <button>→</button>
                 </a>
+            </div>
             </div>
             <div class = "easy-style">
                 <p>Easy</p>

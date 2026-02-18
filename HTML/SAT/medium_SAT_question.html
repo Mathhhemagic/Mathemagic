@@ -21,15 +21,10 @@
                 border-radius:50px;
                 text-align:center;
                 padding: 10px 25px;
-                box-shadow: 0 0 40px #ffe251;
+                box-shadow: 0 0 40px rgb(236, 134, 17);
                 font-family: "Libertinus Math", system-ui;
             }
-.hard{
-                position: relative;
-                display: block;
-                margin-top: -5%;
-                margin-left: 80%;
-            }
+
 
             .hard button{
                 cursor: pointer;
@@ -40,16 +35,17 @@
                 width: 4rem;
                 text-align: center;
                 border-radius: 50%;
-                border: 2px solid rgb(166, 0, 0);
+                border: 2px solid rgb(255, 149, 149);
                 margin-bottom: 2%;
                 background-color: white;
                 font-weight: bold;
                 color:black;
-                box-shadow: 0 0 40px grey
+                box-shadow: 0 0 40px grey;
+                line-height: 1;
             }
            
             .hard button:hover{
-                box-shadow: 0 0 40px rgb(166, 0, 0);
+                box-shadow: 0 0 40px rgb(255, 149, 149);
                 transform: translateY(-4px);
             }
 
@@ -244,15 +240,7 @@
             }
 
 
-        .arrow{
-                margin-top: 2%;
-                margin-left: 5%;
-                position: relative;
-                display: block;
-                font-family: "Libertinus Math", system-ui;
-
-            }
-
+        
 
             .arrow button{
                 cursor: pointer;
@@ -263,21 +251,21 @@
                 width: 4rem;
                 text-align: center;
                 border-radius: 50%;
-                border:transparent;
+                border: 2px solid transparent;
                 box-shadow: 0 0 40px grey;
                 margin-bottom: 2%;
                 background-color: white;
                 font-weight: bold;
                 color: #0b5394;
                 font-weight: bold;
-                transform: scaleX(-1)
+                line-height: 1;
             }
 
 
             .arrow button:hover{
                 color:#0b5394;
                 box-shadow: 0 0 40px #0b5394;
-                transform: translateY(-4px) scaleX(-1);
+                transform: translateY(-4px);
             }
 
 
@@ -382,6 +370,14 @@
             text-decoration: underline;
            }
 
+
+           .top-arrows{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2%;
+           }
+
            
         
 </style>
@@ -390,16 +386,18 @@
 
 <body>
     <div class = "anim">
+        <div class = "top-arrows">
             <div class = "arrow">
             <a href = "/Mathemagic/">
-            <button>➢
+            <button>←
             </button>
             </a>
             </div>
             <div class = "hard">
                 <a href = "hard_SAT_question.html">
-                <button>➢</button>
+                <button>→</button>
                 </a>
+            </div>
             </div>
             <div class = "medium-style">
                 <p>Medium</p>
