@@ -134,6 +134,7 @@
                 margin-bottom: 0%;
                 color: #333535;
                 font-family: "Libertinus Math", system-ui;
+                white-space: pre-line; 
 
             }
            
@@ -179,6 +180,7 @@
                 min-width: 1rem;
                 margin-bottom: 1.5%;
                 align-items: center;
+                white-space: pre-line; 
                 
 
             }
@@ -193,7 +195,7 @@
                 border-top: 1px solid black;
                 border-right: 1px solid black;
                 border-bottom: 1px solid black;
-                white-space: pre-wrap; 
+                white-space: pre-line; 
             }
 
 
@@ -239,6 +241,7 @@
             overflow: visible;
             opacity: 1;
             transform: translateY(0);
+            white-space: pre-line; 
             }
             body{
                 margin:0;
@@ -500,27 +503,30 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
-
-const questions = [
-
+const questions = 
+[
 {
-
     question: "John is running at 10 miles per hour. How many miles does he run in 210 minutes?",
     answer: {A:15, B:17, C:35, D:45},
     correct: "C",
     hint: "There are 60 minutes in one hour",
-    steps: ["Convert the minutes to hours. There are 60 minutes in an hour. That means 210 minutes is 3.5 hours", "3.5 * 10 = 35 miles."],
+    steps: [
+        "Convert the minutes to hours. There are 60 minutes in an hour. That means 210 minutes is 3.5 hours.",
+        "3.5 * 10 = 35 miles"
+    ],
     minutes: 2,
     img_question: ""
-
 }
 ,
 {
     question: "What is a factor of 35 + 25?",
     answer: {A:12, B:9, C:25, D:35},
     correct: "A",
-    hint:"A factor is a whole number that, if multiplied by another “x” whole number, will result in the larger number.",
-    steps: ["Add 35 and 25 to get 60","12 is a factor of 60, as it is a whole number when multiplied by another whole number (5), gets us 60"],
+    hint: "A factor is a whole number that, if multiplied by another whole number, will result in the larger number",
+    steps: [
+        "Add 35 and 25 to get 60",
+        "12 is a factor of 60 as it is a whole number when multiplied by another whole number (5) gets us 60"
+    ],
     minutes: 1,
     img_question: ""
 }
@@ -529,8 +535,12 @@ const questions = [
     question: "John can walk 6000 meters in 100 minutes. At the same rate, how many meters can he walk in 10 seconds?",
     answer: {A:"60 meters", B:"100 meters", C:"6 meters", D:"10 meters"},
     correct: "D",
-    hint:" Find the amount of meters John walks in one minute, and then convert to seconds.",
-    steps: ["Convert 6000 meters per 100 minutes into meters per minute. 6000/100 = 60 meters per minute.","Then, convert into seconds. There are 60 seconds per minute. 60/60 = 1. This means he walks 1 meter per second.", "Convert this into 10 seconds. 1 * 10 = 10 meters in 10 seconds."],
+    hint: "Find the amount of meters John walks in one minute and then convert to seconds",
+    steps: [
+        "Convert 6000 meters per 100 minutes into meters per minut. 6000/100 = 60 meters per minute",
+        "Then, convert into seconds. There are 60 seconds per minute 60/60 = 1. This means he walks 1 meter per second",
+        "Convert this into 10 seconds:\n1 * 10 = 10 meters in 10 seconds"
+    ],
     minutes: 1,
     img_question: ""
 }
@@ -539,13 +549,321 @@ const questions = [
     question: "If x + 2 = 24, what is 3x + 8?",
     answer: {A:74, B:78, C:72, D:70},
     correct: "A",
-    hint:" Isolate x in the original equation",
-    steps: [" Isolate x in the original equation:\nx + 2 = 24\nx = 22.", "Plug x into the next equation:\n3(22) + 8\n66 + 8 = 74."],
+    hint: "Isolate x in the original equation",
+    steps: [
+        "Isolate x in the original equation:\nx + 2 = 24\nx = 22",
+        "Plug x into the next equation:\n3 * 22 + 8\n66 + 8 = 74"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "If (x - 1)/3 = k, and k = 3, what is the value of x?",
+    answer: {A:2, B:4, C:9, D:10},
+    correct: "D",
+    hint: "Plug k into the original equation",
+    steps: [
+        "Plug 3 for k into the first equation:\n(x - 1)/3 = 3",
+        "Multiply by 3 on both sides of the equation:\nx - 1 = 9",
+        "Add 1 to both sides of the equation\nx = 10"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "For i = √−1 , what is the sum (7 + 3i) + (−8 + 9i)?",
+    answer: {A:"-1 + 12i", B:"-1 - 6i", C:"15 + 12i", D:"15 - 6i"},
+    correct: "A",
+    hint: "Treat i as a normal variable",
+    steps: [
+        "Treat i as a normal variable",
+        "Combine like terms:\n7 - 8 = -1\n3i + 9i = 12i",
+        "-1 + 12i"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "One farmer can pick 10 berries in one hour. How many berries can two farmers pick in 5 hours?",
+    answer: {A:50, B:75, C:125, D:100},
+    correct: "D",
+    hint: "Find the amount of berries two farmers can pick in one hour, then multiply by 5",
+    steps: [
+        "Find the amount of berries two farmers can pick in one hour then multiply by 5",
+        "One farmer can pick 10 berries, so two farmers can pick 20 berries",
+        "20 * 5 = 100 berries"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "If x + 8 = 10, what is x² + 3x?",
+    answer: {A:10, B:4, C:6, D:8},
+    correct: "A",
+    hint: "Isolate x by subtracting by 8",
+    steps: [
+        "Isolate x by subtracting by 8 on each side:\nx + 8 = 10\nx = 2",
+        "Plug 2 into the equation:\n2² + 3 * 2\n4 + 6\n10"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "If x² = 9, what is x³? Assume x is positive.",
+    answer: {A:9, B:3, C:27, D:81},
+    correct: "C",
+    hint: "Square root both sides",
+    steps: [
+        "Square root both sides:\nx = 3",
+        "3³ = 27"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "If 2x + 17 = 3x + 89, what is the value of x?",
+    answer: {A:72, B:-72, C:106, D:-106},
+    correct: "B",
+    hint: "Isolate x",
+    steps: [
+        "Subtract 3x on both sides:\n-x + 17 = 89",
+        "Subtract 17 from both sides\n-x = 72",
+        "Divide by -1 on both sides:\nx = -72"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "If f(x) = 12x² - 5, what is f(2)?",
+    answer: {A:19, B:43, C:53, D:48},
+    correct: "B",
+    hint: "Plug in 2 for x",
+    steps: [
+        "Plug in 2 for x\n12(2)² - 5",
+        "12(4) - 5",
+        "48 - 5",
+        "43"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "If 16 + 4x is 10 more than 14, what is the value of 8x ?",
+    answer: {A:2, B:16, C:24, D:32},
+    correct: "B",
+    hint: "Combine like terms after adding 10 to 14",
+    steps: [
+        "10 + 14 = 24",
+        "16 + 4x = 24",
+        "4x = 8",
+        "x = 2",
+        "8x = 8 * 2",
+        "8x = 16"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "If 2x + 8 = 4(x - 2), solve for x",
+    answer: {A:8, B:4, C:2, D:-4},
+    correct: "A",
+    hint: "Find like terms",
+    steps: [
+        "Combine like terms:\n2x + 8 = 4x - 8",
+        "8 = 2x - 8",
+        "16 = 2x",
+        "x = 8"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "For i = √−1 , what is the sum of ((9 + 4i) + (-9 + 2i))²?",
+    answer: {A:8, B:6, C:-6, D:-36},
+    correct: "D",
+    hint: "Combine like terms (Constants and imaginary numbers)",
+    steps: [
+        "Combine like terms:\n(9 - 9 + 4i + 2i)²",
+        "(4i + 2i)²",
+        "(6i)²",
+        "(36(-1))",
+        "-36"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "If 36 - p = 36, what is the value of p?",
+    answer: {A:72, B:36, C:-72, D:0},
+    correct: "D",
+    hint: "Isolate p by subtracting 36 on both sides",
+    steps: [
+        "Subtract 36 on both sides\n-p = 0",
+        "p = 0"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "A gym has 50 people, and ⅕ of them are above the age of 50. How many people are 50 or below in the gym?",
+    answer: {A:10, B:50, C:30, D:40},
+    correct: "D",
+    hint: "Use the complementary fraction, (the other fraction that can be used to get to a whole unit), and multiply it by 50",
+    steps: [
+        "Use the complementary fraction to ⅕ (the other fraction that can be used to get to a whole unit), which is ⅘ and multiply it by 50",
+        "⅘ * 50 = 40"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "During a 10 minute game, Josh scores 20 goals. On average, how many goals does he score per minute?",
+    answer: {A:1, B:0.5, C:2, D:4},
+    correct: "C",
+    hint: "The formula for average is ᵃᵐᵒᵘⁿᵗ⁄ₜᵢₘₑ",
+    steps: [
+        "Use the formula ᵃᵐᵒᵘⁿᵗ⁄ₜᵢₘₑ",
+        "²⁰⁄₁₀",
+        "2 goals per minute"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "Factor x² + 5x + 6.",
+    answer: {A:"(x - 3)(x + 2)", B:"(x + 3)(x - 2)", C:"(x - 3)(x - 2)", D:"(x + 3)(x + 2)"},
+    correct: "D",
+    hint: "Find what multiplies to 6 but adds up to 5",
+    steps: [
+        "Find what multiplies to 6 but adds up to 5\n3 and 2",
+        "The quadratic equation is (x + 3)(x + 2)"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "Simplify (2x - 1)(3x + 5).",
+    answer: {A:"5x² + 2x - 5", B:"6x² + 7x + 5", C:"5x² - 2x - 5", D:"6x² + 7x - 5"},
+    correct: "D",
+    hint: "FOIL (First, Outer, Inner, Last)",
+    steps: [
+        "Multiply binomials using the FOIL method",
+        "2x * 3x = 6x²",
+        "2x * 5 = 10x",
+        "-1 * 3x = -3x",
+        "-1 * 5 = -5",
+        "Add them to get 6x² + 7x - 5"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "If f(x) = 9x² + 3, what is f(-3)?",
+    answer: {A:78, B:27, C:84, D:-27},
+    correct: "C",
+    hint: "Plug in -3 for x",
+    steps: [
+        "Plug in -3 for x",
+        "9x² + 3",
+        "9(-3)² + 3",
+        "9(9) + 3",
+        "81 + 3",
+        "84"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "If y² = 16, what is y³? Assume y is positive.",
+    answer: {A:4, B:256, C:16, D:64},
+    correct: "D",
+    hint: "Square root both sides",
+    steps: [
+        "Square root both sides:\ny = 4",
+        "Plug the value of y into the second equation:\n4³ = 64"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "Simplify 4² * 16⁴",
+    answer: {A:"4¹⁰", B:"4¹²", C:"4⁸", D:"16⁶"},
+    correct: "A",
+    hint: "Convert 16 into a base of 4",
+    steps: [
+        "Convert 16 into a base of 4:\n16 = 4²",
+        "4²(4²)⁴",
+        "4²4⁸",
+        "4¹⁰"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "The area of a particular rectangle is 32 meters squared. If the length of the rectangle is twice the width, what is the width of the rectangle?",
+    answer: {A:"16 meters", B:"8 meters", C:"4 meters", D:"2 meters"},
+    correct: "C",
+    hint: "The equation for the area is (2w)(w) = 2w²",
+    steps: [
+        "Set w for width and 2w for length because length is twice the width",
+        "The area of a rectangle is length times width:\n2w * w = 2w²",
+        "2w² = 32",
+        "w² = 16",
+        "w = 4 meters"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "What is the mean of the set of data: 2, 3, 4, 5, 6, 7, 8, 9, 10?",
+    answer: {A:6, B:8, C:9, D:4},
+    correct: "A",
+    hint: "The formula for mean isˢᵘᵐ⁄ₜₒₜₐₗ",
+    steps: [
+        "The formula for mean is ˢᵘᵐ⁄ₜₒₜₐₗ",
+        " ⁽²⁺³⁺⁴⁺⁵⁺⁶⁺⁷⁺⁸⁺⁹⁺¹⁰⁾⁄₉",
+        "⁵⁴⁄₉",
+        "6"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "Find f(2) for f(x) = 2x² - 10",
+    answer: {A:-2, B:-6, C:-10, D:-4},
+    correct: "A",
+    hint: "Plug in 2 for x in the equation",
+    steps: [
+        "Plug in 2 for x in the equation f(x) = 2x² - 10:\nf(2) = 2(2)² - 10",
+        "8 - 10",
+        "-2"
+    ],
     minutes: 1,
     img_question: ""
 }
 
-]
+];
 
 function getDailyDate(resetHour, resetMinute){
     const now = new Date();
@@ -561,11 +879,11 @@ function getDailyDate(resetHour, resetMinute){
     return reset;
 }
 
-const startDate = new Date("2026-02-16T00:00:00");
+const startDate = new Date("2026-01-28T00:00:00");
 const dailyDate = getDailyDate(0, 0);
 const dailyIndex = Math.floor((dailyDate - startDate) / 86400000) % questions.length;
 const dayKey = dailyDate.toISOString().split("T")[0];
-const q = questions[dailyIndex];
+const q = questions[1]; //dailyIndex
 const buttons = document.querySelectorAll('.option button');
 const explanation = document.querySelector(".answer-explanation");
 const hintButton = document.getElementById("hint");

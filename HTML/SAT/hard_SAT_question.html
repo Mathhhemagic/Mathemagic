@@ -464,47 +464,372 @@ const db = firebase.firestore();
 const questions = [
 
 {
-
     question: "A gutter cleaning service charges $400 for the first 4 hours of cleaning, and an hourly fee for every additional hour. The total cost of 8 hours of cleaning is $4,000. What function f gives the total cost, in dollars, for x hours of cleaning, where x ≥ 4?",
     answer: {A:"f(x) = 900x + 400", B:"f(x) = 400x + 900", C:"f(x) = 900x - 3200", D:"f(x) = 3200x + 900"},
     correct: "C",
-    hint:"Add the cost for the first 4 hours to the product of (x - 4) and the hourly cost after the first 4 hours.",
-    steps: ["We need to set an equation equal to the total cost for 8 hours:\n4000 = 400 + (8 - 4)(Cost per hour)", " Let’s Simplify:\n4000 = 400 + 4(Cost per hour)\n3600 = 4(Cost per hour)\nCost per hour = 900", "Put the equation in a general format:\nf(x) = 400 + 900(x-4)", "Simplify:\nf(x) = 400 + 900x - 3600\nf(x) = 900x - 3200"],
-    minutes: 2,
+    hint: "Add the cost for the first 4 hours to the product of (x - 4) and the hourly cost after the first 4 hours.",
+    steps: [
+        "We need to set an equation equal to the total cost for 8 hours:\n4000 = 400 + (8 - 4)(Cost per hour)",
+        "Let’s simplify:\n4000 = 400 + 4(Cost per hour)\n3600 = 4(Cost per hour)\nCost per hour = 900",
+        "Put the equation in a general format:\nf(x) = 400 + 900(x-4)",
+        "Simplify:\nf(x) = 400 + 900x - 3600\nf(x) = 900x - 3200"
+    ],
+    minutes: 3,
     img_question: ""
+},
 
-}
-,
 {
     question: "The circumference of the base of a right circular cylinder is 20π meters, and the height of the cylinder is 9 meters. What is the volume, in cubic meters, of the cylinder?",
     answer: {A:"100π", B:"900π", C:"180π", D:"2.2π"},
     correct: "B",
-    hint:" Find the radius by using the πd formula for the circumference, and dividing the diameter by 2",
-    steps: ["Set the circumference to the formula, πd:\n20π = πd\nd = 20", "Find the radius by dividing the diameter by 2:\n20/2 = 10", " The volume of a cylinder is πr²h:\nπ(10)²9\n900π"],
+    hint: "Find the radius by using the πd formula for the circumference, and dividing the diameter by 2",
+    steps: [
+        "Set the circumference to the formula, πd:\n20π = πd\nd = 20",
+        "Find the radius by dividing the diameter by 2:\n20/2 = 10",
+        "The volume of a cylinder is πr²h:\nπ(10)²9\n900π"
+    ],
     minutes: 2,
     img_question: ""
-}
-,
+},
+
 {
-    question: "A cube has an edge length of 50 inches. A solid sphere with a radius of 12 inches is inside the cube. To the nearest cubic inch, what is the volume of the space in the cube not taken up by the sphere? (The volume of a sphere is ⁴⁄₃πr³)",
+    question: "A cube has an edge length of 50 inches. A solid sphere with a radius of 12 inches is inside the cube, such that the sphere touches the center of each face of the cube. To the nearest cubic inch, what is the volume of the space in the cube not taken up by the sphere?",
     answer: {A:"117,762", B:"122,696", C:"125,604", D:"118,023"},
     correct: "A",
-    hint:"Find the volume of the sphere and subtract it from the volume of the cube",
-    steps: [" Take the volume of the cube:\n50 x 50 x 50\n125000\n", "Take the volume of the sphere:\n⁴⁄₃π(12)³\n7,238.23", "Subtract the volume of the sphere from the volume of the cube:\n125000 - 7,238.23\n117,761.77", "Round the nearest cubic inch:\n117,762"],
-    minutes: 2,
+    hint: "Find the volume of the sphere and subtract it from the volume of the cube",
+    steps: [
+        "Take the volume of the cube:\n50 x 50 x 50 = 125,000",
+        "Take the volume of the sphere:\n⁴⁄₃π(12)³ ≈ 7,238.23",
+        "Subtract the volume of the sphere from the volume of the cube:\n125,000 - 7,238.23 ≈ 117,761.77",
+        "Round to the nearest cubic inch:\n117,762"
+    ],
+    minutes: 3,
     img_question: ""
-}
-,
+},
+
 {
-    question: "In the figure above, RT = TU, the measure of angle VST is 32°,  and the measure of angle RVS is 42°. What is the value of x?",
+    question: "In the figure above, RT = TU, the measure of angle VST is 32°, and the measure of angle RVS is 42°. What is the value of x?",
     answer: {A:"172°", B:"134°", C:"10°", D:"160°"},
     correct: "D",
-    hint:"Find the measure of angle UVS by subtracting angle RVS from 180, as UVS and RVS are supplementary angles",
-    steps: [" Find the measure of angle UVS by subtracting angle RVS from 180, as UVS and RVS are supplementary angles:\n180 - 42 = 138", "Triangle SUV has angles UVS, VSU, and VUS. Angle VSU and VST are the same. The angles of a triangle add up to 180°:\n138 + 32 + VUS = 180\nVUS = 10°", "RT = TU, so angle TUR and TRU are also congruent. Since the angles of a triangle add up to 180°, we can find angle x:\n10 + 10 + x = 180\nx = 160°"],
-    minutes: 2,
+    hint: "Find the measure of angle UVS by subtracting angle RVS from 180, as UVS and RVS are supplementary angles",
+    steps: [
+        "Find the measure of angle UVS by subtracting angle RVS from 180:\n180 - 42 = 138",
+        "Triangle SUV has angles UVS, VSU, and VUS. Angle VSU and VST are the same. The angles of a triangle add up to 180°:\n138 + 32 + VUS = 180\nVUS = 10°",
+        "RT = TU, so angle TUR and TRU are congruent. Using triangle sum: 10 + 10 + x = 180\nx = 160°"
+    ],
+    minutes: 3,
     img_question: "../Images/question6.jpg"
-}
+},
 
+{
+    question: "The expression 0.95x represents the result of decreasing a positive quantity x by what percent?",
+    answer: {A:"5%", B:"95%", C:"0.05%", D:"9.5%"},
+    correct: "A",
+    hint: "Convert 0.95x to a percentage and find the difference from x",
+    steps: [
+        "0.95x = 95% of x",
+        "95% of x is 5% less than x"
+    ],
+    minutes: 1,
+    img_question: ""
+},
+
+{
+    question: "The positive number a is 1,561% of the sum of the positive numbers b and c, and b is 90% of c. What percent of b is a?",
+    answer: {A:"3,456%", B:"4,569%", C:"3,295%", D:"4,091%"},
+    correct: "C",
+    hint: "Set an equation: 1,561% = 15.61 numerically, and 90% = 0.9 numerically",
+    steps: [
+        "a = 15.61(b + c)",
+        "b = 0.9c → c = b/0.9",
+        "a = 15.61(b + b/0.9) = 15.61 * 1.9b/0.9 = 32.95b",
+        "Convert to percent: 32.95b = 3,295% of b"
+    ],
+    minutes: 3,
+    img_question: ""
+},
+
+{
+    question: "The product of two positive integers is 200. If the first integer is 96 greater than twice the second integer, what is the smaller of the two integers?",
+    answer: {A:"4", B:"50", C:"100", D:"2"},
+    correct: "D",
+    hint: "Set the two equations: xy = 200, x = 96 + 2y. Then plug x into the first equation",
+    steps: [
+        "xy = 200",
+        "x = 96 + 2y",
+        "Plug in: (96 + 2y)y = 200\n2y² + 96y = 200",
+        "Divide by 2: y² + 48y = 100",
+        "Subtract 100: y² + 48y - 100 = 0",
+        "Factor: (y + 50)(y - 2) = 0",
+        "y = -50 or y = 2",
+        "Take positive integer: y = 2"
+    ],
+    minutes: 3,
+    img_question: ""
+},
+
+{
+    question: "Which of the following expressions is equivalent to (sin 33°)(cos 57°) +  (sin 57°)(cos 33°)?",
+    answer: {A:"2(sin 33°)(cos 57°)", B:"2(cos 33°) + 2(cos 57°)", C:"(cos 57°)² + (cos 33°)²", D:"(cos 57°)² + (sin 33°)²"},
+    correct: "C",
+    hint: "The sine of an angle is equal to its complementary angle (The two angles add up to 90°)",
+    steps: [
+        "The sine of an angle is equal to its complementary angle (sum 90°)",
+        "Convert (sin 33°) to (cos 57°), and (sin 57°) to (cos 33°)",
+        "We now have (cos 57°)(cos 57°) + (cos 33°)(cos 33°) = (cos 57°)² + (cos 33°)²"
+    ],
+    minutes: 2,
+    img_question: ""
+},
+
+{
+    question: "In the triangle shown, RS = √105. What is the value of sin R?",
+    answer: {A:"⁵²⁄₅₃", B:"⁵³⁄₅₂", C:"¹⁰⁵⁄₅₃", D:"⁵²⁄₁₀₅"},
+    correct: "A",
+    hint: "In a right triangle, the square of the hypotenuse is equal to the sum of the lengths of the two legs (a² + b² = c²)",
+    steps: [
+        "In a right triangle, the square of the hypotenuse is equal to the sum of the lengths of the two legs (a² + b² = c²)",
+        "a² + (√105)² = 53²",
+        "a² = 2,704",
+        "a = 52",
+        "Use SOH CAH TOA",
+        "Sin = O/A = (length of opposite side)/(length of hypotenuse) =\n⁵²⁄₅₃"
+
+    ],
+    minutes: 2,
+    img_question: "../Images/question7.jpg"
+},
+
+,
+{
+    question: "The dimensions of a right rectangular prism are 8 inches by 4 inches by 2 inches. What is the surface area, in square inches, of the prism?",
+    answer: {A:"192 in²", B:"48 in²", C:"96 in²", D:"112 in²"},
+    correct: "D",
+    hint: "Multiply each number by each other twice (ex. 2(8 x 4))",
+    steps: [
+        "On a right rectangular prism, opposite sides have equal areas.",
+        "There are 6 sides: 2(8 x 4) + 2(8 x 2) + 2(4 x 2)",
+        "2(32) + 2(16) + 2(8)",
+        "64 + 32 + 16",
+        "112 in²"
+    ],
+    minutes: 2,
+    img_question: ""
+},
+{
+    question: "A hemisphere is half of a sphere. If a hemisphere has a radius of 23 inches, which of the following is closest to the volume, in cubic inches, of this hemisphere? (The volume of a sphere is ⁴⁄₃πr³)",
+    answer: {A:"25,483 in³", B:"25,400 in³", C:"25,552 in³", D:"25,553 in³"},
+    correct: "A",
+    hint: "Divide the volume of a sphere by 2 in order to find the volume of the hemisphere",
+    steps: [
+        "The volume of a sphere is ⁴⁄₃πr³, so the volume of a hemisphere is ½(⁴⁄₃πr³)",
+        "½(⁴⁄₃π23³)",
+        "25,482.51 ≈ 25,483"
+    ],
+    minutes: 2,
+    img_question: ""
+},
+{
+    question: "In the triangle shown, what is the value of cos x°?",
+    answer: {A:"²⁸⁄₁₁", B:"²⁶⁄₁₁", C:"¹³⁄₁₄", D:"¹¹⁄₂₈"},
+    correct: "D",
+    hint: "Follow SOH CAH TOA\nSin: opposite/hypotenue\nCos: adjacent/hypotenuse: Tan: opposite/adjacent",
+    steps: [
+        "Follow SOH CAH TOA\nSin: opposite/hypotenue\nCos: adjacent/hypotenuse\nTan: opposite/adjacent",
+        "Cos: adjacent/hypotenuse",
+        "Cos: ¹¹⁄₂₈"
+    ],
+    minutes: 2,
+    img_question: "../Images/question8.jpg"
+},
+{
+    question: "For two acute angles, ∠A and ∠B, cos(A) = sin(B). The measures, in degrees, of ∠A and ∠B are x + 31 and 4x + 4, respectively. What is the value of x?",
+    answer: {A:"9", B:"10", C:"11", D:"12"},
+    correct: "C",
+    hint: "For two acute angles, if cos(A) = sin(B), then ∠A and ∠B are complementary (Their two angle measures add up to 90°.",
+    steps: [
+        "For two acute angles, if cos(A) = sin(B), then ∠A and ∠B are complementary (Their two angle measures add up to 90°.",
+        "x + 31 + 4x + 4 = 90",
+        "Combine like terms:\n5x + 35 = 90",
+        "Subtract:\n5x = 55",
+        "Divide by 5 on both sides:\nx = 11"
+    ],
+    minutes: 2,
+    img_question: ""
+},
+{
+    question: "A right triangle has sides of length 4√2, 4√2, and 8 units. What is the area of the triangle, in square units?",
+    answer: {A:"16 units²", B:"32 units²", C:"64 units²", D:"32√2 units²"},
+    correct: "A",
+    hint: "The area of a right triangle is ½(leg 1)(leg 2)",
+    steps: [
+        "The area of a right triangle is ½(leg 1)(leg 2)",
+        "The two legs are each 4√2 units long, and the hypotenuse is 8 units long, which is not necessary for this problem.",
+        "½(4√2)(4√2)",
+        "16 units²"
+    ],
+    minutes: 2,
+    img_question: ""
+},
+{
+    question: "How many distinct real solutions does the equation (x - 1)² = -4?",
+    answer: {A:"Exactly one", B:"Exactly two", C:"Infinitely many", D:"Zero"},
+    correct: "D",
+    hint: "A real solution is a noncomplex number",
+    steps: [
+        "A real solution is a noncomplex number",
+        "Square both sides: 2i and -2i, which are both complex numbers, meaning there are no real solutions for this equation"
+    ],
+    minutes: 2,
+    img_question: ""
+},
+{
+    question: "Two variables, x and y, are related such that for each increase of 1 in the value of x, the value of y increases by a factor of 4. When x = 0, y = 200. Which equation represents this relationship?",
+    answer: {A:"y = 4(x)²⁰⁰", B:"y = 4(200)ˣ", C:"y = 200(x)⁴", D:"y = 200(4)ˣ"},
+    correct: "D",
+    hint: "The relationship between x and y is exponential",
+    steps: [
+        "The relationship between x and y is exponential",
+        "The equation for an exponential relationship is y = a(b)ˣ, where a is the value of x when y = 0, and b is the increasing factor of y whenever x is increased by 1.",
+        "a = 200, x = 4:\ny = 200(4)ˣ"
+    ],
+    minutes: 2,
+    img_question: ""
+},
+{
+    question: "What is the sum of the solutions to the equation | -5x + 15 | = 30?",
+    answer: {A:"-3", B:"9", C:"-12", D:"6"},
+    correct: "D",
+    hint: "Set -5x + 15 to both -30 and 30",
+    steps: [
+        "For an absolute value equation, set -5x + 15 to both -30 and 30",
+        "-5x + 15 = -30\n-5x = -45\nx = 9",
+        "-5x + 15 = 30\n-5x = 15\nx = -3",
+        "Add:\n 9 + (-3) = 6"
+    ],
+    minutes: 2,
+    img_question: ""
+},
+{
+    question: "A sample of oak has a density of 800 kilograms per cubic meter. The sample is in the shape of a cube, where each edge has a length of 0.5 meters. What is the mass, in kilograms, of this sample?",
+    answer: {A:"6400 kg", B:"100 kg", C:"200 kg", D:"5200 kg"},
+    correct: "B",
+    hint: "The density of an object is mass/volume",
+    steps: [
+        "The density of an object is mass/volume",
+        "Volume is length x width x height. For a cube, each length is equal",
+        "0.5 x 0.5 x 0.5 = 0.125",
+        "800 = mass/0.125\nmass = 100 kg"
+    ],
+    minutes: 2,
+    img_question: ""
+},
+{
+    question: "In the xy-plane, line w has a slope of ⁵⁄₄ and an x-intercept of (8, 0). What is the y-coordinate of the y-intercept of line w?",
+    answer: {A:"8", B:"0", C:"-10", D:"-8"},
+    correct: "C",
+    hint: "The equation of a line is y = mx + b",
+    steps: [
+        "The equation of a line is y = mx + b",
+        "Plug in the numbers: 0 = ⁵⁄₄(8) + b",
+        "0 = 10 + b",
+        "b = -10",
+        "B = -10, so the y-coordinate of the y-intercept of line w is -10"
+    ],
+    minutes: 2,
+    img_question: ""
+},
+{
+    question: "During the month of July, Morgan ran x miles at 10 miles per hour and biked y miles at 15 miles per hour. She ran and biked a total of 160 miles that month, and she biked for twice as many hours as she ran. What is the total number of miles that Morgan biked during the month?",
+    answer: {A:"120", B:"40", C:"160", D:"60"},
+    correct: "A",
+    hint: "Set up two equations:\nx + y = 160\n2(ˣ⁄₁₀) = ʸ⁄₁₅",
+    steps: [
+        "Set up two equations:\nx + y = 160\n2(ˣ⁄₁₀) = ʸ⁄₁₅",
+        "Isolate x in the first equation: x = 160 - y",
+        "Plug in the value of x into the second equation: 2((160 - y)/10) = y/15",
+        "Multiply by 10 and 15 on each side: 2(15)(160 - y) = 10y",
+        "30(160 - y) = 10y",
+        "4800 - 30y = 10y",
+        "4800 = 40y",
+        "y = 120"
+    ],
+    minutes: 3,
+    img_question: ""
+},
+{
+    question: "Josh made 42 cups of tomato soup. Josh then filled 6 small jars and 10 large jars with all the tomato soup he made. The equation 6x + 10y = 42 represents this situation. Which is the best interpretation of 10y in this context?",
+    answer: {A:"The number of large jars Josh filled", B:"The number of small jars Josh filled", C:"The total number of cups of tomato soup in the large jars", D:"The total number of cups of tomato soup in the small jars"},
+    correct: "C",
+    hint: "Think about how the variables “x” and “y” are related to 6 and 10",
+    steps: [
+        "If 6x + 10y = 42, then each “6x” and “10Y” relate to how many cups of tomato soup are in the small and large jars",
+        "Since 10 relates to the large jars, 10y is the total number of cups of tomato soup in the large jars"
+    ],
+    minutes: 2,
+    img_question: ""
+},
+{
+    question: "A movie theater sells two types of tickets, adult tickets for $15 and child tickets for $8. If the theater sold 30 tickets for a total of $359, how much, in dollars, was spent on adult tickets?",
+    answer: {A:"$255", B:"$104", C:"$225", D:"$120"},
+    correct: "A",
+    hint: "Set up two equations:\na + c = 30\n15a + 8c = 359\n(a = number of adult tickets, c = number of child tickets)",
+    steps: [
+        "Set up two equations: a + c = 30 and 15a + 8c = 359",
+        "Solve for a:\n8(a + c) = 8(30)\n8a + 8c = 240",
+        "15a + 8c = 359\n-\n8a + 8c = 240",
+        "7a = 119",
+        "a = 17",
+        "Solve for how many dollars was spent on adult tickets:\n17 x 15 = $255"
+    ],
+    minutes: 3,
+    img_question: ""
+},
+{
+    question: "Line l is perpendicular to the line x = 4. What is the slope of line l?",
+    answer: {A:"Undefined", B:"0", C:"4", D:"-¼"},
+    correct: "B",
+    hint: "A line perpendicular to another line has the opposite reciprocal slope of the first line",
+    steps: [
+        "A line perpendicular to another line has the opposite reciprocal slope of the first line",
+        "At line x = 4, the slope is undefined, because it is a vertical line",
+        "The opposite reciprocal to a line with an undefined slope is 0"
+    ],
+    minutes: 2,
+    img_question: ""
+},
+{
+    question: "If ˣ ⁺ ⁵⁄₁₀ = ˣ ⁺ ⁵⁄₃, between what two value is the value of x + 5 between?",
+    answer: {A:"No solution", B:"-1 and 1", C:"-7 and -2", D:"8 and 10"},
+    correct: "B",
+    hint: "Multiply each side of the equation by 3(10)",
+    steps: [
+        "Multiply each side of the equation by 3(10):\n3(x + 5) = 10(x + 5)",
+        "Subtract each side of the equation by 10(x + 5):\n-7(x + 5) = 0",
+        "x + 5 = 0, which is in between values -1 and 1"
+    ],
+    minutes: 2,
+    img_question: ""
+},
+{
+    question: "If (∜70x)(∛70x)² = (70n)⁴⁰ˣ for n > 1, what is the value of x to the nearest hundredth?",
+    answer: {A:"0.01", B:"0.02", C:"0.03", D:"0.04"},
+    correct: "B",
+    hint: "Multiply the radicals by converting the radicals to fractional exponents",
+    steps: [
+        "Convert (∜70x)(∛70x)² to an exponential form: (70x)¹/⁴(70x)²/³",
+        "Multiply the numbers by adding the exponents: (70x)¹/⁴ + ²/³",
+        "Since (70x)¹/⁴ + ²/³ = (70n)⁴⁰ˣ, ¼ + ⅔ = 40x",
+        "¼ + ⅔ = 40x",
+        "³⁄₁₂ + ⁸⁄₁₂ = ¹¹⁄₁₂",
+        "¹¹⁄₁₂ = 40x",
+        "x = ¹¹⁄₁₂(¹⁄₄₀)",
+        "x ≈ 0.0229",
+        "0.0229 to the nearest hundredth is 0.02"
+    ],
+    minutes: 3,
+    img_question: ""
+}
 
 ]
 

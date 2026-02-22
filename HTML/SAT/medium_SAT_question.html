@@ -494,47 +494,370 @@ const db = firebase.firestore();
 
 const questions = [
 
-{
 
+{
     question: "In the figure above, l and m are parallel, y = 20, and z = 60. What is the value of x?",
-    answer: {A:"100°", B:"90°", C: "20°", D: "80°"},
+    answer: {A:100, B:90, C:20, D:80},
     correct: "A",
     hint: "Angle y and the missing angle of the triangle made from transversal l are congruent",
-    steps: ["Angle y and the missing angle of the triangle made from transversal l are congruent, because lines l and m are parallel and the two angles are corresponding.", "The angles of a triangle add up to 180°, so 180 - 20 - 60 = 100°"],
+    steps: [
+        "Angle y and the missing angle of the triangle made from transversal l are congruent, because lines l and m are parallel and the two angles are corresponding.",
+        "The angles of a triangle add up to 180°, so 180 - 20 - 60 = 100°"
+    ],
     minutes: 2,
     img_question: "../Images/question1.jpg"
+},
 
-}
-,
 {
-    question:  "If √x = √a + √b, what is x in terms of a and b?",
-    answer: {A:"√a + 2√a√b + √b", B:"a + b", C: "a² + b²", D: "a + 2√(ab) + b"},
+    question: "If √x = √a + √b, what is x in terms of a and b?",
+    answer: {A:"√a + 2√a√b + √b", B:"a + b", C:"a² + b²", D:"a + 2√(ab) + b"},
     correct: "D",
-    hint: " (x + y)² = x² +2xy + y²",
-    steps: ["Square both sides. Use  (x + y)² = x² +2xy + y²", " x = a + 2√(ab) + b"],
-    minutes: 2,
-    img_question: ""
-}
-,
-{
-    question: "What is 8% of 75?",
-    answer: {A:"3.5", B:"7.5", C:"6", D:"5"},
-    correct: "C",
-    hint:"8% of 75 = 75% of 8",
-    steps: [" Use the reversible trick. 8% of 75 = 75% of 8."," 75% is just ¾", "¾ of 8 is 6."],
+    hint: "(x + y)² = x² +2xy + y²",
+    steps: [
+        "Square both sides. Use (x + y)² = x² +2xy + y²",
+        "x = a + 2√(ab) + b"
+    ],
     minutes: 1,
     img_question: ""
-}
-,
+},
+
+{
+    question: "What is 8% of 75?",
+    answer: {A:3.5, B:7.5, C:6, D:5},
+    correct: "C",
+    hint: "8% of 75 = 75% of 8",
+    steps: [
+        "Use the reversible trick. 8% of 75 = 75% of 8.",
+        "75% is just ¾",
+        "¾ of 8 is 6."
+    ],
+    minutes: 1,
+    img_question: ""
+},
+
 {
     question: "What is the value of x in the equation 4² + 4² + 4² + 4² = 2ˣ?",
     answer: {A:8, B:6, C:10, D:4},
     correct: "B",
     hint: "First, add the 4²’s together, and then make it into a base of 2",
-    steps: [" Add the 4²’s together, and then make it into a base of 2", "4(4²) = 2ˣ","Make the 4’s into 2²’s", "2²(2²)² =  2ˣ", "2²(2⁴) = 2ˣ", "2⁶ = 2ˣ", "x = 6"],
-    minutes: 1.5,
+    steps: [
+        "Add the 4²’s together, and then make it into a base of 2",
+        "4(4²) = 2ˣ",
+        "Make the 4’s into 2²’s",
+        "2²(2²)² =  2ˣ",
+        "2²(2⁴) = 2ˣ",
+        "2⁶ = 2ˣ",
+        "x = 6"
+    ],
+    minutes: 2,
     img_question: ""
+},
+
+{
+    question: "Based on the histogram above, of the following, which is closest to the average (arithmetic mean) number of seeds per apple?",
+    answer: {A:4, B:5, C:6, D:7},
+    correct: "C",
+    hint: "Add up the amount of seeds and divide it by the number of data points.",
+    steps: [
+        "Add the total amount of seeds:\n3(2) + 5(4) + 6(1) + 7(2) + 9(3) = 73",
+        "The amount of data points are:\n2 + 4 + 1 + 2 + 3 = 12",
+        "Divide 73 by 12\n73/12 = ⁷³⁄₁₂ = 6 ¹⁄₁₂, which is closest to 6 out of the option choices."
+    ],
+    minutes: 2,
+    img_question: "../Images/question2.jpg"
+},
+
+{
+    question: "John can walk at 15 feet per 10 seconds. How many yards can he walk in 1 minute? (There are 3 feet in 1 yard)",
+    answer: {A:90, B:30, C:15, D:45},
+    correct: "B",
+    hint: "There are 60 seconds in a minute, so multiply both the feet and seconds by 6, and then convert to yards.",
+    steps: [
+        "There are 60 seconds in a minute.",
+        "Since John walks 15 feet in 10 seconds, he walks\n15 x 6 = 90 feet in 10 x 6 = 60 seconds",
+        "Since there are 3 feet in a yard, divide 90 by 3 to get 30 yards."
+    ],
+    minutes: 2,
+    img_question: ""
+},
+
+{
+    question: "Line g is defined by y = -¹⁵⁄₃x + 5 . Line k is perpendicular to line g in the xy-plane. What is the slope of line k?",
+    answer: {A:"-¹⁵⁄₃", B:"-³⁄₁₅", C:"³⁄₁₅", D:"¹⁵⁄₃"},
+    correct: "C",
+    hint: "A line that is perpendicular to another line on the xy-plane has an opposite reciprocal slope to the original line.",
+    steps: [
+        "Since line g and line k are perpendicular, they have opposite reciprocal slopes.",
+        "The opposite of  -¹⁵⁄₃ is ¹⁵⁄₃, and the reciprocal is ³⁄₁₅."
+    ],
+    minutes: 2,
+    img_question: ""
+},
+
+{
+    question: "Using the following system of equations, solve for x:\n¼y = 4\nx - ¼y = 2",
+    answer: {A:8, B:"¼", C:"½", D:6},
+    correct: "D",
+    hint: "Use substitution by substituting ¼y for 4 in the second equation",
+    steps: [
+        "Use substitution for this system of equations by substituting ¼y for 4 in the second equation:\nx - 4 = 2",
+        "x = 6"
+    ],
+    minutes: 2,
+    img_question: ""
+},
+
+{
+    question: "Line j is defined by 3y + 9x = 21 . Line q is perpendicular to line j in the xy-plane. What is the slope of line q ?",
+    answer: {A:-3, B:3, C:"⅓", D:"-⅓"},
+    correct: "C",
+    hint: "Convert the equation into slope-intercept form (y = mx + b)",
+    steps: [
+        "Convert the equation into slope-intercept form, y = mx + b:\n3y + 9x = 21",
+        "3y = -9x + 21",
+        "y = -3x + 7",
+        "If a line is perpendicular to another line, its slope is the opposite reciprocal of the first line",
+        "The opposite of -3 is 3, and the reciprocal is ⅓."
+    ],
+    minutes: 2,
+    img_question: ""
+},
+
+{
+    question: "What is the equation of the line which passes through the points (0, 40) and (2, 60)?",
+    answer: {A:"y = 10x + 40", B:"y = 40x + 10", C:"y = 40x", D:"y = 10x + 60"},
+    correct: "A",
+    hint: "Use point-slope form, y = mx + b, and substitute points",
+    steps: [
+        "Find an equation for the points in point-slope form, y = mx + b",
+        "Find the slope, m. To find slope, use the formula ʳⁱˢᵉ⁄ᵣᵤₙ, where rise is the change in the y values, and run is the change in x values.",
+        "²⁰ ⁻ ⁴⁰⁄₂ ₋ ₀ = ²⁰⁄₂ = 10",
+        "The “b” in the equation is the y-intercept, where x is 0.",
+        "According to the first coordinate, when x = 0, y = 40.",
+        "y = 10x + 40."
+    ],
+    minutes: 2,
+    img_question: ""
+},
+
+{
+    question: "How many points do the equations y = 3x + 9 and y = 2x + 40 intersect?",
+    answer: {A:0, B:1, C:2, D:"Infinitely many"},
+    correct: "B",
+    hint: "Use the slopes of the line and compare them",
+    steps: [
+        "Lines with different slopes will always intersect at only one point.",
+        "Since the first line has a slope of 3, and the second line has a slope of 2, the lines will only intersect at one point."
+    ],
+    minutes: 2,
+    img_question: ""
+},
+
+{
+    question: "In triangle ABC, the measure of angle A is 29°, the measure of angle B is 101°, and the measure of angle C is 5x°. What is the value of x?",
+    answer: {A:50, B:10, C:20, D:35},
+    correct: "B",
+    hint: "The angles of a triangle add up to 180°",
+    steps: [
+        "The angles of a triangle add up to 180°",
+        "29 + 101 + angle C = 180",
+        "130 + angle C = 180",
+        "angle C = 50°",
+        "Since angle C = 5x:\n5x = 50",
+        "x = 10°."
+    ],
+    minutes: 2,
+    img_question: ""
+},
+{
+    question: "If 52 = 46 + 3(x - 2), what is the value of 3(x - 2)?",
+    answer: {A:6, B:4, C:2, D:8},
+    correct: "A",
+    hint: "Solve for 3(x - 2) by subtracting by 46 on both sides",
+    steps: [
+        "The question is asking for 3(x - 2), not x.",
+        "Subtract by 46 on both sides to get 3(x - 2) = 6"
+    ],
+    minutes: 2,
+    img_question: ""
+},
+
+{
+    question: "If h(x) = x + q, and h(9) = 23, what is the value of q?",
+    answer: {A:15, B:14, C:16, D:9},
+    correct: "B",
+    hint: "Plug in 9 for x into the original equation",
+    steps: [
+        "Solve for q by plugging 9 into the original equation",
+        "9 + q = 23",
+        "q = 14"
+    ],
+    minutes: 2,
+    img_question: ""
+},
+
+{
+    question: "The system of equations shown on the graph has two functions, one linear function and one quadratic function. How many solutions does the system have?",
+    answer: {A:0, B:1, C:2, D:3},
+    correct: "C",
+    hint: "The solutions to the system of equations are the points where the functions on the graph intersect",
+    steps: [
+        "The solutions to the system of equations are the points where the functions on the graph intersect.",
+        "The functions intersect at two points."
+    ],
+    minutes: 2,
+    img_question: "../Images/question3.jpg"
+},
+
+{
+    question: "How many real solutions does the equation x² = -99 have?",
+    answer: {A:0, B:1, C:2, D:3},
+    correct: "A",
+    hint: "A real solution is a solution that has no imaginary numbers",
+    steps: [
+        "A number squared cannot be negative, which means that all solutions to this equation are complex, not real.",
+        "This means that there are no real solutions to this equation."
+    ],
+    minutes: 2,
+    img_question: ""
+},
+
+{
+    question: "What is a solution for the variable a to the equation (a - 40)(a + 40) + 8 = 8?",
+    answer: {A:"16", B:"1/5", C:"2/5", D:40},
+    correct: "D",
+    hint: "A product can only equal zero if one of the numbers being multiplied equals zero",
+    steps: [
+        "Subtract 8 on both sides:\n(a-40)(a+40) = 0",
+        "A product can only equal zero if one of the numbers being multiplied equals zero.",
+        "Either (a - 40) or (a + 40) has to equal 0, which means that a can either be 40 or -40.",
+        "Answer choice D is 40"
+    ],
+    minutes: 2,
+    img_question: ""
+},
+
+{
+    question: "What is the product of the solutions to the equation (x - 4)(x + 5)(x - 9)?",
+    answer: {A:-180, B:180, C:90, D:-90},
+    correct: "B",
+    hint: "The solutions to the equation are the x - intercepts",
+    steps: [
+        "In order to find the solutions to the equation, set each of the binomials to 0",
+        "x - 4 = 0\nx = 4",
+        "x + 5 = 0\nx = -5",
+        "x - 9 = 0\nx = 9",
+        "Multiply the numbers:\n4 x -5 x 9 = -180"
+    ],
+    minutes: 2,
+    img_question: ""
+},
+
+{
+    question: "Which of the following expressions is equivalent to √(x⁴y⁶)?",
+    answer: {A:"x²y³", B:"x³y²", C:"y³", D:"x²"},
+    correct: "A",
+    hint: "Divide each exponent by 2",
+    steps: [
+        "Squaring an expression means divide each of the variable’s exponents by 2:",
+        "x⁴y⁶ → x²y³"
+    ],
+    minutes: 2,
+    img_question: ""
+},
+
+{
+    question: "Which expression is equivalent to (d² + 8)(d³ + 9)?",
+    answer: {A:"d⁵ + 9d² + 8d³ + 72", B:"d⁶  + 9d² + 8d³ + 72", C:"d⁵ + 17d³ + 72", D:"d⁶ + 9d³ + 8d² + 72"},
+    correct: "A",
+    hint: "Use the FOIL method (First, inner, outer, last)",
+    steps: [
+        "Use the FOIL method (First, inner, outer, last)",
+        "d² * d³ = d⁵",
+        "d² * 9 = 9d²",
+        "8 * d³ = 8d³",
+        "8 * 9 = 72",
+        "Add the numbers:\nd⁵ + 9d² + 8d³ + 72"
+    ],
+    minutes: 2,
+    img_question: ""
+},
+
+{
+    question: "If 4√(2x) = 4, what is the value of 4x?",
+    answer: {A:4, B:1, C:2, D:0.5},
+    correct: "C",
+    hint: "Square both sides",
+    steps: [
+        "Square both sides of the equation:\n(4√(2x))²",
+        "4²(√(2x))²",
+        "16(2x) = 16",
+        "2x = 1",
+        "x = ½",
+        "Solve for 4x\n4(½) = 2"
+    ],
+    minutes: 2,
+    img_question: ""
+},
+
+{
+    question: "What is the negative solution to the equation 40x² = 40(16)?",
+    answer: {A:-4, B:-16, C:-2/5, D:-40},
+    correct: "A",
+    hint: "Divide out 40 on both sides",
+    steps: [
+        "Divide by 40 on both sides:\nx² = 16",
+        "x = ±4",
+        "Take only the negative solution, -4"
+    ],
+    minutes: 2,
+    img_question: ""
+},
+
+{
+    question: "There are 500 bottles in a box. 6% of the bottles are black. How many bottles are black?",
+    answer: {A:6, B:3, C:60, D:30},
+    correct: "D",
+    hint: "6% of 500 = 500% of 6",
+    steps: [
+        "Use the percentages trick:\n6% of 500 = 500% of 6",
+        "500% of a number is just 5 times that number:\n6 x 5 = 30"
+    ],
+    minutes: 2,
+    img_question: ""
+},
+
+{
+    question: "In the figure, lines m and n are parallel. If x = 2p + 5, and y = p + 9, what is the value of z?",
+    answer: {A:176, B:4, C:13, D:167},
+    correct: "D",
+    hint: "Angles x and y are vertical angles, which means that they are congruent.",
+    steps: [
+        "Angles x and y are vertical angles, which means that they are congruent:\n2p + 5 = p + 9",
+        "Solve for p:\np + 5 = 9\np = 4",
+        "Angle x and angle z are same side interior angles on the transversal. Since lines m and n are parallel, that makes angle x and angle z supplementary, which means that their angles add up to 180°:\nAngle x = 2p + 5 = 2(4) + 5 = 8 + 5 = 13",
+        "180° - 13° = 167°"
+    ],
+    minutes: 2,
+    img_question: "../Images/question4.jpg"
+},
+
+{
+    question: "In the figure above, segments AE and BD are parallel. If angle BDC measures 62° and angle ACE measures 81°, what is the measure of angle CAE?",
+    answer: {A:37, B:62, C:81, D:18.5},
+    correct: "A",
+    hint: "Triangles ACE and BCD are similar",
+    steps: [
+        "Triangles ACE and BCD are similar, which means that their corresponding angles are also congruent",
+        "Since the angles of a triangle add up to 180°, angle DBC measures:\n180 - 62 - 81 = 37°",
+        "Since triangles ACE and BCD are similar, this means that angle CAE also measures 37°."
+    ],
+    minutes: 2,
+    img_question: "../Images/question5.jpg"
 }
+
+
+
 
 ]
 
