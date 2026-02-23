@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<link rel = "icon" href = "/favicon.ico">
+<link ref = "icon" href = "/favicon.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Cause:wght@100..900&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
@@ -315,12 +315,6 @@ const firebaseConfig = {
     const email_input = document.getElementById('email-input')
     const password_input = document.getElementById('password-input')
     const error_message = document.getElementById("error-message")
-[email_input, password_input].forEach(input => {
-        input.addEventListener("input", () => {
-        input.parentElement.classList.remove("incorrect");
-        error_message.innerText = "";
-    });
-    });
 
     function getLoginErrors(email,password){
     let errors = []
