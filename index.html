@@ -347,8 +347,8 @@ flex-direction: column;
 <body>
 <div class = "math-container"></div>
 <ul>
-    <li><a class = "active" href = "index.html">Home</a></li>
-    <li><a class = "inactive" href = "videos.html">Videos</a></li>
+    <li><a class = "active" href = "/">Home</a></li>
+    <li><a class = "inactive" href = "videos/index.html">Videos</a></li>
     <li class = "icon">
         <span id = "user-icon"></span>
     <div class = "dropdown"></div>
@@ -370,7 +370,7 @@ Mathemagic
     <p>Daily SAT challenge:</p>
     <div class = "difficulty">
         <div class = "easy difficulty-box">
-            <a href = "HTML/SAT/easy_SAT_question.html">
+            <a href = "SAT/easy_SAT_question">
                 <button>Easy →</button>
             </a>
             <div class = "stars">
@@ -378,14 +378,14 @@ Mathemagic
             </div>
         </div>
         <div class = "medium difficulty-box">
-            <a href = "HTML/SAT/medium_SAT_question.html">
+            <a href = "SAT/medium_SAT_question">
                 <button>Medium →</button>
             </a>
             <div class = "stars"><p id = "medium_stars"> ☆ ☆ ☆</p>
             </div>
         </div>
         <div class = "hard difficulty-box">
-            <a href = "HTML/SAT/hard_SAT_question.html">
+            <a href = "SAT/hard_SAT_question">
                 <button>Hard →</button>
             </a>
             <div class = "stars"><p id = "hard_stars"> ☆ ☆ ☆ </p>
@@ -535,8 +535,8 @@ firebase.auth().onAuthStateChanged(async user => {
     const colorIndex = hash % colors.length;
     icon.style.backgroundColor = colors[colorIndex];
     dropdown.innerHTML = 
-    `<a href = "profile.html">Profile</a>
-    <a href = "login.html" id = "logout">Logout</a>`;
+    `<a href = "/profile">Profile</a>
+    <a href = "/login" id = "logout">Logout</a>`;
      const logout = document.getElementById("logout");
     logout.addEventListener("click", async (e) => {
         e.preventDefault();
@@ -588,8 +588,8 @@ firebase.auth().onAuthStateChanged(async user => {
         icon.textContent = "";
         icon.style.backgroundColor = "gray";
         dropdown.innerHTML = 
-        `<a href = "login.html">Login</a>
-        <a href = "signup.html">Signup</a>
+        `<a href = "/login">Login</a>
+        <a href = "/signup">Signup</a>
         `
     }
     

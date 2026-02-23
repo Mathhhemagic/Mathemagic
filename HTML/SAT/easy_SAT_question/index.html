@@ -9,24 +9,52 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libertinus+Math&display=swap" rel="stylesheet">
+
+
 <style>
 
- .hard-style{
+
+ .easy-style{
                 margin: auto;
                 margin-top: 2%;
                 display: flex;
                 justify-content: center;
             }
-            .hard-style p{
+            .easy-style p{
                 font-size:1em;
                 border-radius:50px;
                 text-align:center;
                 padding: 10px 25px;
-                box-shadow: 0 0 40px rgb(255, 149, 149);
+                box-shadow: 0 0 40px #158C00;
                 font-family: "Libertinus Math", system-ui;
             }
 
- .anim{
+
+            .medium button{
+                cursor: pointer;
+                font-family: "Libertinus Math", system-ui;
+                font-size: 2rem;
+                display: block;
+                height: 4rem;
+                width: 4rem;
+                text-align: center;
+                border-radius: 50%;
+                border: 2px solid rgb(255, 210, 159);
+                margin-bottom: 2%;
+                background-color: white;
+                font-weight: bold;
+                color:rgb(255, 210, 159);
+                margin-bottom: 2%;;
+                box-shadow: 0 0 40px grey;
+                line-height: 1;
+            }
+           
+            .medium button:hover{
+                box-shadow: 0 0 40px rgb(255, 210, 159);
+                transform: translateY(-4px);
+            }
+
+  .anim{
             opacity: 0;
             transform: translateY(30px);
             animation: moveUp 0.5s linear forwards;
@@ -106,6 +134,7 @@
                 margin-bottom: 0%;
                 color: #333535;
                 font-family: "Libertinus Math", system-ui;
+                white-space: pre-line; 
 
             }
            
@@ -151,6 +180,8 @@
                 min-width: 1rem;
                 margin-bottom: 1.5%;
                 align-items: center;
+                white-space: pre-line; 
+                
 
             }
 
@@ -164,6 +195,7 @@
                 border-top: 1px solid black;
                 border-right: 1px solid black;
                 border-bottom: 1px solid black;
+                white-space: pre-line; 
             }
 
 
@@ -209,11 +241,14 @@
             overflow: visible;
             opacity: 1;
             transform: translateY(0);
+            white-space: pre-line; 
             }
             body{
                 margin:0;
                 overflow-x: hidden;
             }
+
+
 
 
             .arrow button{
@@ -225,7 +260,7 @@
                 width: 4rem;
                 text-align: center;
                 border-radius: 50%;
-                border:transparent;
+                border: 2px solid transparent;
                 box-shadow: 0 0 40px grey;
                 margin-bottom: 2%;
                 background-color: white;
@@ -323,25 +358,32 @@
             text-align: center;
             font-size: 1rem;
             color: black;
-            margin-bottom: 0;
            }
            .contact{
             display: flex;
             flex-direction: row;
             justify-content: center;
-            gap: 1rem;
+            gap: 2rem;
             align-items: center;
            }
            .contact a{
             text-align: center;
             font-size: 1rem;
-            color: rgb(120, 172, 255);
+            color: rgb(99, 136, 191);
             text-decoration: none;
             margin: 0;
            }
 
            .contact a:hover{
             text-decoration: underline;
+           }
+
+           .hint.disabled-after-answer{
+            cursor: not-allowed;
+            background-color: rgba(178, 190, 181, 0.5);
+            box-shadow: 0 0 30px rgba(75, 75, 75, 0.5);
+            border-color: grey;
+            pointer-events: none;
            }
 
            .top-arrows{
@@ -352,25 +394,28 @@
            }
 
            
-           
         
 </style>
 </head>
 
 
-
 <body>
     <div class = "anim">
-        <div class = "top-arrows">
+    <div class = "top-arrows">
             <div class = "arrow">
-            <a href = "/Mathemagic/">
+            <a href = "/">
             <button>←
             </button>
             </a>
             </div>
+            <div class = "medium">
+                <a href = "/SAT/medium">
+                <button>→</button>
+                </a>
             </div>
-            <div class = "hard-style">
-                <p>Hard</p>
+            </div>
+            <div class = "easy-style">
+                <p>Easy</p>
             </div>
             <div class = "header">
                  <div class = "timer">
@@ -413,13 +458,11 @@
                 </div>
             </div>
             <div class = "answer-explanation">
-                <div class = "visible"></div>
                 <p id = "answer_explanation"></p>
-                </p>
             </div>
         </div>
-         <div class = "copyright">
-            <p><br><br>© 2026 Mathemagic. All rights reserved.
+        <div class = "copyright">
+            <p>© 2026 Mathemagic. All rights reserved.
             </p>
         </div>
         <div class = "contact">
@@ -427,12 +470,12 @@
             <a href = "https://youtube.com/@mathhhemagic?si=saFxbbJ1ndVRRasb">Youtube</a>
         </div>
         <div class = "copyright">
-            <p>Practice questions inspired by standardized tests. Not affiliated with CollegeBoard.</p>
+            <p>Practice questions inspired by standardized tests. Not affiliated with CollegeBoard</p>
         </div>
-    
 
 
            
+
 
 
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
@@ -460,378 +503,367 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
-
-const questions = [
-
+const questions = 
+[
 {
-    question: "A gutter cleaning service charges $400 for the first 4 hours of cleaning, and an hourly fee for every additional hour. The total cost of 8 hours of cleaning is $4,000. What function f gives the total cost, in dollars, for x hours of cleaning, where x ≥ 4?",
-    answer: {A:"f(x) = 900x + 400", B:"f(x) = 400x + 900", C:"f(x) = 900x - 3200", D:"f(x) = 3200x + 900"},
+    question: "John is running at 10 miles per hour. How many miles does he run in 210 minutes?",
+    answer: {A:15, B:17, C:35, D:45},
     correct: "C",
-    hint: "Add the cost for the first 4 hours to the product of (x - 4) and the hourly cost after the first 4 hours.",
+    hint: "There are 60 minutes in one hour",
     steps: [
-        "We need to set an equation equal to the total cost for 8 hours:\n4000 = 400 + (8 - 4)(Cost per hour)",
-        "Let’s simplify:\n4000 = 400 + 4(Cost per hour)\n3600 = 4(Cost per hour)\nCost per hour = 900",
-        "Put the equation in a general format:\nf(x) = 400 + 900(x-4)",
-        "Simplify:\nf(x) = 400 + 900x - 3600\nf(x) = 900x - 3200"
-    ],
-    minutes: 3,
-    img_question: ""
-},
-
-{
-    question: "The circumference of the base of a right circular cylinder is 20π meters, and the height of the cylinder is 9 meters. What is the volume, in cubic meters, of the cylinder?",
-    answer: {A:"100π", B:"900π", C:"180π", D:"2.2π"},
-    correct: "B",
-    hint: "Find the radius by using the πd formula for the circumference, and dividing the diameter by 2",
-    steps: [
-        "Set the circumference to the formula, πd:\n20π = πd\nd = 20",
-        "Find the radius by dividing the diameter by 2:\n20/2 = 10",
-        "The volume of a cylinder is πr²h:\nπ(10)²9\n900π"
+        "Convert the minutes to hours. There are 60 minutes in an hour. That means 210 minutes is 3.5 hours.",
+        "3.5 * 10 = 35 miles"
     ],
     minutes: 2,
     img_question: ""
-},
-
+}
+,
 {
-    question: "A cube has an edge length of 50 inches. A solid sphere with a radius of 12 inches is inside the cube, such that the sphere touches the center of each face of the cube. To the nearest cubic inch, what is the volume of the space in the cube not taken up by the sphere?",
-    answer: {A:"117,762", B:"122,696", C:"125,604", D:"118,023"},
+    question: "What is a factor of 35 + 25?",
+    answer: {A:12, B:9, C:25, D:35},
     correct: "A",
-    hint: "Find the volume of the sphere and subtract it from the volume of the cube",
+    hint: "A factor is a whole number that, if multiplied by another whole number, will result in the larger number",
     steps: [
-        "Take the volume of the cube:\n50 x 50 x 50 = 125,000",
-        "Take the volume of the sphere:\n⁴⁄₃π(12)³ ≈ 7,238.23",
-        "Subtract the volume of the sphere from the volume of the cube:\n125,000 - 7,238.23 ≈ 117,761.77",
-        "Round to the nearest cubic inch:\n117,762"
-    ],
-    minutes: 3,
-    img_question: ""
-},
-
-{
-    question: "In the figure above, RT = TU, the measure of angle VST is 32°, and the measure of angle RVS is 42°. What is the value of x?",
-    answer: {A:"172°", B:"134°", C:"10°", D:"160°"},
-    correct: "D",
-    hint: "Find the measure of angle UVS by subtracting angle RVS from 180, as UVS and RVS are supplementary angles",
-    steps: [
-        "Find the measure of angle UVS by subtracting angle RVS from 180:\n180 - 42 = 138",
-        "Triangle SUV has angles UVS, VSU, and VUS. Angle VSU and VST are the same. The angles of a triangle add up to 180°:\n138 + 32 + VUS = 180\nVUS = 10°",
-        "RT = TU, so angle TUR and TRU are congruent. Using triangle sum: 10 + 10 + x = 180\nx = 160°"
-    ],
-    minutes: 3,
-    img_question: "../Images/question6.jpg"
-},
-
-{
-    question: "The expression 0.95x represents the result of decreasing a positive quantity x by what percent?",
-    answer: {A:"5%", B:"95%", C:"0.05%", D:"9.5%"},
-    correct: "A",
-    hint: "Convert 0.95x to a percentage and find the difference from x",
-    steps: [
-        "0.95x = 95% of x",
-        "95% of x is 5% less than x"
+        "Add 35 and 25 to get 60",
+        "12 is a factor of 60 as it is a whole number when multiplied by another whole number (5) gets us 60"
     ],
     minutes: 1,
     img_question: ""
-},
-
-{
-    question: "The positive number a is 1,561% of the sum of the positive numbers b and c, and b is 90% of c. What percent of b is a?",
-    answer: {A:"3,456%", B:"4,569%", C:"3,295%", D:"4,091%"},
-    correct: "C",
-    hint: "Set an equation: 1,561% = 15.61 numerically, and 90% = 0.9 numerically",
-    steps: [
-        "a = 15.61(b + c)",
-        "b = 0.9c → c = b/0.9",
-        "a = 15.61(b + b/0.9) = 15.61 * 1.9b/0.9 = 32.95b",
-        "Convert to percent: 32.95b = 3,295% of b"
-    ],
-    minutes: 3,
-    img_question: ""
-},
-
-{
-    question: "The product of two positive integers is 200. If the first integer is 96 greater than twice the second integer, what is the smaller of the two integers?",
-    answer: {A:"4", B:"50", C:"100", D:"2"},
-    correct: "D",
-    hint: "Set the two equations: xy = 200, x = 96 + 2y. Then plug x into the first equation",
-    steps: [
-        "xy = 200",
-        "x = 96 + 2y",
-        "Plug in: (96 + 2y)y = 200\n2y² + 96y = 200",
-        "Divide by 2: y² + 48y = 100",
-        "Subtract 100: y² + 48y - 100 = 0",
-        "Factor: (y + 50)(y - 2) = 0",
-        "y = -50 or y = 2",
-        "Take positive integer: y = 2"
-    ],
-    minutes: 3,
-    img_question: ""
-},
-
-{
-    question: "Which of the following expressions is equivalent to (sin 33°)(cos 57°) +  (sin 57°)(cos 33°)?",
-    answer: {A:"2(sin 33°)(cos 57°)", B:"2(cos 33°) + 2(cos 57°)", C:"(cos 57°)² + (cos 33°)²", D:"(cos 57°)² + (sin 33°)²"},
-    correct: "C",
-    hint: "The sine of an angle is equal to its complementary angle (The two angles add up to 90°)",
-    steps: [
-        "The sine of an angle is equal to its complementary angle (sum 90°)",
-        "Convert (sin 33°) to (cos 57°), and (sin 57°) to (cos 33°)",
-        "We now have (cos 57°)(cos 57°) + (cos 33°)(cos 33°) = (cos 57°)² + (cos 33°)²"
-    ],
-    minutes: 2,
-    img_question: ""
-},
-
-{
-    question: "In the triangle shown, RS = √105. What is the value of sin R?",
-    answer: {A:"⁵²⁄₅₃", B:"⁵³⁄₅₂", C:"¹⁰⁵⁄₅₃", D:"⁵²⁄₁₀₅"},
-    correct: "A",
-    hint: "In a right triangle, the square of the hypotenuse is equal to the sum of the lengths of the two legs (a² + b² = c²)",
-    steps: [
-        "In a right triangle, the square of the hypotenuse is equal to the sum of the lengths of the two legs (a² + b² = c²)",
-        "a² + (√105)² = 53²",
-        "a² = 2,704",
-        "a = 52",
-        "Use SOH CAH TOA",
-        "Sin = O/A = (length of opposite side)/(length of hypotenuse) =\n⁵²⁄₅₃"
-
-    ],
-    minutes: 2,
-    img_question: "../Images/question7.jpg"
-},
-
+}
 ,
 {
-    question: "The dimensions of a right rectangular prism are 8 inches by 4 inches by 2 inches. What is the surface area, in square inches, of the prism?",
-    answer: {A:"192 in²", B:"48 in²", C:"96 in²", D:"112 in²"},
+    question: "John can walk 6000 meters in 100 minutes. At the same rate, how many meters can he walk in 10 seconds?",
+    answer: {A:"60 meters", B:"100 meters", C:"6 meters", D:"10 meters"},
     correct: "D",
-    hint: "Multiply each number by each other twice (ex. 2(8 x 4))",
+    hint: "Find the amount of meters John walks in one minute and then convert to seconds",
     steps: [
-        "On a right rectangular prism, opposite sides have equal areas.",
-        "There are 6 sides: 2(8 x 4) + 2(8 x 2) + 2(4 x 2)",
-        "2(32) + 2(16) + 2(8)",
-        "64 + 32 + 16",
-        "112 in²"
+        "Convert 6000 meters per 100 minutes into meters per minut. 6000/100 = 60 meters per minute",
+        "Then, convert into seconds. There are 60 seconds per minute 60/60 = 1. This means he walks 1 meter per second",
+        "Convert this into 10 seconds:\n1 * 10 = 10 meters in 10 seconds"
     ],
-    minutes: 2,
+    minutes: 1,
     img_question: ""
-},
+}
+,
 {
-    question: "A hemisphere is half of a sphere. If a hemisphere has a radius of 23 inches, which of the following is closest to the volume, in cubic inches, of this hemisphere? (The volume of a sphere is ⁴⁄₃πr³)",
-    answer: {A:"25,483 in³", B:"25,400 in³", C:"25,552 in³", D:"25,553 in³"},
+    question: "If x + 2 = 24, what is 3x + 8?",
+    answer: {A:74, B:78, C:72, D:70},
     correct: "A",
-    hint: "Divide the volume of a sphere by 2 in order to find the volume of the hemisphere",
+    hint: "Isolate x in the original equation",
     steps: [
-        "The volume of a sphere is ⁴⁄₃πr³, so the volume of a hemisphere is ½(⁴⁄₃πr³)",
-        "½(⁴⁄₃π23³)",
-        "25,482.51 ≈ 25,483"
+        "Isolate x in the original equation:\nx + 2 = 24\nx = 22",
+        "Plug x into the next equation:\n3 * 22 + 8\n66 + 8 = 74"
     ],
-    minutes: 2,
+    minutes: 1,
     img_question: ""
-},
+}
+,
 {
-    question: "In the triangle shown, what is the value of cos x°?",
-    answer: {A:"²⁸⁄₁₁", B:"²⁶⁄₁₁", C:"¹³⁄₁₄", D:"¹¹⁄₂₈"},
+    question: "If (x - 1)/3 = k, and k = 3, what is the value of x?",
+    answer: {A:2, B:4, C:9, D:10},
     correct: "D",
-    hint: "Follow SOH CAH TOA\nSin: opposite/hypotenue\nCos: adjacent/hypotenuse: Tan: opposite/adjacent",
+    hint: "Plug k into the original equation",
     steps: [
-        "Follow SOH CAH TOA\nSin: opposite/hypotenue\nCos: adjacent/hypotenuse\nTan: opposite/adjacent",
-        "Cos: adjacent/hypotenuse",
-        "Cos: ¹¹⁄₂₈"
+        "Plug 3 for k into the first equation:\n(x - 1)/3 = 3",
+        "Multiply by 3 on both sides of the equation:\nx - 1 = 9",
+        "Add 1 to both sides of the equation\nx = 10"
     ],
-    minutes: 2,
-    img_question: "../Images/question8.jpg"
-},
+    minutes: 1,
+    img_question: ""
+}
+,
 {
-    question: "For two acute angles, ∠A and ∠B, cos(A) = sin(B). The measures, in degrees, of ∠A and ∠B are x + 31 and 4x + 4, respectively. What is the value of x?",
-    answer: {A:"9", B:"10", C:"11", D:"12"},
+    question: "For i = √−1 , what is the sum (7 + 3i) + (−8 + 9i)?",
+    answer: {A:"-1 + 12i", B:"-1 - 6i", C:"15 + 12i", D:"15 - 6i"},
+    correct: "A",
+    hint: "Treat i as a normal variable",
+    steps: [
+        "Treat i as a normal variable",
+        "Combine like terms:\n7 - 8 = -1\n3i + 9i = 12i",
+        "-1 + 12i"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "One farmer can pick 10 berries in one hour. How many berries can two farmers pick in 5 hours?",
+    answer: {A:50, B:75, C:125, D:100},
+    correct: "D",
+    hint: "Find the amount of berries two farmers can pick in one hour, then multiply by 5",
+    steps: [
+        "Find the amount of berries two farmers can pick in one hour then multiply by 5",
+        "One farmer can pick 10 berries, so two farmers can pick 20 berries",
+        "20 * 5 = 100 berries"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "If x + 8 = 10, what is x² + 3x?",
+    answer: {A:10, B:4, C:6, D:8},
+    correct: "A",
+    hint: "Isolate x by subtracting by 8",
+    steps: [
+        "Isolate x by subtracting by 8 on each side:\nx + 8 = 10\nx = 2",
+        "Plug 2 into the equation:\n2² + 3 * 2\n4 + 6\n10"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "If x² = 9, what is x³? Assume x is positive.",
+    answer: {A:9, B:3, C:27, D:81},
     correct: "C",
-    hint: "For two acute angles, if cos(A) = sin(B), then ∠A and ∠B are complementary (Their two angle measures add up to 90°.",
+    hint: "Square root both sides",
     steps: [
-        "For two acute angles, if cos(A) = sin(B), then ∠A and ∠B are complementary (Their two angle measures add up to 90°.",
-        "x + 31 + 4x + 4 = 90",
-        "Combine like terms:\n5x + 35 = 90",
-        "Subtract:\n5x = 55",
-        "Divide by 5 on both sides:\nx = 11"
+        "Square root both sides:\nx = 3",
+        "3³ = 27"
     ],
-    minutes: 2,
+    minutes: 1,
     img_question: ""
-},
+}
+,
 {
-    question: "A right triangle has sides of length 4√2, 4√2, and 8 units. What is the area of the triangle, in square units?",
-    answer: {A:"16 units²", B:"32 units²", C:"64 units²", D:"32√2 units²"},
-    correct: "A",
-    hint: "The area of a right triangle is ½(leg 1)(leg 2)",
-    steps: [
-        "The area of a right triangle is ½(leg 1)(leg 2)",
-        "The two legs are each 4√2 units long, and the hypotenuse is 8 units long, which is not necessary for this problem.",
-        "½(4√2)(4√2)",
-        "16 units²"
-    ],
-    minutes: 2,
-    img_question: ""
-},
-{
-    question: "How many distinct real solutions does the equation (x - 1)² = -4?",
-    answer: {A:"Exactly one", B:"Exactly two", C:"Infinitely many", D:"Zero"},
-    correct: "D",
-    hint: "A real solution is a noncomplex number",
-    steps: [
-        "A real solution is a noncomplex number",
-        "Square both sides: 2i and -2i, which are both complex numbers, meaning there are no real solutions for this equation"
-    ],
-    minutes: 2,
-    img_question: ""
-},
-{
-    question: "Two variables, x and y, are related such that for each increase of 1 in the value of x, the value of y increases by a factor of 4. When x = 0, y = 200. Which equation represents this relationship?",
-    answer: {A:"y = 4(x)²⁰⁰", B:"y = 4(200)ˣ", C:"y = 200(x)⁴", D:"y = 200(4)ˣ"},
-    correct: "D",
-    hint: "The relationship between x and y is exponential",
-    steps: [
-        "The relationship between x and y is exponential",
-        "The equation for an exponential relationship is y = a(b)ˣ, where a is the value of x when y = 0, and b is the increasing factor of y whenever x is increased by 1.",
-        "a = 200, x = 4:\ny = 200(4)ˣ"
-    ],
-    minutes: 2,
-    img_question: ""
-},
-{
-    question: "What is the sum of the solutions to the equation | -5x + 15 | = 30?",
-    answer: {A:"-3", B:"9", C:"-12", D:"6"},
-    correct: "D",
-    hint: "Set -5x + 15 to both -30 and 30",
-    steps: [
-        "For an absolute value equation, set -5x + 15 to both -30 and 30",
-        "-5x + 15 = -30\n-5x = -45\nx = 9",
-        "-5x + 15 = 30\n-5x = 15\nx = -3",
-        "Add:\n 9 + (-3) = 6"
-    ],
-    minutes: 2,
-    img_question: ""
-},
-{
-    question: "A sample of oak has a density of 800 kilograms per cubic meter. The sample is in the shape of a cube, where each edge has a length of 0.5 meters. What is the mass, in kilograms, of this sample?",
-    answer: {A:"6400 kg", B:"100 kg", C:"200 kg", D:"5200 kg"},
+    question: "If 2x + 17 = 3x + 89, what is the value of x?",
+    answer: {A:72, B:-72, C:106, D:-106},
     correct: "B",
-    hint: "The density of an object is mass/volume",
+    hint: "Isolate x",
     steps: [
-        "The density of an object is mass/volume",
-        "Volume is length x width x height. For a cube, each length is equal",
-        "0.5 x 0.5 x 0.5 = 0.125",
-        "800 = mass/0.125\nmass = 100 kg"
+        "Subtract 3x on both sides:\n-x + 17 = 89",
+        "Subtract 17 from both sides\n-x = 72",
+        "Divide by -1 on both sides:\nx = -72"
     ],
-    minutes: 2,
+    minutes: 1,
     img_question: ""
-},
+}
+,
 {
-    question: "In the xy-plane, line w has a slope of ⁵⁄₄ and an x-intercept of (8, 0). What is the y-coordinate of the y-intercept of line w?",
-    answer: {A:"8", B:"0", C:"-10", D:"-8"},
+    question: "If f(x) = 12x² - 5, what is f(2)?",
+    answer: {A:19, B:43, C:53, D:48},
+    correct: "B",
+    hint: "Plug in 2 for x",
+    steps: [
+        "Plug in 2 for x\n12(2)² - 5",
+        "12(4) - 5",
+        "48 - 5",
+        "43"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "If 16 + 4x is 10 more than 14, what is the value of 8x ?",
+    answer: {A:2, B:16, C:24, D:32},
+    correct: "B",
+    hint: "Combine like terms after adding 10 to 14",
+    steps: [
+        "10 + 14 = 24",
+        "16 + 4x = 24",
+        "4x = 8",
+        "x = 2",
+        "8x = 8 * 2",
+        "8x = 16"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "If 2x + 8 = 4(x - 2), solve for x",
+    answer: {A:8, B:4, C:2, D:-4},
+    correct: "A",
+    hint: "Find like terms",
+    steps: [
+        "Combine like terms:\n2x + 8 = 4x - 8",
+        "8 = 2x - 8",
+        "16 = 2x",
+        "x = 8"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "For i = √−1 , what is the sum of ((9 + 4i) + (-9 + 2i))²?",
+    answer: {A:8, B:6, C:-6, D:-36},
+    correct: "D",
+    hint: "Combine like terms (Constants and imaginary numbers)",
+    steps: [
+        "Combine like terms:\n(9 - 9 + 4i + 2i)²",
+        "(4i + 2i)²",
+        "(6i)²",
+        "(36(-1))",
+        "-36"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "If 36 - p = 36, what is the value of p?",
+    answer: {A:72, B:36, C:-72, D:0},
+    correct: "D",
+    hint: "Isolate p by subtracting 36 on both sides",
+    steps: [
+        "Subtract 36 on both sides\n-p = 0",
+        "p = 0"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "A gym has 50 people, and ⅕ of them are above the age of 50. How many people are 50 or below in the gym?",
+    answer: {A:10, B:50, C:30, D:40},
+    correct: "D",
+    hint: "Use the complementary fraction, (the other fraction that can be used to get to a whole unit), and multiply it by 50",
+    steps: [
+        "Use the complementary fraction to ⅕ (the other fraction that can be used to get to a whole unit), which is ⅘ and multiply it by 50",
+        "⅘ * 50 = 40"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "During a 10 minute game, Josh scores 20 goals. On average, how many goals does he score per minute?",
+    answer: {A:1, B:0.5, C:2, D:4},
     correct: "C",
-    hint: "The equation of a line is y = mx + b",
+    hint: "The formula for average is ᵃᵐᵒᵘⁿᵗ⁄ₜᵢₘₑ",
     steps: [
-        "The equation of a line is y = mx + b",
-        "Plug in the numbers: 0 = ⁵⁄₄(8) + b",
-        "0 = 10 + b",
-        "b = -10",
-        "B = -10, so the y-coordinate of the y-intercept of line w is -10"
+        "Use the formula ᵃᵐᵒᵘⁿᵗ⁄ₜᵢₘₑ",
+        "²⁰⁄₁₀",
+        "2 goals per minute"
     ],
-    minutes: 2,
+    minutes: 1,
     img_question: ""
-},
+}
+,
 {
-    question: "During the month of July, Morgan ran x miles at 10 miles per hour and biked y miles at 15 miles per hour. She ran and biked a total of 160 miles that month, and she biked for twice as many hours as she ran. What is the total number of miles that Morgan biked during the month?",
-    answer: {A:"120", B:"40", C:"160", D:"60"},
-    correct: "A",
-    hint: "Set up two equations:\nx + y = 160\n2(ˣ⁄₁₀) = ʸ⁄₁₅",
+    question: "Factor x² + 5x + 6.",
+    answer: {A:"(x - 3)(x + 2)", B:"(x + 3)(x - 2)", C:"(x - 3)(x - 2)", D:"(x + 3)(x + 2)"},
+    correct: "D",
+    hint: "Find what multiplies to 6 but adds up to 5",
     steps: [
-        "Set up two equations:\nx + y = 160\n2(ˣ⁄₁₀) = ʸ⁄₁₅",
-        "Isolate x in the first equation: x = 160 - y",
-        "Plug in the value of x into the second equation: 2((160 - y)/10) = y/15",
-        "Multiply by 10 and 15 on each side: 2(15)(160 - y) = 10y",
-        "30(160 - y) = 10y",
-        "4800 - 30y = 10y",
-        "4800 = 40y",
-        "y = 120"
+        "Find what multiplies to 6 but adds up to 5\n3 and 2",
+        "The quadratic equation is (x + 3)(x + 2)"
     ],
-    minutes: 3,
+    minutes: 1,
     img_question: ""
-},
+}
+,
 {
-    question: "Josh made 42 cups of tomato soup. Josh then filled 6 small jars and 10 large jars with all the tomato soup he made. The equation 6x + 10y = 42 represents this situation. Which is the best interpretation of 10y in this context?",
-    answer: {A:"The number of large jars Josh filled", B:"The number of small jars Josh filled", C:"The total number of cups of tomato soup in the large jars", D:"The total number of cups of tomato soup in the small jars"},
+    question: "Simplify (2x - 1)(3x + 5).",
+    answer: {A:"5x² + 2x - 5", B:"6x² + 7x + 5", C:"5x² - 2x - 5", D:"6x² + 7x - 5"},
+    correct: "D",
+    hint: "FOIL (First, Outer, Inner, Last)",
+    steps: [
+        "Multiply binomials using the FOIL method",
+        "2x * 3x = 6x²",
+        "2x * 5 = 10x",
+        "-1 * 3x = -3x",
+        "-1 * 5 = -5",
+        "Add them to get 6x² + 7x - 5"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "If f(x) = 9x² + 3, what is f(-3)?",
+    answer: {A:78, B:27, C:84, D:-27},
     correct: "C",
-    hint: "Think about how the variables “x” and “y” are related to 6 and 10",
+    hint: "Plug in -3 for x",
     steps: [
-        "If 6x + 10y = 42, then each “6x” and “10Y” relate to how many cups of tomato soup are in the small and large jars",
-        "Since 10 relates to the large jars, 10y is the total number of cups of tomato soup in the large jars"
+        "Plug in -3 for x",
+        "9x² + 3",
+        "9(-3)² + 3",
+        "9(9) + 3",
+        "81 + 3",
+        "84"
     ],
-    minutes: 2,
+    minutes: 1,
     img_question: ""
-},
+}
+,
 {
-    question: "A movie theater sells two types of tickets, adult tickets for $15 and child tickets for $8. If the theater sold 30 tickets for a total of $359, how much, in dollars, was spent on adult tickets?",
-    answer: {A:"$255", B:"$104", C:"$225", D:"$120"},
+    question: "If y² = 16, what is y³? Assume y is positive.",
+    answer: {A:4, B:256, C:16, D:64},
+    correct: "D",
+    hint: "Square root both sides",
+    steps: [
+        "Square root both sides:\ny = 4",
+        "Plug the value of y into the second equation:\n4³ = 64"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+,
+{
+    question: "Simplify 4² * 16⁴",
+    answer: {A:"4¹⁰", B:"4¹²", C:"4⁸", D:"16⁶"},
     correct: "A",
-    hint: "Set up two equations:\na + c = 30\n15a + 8c = 359\n(a = number of adult tickets, c = number of child tickets)",
+    hint: "Convert 16 into a base of 4",
     steps: [
-        "Set up two equations: a + c = 30 and 15a + 8c = 359",
-        "Solve for a:\n8(a + c) = 8(30)\n8a + 8c = 240",
-        "15a + 8c = 359\n-\n8a + 8c = 240",
-        "7a = 119",
-        "a = 17",
-        "Solve for how many dollars was spent on adult tickets:\n17 x 15 = $255"
+        "Convert 16 into a base of 4:\n16 = 4²",
+        "4²(4²)⁴",
+        "4²4⁸",
+        "4¹⁰"
     ],
-    minutes: 3,
+    minutes: 1,
     img_question: ""
-},
+}
+,
 {
-    question: "Line l is perpendicular to the line x = 4. What is the slope of line l?",
-    answer: {A:"Undefined", B:"0", C:"4", D:"-¼"},
-    correct: "B",
-    hint: "A line perpendicular to another line has the opposite reciprocal slope of the first line",
+    question: "The area of a particular rectangle is 32 meters squared. If the length of the rectangle is twice the width, what is the width of the rectangle?",
+    answer: {A:"16 meters", B:"8 meters", C:"4 meters", D:"2 meters"},
+    correct: "C",
+    hint: "The equation for the area is (2w)(w) = 2w²",
     steps: [
-        "A line perpendicular to another line has the opposite reciprocal slope of the first line",
-        "At line x = 4, the slope is undefined, because it is a vertical line",
-        "The opposite reciprocal to a line with an undefined slope is 0"
+        "Set w for width and 2w for length because length is twice the width",
+        "The area of a rectangle is length times width:\n2w * w = 2w²",
+        "2w² = 32",
+        "w² = 16",
+        "w = 4 meters"
     ],
-    minutes: 2,
+    minutes: 1,
     img_question: ""
-},
+}
+,
 {
-    question: "If ˣ ⁺ ⁵⁄₁₀ = ˣ ⁺ ⁵⁄₃, between what two value is the value of x + 5 between?",
-    answer: {A:"No solution", B:"-1 and 1", C:"-7 and -2", D:"8 and 10"},
-    correct: "B",
-    hint: "Multiply each side of the equation by 3(10)",
+    question: "What is the mean of the set of data: 2, 3, 4, 5, 6, 7, 8, 9, 10?",
+    answer: {A:6, B:8, C:9, D:4},
+    correct: "A",
+    hint: "The formula for mean isˢᵘᵐ⁄ₜₒₜₐₗ",
     steps: [
-        "Multiply each side of the equation by 3(10):\n3(x + 5) = 10(x + 5)",
-        "Subtract each side of the equation by 10(x + 5):\n-7(x + 5) = 0",
-        "x + 5 = 0, which is in between values -1 and 1"
+        "The formula for mean is ˢᵘᵐ⁄ₜₒₜₐₗ",
+        " ⁽²⁺³⁺⁴⁺⁵⁺⁶⁺⁷⁺⁸⁺⁹⁺¹⁰⁾⁄₉",
+        "⁵⁴⁄₉",
+        "6"
     ],
-    minutes: 2,
+    minutes: 1,
     img_question: ""
-},
+}
+,
 {
-    question: "If (∜70x)(∛70x)² = (70n)⁴⁰ˣ for n > 1, what is the value of x to the nearest hundredth?",
-    answer: {A:"0.01", B:"0.02", C:"0.03", D:"0.04"},
-    correct: "B",
-    hint: "Multiply the radicals by converting the radicals to fractional exponents",
+    question: "Find f(2) for f(x) = 2x² - 10",
+    answer: {A:-2, B:-6, C:-10, D:-4},
+    correct: "A",
+    hint: "Plug in 2 for x in the equation",
     steps: [
-        "Convert (∜70x)(∛70x)² to an exponential form: (70x)¹/⁴(70x)²/³",
-        "Multiply the numbers by adding the exponents: (70x)¹/⁴ + ²/³",
-        "Since (70x)¹/⁴ + ²/³ = (70n)⁴⁰ˣ, ¼ + ⅔ = 40x",
-        "¼ + ⅔ = 40x",
-        "³⁄₁₂ + ⁸⁄₁₂ = ¹¹⁄₁₂",
-        "¹¹⁄₁₂ = 40x",
-        "x = ¹¹⁄₁₂(¹⁄₄₀)",
-        "x ≈ 0.0229",
-        "0.0229 to the nearest hundredth is 0.02"
+        "Plug in 2 for x in the equation f(x) = 2x² - 10:\nf(2) = 2(2)² - 10",
+        "8 - 10",
+        "-2"
     ],
-    minutes: 3,
+    minutes: 1,
     img_question: ""
 }
 
-]
+];
 
 function getDailyDate(resetHour, resetMinute){
     const now = new Date();
@@ -847,11 +879,11 @@ function getDailyDate(resetHour, resetMinute){
     return reset;
 }
 
-const startDate = new Date("2026-02-16T00:00:00");
+const startDate = new Date("2026-01-28T00:00:00");
 const dailyDate = getDailyDate(0, 0);
 const dailyIndex = Math.floor((dailyDate - startDate) / 86400000) % questions.length;
 const dayKey = dailyDate.toISOString().split("T")[0];
-const q = questions[dailyIndex];
+const q = questions[1]; //dailyIndex
 const buttons = document.querySelectorAll('.option button');
 const explanation = document.querySelector(".answer-explanation");
 const hintButton = document.getElementById("hint");
@@ -900,7 +932,7 @@ if (!userDoc.exists){
         createdAt: firebase.firestore.FieldValue.serverTimestamp()
     });
 }
-const dayRef = db.collection("users").doc(user.uid).collection("hard").doc(dayKey);
+const dayRef = db.collection("users").doc(user.uid).collection("easy").doc(dayKey);
 const dayDoc = await dayRef.get();
 
 if (dayDoc.exists){
@@ -934,7 +966,7 @@ async function loadUserData(uid){
     const doc = await db
     .collection("users")
     .doc(uid)
-    .collection("hard")
+    .collection("easy")
     .doc(dayKey)
     .get();
 
@@ -999,7 +1031,7 @@ hintButton.addEventListener("click", async () => {
 
     const user = auth.currentUser;
     if (user){
-        await db.collection("users").doc(user.uid).collection("hard").doc(dayKey).set({hintsUsed: true, points: points}, {merge:true});
+        await db.collection("users").doc(user.uid).collection("easy").doc(dayKey).set({hintsUsed: true, points: points}, {merge:true});
     }
 });
 
@@ -1087,7 +1119,7 @@ buttons.forEach(button => {
     
         const user = auth.currentUser;
         if (user){
-            await db.collection("users").doc(user.uid).collection("hard").doc(dayKey).set({
+            await db.collection("users").doc(user.uid).collection("easy").doc(dayKey).set({
                 answer: button.id,
                 stars: starsEarned,
                 hintsUsed: hintsUsed,
@@ -1112,7 +1144,7 @@ function startTimer(){
 
         const user = auth.currentUser;
         if(user){
-            await db.collection("users").doc(user.uid).collection("hard").doc(dayKey).set({
+            await db.collection("users").doc(user.uid).collection("easy").doc(dayKey).set({
                 remainingTime: time, paused: paused,}, {merge:true});
             
             }
