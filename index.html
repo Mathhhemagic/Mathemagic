@@ -536,14 +536,14 @@ firebase.auth().onAuthStateChanged(async user => {
     const colorIndex = hash % colors.length;
     icon.style.backgroundColor = colors[colorIndex];
     dropdown.innerHTML = 
-    `<a href = "/profile">Profile</a>
-    <a href = "/login" id = "logout">Logout</a>`;
+    `<a href = "/profile/">Profile</a>
+    <a href = "/login/" id = "logout">Logout</a>`;
      const logout = document.getElementById("logout");
     logout.addEventListener("click", async (e) => {
         e.preventDefault();
         try{
             await firebase.auth().signOut();
-            window.location.href = "login.html";
+            window.location.href = "/login/";
         }
         catch(error){
             console.error("Logout error:", error);
