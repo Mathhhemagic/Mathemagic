@@ -13,6 +13,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Libertinus+Math&display=swap" rel="stylesheet">
 <title>Medium SAT Question</title>
 <style>
+
+body{
+    display: none;
+}
 .medium-style{
                 margin: auto;
                 margin-top: 2%;
@@ -924,7 +928,7 @@ auth.onAuthStateChanged(async user => {
     window.location.href = "/login/";
     return;
   }
-  
+  document.body.style.display = "block";
 
 
 const userRef = db.collection("users").doc(user.uid);

@@ -13,7 +13,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Libertinus+Math&display=swap" rel="stylesheet">
 <title>Hard SAT Question</title>
 <style>
-
+body{
+    display: none;
+}
  .hard-style{
                 margin: auto;
                 margin-top: 2%;
@@ -895,6 +897,7 @@ auth.onAuthStateChanged(async user => {
     window.location.href = "/login/";
     return;
   }
+  document.body.style.display = "block";
   
 
 

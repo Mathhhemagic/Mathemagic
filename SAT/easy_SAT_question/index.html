@@ -15,6 +15,9 @@
 <title>Easy SAT Question</title>
 <style>
 
+body{
+    display: none;
+}
 
  .easy-style{
                 margin: auto;
@@ -923,6 +926,7 @@ auth.onAuthStateChanged(async user => {
     window.location.href = "/login/";
     return;
   }
+  document.body.style.display = "block";
   
 
 
