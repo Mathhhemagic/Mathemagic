@@ -969,7 +969,7 @@ function getDailyDate(resetHour, resetMinute){
     return reset;
 }
 
-const startDate = new Date("2026-01-28T00:00:00");
+const startDate = new Date("2026-02-24T00:00:00");
 const dailyDate = getDailyDate(0, 0);
 const dailyIndex = Math.floor((dailyDate - startDate) / 86400000) % questions.length;
 const dayKey = dailyDate.toISOString().split("T")[0];
