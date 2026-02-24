@@ -938,7 +938,6 @@ const correctAnswer = q.correct;
 auth.onAuthStateChanged(async user => {
     document.body.style.visibility = "visible";
   if (!user) {
-    document.querySelector(".easy-style p").innerText = "Easy (Login to save progres)";
     console.log("Guest user - progress not saved")
     return;
   }

@@ -411,13 +411,85 @@ body{
             margin-top: 2%;
            }
 
+           #login-popup-overlay{
+            position: fixed;
+            inset: 0;
+            background: transparent;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+           }
            
+           #login-popup{
+            background: white;
+            padding: 5rem 2rem;
+            max-width: 600px;
+            width: 90%;
+            border-radius: 16px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.25);
+            text-align: center;
+            font-family: "Libertinus Math", system-ui;
+            position: relative;
+            min-height: 200px;
+           }
+
+           #close-popup{
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+           }
+           .login-button{
+            display:inline-block;
+            margin-top: 1rem;
+            padding: 10px 30px;
+            background: transparent;
+            border-radius: 30px;
+            border: solid 2px #6e88cf;
+            color:#6ecccf;
+            font-size: 2rem;
+            box-shadow: 0 0 40px #6ecccf;
+           }
+           .login-button:hover{
+            transform: translateY(-10px);
+            transition: height 0.9s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.9s ease, transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+           }
+
+           .progress{
+            font-family: "Libertinus Math", system-ui;
+            color:#6e88cf;
+            font-weight:bold;
+            font-size: 3rem;           
+        }
+        .description{
+            font-family: "Libertinus Math", system-ui;
+            color:#6ecccf;
+            font-weight:bold;
+            font-size: 2rem; 
+        }
         
 </style>
 </head>
 
 
 <body>
+    <div id = "login-popup-overlay">
+        <div id = "login-popup">
+            <button id = "close-popup">X</button>
+            <div class = "progress">
+            <p>Save your progress!</p>
+            </div>
+            <div class = "description">
+            <p>Save your answers, stars, and earn a streak!</p>
+            </div>
+            <a href = "/login/" class = "login-button">Log in</a>
+        </div>
+    </div>
     <div class = "anim">
     <div class = "top-arrows">
             <div class = "arrow">
@@ -500,7 +572,7 @@ body{
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script>
- 
+
 const firebaseConfig = {
 
   apiKey: "AIzaSyDRjjvLABEFL-PgbChUFNZW6u38U6c7jP4",
@@ -907,6 +979,8 @@ const explanation = document.querySelector(".answer-explanation");
 const hintButton = document.getElementById("hint");
 const timer = document.getElementById("timer");
 const hintExplanation = document.querySelector(".hint-explanation");
+const popupOverlay = document.getElementById("login-popup-overlay");
+const closePopupButton = document.getElementById("close-popup");
 document.getElementById('hint-explanation').innerText = q.hint;
 document.getElementById('A').innerText = q.answer.A;
 document.getElementById('B').innerText = q.answer.B;
@@ -924,6 +998,17 @@ let hintClicked = false;
 const img = document.getElementById("img_question");
 const imgWrapper = document.querySelector(".img_question");
 
+
+function showLoginPopup(){
+    if(!sessionStorage.getItem("loginPopupShown"))
+   {
+        popupOverlay.style.display = "flex";
+        sessionStorage.setItem("loginPopupShown", "true");
+    }
+}
+closePopupButton.addEventListener("click", () => {
+    popupOverlay.style.display = "none";
+})
 if (q.img_question){
     img.src = q.img_question;
     imgWrapper.style.display = "block";
@@ -937,8 +1022,8 @@ const correctAnswer = q.correct;
 auth.onAuthStateChanged(async user => {
     document.body.style.visibility = "visible";
   if (!user) {
-    document.querySelector(".easy-style p").innerText = "Easy (Login to save progres)";
-    console.log("Guest user - progress not saved")
+    console.log("Guest user - progress not saved");
+    showLoginPopup();
     return;
   }
 
