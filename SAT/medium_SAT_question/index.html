@@ -11,10 +11,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libertinus+Math&display=swap" rel="stylesheet">
 <title>Medium SAT Question</title>
+<meta name = "description" content = "Solve the medium daily SAT question!">
 <style>
 
+
 body{
-    display: none;
+    visibility: hidden;
 }
 .medium-style{
                 margin: auto;
@@ -934,12 +936,12 @@ else{
 const correctAnswer = q.correct;
 
 auth.onAuthStateChanged(async user => {
+    document.body.style.visibility = "visible";
   if (!user) {
-    window.location.replace("/login/");
+    document.querySelector(".easy-style p").innerText = "Easy (Login to save progres)";
+    console.log("Guest user - progress not saved")
     return;
   }
-  document.body.style.display = "block";
-
 
 const userRef = db.collection("users").doc(user.uid);
 const userDoc = await userRef.get();
