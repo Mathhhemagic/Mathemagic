@@ -537,7 +537,7 @@ const questions =
 }
 ,
 {
-    question: "What is a factor of 25 + 25?",
+    question: "What is a factor of 35 + 25?",
     answer: {A:12, B:9, C:25, D:35},
     correct: "A",
     hint: "A factor is a whole number that, if multiplied by another whole number, will result in the larger number",
@@ -555,7 +555,7 @@ const questions =
     correct: "D",
     hint: "Find the amount of meters John walks in one minute and then convert to seconds",
     steps: [
-        "Convert 6000 meters per 100 minutes into meters per minut. 6000/100 = 60 meters per minute",
+        "Convert 6000 meters per 100 minutes into meters per minute. 6000/100 = 60 meters per minute",
         "Then, convert into seconds. There are 60 seconds per minute 60/60 = 1. This means he walks 1 meter per second",
         "Convert this into 10 seconds:\n1 * 10 = 10 meters in 10 seconds"
     ],
@@ -584,7 +584,7 @@ const questions =
     steps: [
         "Plug 3 for k into the first equation:\n(x - 1)/3 = 3",
         "Multiply by 3 on both sides of the equation:\nx - 1 = 9",
-        "Add 1 to both sides of the equation\nx = 10"
+        "Add 1 to both sides of the equation:\nx = 10"
     ],
     minutes: 1,
     img_question: ""
@@ -610,7 +610,7 @@ const questions =
     correct: "D",
     hint: "Find the amount of berries two farmers can pick in one hour, then multiply by 5",
     steps: [
-        "Find the amount of berries two farmers can pick in one hour then multiply by 5",
+        "Find the amount of berries two farmers can pick in one hour, then multiply by 5",
         "One farmer can pick 10 berries, so two farmers can pick 20 berries",
         "20 * 5 = 100 berries"
     ],
@@ -651,7 +651,7 @@ const questions =
     hint: "Isolate x",
     steps: [
         "Subtract 3x on both sides:\n-x + 17 = 89",
-        "Subtract 17 from both sides\n-x = 72",
+        "Subtract 17 from both sides:\n-x = 72",
         "Divide by -1 on both sides:\nx = -72"
     ],
     minutes: 1,
@@ -664,7 +664,7 @@ const questions =
     correct: "B",
     hint: "Plug in 2 for x",
     steps: [
-        "Plug in 2 for x\n12(2)² - 5",
+        "Plug in 2 for x:\n12(2)² - 5",
         "12(4) - 5",
         "48 - 5",
         "43"
@@ -727,7 +727,7 @@ const questions =
     correct: "D",
     hint: "Isolate p by subtracting 36 on both sides",
     steps: [
-        "Subtract 36 on both sides\n-p = 0",
+        "Subtract 36 on both sides:\n-p = 0",
         "p = 0"
     ],
     minutes: 1,
@@ -767,7 +767,7 @@ const questions =
     correct: "D",
     hint: "Find what multiplies to 6 but adds up to 5",
     steps: [
-        "Find what multiplies to 6 but adds up to 5\n3 and 2",
+        "Find what multiplies to 6 but adds up to 5:\n3 and 2",
         "The quadratic equation is (x + 3)(x + 2)"
     ],
     minutes: 1,
@@ -829,7 +829,7 @@ const questions =
     steps: [
         "Convert 16 into a base of 4:\n16 = 4²",
         "4²(4²)⁴",
-        "4²4⁸",
+        "4² x 4⁸",
         "4¹⁰"
     ],
     minutes: 1,
@@ -901,7 +901,7 @@ const startDate = new Date("2026-01-28T00:00:00");
 const dailyDate = getDailyDate(0, 0);
 const dailyIndex = Math.floor((dailyDate - startDate) / 86400000) % questions.length;
 const dayKey = dailyDate.toISOString().split("T")[0];
-const q = questions[dailyIndex]; 
+const q = questions[25]; //dailyIndex
 const buttons = document.querySelectorAll('.option button');
 const explanation = document.querySelector(".answer-explanation");
 const hintButton = document.getElementById("hint");
