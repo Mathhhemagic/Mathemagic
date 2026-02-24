@@ -260,10 +260,9 @@ body{
                 cursor: pointer;
                 font-family: "Libertinus Math", system-ui;
                 font-size: 2rem;
-                display: block;
                 height: 4rem;
                 width: 4rem;
-                text-align: center;
+                align-items: center;
                 border-radius: 50%;
                 border: 2px solid transparent;
                 box-shadow: 0 0 40px grey;
@@ -272,7 +271,19 @@ body{
                 font-weight: bold;
                 color: #0b5394;
                 font-weight: bold;
-                line-height: 1;
+                 display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 4rem;
+    width: 4rem;
+
+    padding: 0;
+    font-size: 2rem;
+
+    border-radius: 50%;
+    appearance: none;
+    -webkit-appearance: none;
             }
 
 
@@ -524,7 +535,7 @@ const questions =
 }
 ,
 {
-    question: "What is a factor of 35 + 25?",
+    question: "What is a factor of 5 + 25?",
     answer: {A:12, B:9, C:25, D:35},
     correct: "A",
     hint: "A factor is a whole number that, if multiplied by another whole number, will result in the larger number",
