@@ -1174,11 +1174,15 @@ function startTimer(){
 
 function updateCountdown(){
     if (time<=0){
+        time = 0;
         timer.innerHTML = "⏱️0:00";
         timer.style.color = "#EB5E5E";
         timeUp = true;
+        if(timeInterval){
         clearInterval(timeInterval);
         timeInterval = null;
+        }
+    
         return;
     }
     const minutes = Math.floor(time/60);
