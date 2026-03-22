@@ -951,6 +951,18 @@ const questions =
     ],
     minutes: 1,
     img_question: ""
+},
+{
+    question: "Gordon is driving at 50 miles per hour. How many miles does he run in 360 minutes?",
+    answer: {A:350, B:300, C:250, D:200},
+    correct: "B",
+    hint: "There are 60 minutes in one hour",
+    steps: [
+        "Convert the minutes to hours. There are 60 minutes in an hour. That means 360 minutes is 6 hours.",
+        "50 * 6 = 300 miles"
+    ],
+    minutes: 1,
+    img_question: ""
 }
 
 ];
@@ -1219,8 +1231,8 @@ buttons.forEach(button => {
                 starsEarned++;
             }
         }
-        paused = true;
-        if (timeInterval) clearInterval (timeInterval);
+       
+        reload(button.id)
     
         const user = auth.currentUser;
         if (user){
@@ -1261,14 +1273,13 @@ function startTimer(){
 
 function updateCountdown(){
     if (time<=0){
-        time = 0;
         timer.innerHTML = "⏱️0:00";
         timer.style.color = "#EB5E5E";
         timeUp = true;
-        if(timeInterval){
+        
         clearInterval(timeInterval);
         timeInterval = null;
-        }
+
     
         return;
     }
@@ -1291,4 +1302,3 @@ window.addEventListener("load", () => {
 </script>
 </body>
 </html>
-

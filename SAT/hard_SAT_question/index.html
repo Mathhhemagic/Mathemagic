@@ -841,8 +841,21 @@ const questions = [
     ],
     minutes: 3,
     img_question: ""
+},
+{
+    question: "The circumference of the base of a right circular cylinder is 40π meters, and the height of the cylinder is 3 meters. What is the volume, in cubic meters, of the cylinder?",
+    answer: {A:"1200π", B:"900π", C:"120π", D:"13.3π"},
+    correct: "A",
+    hint: "Find the radius by using the πd formula for the circumference, and dividing the diameter by 2",
+    steps: [
+        "Find the radius by using the πd formula for the circumference, and dividing the diameter by 2",
+        "40π = πd\nd = 40\nr = ᵈ⁄₂\nr = ⁴⁰⁄₂\nr = 20",
+        "Plug into cylinder formula, area of base * height. The area of the base is the area of the circle, πr²:\nπ(20)²\n400π\nNow multiply by height:\n400π * 3 = 1200π",
+        
+    ],
+    minutes: 2,
+    img_question: ""
 }
-
 ]
 
 function getDailyDate(resetHour, resetMinute){

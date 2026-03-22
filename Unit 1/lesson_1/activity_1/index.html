@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link ref = "icon" href = "/favicon.ico">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cause:wght@100..900&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libertinus+Math&display=swap" rel="stylesheet">
+</head>
+<title>Activity 1</title>
+<meta name = "description" content = "Activity 1!">
+<style>
+
+body{
+    min-height: 100vh;
+       background-color: rgb(249, 249, 249);
+       background-image: 
+        linear-gradient(rgba(0,0,0,0.035) 1px, transparent 1px),
+        linear-gradient(90deg,rgba(0,0,0,0.035) 1px, transparent 1px);
+     background-size: 40px 40px;
+    
+}
+.hint button{
+                cursor: pointer;
+                font-family: "Libertinus Math", system-ui;
+                font-size: 1em;
+                border-radius: 50px;
+                padding: 10px 30px;
+                background-color: #f7f7f7;
+                color: black;
+                border: 2px solid rgb(255, 166, 56);
+                transition: background-color 0.6s ease, box-shadow 0.6s ease;
+                min-width: 1rem;
+                box-shadow:  0 0 40px grey;
+                opacity: 1;
+                margin-bottom: 1rem;
+           }
+
+           .hint button:hover{
+                box-shadow: 0 0 100px rgb(255, 166, 56);
+           }
+.full{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10rem;
+}
+.question_container{
+                padding: 1.5em;
+                display: flex;
+                flex-direction: column;
+                background-color: white;
+                border: solid 1px black;
+                width: 90%;
+                max-width: 900px;
+                
+            }
+
+            .img_question{
+                text-align: center;
+                margin-top: 1rem;
+            }
+             .img_question img{
+                display: block;
+                max-width: 100%;
+                height: auto;
+                margin: 0 auto;
+            }
+           
+            .question{
+                text-align:center;
+                font-size: 2em;
+                margin-left: 5%;
+                margin-right: 5%;
+                margin-bottom: 0%;
+                color: #333535;
+                font-family: "Libertinus Math", system-ui;
+                white-space: pre-line; 
+
+            }
+
+            .check button:hover{
+                box-shadow: 0 0 100px rgb(2, 126, 0);
+            }
+    form{
+    display: block;
+    margin: auto;
+    width: min(400px, 100%);
+    margin-top: 10%;
+    font-family: "Zilla Slab", serif;
+    margin-bottom: 20%;
+}
+
+form input{
+    box-sizing: border-box;
+    border-radius: 2%;
+    background-color:rgb(21, 41, 47, 0.1) ;
+    border: none;
+    margin-bottom: 2%;
+    padding: 5% 5%;
+    font-size: 1rem;
+    font-family: "Zilla Slab", serif;
+     border: 2px solid white;
+
+    
+
+}
+
+form input:hover{
+    border: 2px solid rgb(41, 144, 203);
+    outline: none;
+    font-family: "Zilla Slab", serif;
+
+}
+
+form input:focus{
+    outline: none;
+    border-color: rgb(41, 144, 203);
+    outline: none;
+    font-family: "Zilla Slab", serif;
+}
+.right{
+    display: flex;
+    justify-content: flex-end;
+    width: 90%;
+    max-width: 900px;
+}
+
+.check button{
+     cursor: pointer;
+                font-family: "Libertinus Math", system-ui;
+                font-size: 1em;
+                border-radius: 50px;
+                padding: 10px 30px;
+                background-color: #f7f7f7;
+                color: black;
+                border: 2px solid rgb(2, 126, 0);
+                transition: background-color 0.6s ease, box-shadow 0.6s ease;
+                min-width: 1rem;
+                box-shadow:  0 0 40px grey;
+                opacity: 1;
+                margin-bottom: 1rem;
+}
+
+
+.hint-explanation{
+                font-size: 2em;
+                font-family: "Libertinus Math", system-ui;
+                color:#333535;
+                opacity: 0;
+                transition: 0.5s ease;
+                align-content: center;
+                text-align: center;
+                width: 80%;
+                height: 0;
+                overflow: hidden;
+                opacity: 0;
+                transform: translateY(-10px);
+                transition: height 0.9s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.9s ease, transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+           }
+
+           .hint-explanation.visible{
+                height: auto;
+                opacity: 1;
+           }
+
+           .answer-explanation.visible{
+            max-height: none;
+            overflow: visible;
+            opacity: 1;
+            transform: translateY(0);
+            white-space: pre-line; 
+            }
+            .answer-explanation p.step{
+                background: #ffffff;
+                padding: 0.8em 1em;
+                border-left: 10px solid #6e88cf;
+                margin: 0.5em 0;
+                border-radius: 5px;
+                font-size: 1.5rem;
+                border-top: 1px solid black;
+                border-right: 1px solid black;
+                border-bottom: 1px solid black;
+                white-space: pre-line; 
+            }
+
+            .answer-explanation{
+                justify-content: center;
+                max-width: 800px;
+                width: 90%;
+                max-height: 0;
+                overflow:hidden;
+                margin: 0 auto;
+                position: relative;
+                font-size: 1.75rem;
+                font-family: "Libertinus Math", system-ui;
+                transform: translateY(-10px);
+                transition: max-height 0.9s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.9s ease, transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+                opacity: 0;
+                color:#333535;
+                text-align: center;
+                padding: 0;
+                min-width: 1rem;
+                margin-bottom: 1.5%;
+                align-items: center;
+                white-space: pre-line; 
+                
+
+            }
+
+</style>
+<div class = "full">
+<div class = "right">
+<p>XP = <span id = "points">0</span></p>
+</div>
+<div class = "question_container">
+<div class = "question" id = "question">
+</div>
+</div>
+<div class = "login-container">
+    <form id = "form">
+    <input id = "answer-input" type = "number" placeholder = "Enter you answer:">
+    </form>
+</div>
+<div class = "check">
+<button id = "submit-answer">Check</button>
+</div>
+<div class = "hint">
+<button id = "hint">Hint</button>
+</div>
+<div class = "hint-explanation"></div>
+<div class ="answer-explanation"></div>
+</div>
+
+
+
+
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyDRjjvLABEFL-PgbChUFNZW6u38U6c7jP4",
+
+  authDomain: "mathemagic-fcb1d.firebaseapp.com",
+
+  projectId: "mathemagic-fcb1d",
+
+  storageBucket: "mathemagic-fcb1d.firebasestorage.app",
+
+  messagingSenderId: "313453456371",
+
+  appId: "1:313453456371:web:21e60d301936c2333f8086"
+
+};
+
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+const questions = 
+[
+{
+    question: "John is running at 10 miles per hour. How many miles does he run in 210 minutes?",
+    correct: "35",
+    hint: "There are 60 minutes in one hour",
+    steps: [
+        "Convert the minutes to hours. There are 60 minutes in an hour. That means 210 minutes is 3.5 hours.",
+        "3.5 * 10 = 35 miles"
+    ],
+    img_question: ""
+}
+,
+{
+    question: "What is a factor of 35 + 25?",
+    correct: "12",
+    hint: "A factor is a whole number that, if multiplied by another whole number, will result in the larger number",
+    steps: [
+        "Add 35 and 25 to get 60",
+        "12 is a factor of 60 as it is a whole number when multiplied by another whole number (5) gets us 60"
+    ],
+
+    img_question: ""
+}
+];
+
+const question = document.getElementById("question");
+const answerInput = document.getElementById("answer-input");
+const submitButton = document.getElementById("submit-answer");
+const hintButton = document.getElementById("hint");
+const hintExplanation = document.querySelector(".hint-explanation");
+const steps = document.querySelector(".answer-explanation")
+
+submitButton.addEventListener("click", handleAnswer)
+
+let currentIndex = 0;
+let hintShown = false;
+let points = 0;
+
+function loadQuestion(){
+    hintShown = false;
+    const q = questions[currentIndex];
+    question.innerText = q.question;
+    hintExplanation.innerText = "";
+    hintExplanation.classList.remove("visible");
+    steps.innerHTML = "";
+    answerInput.value = "";
+    answerInput.disabled = false;
+    submitButton.disabled = false;
+    updateHintButton();
+}
+
+function updateHintButton(){
+    hintButton.disabled = hintShown;
+    hintButton.style.opacity = hintShown ? 0.5 : 1;
+}
+
+function showSteps(q){
+    steps.innerHTML = "";
+    q.steps.forEach((step, i) =>{
+        const p = document.createElement("p");
+        p.classList.add("step");
+        p.innerHTML = `<strong>Step ${i+1}:</strong> ${step}`;
+        steps.appendChild(p);
+    });
+    steps.classList.add("visible")
+}
+
+function nextQuestion(){
+    if(currentIndex < questions.length - 1){
+        currentIndex++;
+        loadQuestion();
+        answerInput.style.backgroundColor = "white";
+
+    }
+    else{
+        alert("Quiz finished! Total points: " + points);
+    }
+}
+let awaitingNext = false;
+function handleAnswer(){
+    if (awaitingNext){
+        if(currentIndex < questions.length -1){
+            currentIndex++;
+            loadQuestion();
+            answerInput.style.backgoundColor = "white";
+            submitButton.innerText = "Check";
+            awaitingNext = false;
+        }
+        return;
+        }
+
+    
+    const q = questions[currentIndex];
+    const userAnswer = answerInput.value.trim();
+    answerInput.disabled = true;
+    submitButton.disabled = true;
+    if(userAnswer === q.correct){
+        points += 10;
+        answerInput.style.backgroundColor = "rgb(48, 133, 24, 0.3)";
+    }
+    else{
+        answerInput.style.backgroundColor = "rgb(135, 24, 24, 0.3)";
+        const correct = document.createElement("p");
+        correct.innerText = `Correct answer: ${q.correct}`;
+        correct.style.color = "green";
+        steps.appendChild(correct);
+    }
+
+    showSteps(q);
+    hintButton.disabled = true;
+
+    const user = auth.currentUser;
+    if(user){
+        const quizRef = db.collection("users").doc(user.uid).collection("activity_1").doc("progress");
+        quizRef.set({
+            currentIndex,
+            userAnswer,
+            points
+        }, {merge:true});
+    }
+    submitButton.innerText = "Next";
+    awaitingNext = true;
+};
+
+hintButton.addEventListener("click", () => {
+if(hintShown) return;
+const q = questions[currentIndex];
+hintExplanation.innerText = q.hint;
+hintExplanation.classList.add("visible");
+hintShown = true;
+updateHintButton();
+
+});
+
+
+loadQuestion();
+</script>

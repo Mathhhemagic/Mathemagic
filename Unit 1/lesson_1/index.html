@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+
+body{
+    min-height: 100vh;
+       background-color: rgb(249, 249, 249);
+       background-image: 
+        linear-gradient(rgba(0,0,0,0.035) 1px, transparent 1px),
+        linear-gradient(90deg,rgba(0,0,0,0.035) 1px, transparent 1px);
+     background-size: 40px 40px;
+    
+}
+
+.press{
+    background: rgb(0, 136, 136);
+    color: white;
+    border: none;
+    padding: 16px 30px;
+    font-size: 30px; 
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 6px 0 rgb(0, 85, 85);
+    font-family: "Zilla Slab", serif;
+    transition: all 0.1s ease;
+    max-width: 100px;
+}
+
+.press:hover{
+    filter:brightness(1.2);
+}
+
+.press:active{
+    transform:translateY(5px);
+    box-shadow: 0 0 0 rgb(0, 85, 85);
+}
+
+.inactive{
+    background: rgb(174, 174, 174);
+    color: white;
+    border: none;
+    padding: 16px 30px;
+    font-size: 30px; 
+    font-weight: bold;
+    border-radius: 50px;
+    box-shadow: 0 6px 0 rgb(78, 78, 78);
+    font-family: "Zilla Slab", serif;
+    transition: all 0.1s ease;
+    max-width: 100px;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    width: 250px;
+    margin: auto;
+}
+
+.row{
+    width: 100%;
+    display: flex;
+}
+
+.left{
+    justify-content: flex-start;
+}
+
+.right{
+    justify-content: flex-end;
+}
+
+.full{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.center{
+    justify-content: center;
+}
+.stars{
+    font-size: 30px;
+    margin-top: 10px;
+    color:rgb(0, 85, 85);
+}
+</style>
+<div class = "container">
+<div class = "row left">
+<div class = "full">
+<a href = "article/index.html">
+<button class = "press">🕮</button>
+</a>
+<div class = "stars">☆ ☆ ☆
+</div>
+</div>
+</div>
+<div class = "row right">
+<div class = "full">
+<a href = "activity_1/index.html">
+<button class = "press">✎</button>
+</a>
+<div class = "stars">☆ ☆ ☆
+</div>
+</div>
+</div>
+<div class = "row left">
+<div class = "full">
+<button class = "inactive">✎</button>
+<div class = "stars">☆ ☆ ☆
+</div>
+</div>
+</div>
+<div class = "row right">
+<div class = "full">
+<button class = "inactive">✎</button>
+<div class = "stars">☆ ☆ ☆
+</div>
+</div>
+</div>
+<div class = "row left">
+<div class = "full">
+<button class = "inactive">✎</button>
+<div class = "stars">☆ ☆ ☆
+</div>
+</div>
+</div>
+<div class = "row right">
+<div class = "full">
+<button class = "inactive">✎</button>
+<div class = "stars">☆ ☆ ☆
+</div>
+</div>
+</div>
+<div class = "row center">
+<div class = "full">
+<button class = "inactive">🜲</button>
+<div class = "stars">☆ ☆ ☆
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+
