@@ -884,7 +884,19 @@ const questions = [
     ],
     minutes: 1.5,
     img_question: ""
-}
+},
+{
+    question: "How many distinct real solutions does the equation (x - 1)² = -9?",
+    answer: {A:"Exactly one", B:"Exactly two", C:"Infinitely many", D:"Zero"},
+    correct: "D",
+    hint: "A real solution is a noncomplex number",
+    steps: [
+        "A real solution is a noncomplex number",
+        "Square root both sides: 3i and -3i, which are both complex numbers, meaning there are no real solutions for this equation"
+    ],
+    minutes: 2,
+    img_question: ""
+},
 ]
 
 function getDailyDate(resetHour, resetMinute){
