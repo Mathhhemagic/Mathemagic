@@ -38,7 +38,7 @@ body{
                 min-width: 1rem;
                 box-shadow:  0 0 40px grey;
                 opacity: 1;
-                margin-bottom: 1rem;
+                margin-bottom: 4rem;
            }
 
            .hint button:hover{
@@ -87,6 +87,10 @@ body{
             .check button:hover{
                 box-shadow: 0 0 100px rgb(2, 126, 0);
             }
+
+            .check button.next:hover{
+    box-shadow: 0 0 100px rgb(110, 136, 207);
+}
     form{
     display: block;
     margin: auto;
@@ -101,7 +105,7 @@ form input{
     border-radius: 2%;
     background-color:rgb(21, 41, 47, 0.1) ;
     border: none;
-    margin-bottom: 2%;
+    margin-bottom: 20%;
     padding: 5% 5%;
     font-size: 1rem;
     font-family: "Zilla Slab", serif;
@@ -110,15 +114,15 @@ form input{
     
 
 }
-
-form input:hover{
+ 
+form input:not(:disabled):hover{
     border: 2px solid rgb(41, 144, 203);
     outline: none;
     font-family: "Zilla Slab", serif;
 
 }
 
-form input:focus{
+form input:not(:disabled):focus{
     outline: none;
     border-color: rgb(41, 144, 203);
     outline: none;
@@ -144,8 +148,11 @@ form input:focus{
                 min-width: 1rem;
                 box-shadow:  0 0 40px grey;
                 opacity: 1;
-                margin-bottom: 1rem;
+                margin-bottom: 4rem;
+
 }
+
+
 
 
 .hint-explanation{
@@ -214,6 +221,36 @@ form input:focus{
 
             }
 
+            .hint button:disabled{
+                cursor: not-allowed;
+                background-color: rgba(178, 190, 181, 0.5);
+                box-shadow: 0 0 30px rgba(75, 75, 75, 0.5);
+                border-color: grey;
+                pointer-events: none;
+           }
+           .error{
+            font-family: "Libertinus Math", system-ui;
+            font-size: 1em;
+            margin-top: -4%;
+           }
+
+           .end-card{
+            display: none;
+             background: #ffffff;
+                padding: 0.8em 1em;
+                border-left: 10px solid #6e88cf;
+                margin: 0.5em 0;
+                border-radius: 5px;
+                font-size: 1.5rem;
+                border-top: 1px solid black;
+                border-right: 1px solid black;
+                border-bottom: 1px solid black;
+                white-space: pre-line; 
+
+            }
+
+           
+
 </style>
 <div class = "full">
 <div class = "right">
@@ -228,14 +265,27 @@ form input:focus{
     <input id = "answer-input" type = "number" placeholder = "Enter you answer:">
     </form>
 </div>
-<div class = "check">
-<button id = "submit-answer">Check</button>
+<div class = "error">
+    <p id = "error">
+
+    </p>
 </div>
 <div class = "hint">
 <button id = "hint">Hint</button>
 </div>
 <div class = "hint-explanation"></div>
+<div class = "check">
+<button id = "submit-answer">Check</button>
+</div>
 <div class ="answer-explanation"></div>
+<div id = "end-card" class = "end-card">
+    <h1>Quiz complete!</h1>
+    <p id = "final-points"></p>
+    <p id = "final-correct"></p>
+    <p id = "final-wrong"></p>
+    <p id = "final-accuracy"></p>
+</div>
+</div>
 </div>
 
 
@@ -289,7 +339,7 @@ const questions =
         "12 is a factor of 60 as it is a whole number when multiplied by another whole number (5) gets us 60"
     ],
 
-    img_question: ""
+    img_question: "question1.jpg"
 }
 ];
 
@@ -299,6 +349,14 @@ const submitButton = document.getElementById("submit-answer");
 const hintButton = document.getElementById("hint");
 const hintExplanation = document.querySelector(".hint-explanation");
 const steps = document.querySelector(".answer-explanation")
+let correctAnswers = 0;
+let wrongAnswers = 0;
+let totalQuestions = questions.length;
+document.getElementById("form").addEventListener("submit", function(e){
+    e.preventDefault();
+    handleAnswer();
+})
+
 
 submitButton.addEventListener("click", handleAnswer)
 
@@ -343,33 +401,45 @@ function nextQuestion(){
 
     }
     else{
-        alert("Quiz finished! Total points: " + points);
+        showEndCard();
     }
 }
 let awaitingNext = false;
+const err = document.getElementById("error")
+    answerInput.addEventListener("input", () => {
+        err.innerText = "";
+    });
 function handleAnswer(){
     if (awaitingNext){
-        if(currentIndex < questions.length -1){
-            currentIndex++;
-            loadQuestion();
-            answerInput.style.backgoundColor = "white";
-            submitButton.innerText = "Check";
-            awaitingNext = false;
-        }
+        hintButton.disabled = true;
+        nextQuestion();
+        submitButton.innerText = "Check"
+        submitButton.style.borderColor = "rgb(2, 126, 0)";
+        submitButton.classList.remove("next");
+
+        awaitingNext = false;
         return;
         }
+
 
     
     const q = questions[currentIndex];
     const userAnswer = answerInput.value.trim();
+    if (userAnswer === ""){
+        err.innerText = "Please enter an answer!"
+                return;
+    }
+
     answerInput.disabled = true;
-    submitButton.disabled = true;
     if(userAnswer === q.correct){
         points += 10;
-        answerInput.style.backgroundColor = "rgb(48, 133, 24, 0.3)";
+        correctAnswers++;
+        document.getElementById("points").innerText = points;
+        answerInput.style.borderColor = "rgb(48, 133, 24, 0.3)";
     }
     else{
-        answerInput.style.backgroundColor = "rgb(135, 24, 24, 0.3)";
+        wrongAnswers++;
+        answerInput.style.borderColor = "rgb(135, 24, 24, 0.3)";
         const correct = document.createElement("p");
         correct.innerText = `Correct answer: ${q.correct}`;
         correct.style.color = "green";
@@ -389,9 +459,11 @@ function handleAnswer(){
         }, {merge:true});
     }
     submitButton.innerText = "Next";
+    submitButton.style.borderColor = "rgb(110, 136, 207)";
+    submitButton.classList.add("next");
     awaitingNext = true;
-};
 
+};
 hintButton.addEventListener("click", () => {
 if(hintShown) return;
 const q = questions[currentIndex];
@@ -402,6 +474,24 @@ updateHintButton();
 
 });
 
+function showEndCard(){
+    document.getElementById("points").style.display = "none";
+    document.querySelector(".question_container").style.display = "none";
+    document.querySelector(".login-container").style.display = "none";
+    document.querySelector(".check").style.display = "none";
+    document.querySelector(".hint").style.display = "none";
+    document.querySelector(".hint-explanation").style.display = "none";
+    document.querySelector(".answer-explanation").style.display = "none";
+    const accuracy = Math.round((correctAnswers / totalQuestions) * 100);
+
+    document.getElementById("final-points").innerText = `Xp: ${points}`
+    document.getElementById("final-correct").innerText = `Correct: ${correctAnswers}`;
+    document.getElementById("final-wrong").innerText = `Wrong: ${wrongAnswers}`;
+    document.getElementById("final-accuracy").innerText = `Accuracy: ${accuracy}%`;
+    document.getElementById("end-card").style.display = "block";
+
+    
+}
 
 loadQuestion();
 </script>
