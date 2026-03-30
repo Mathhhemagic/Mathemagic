@@ -953,6 +953,21 @@ const questions = [
     ], 
     minutes: 1,
     img_question: ""
+},
+{
+    question: "A company is hiring people to be part of a new construction project. Of those invited to join the committee, 20% are electricians, 50% are designers, 15% are plumbers, and the remaining 27 individuals are general laborers. How many more designers were invited to join the committee than electricians?",
+    answer: {A:"36 more designers", B:"180 more designers", C:"90 more designers", D:"54 more designers"},
+    correct: "D",
+    hint: "Find the general laborers as a percentage using the other ones given, and convert to a number using the number 27 as the number of general laborers",
+    steps: [
+        "Find the percentage left for general laborers:\n100 - (20 + 50 + 15) = 100 - 85 = 15%",
+        "27 general laborers = 0.15(total amount)\nDivide by 0.15 on both sides:\n27/0.15 = 180",
+        "Designers = 50% of 180\n0.5(180)\n90",
+        "Electricians = 20% of 180\n0.2(180)\n36",
+        "Designers - Electricians = 90 - 36\n54 more designers"
+    ], 
+    minutes: 1,
+    img_question: ""
 }
 ]
 
