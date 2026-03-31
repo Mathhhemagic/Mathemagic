@@ -320,26 +320,25 @@ const db = firebase.firestore();
 const questions = 
 [
 {
-    question: "John is running at 10 miles per hour. How many miles does he run in 210 minutes?",
-    correct: "35",
-    hint: "There are 60 minutes in one hour",
+    question: "Solve for x:\n10x + 4 = 44",
+    correct: "4",
+    hint: "Start off by subtracting by 4 on both sidesS",
     steps: [
-        "Convert the minutes to hours. There are 60 minutes in an hour. That means 210 minutes is 3.5 hours.",
-        "3.5 * 10 = 35 miles"
+    "Subtract by 4 on both sides:\n10x = 40",
+    "Divide by 10 on both sides:\nx = 4"
     ],
     img_question: ""
-}
-,
+},
 {
-    question: "What is a factor of 35 + 25?",
-    correct: "12",
-    hint: "A factor is a whole number that, if multiplied by another whole number, will result in the larger number",
+    question: "2(x + 3) = 56",
+    correct: "25",
+    hint: "Start by distributing the coefficient 2 to each of the terms",
     steps: [
-        "Add 35 and 25 to get 60",
-        "12 is a factor of 60 as it is a whole number when multiplied by another whole number (5) gets us 60"
+    "Distribute the coefficient 2 to each of the terms:\n2x + 6 = 56",
+    "Subtract by 6 on both sides:\n2x = 50",
+    "Divide by 2 on both sides:\nx = 25"
     ],
-
-    img_question: "question1.jpg"
+    img_question: ""
 }
 ];
 
@@ -374,6 +373,7 @@ function loadQuestion(){
     answerInput.value = "";
     answerInput.disabled = false;
     submitButton.disabled = false;
+    answerInput.style.borderColor = "white";
     updateHintButton();
 }
 
