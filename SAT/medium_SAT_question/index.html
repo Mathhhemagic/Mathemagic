@@ -1027,11 +1027,6 @@ const questions = [
 
 
 
-
-
-
-
-
 ]
 
 function getDailyDate(resetHour, resetMinute){
@@ -1060,6 +1055,7 @@ const timer = document.getElementById("timer");
 const hintExplanation = document.querySelector(".hint-explanation");
 const popupOverlay = document.getElementById("login-popup-overlay");
 const closePopupButton = document.getElementById("close-popup");
+const correctAnswer = q.correct;
 document.getElementById('hint-explanation').innerText = q.hint;
 document.getElementById('A').innerText = q.answer.A;
 document.getElementById('B').innerText = q.answer.B;
@@ -1078,31 +1074,11 @@ const img = document.getElementById("img_question");
 const imgWrapper = document.querySelector(".img_question");
 
 
-function showLoginPopup(){
-    if(!sessionStorage.getItem("loginPopupShown"))
-   {
-        popupOverlay.style.display = "flex";
-        sessionStorage.setItem("loginPopupShown", "true");
-    }
-}
-closePopupButton.addEventListener("click", () => {
-    popupOverlay.style.display = "none";
-})
-if (q.img_question){
-    img.src = q.img_question;
-    imgWrapper.style.display = "block";
-}
-else{
-    img.removeAttribute("src");
-    imgWrapper.style.display = "none";
-}
-const correctAnswer = q.correct;
 
 auth.onAuthStateChanged(async user => {
     document.body.style.visibility = "visible";
   if (!user) {
     console.log("Guest user - progress not saved");
-    showLoginPopup();
     return;
   }
 
