@@ -1075,6 +1075,17 @@ answer: {A:"25", B:"35", C:"45", D:"15"},
     ],
     minutes: 1,
     img_question: ""
+},
+{
+question: "A rectangle has an area of 52 square meters and a length of 4 meters. What is the width, in meters, of the rectangle?",
+answer: {A:"11", B:"12", C:"13", D:"14"},
+    correct: "C",
+    hint: "The area of a rectangle is length times the width, so in order to find the width of the rectangle, divide the area by the length",
+    steps: [
+        "The area of a rectangle is length times the width, so in order to find the width of the rectangle, divide the area by the length:\n52 ÷ 4 = 13",
+    ],
+    minutes: 1,
+    img_question: ""
 }
 
 ];
@@ -1202,6 +1213,7 @@ async function loadUserData(uid){
     if (doc.exists){
         const data = doc.data();
         hintsUsed = data.hintsUsed;
+        hintClicked = data.hintClicked || false;
         points = data.points || 0;
 
         if (data.answer){
@@ -1209,6 +1221,7 @@ async function loadUserData(uid){
         }
 
     }
+    updateHintButton();
 }
 
 function updateHintButton(){
@@ -1260,7 +1273,7 @@ hintButton.addEventListener("click", async () => {
 
     const user = auth.currentUser;
     if (user){
-        await db.collection("users").doc(user.uid).collection("easy").doc(dayKey).set({hintsUsed: true, points: points}, {merge:true});
+        await db.collection("users").doc(user.uid).collection("easy").doc(dayKey).set({hintsUsed: true,hintClicked: true, points: points}, {merge:true});
     }
 });
 
@@ -1352,6 +1365,7 @@ buttons.forEach(button => {
                 answer: button.id,
                 stars: starsEarned,
                 hintsUsed: hintsUsed,
+                hintClicked: hintClicked,
                 paused: true,
                 remainingTime: time
 

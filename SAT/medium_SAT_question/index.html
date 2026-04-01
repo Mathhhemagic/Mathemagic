@@ -1011,7 +1011,21 @@ const questions = [
     ],
     minutes: 1,
     img_question: ""
+},
+{
+    question: "Line q is defined by y = -9x + 27. Line g is perpendicular to line q in the xy-plane. What is the slope of line g?",
+    answer: {A:"¹⁄₂₇", B:"-¹⁄₂₇", C:"⅑", D:"-⅑"},
+    correct: "C",
+    hint: "A line that is perpendicular to another line on the xy-plane has an opposite reciprocal slope to the original line.",
+    steps: [
+"Since line q and line g are perpendicular, they have opposite reciprocal slopes",
+"The opposite of -9 is 9, and the reciprocal is ⅑"
+    ],
+    minutes: 1,
+    img_question: ""
 }
+
+
 
 
 
@@ -1038,12 +1052,14 @@ const startDate = new Date("2026-02-24T00:00:00");
 const dailyDate = getDailyDate(0, 0);
 const dailyIndex = Math.floor((dailyDate - startDate) / 86400000) % questions.length;
 const dayKey = dailyDate.toISOString().split("T")[0];
-const q = questions[dailyIndex];
+const q = questions[dailyIndex]; 
 const buttons = document.querySelectorAll('.option button');
 const explanation = document.querySelector(".answer-explanation");
 const hintButton = document.getElementById("hint");
 const timer = document.getElementById("timer");
 const hintExplanation = document.querySelector(".hint-explanation");
+const popupOverlay = document.getElementById("login-popup-overlay");
+const closePopupButton = document.getElementById("close-popup");
 document.getElementById('hint-explanation').innerText = q.hint;
 document.getElementById('A').innerText = q.answer.A;
 document.getElementById('B').innerText = q.answer.B;
@@ -1061,6 +1077,17 @@ let hintClicked = false;
 const img = document.getElementById("img_question");
 const imgWrapper = document.querySelector(".img_question");
 
+
+function showLoginPopup(){
+    if(!sessionStorage.getItem("loginPopupShown"))
+   {
+        popupOverlay.style.display = "flex";
+        sessionStorage.setItem("loginPopupShown", "true");
+    }
+}
+closePopupButton.addEventListener("click", () => {
+    popupOverlay.style.display = "none";
+})
 if (q.img_question){
     img.src = q.img_question;
     imgWrapper.style.display = "block";
@@ -1074,9 +1101,12 @@ const correctAnswer = q.correct;
 auth.onAuthStateChanged(async user => {
     document.body.style.visibility = "visible";
   if (!user) {
-    console.log("Guest user - progress not saved")
+    console.log("Guest user - progress not saved");
+    showLoginPopup();
     return;
   }
+
+
 
 const userRef = db.collection("users").doc(user.uid);
 const userDoc = await userRef.get();
@@ -1127,6 +1157,7 @@ async function loadUserData(uid){
     if (doc.exists){
         const data = doc.data();
         hintsUsed = data.hintsUsed;
+        hintClicked = data.hintClicked || false;
         points = data.points || 0;
 
         if (data.answer){
@@ -1134,6 +1165,7 @@ async function loadUserData(uid){
         }
 
     }
+    updateHintButton();
 }
 
 function updateHintButton(){
@@ -1185,7 +1217,7 @@ hintButton.addEventListener("click", async () => {
 
     const user = auth.currentUser;
     if (user){
-        await db.collection("users").doc(user.uid).collection("medium").doc(dayKey).set({hintsUsed: true, points: points}, {merge:true});
+        await db.collection("users").doc(user.uid).collection("medium").doc(dayKey).set({hintsUsed: true,hintClicked: true, points: points}, {merge:true});
     }
 });
 
@@ -1268,8 +1300,8 @@ buttons.forEach(button => {
                 starsEarned++;
             }
         }
-        paused = true;
-        if (timeInterval) clearInterval (timeInterval);
+       
+        reload(button.id)
     
         const user = auth.currentUser;
         if (user){
@@ -1277,6 +1309,7 @@ buttons.forEach(button => {
                 answer: button.id,
                 stars: starsEarned,
                 hintsUsed: hintsUsed,
+                hintClicked: hintClicked,
                 paused: true,
                 remainingTime: time
 
@@ -1310,14 +1343,13 @@ function startTimer(){
 
 function updateCountdown(){
     if (time<=0){
-        time = 0;
         timer.innerHTML = "⏱️0:00";
         timer.style.color = "#EB5E5E";
         timeUp = true;
-        if(timeInterval){
+        
         clearInterval(timeInterval);
         timeInterval = null;
-        }
+
     
         return;
     }
@@ -1340,4 +1372,3 @@ window.addEventListener("load", () => {
 </script>
 </body>
 </html>
-
