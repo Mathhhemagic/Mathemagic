@@ -38,7 +38,7 @@ body{
                 min-width: 1rem;
                 box-shadow:  0 0 40px grey;
                 opacity: 1;
-                margin-bottom: 4rem;
+                margin-bottom: 2rem;
            }
 
            .hint button:hover{
@@ -56,8 +56,8 @@ body{
                 flex-direction: column;
                 background-color: white;
                 border: solid 1px black;
-                width: 90%;
                 max-width: 900px;
+                width: 100%;
                 
             }
 
@@ -169,7 +169,7 @@ form input:not(:disabled):focus{
                 opacity: 0;
                 transform: translateY(-10px);
                 transition: height 0.9s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.9s ease, transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
-
+                margin-bottom: 1rem;
            }
 
            .hint-explanation.visible{
@@ -249,12 +249,117 @@ form input:not(:disabled):focus{
 
             }
 
-           
+            .xp-container{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-family: "Libertinus Math", system-ui;
+            }
 
+            .battery{
+                width: 100%;
+                height: 20px;
+                border: 2px solid #cdefff;
+                border-radius: 10px;
+                position: relative;
+                background: #f8fdff;
+                box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
+            }
+            
+
+            .battery-fill{
+                height: 100%;
+                width: 0%;
+                border-radius: 8px;
+                background: linear-gradient(90deg, #36b5ff, #6fd6ff);
+                transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.5s ease, box-shadow 0.5s ease;
+            }
+
+            .battery-fill.grow{
+                box-shadow: 0 0 10px rgb(54, 181, 255), 0 0 20px rgb(54, 181, 255);
+            }
+
+            .battery-fill::after{
+                content: "";
+                position: absolute;
+                top: 0;
+                left: -50%;
+                right: -7px;
+                top: 50%;
+                width: 5px;
+                height: 100%;
+                background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
+                animation: shine 2s infinite;
+                border-radius: 2px;
+            }
+            
+            @keyframes shine{
+                0% {left: -50%;}
+                100% {left : 120%;}
+            }
+           .question{
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+           }
+
+           .question.show{
+            opacity: 1;
+            transform: translateY(0);
+           }
+
+           @keyframes correctPop {
+            0% {transform : scale(1);}
+            50% {transform : scale(1.1);}
+            100% {transform : scale(1);}
+           }
+
+           @keyframes wrongShake{
+            0% {transform : translateX(0);}
+            25% {transform : translateX(-5px);}
+            50% {transform : translateX(5px);}
+            75% {transform : translateX(-5px);}
+            100% {transform : translateX(0);}
+           }
+           .correct{
+            animation: correctPop 0.4s ease;
+           }
+           .wrong{
+            animation: wrongShake 0.4s ease;
+           }
+
+           @keyframes batteryPop{
+            0% {transform: scale(1);}
+            50%{transform: scale(1.08);}
+            100%{transform: scale(1);}
+           }
+
+           .battery.pop{
+            animation: batteryPop 0.3s ease;
+           }
+
+           .battery-text{
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            font-size: 0.7rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #333;
+            font-family: "Zilla Slab", serif;
+           }
+
+           .content-width{
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+           }
 </style>
+<div class = "content-width">
 <div class = "full">
-<div class = "right">
-<p>XP = <span id = "points">0</span></p>
+    <div class = "battery">
+        <div class = "battery-fill" id = "battery-fill"></div>
+        <div class = "battery-text" id = "battery-text">0%</div>
 </div>
 <div class = "question_container">
 <div class = "question" id = "question">
@@ -322,7 +427,7 @@ const questions =
 {
     question: "Solve for x:\n10x + 4 = 44",
     correct: "4",
-    hint: "Start off by subtracting by 4 on both sidesS",
+    hint: "Start off by subtracting by 4 on both sides",
     steps: [
     "Subtract by 4 on both sides:\n10x = 40",
     "Divide by 10 on both sides:\nx = 4"
@@ -330,7 +435,7 @@ const questions =
     img_question: ""
 },
 {
-    question: "2(x + 3) = 56",
+    question: "Solve for x:\n2(x + 3) = 56",
     correct: "25",
     hint: "Start by distributing the coefficient 2 to each of the terms",
     steps: [
@@ -341,7 +446,7 @@ const questions =
     img_question: ""
 },
 {
-    question: "4(5x + 5) = 120",
+    question: "Solve for x:\n4(5x + 5) = 120",
     correct: "5",
     hint: "Start by distributing the coefficient 4 to each of the terms",
     steps: [
@@ -352,7 +457,7 @@ const questions =
     img_question: ""
 },
 {
-    question: "24x + 23 = 2x + 45",
+    question: "Solve for x:\n24x + 23 = 2x + 45",
     correct: "1",
     hint: "Start by combining like terms (Constants on one side, variables on the other side)",
     steps: [
@@ -363,7 +468,7 @@ const questions =
     img_question: ""
 },
 {
-    question: "3(x + 10) = 4x",
+    question: "Solve for x:\n3(x + 10) = 4x",
     correct: "10",
     hint: "Start by distributing the coefficient 3 to each of the terms",
     steps: [
@@ -374,7 +479,7 @@ const questions =
     img_question: ""
 },
 {
-    question: "10x + 10 = 2x + 98",
+    question: "Solve for x:\n10x + 10 = 2x + 98",
     correct: "11",
     hint: "Start by combining like terms (Constants on one side, variables on the other side)",
     steps: [
@@ -385,7 +490,7 @@ const questions =
     img_question: ""
 },
 {
-    question: "10x + 15 = 110x (As a decimal)",
+    question: "Solve for x:\n10x + 15 = 110x (As a decimal)",
     correct: "0.15",
     hint: "Start by subtracting by 10x on both sides",
     steps: [
@@ -395,7 +500,7 @@ const questions =
     img_question: ""
 },
 {
-    question: "10(x + 4) = 24x + 12",
+    question: "Solve for x:\n10(x + 4) = 24x + 12",
     correct: "2",
     hint: "Start by distributing the coefficient 10 to each of the terms",
     steps: [
@@ -406,7 +511,7 @@ const questions =
     img_question: ""
 },
 {
-    question: "100x + 25 = 75",
+    question: "Solve for x:\n100x + 25 = 75",
     correct: "0.5",
     hint: "Start by subtracting by 25 on both sides",
     steps: [
@@ -416,7 +521,7 @@ const questions =
     img_question: ""
 },
 {
-    question: "22x + 82 = 20x + 120",
+    question: "Solve for x:\n22x + 82 = 20x + 120",
     correct: "19",
     hint: "Start by combining like terms (Constants on one side, variables on the other side)",
     steps: [
@@ -451,7 +556,11 @@ let points = 0;
 function loadQuestion(){
     hintShown = false;
     const q = questions[currentIndex];
-    question.innerText = q.question;
+    question.classList.remove("show")
+    setTimeout(() => {
+        question.innerText = q.question;
+        question.classList.add("show");
+    }, 200);
     hintExplanation.innerText = "";
     hintExplanation.classList.remove("visible");
     steps.innerHTML = "";
@@ -517,12 +626,44 @@ function handleAnswer(){
 
     answerInput.disabled = true;
     if(userAnswer === q.correct){
+        answerInput.classList.add("correct");
+        setTimeout(() => answerInput.classList.remove("correct"), 400);
         points += 10;
         correctAnswers++;
-        document.getElementById("points").innerText = points;
+
+        const battery = document.querySelector(".battery");
+battery.classList.add("pop");
+setTimeout(() => battery.classList.remove("pop"), 300);
+        const fill = document.getElementById("battery-fill")
+        fill.classList.add("grow");
+        setTimeout(() => fill.classList.remove("grow"), 500);
+        const maxXP = questions.length * 10;
+        const percent = (points /maxXP) * 100
+        fill.style.width = percent + "%";
+        document.getElementById("battery-text").innerText = Math.round(percent) + "%"
+
+        document.getElementById("battery-fill").style.width = percent + "%";
+
+        
+        if (percent < 40){
+            fill.style.background = "linear-gradient(90deg, #36b5ff, #6fd6ff)";
+        }
+        else if (percent < 70){
+         fill.style.background = "linear-gradient(90deg, #6fff8b, #b4ffcc)";
+        }
+        else if (percent < 100){
+        fill.style.background = "linear-gradient(90deg, #ffd86f, #ffb347)";
+        }
+        else{
+            fill.style.background = "linear-gradient(90deg, #ff9a3c, #ff5e00)";
+        }
+      
+        
         answerInput.style.borderColor = "rgb(48, 133, 24, 0.3)";
     }
     else{
+        answerInput.classList.add("wrong");
+        setTimeout(() => answerInput.classList.remove("wrong"), 400);
         wrongAnswers++;
         answerInput.style.borderColor = "rgb(135, 24, 24, 0.3)";
         const correct = document.createElement("p");
@@ -560,7 +701,6 @@ updateHintButton();
 });
 
 function showEndCard(){
-    document.getElementById("points").style.display = "none";
     document.querySelector(".question_container").style.display = "none";
     document.querySelector(".login-container").style.display = "none";
     document.querySelector(".check").style.display = "none";
