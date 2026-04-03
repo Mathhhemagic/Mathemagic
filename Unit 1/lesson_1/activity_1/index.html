@@ -235,19 +235,75 @@ form input:not(:disabled):focus{
            }
 
            .end-card{
-            display: none;
-             background: #ffffff;
-                padding: 0.8em 1em;
-                border-left: 10px solid #6e88cf;
-                margin: 0.5em 0;
-                border-radius: 5px;
-                font-size: 1.5rem;
-                border-top: 1px solid black;
-                border-right: 1px solid black;
-                border-bottom: 1px solid black;
-                white-space: pre-line; 
-
+            display:none;
+            min-height:100vh;
+            width:100%;
+            justify-content:center;
+            align-items:center;
             }
+            .end-content{
+                text-align:center;
+                max-width:500px;
+                width:90%;
+            }
+            .end-mascot{
+                width:150px;
+                margin-bottom:20px;
+            }
+            .end-title{
+                color: #ffb400;
+                font-size:2rem;
+                font-family:"Zilla Slab", serif;
+            }
+            .end-sub{
+                color: #888;
+                margin-bottom: 30px;
+            }
+            .stats{
+                display: flex;
+                gap: 15px;
+                justify-content: center;
+                margin-bottom: 30px;
+            }
+
+            .stat{
+                flex: 1;
+                background:white;
+                border-radius:white;
+                padding:15px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            }
+            .stat-title{
+                font-size:0.7rem;
+                color: #888;
+            }
+            .stat h2{
+                margin-top: 5px;
+            }
+
+            .xp{
+                border: 3px solid #b48cf5;
+                color: #b48cf5
+            }
+            .accuracy{
+                border: 3px solid #6ad400;
+            }
+
+            .speed{
+                border:3px solid #36b5ff;
+            }
+
+            .claim-button{
+                width:100%;
+                padding:15px;
+                border:none;
+                border-radius: 12px;
+                background: #2da6d7;
+                color: white;
+                font-weight: bold;
+                font-size: 1rem;
+            }
+
 
             .xp-container{
                 display: flex;
@@ -258,12 +314,13 @@ form input:not(:disabled):focus{
 
             .battery{
                 width: 100%;
-                height: 20px;
+                height: 30px;
                 border: 2px solid #cdefff;
                 border-radius: 10px;
                 position: relative;
                 background: #f8fdff;
                 box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
+                margin-bottom: 2%;
             }
             
 
@@ -289,14 +346,10 @@ form input:not(:disabled):focus{
                 width: 5px;
                 height: 100%;
                 background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
-                animation: shine 2s infinite;
                 border-radius: 2px;
             }
             
-            @keyframes shine{
-                0% {left: -50%;}
-                100% {left : 120%;}
-            }
+            
            .question{
             opacity: 0;
             transform: translateY(20px);
@@ -342,7 +395,7 @@ form input:not(:disabled):focus{
             position: absolute;
             width: 100%;
             text-align: center;
-            font-size: 0.7rem;
+            font-size: 1rem;
             top: 50%;
             transform: translateY(-50%);
             color: #333;
@@ -354,7 +407,56 @@ form input:not(:disabled):focus{
             max-width: 900px;
             margin: 0 auto;
            }
+
+           input::-webkit-outer-spin-button,
+           input::-webkit-inner-spin-button{
+            -webkit-appearance:none;
+            margin:0;
+           }
+
+           input[type=number]
+{
+    -moz-appearance: textfield;
+}
+
+.arrow button{
+                cursor: pointer;
+                font-family: "Libertinus Math", system-ui;
+                font-size: 2rem;
+                border-radius: 50%;
+                border: 2px solid transparent;
+                box-shadow: 0 0 40px grey;
+                margin-bottom: 2%;
+                background-color: white;
+                font-weight: bold;
+                color: #0b5394;
+                font-weight: bold;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 4rem;
+                width: 4rem;
+                padding: 0;
+                font-size: 2rem;
+                border-radius: 50%;
+                appearance: none;
+                -webkit-appearance: none;
+                margin-top: 2%;
+                left: 5px;
+            }
+
+
+            .arrow button:hover{
+                color:#0b5394;
+                box-shadow: 0 0 40px #0b5394;
+                transform: translateY(-4px);
+            }
+
+
 </style>
+<div class = "arrow">
+<button>←</button>
+</div>
 <div class = "content-width">
 <div class = "full">
     <div class = "battery">
@@ -367,7 +469,7 @@ form input:not(:disabled):focus{
 </div>
 <div class = "login-container">
     <form id = "form">
-    <input id = "answer-input" type = "number" placeholder = "Enter you answer:">
+    <input id = "answer-input" type = "number" step = "any" placeholder = "Enter you answer:">
     </form>
 </div>
 <div class = "error">
@@ -384,11 +486,22 @@ form input:not(:disabled):focus{
 </div>
 <div class ="answer-explanation"></div>
 <div id = "end-card" class = "end-card">
-    <h1>Quiz complete!</h1>
-    <p id = "final-points"></p>
-    <p id = "final-correct"></p>
-    <p id = "final-wrong"></p>
-    <p id = "final-accuracy"></p>
+    <div class = "end-content">
+        <img src = "../../../Images/mathemagic_rabbit.png" class = "end-mascot">
+        <h1 class = "end-title">Perfect Lesson!</h1>
+        <p class = "end-sub">Take a bow!</p>
+        <div class = "stats">
+
+            <div class = "stat accuracy">
+                <p class = "stat-title">AMAZING</p>
+                <h2 id = "final-accuracy">100%</h2>
+            </div>
+            <div class = "stat speed">
+                <p class = "stat-title">BLAZING</p>
+                <h2>0:19</h2>
+            </div>
+        </div>
+        <button class = "claim-button">CLAIM XP</button>
 </div>
 </div>
 </div>
@@ -708,13 +821,8 @@ function showEndCard(){
     document.querySelector(".hint-explanation").style.display = "none";
     document.querySelector(".answer-explanation").style.display = "none";
     const accuracy = Math.round((correctAnswers / totalQuestions) * 100);
-
-    document.getElementById("final-points").innerText = `Xp: ${points}`
-    document.getElementById("final-correct").innerText = `Correct: ${correctAnswers}`;
-    document.getElementById("final-wrong").innerText = `Wrong: ${wrongAnswers}`;
-    document.getElementById("final-accuracy").innerText = `Accuracy: ${accuracy}%`;
-    document.getElementById("end-card").style.display = "block";
-
+ document.getElementById("final-accuracy").innerText = accuracy + "%";
+document.getElementById("end-card").style.display = "flex";
     
 }
 
