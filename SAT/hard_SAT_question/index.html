@@ -1024,6 +1024,20 @@ const questions = [
     ], 
     minutes: 1,
     img_question: ""
+},
+{
+    question: "A cube has an edge length of 60 inches. A solid sphere with a radius of 15 inches is inside the cube. To the nearest cubic inch, what is the volume of the space in the cube not taken up by the sphere? (The volume of a sphere is ⁴⁄₃πr³) (Calculator allowed)",
+    answer: {A:"201,863", B:"262,345", C:"312,567", D:"190,345"},
+    correct: "A",
+    hint: "Find the volume of the sphere and subtract it from the volume of the cube",
+    steps: [
+    "Take the volume of the cube:\n60 x 60 x 60\n216,000",
+    "Take the volume of the sphere:\n⁴⁄₃π(15)³\n14,137.17",
+    "Subtract the volume of the sphere from the volume of the cube:\n216,000 - 14,137.17\n201,862.83",
+    "Round to the nearest cubic inch:\n201,863"
+    ], 
+    minutes: 2,
+    img_question: ""
 }
 ]
 

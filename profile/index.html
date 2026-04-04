@@ -490,7 +490,7 @@ const uid = user.uid;
 
     document.getElementById("profile-email").textContent = user.email || "-";
     document.getElementById("profile-username").textContent = user.displayName || "-";
-    
+    await updateDailyStreak();
     await updateProfileUI();
     
 });
