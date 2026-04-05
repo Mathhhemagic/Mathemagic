@@ -554,8 +554,8 @@ const questions =
     "Divide by 10 on both sides:\nx = 4"
     ],
     img_question: ""
-}
-/*
+},
+
 {
     question: "Solve for x:\n2(x + 3) = 56",
     correct: "25",
@@ -591,12 +591,11 @@ const questions =
 },
 {
     question: "Solve for x:\n3(x + 10) = 4x",
-    correct: "10",
+    correct: "30",
     hint: "Start by distributing the coefficient 3 to each of the terms",
     steps: [
     "Start by distributing the coefficient 3 to each of the terms:\n3x + 30 = 4x",
-    "Subtract by 3x on both sides:\n30 = 3x",
-    "Divide by 3 on both sides:\nx = 10"
+    "Subtract by 3x on both sides:\nx = 30"
     ],
     img_question: ""
 },
@@ -652,7 +651,7 @@ const questions =
     ],
     img_question: ""
 }
-*/
+
 
 ];
 
@@ -799,15 +798,7 @@ setTimeout(() => battery.classList.remove("pop"), 300);
     showSteps(q);
     hintButton.disabled = true;
 
-    const user = auth.currentUser;
-    if(user){
-        const quizRef = db.collection("users").doc(user.uid).collection("activity_1").doc("progress");
-        quizRef.set({
-            currentIndex,
-            userAnswer,
-            points
-        }, {merge:true});
-    }
+  
     submitButton.innerText = "Next";
     submitButton.style.borderColor = "rgb(110, 136, 207)";
     submitButton.classList.add("next");
@@ -837,7 +828,15 @@ function showEndCard(){
 
     document.getElementById("accuracy-value").innerText = accuracy + "%";
 document.getElementById("xp-value").innerText = points;
-
+  const user = auth.currentUser;
+    if(user){
+        const userRef = db.collection("users").doc(user.uid);
+        userRef.set({
+           activity_1: {
+            accuracy: accuracy
+           }
+        }, {merge: true});
+    }
 if (accuracy === 100){
         document.getElementById("word").innerText = "Perfect!"
 

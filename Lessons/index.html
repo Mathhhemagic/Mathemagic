@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <style>
-ul{
+<title>Home</title>
+<meta name = "description" content = "Daily SAT questions! Do the easy, medium, or hard questions!">
+<link ref = "icon" href = "/favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cause:wght@100..900&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<style>
+
+    ul{
             display: flex;
             list-style-type: none;
             margin: 0;
@@ -164,41 +167,59 @@ body{
 }
 
 .container{
+        justify-content: center;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 20px;
     align-items: center;
-    width: 250px;
-    margin: auto;
+    margin-top: 5%;
 }
 
-.row{
-    width: 100%;
-    display: flex;
-}
+.question_container{
+                padding: 1.5em;
+                display: flex;
+                flex-direction: column;
+                background-color: white;
+                border: transparent;
+                box-shadow: 0 15px 25px rgb(201, 234, 255);
+                max-width: 200px;
+                width: 100%;
+                font-family: "Zilla Slab", serif;
+                align-items: center;
+                min-height: 200px;
+                text-align: center;
+                
+            }
 
-.left{
-    justify-content: flex-start;
-}
+        .go button{
+            margin-top: 10%;
+            border-radius: 10%;
+            font-family: "Zilla Slab", serif;
+            align-items: center;
+            height: 2rem;
+        }
 
-.right{
-    justify-content: flex-end;
-}
+        .stars{
+            font-family: "Zilla Slab", serif;
+        }
 
-.full{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.center{
-    justify-content: center;
-}
-.stars{
-    font-size: 30px;
-    margin-top: 10px;
-    color:rgb(0, 85, 85);
-}
+        .title{
+            font-size: 2rem;
+            color: rgb(0, 90, 69);
+            font-family: "Zilla Slab", serif;
+            margin-bottom: 5%;
+        }
+
+        .subtitle{
+            font-family: "Zilla Slab", serif;
+            font-size: 1rem;
+            color: rgb(99, 99, 99);
+        }
 </style>
+
+</head>
+<body>
+
 
 <ul>
     <li><a class = "ia" href = "/">Home</a></li>
@@ -209,62 +230,86 @@ body{
     <div class = "dropdown"></div>
     </li>
     </ul>
-<div class = "container">
-<div class = "row left">
-<div class = "full">
-<a href = "article/index.html">
-<button class = "press">🕮</button>
-</a>
-<div class = "stars">☆ ☆ ☆
-</div>
-</div>
-</div>
-<div class = "row right">
-<div class = "full">
-<a href = "activity_1/index.html">
-<button class = "press">✎</button>
-</a>
-<div class = "stars" id = "activity1-stars">☆ ☆ ☆
-</div>
-</div>
-</div>
-<div class = "row left">
-<div class = "full">
-<button class = "inactive">✎</button>
-<div class = "stars">☆ ☆ ☆
-</div>
-</div>
-</div>
-<div class = "row right">
-<div class = "full">
-<button class = "inactive">✎</button>
-<div class = "stars">☆ ☆ ☆
-</div>
-</div>
-</div>
-<div class = "row left">
-<div class = "full">
-<button class = "inactive">✎</button>
-<div class = "stars">☆ ☆ ☆
-</div>
-</div>
-</div>
-<div class = "row right">
-<div class = "full">
-<button class = "inactive">✎</button>
-<div class = "stars">☆ ☆ ☆
-</div>
-</div>
-</div>
-<div class = "row center">
-<div class = "full">
-<button class = "inactive">🜲</button>
-<div class = "stars">☆ ☆ ☆
-</div>
-</div>
-</div>
-</div>
-</body>
+    <div class = "container">
+    <div class = "question_container">
+        <div class = "unit">Unit 1</div>
+        <div class = "title">Foundations (Part 1)</div>
+        <div class = "subtitle"></div>
+        <div class = "stars"></div>
+        <div class = "go">
+            <button>Go to unit</button>
+        </div>
+    </div>
+    <div class = "question_container">
+        <div class = "unit">Unit 2</div>
+        <div class = "title">Foundations (Part 2)</div>
+        <div class = "subtitle"></div>
+        <div class = "stars"></div>
+        <div class = "go">
+            <button>Go to unit</button>
+        </div>
+    </div>
+    <div class = "question_container">
+        <div class = "unit">Unit 3</div>
+        <div class = "title">Linear Algebra</div>
+        <div class = "subtitle"></div>
+        <div class = "stars"></div>
+        <div class = "go">
+            <button>Go to unit</button>
+        </div>
+    </div>
+    </div>
+    <div class = "container">
+    <div class = "question_container">
+        <div class = "unit">Unit 4</div>
+        <div class = "title">System of Equations</div>
+        <div class = "subtitle"></div>
+        <div class = "stars"></div>
+        <div class = "go">
+            <button>Go to unit</button>
+        </div>
+    </div>
+    <div class = "question_container">
+        <div class = "unit">Unit 5</div>
+        <div class = "title">Functions & Graphs</div>
+        <div class = "subtitle"></div>
+        <div class = "stars"></div>
+        <div class = "go">
+            <button>Go to unit</button>
+        </div>
+    </div>
+    <div class = "question_container">
+        <div class = "unit">Unit 6</div>
+        <div class = "title">Advanced Math</div>
+        <div class = "subtitle"></div>
+        <div class = "stars"></div>
+        <div class = "go">
+            <button>Go to unit</button>
+        </div>
+    </div>
+    </div>
+    <div class = "container">
+    <div class = "question_container">
+        <div class = "unit">Unit 7</div>
+        <div class = "title">Data Analysis & Statistics</div>
+        <div class = "subtitle"></div>
+        <div class = "stars"></div>
+        <div class = "go">
+            <button>Go to unit</button>
+        </div>
+    </div>
+    <div class = "question_container">
+        <div class = "unit">Unit 8</div>
+        <div class = "title">Geometry & Trignometry</div>
+        <div class = "subtitle"></div>
+        <div class = "stars"></div>
+        <div class = "go">
+            <button>Go to unit</button>
+        </div>
+    </div>
+    </div>
+    
+
 
 
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
@@ -293,36 +338,7 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-auth.onAuthStateChanged(async (user) => {
-    if (!user) return;
 
-    const doc = await db.collection("users").doc(user.uid).get();
-    if (!doc.exists) return;
-
-    const data = doc.data();
-    const accuracy = data.activity_1?.accuracy || 0;
-
-    updateStars(accuracy);
-});
-
-
-
-function updateStars(accuracy){
-    let stars = "☆ ☆ ☆";
-
-    if(accuracy === 100){
-        stars = "★ ★ ★"
-    }
-
-    else if (accuracy >= 70){
-        stars = "★ ★ ☆"
-    }
-
-    else if (accuracy >= 40){
-        stars = "★ ☆ ☆"
-    }
-    document.getElementById("activity1-stars").innerText = stars;
-}
 
 firebase.auth().onAuthStateChanged(async user => {
     const colors = ["#ffb5b0", "#ffd6b0", "#f8ffb0", "#ccffb0", "#b0ffd8", "#b0ffd8", "#b0f8ff", "#b0deff", "#b0deff", "#bbb0ff", "#c5b0ff", "#e6b0ff", "#f5b8ec", "#eba9b7"]
@@ -365,6 +381,6 @@ firebase.auth().onAuthStateChanged(async user => {
     });
 
 </script>
+</body>
+
 </html>
-
-
