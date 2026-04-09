@@ -1,16 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Home</title>
-<meta name = "description" content = "Daily SAT questions! Do the easy, medium, or hard questions!">
-<link ref = "icon" href = "/favicon.ico">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cause:wght@100..900&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-<style>
-
-    ul{
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+ul{
             display: flex;
             list-style-type: none;
             margin: 0;
@@ -128,86 +125,102 @@ body{
     
 }
 
-.container{
-        justify-content: center;
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    align-items: center;
-    margin-top: 5%;
+.press{
+    background: rgb(0, 136, 136);
+    color: white;
+    border: none;
+    padding: 16px 30px;
+    font-size: 30px; 
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 6px 0 rgb(0, 85, 85);
+    font-family: "Zilla Slab", serif;
+    transition: all 0.1s ease;
+    max-width: 100px;
 }
 
-.question_container{
-                padding: 1.5em;
-                display: flex;
-                flex-direction: column;
-                background-color: white;
-                border: transparent;
-                max-width: 200px;
-                width: 100%;
-                font-family: "Zilla Slab", serif;
-                align-items: center;
-                min-height: 200px;
-                text-align: center;
-                
-            }
+.press:hover{
+    filter:brightness(1.2);
+}
 
-    
-        .go button{
-            margin-top: 10%;
-            border-radius: 999px;
-            padding: 0.5rem 1rem;
-            height: auto;
-            font-family: "Zilla Slab", serif;
-            font-size: 1rem;
-            font-weight: 600;
-            background: rgb(194, 222, 255);
-            color: rgb(0, 68, 136);
-            border: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
+.press:active{
+    transform:translateY(5px);
+    box-shadow: 0 0 0 rgb(0, 85, 85);
+}
 
-        .go button:hover{
-            transform: translateY(-5px);
-        }
-  @media (max-width: 600px){
+.inactive{
+    background: rgb(174, 174, 174);
+    color: white;
+    border: none;
+    padding: 16px 30px;
+    font-size: 30px; 
+    font-weight: bold;
+    border-radius: 50px;
+    box-shadow: 0 6px 0 rgb(78, 78, 78);
+    font-family: "Zilla Slab", serif;
+    transition: all 0.1s ease;
+    max-width: 100px;
+}
+
 .container{
-        justify-content: center;
     display: flex;
     flex-direction: column;
     gap: 20px;
     align-items: center;
-    margin-top: 5%;
+    width: 250px;
+    margin: auto;
 }
 
+.row{
+    width: 100%;
+    display: flex;
+}
 
+.left{
+    justify-content: flex-start;
+}
 
-  }
-        .stars{
-            font-family: "Zilla Slab", serif;
-        }
+.right{
+    justify-content: flex-end;
+}
 
-        .title{
-            font-size: 2rem;
-            color: rgb(0, 90, 69);
-            font-family: "Zilla Slab", serif;
-            margin-bottom: 5%;
-        }
+.full{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.center{
+    justify-content: center;
+}
+.stars{
+    font-size: 30px;
+    margin-top: 10px;
+    color:rgb(0, 85, 85);
+}
 
-        .subtitle{
-            font-family: "Zilla Slab", serif;
-            font-size: 1rem;
-            color: rgb(99, 99, 99);
-        }
+.stars span{
+    display: inline-block;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.stars span.filled{
+    color: gold;
+    transform: scale(1.3);
+}
+
+.stars span.pop{
+    animation: pop 0.3s ease;
+}
+
+@keyframes pop{
+    0%{transform: scale(0.5);}
+    50%{transform: scale(1.5);}
+    100%{transform: scale(1.3);}
+
+}
+
 </style>
-
-</head>
-<body>
-
 
 <ul>
     <li><a class = "ia" href = "/">Home</a></li>
@@ -218,16 +231,65 @@ body{
     <div class = "dropdown"></div>
     </li>
     </ul>
- <div class = "container">
-    <div class = "question_container">
-        Lesson 1
-        <div class = "title">
-            
-        </div>
-    </div>
- </div>
-    
-
+<div class = "container">
+<div class = "row left">
+<div class = "full">
+<a href = "article/index.html">
+<button class = "press">🕮</button>
+</a>
+<div class = "stars">☆ ☆ ☆
+</div>
+</div>
+</div>
+<div class = "row right">
+<div class = "full">
+<a href = "lesson_1/index.html">
+<button class = "press">✎</button>
+</a>
+<div class = "stars" id = "activity1-stars">
+<span>☆</span>
+<span>☆</span>
+<span>☆</span>
+</div>
+</div>
+</div>
+<div class = "row left">
+<div class = "full">
+<button class = "inactive">✎</button>
+<div class = "stars">☆ ☆ ☆
+</div>
+</div>
+</div>
+<div class = "row right">
+<div class = "full">
+<button class = "inactive">✎</button>
+<div class = "stars">☆ ☆ ☆
+</div>
+</div>
+</div>
+<div class = "row left">
+<div class = "full">
+<button class = "inactive">✎</button>
+<div class = "stars">☆ ☆ ☆
+</div>
+</div>
+</div>
+<div class = "row right">
+<div class = "full">
+<button class = "inactive">✎</button>
+<div class = "stars">☆ ☆ ☆
+</div>
+</div>
+</div>
+<div class = "row center">
+<div class = "full">
+<button class = "inactive">🜲</button>
+<div class = "stars">☆ ☆ ☆
+</div>
+</div>
+</div>
+</div>
+</body>
 
 
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
@@ -256,7 +318,52 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
+auth.onAuthStateChanged(async (user) => {
+    if (!user) return;
 
+    const doc = await db.collection("users").doc(user.uid).get();
+    if (!doc.exists) return;
+
+    const data = doc.data();
+    const accuracy = data.activity_1?.accuracy || 0;
+
+    updateStars(accuracy);
+});
+
+
+
+function updateStars(accuracy){
+
+    let stars = "☆ ☆ ☆";
+    const starselement = document.querySelectorAll("#activity1-stars span");
+
+    let filledCount = 0;
+
+    if(accuracy === 100){
+        filledCount = 3;
+    }
+
+    else if (accuracy >= 70){
+        filledCount = 2;
+    }
+
+    else if (accuracy >= 40){
+        filledCount = 1;
+    }
+    
+    starselement.forEach(star => {
+        star.textContent = "☆";
+        star.classList.remove("filled", "pop");
+    });
+
+    for (let i = 0; i < filledCount; i++){
+        setTimeout(() => {
+            starselement[i].textContent = "★";
+            starselement[i].classList.add("filled, pop");
+        }, i * 300);
+    }
+
+}
 
 firebase.auth().onAuthStateChanged(async user => {
     const colors = ["#ffb5b0", "#ffd6b0", "#f8ffb0", "#ccffb0", "#b0ffd8", "#b0ffd8", "#b0f8ff", "#b0deff", "#b0deff", "#bbb0ff", "#c5b0ff", "#e6b0ff", "#f5b8ec", "#eba9b7"]
@@ -299,6 +406,6 @@ firebase.auth().onAuthStateChanged(async user => {
     });
 
 </script>
-</body>
-
 </html>
+
+
