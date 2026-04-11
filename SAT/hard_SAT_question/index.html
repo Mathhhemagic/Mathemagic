@@ -1123,7 +1123,24 @@ const questions = [
 ],
     minutes: 2,
     img_question: ""
+},
+{
+    question: "In December, a shopkeeper completed 5 times the number of sales the shopkeeper completed in November. In December and November, the shopkeeper completed 600 sales. How many sales did the shopkeeper complete in December?",
+    answer: {A:"200", B:"500", C:"100", D:"75"},
+    correct: "B",
+    hint: "Set two variables: one for the sales in December, and one for the sales in November. Set the December sales equal to 5 times the variable for November sales, and create an equation",
+    steps: [
+    "Set two variables: D, for the sales in December, and N, for the sales in November",
+    "D = 5N:\n5N + N = 600",
+    "Combine like terms:\n6N = 600",
+    "Divide by 6 on both sides:\nN = 100",
+    "D = 5N:\n5(100) = 500"
+ 
+],
+    minutes: 2,
+    img_question: ""
 }
+
 ]
 
 function getDailyDate(resetHour, resetMinute){
