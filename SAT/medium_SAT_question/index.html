@@ -1259,31 +1259,16 @@ answer: {A: "7200", B: "6000", C: "1200", D: "4800"},
 },
 
 {
-    question: "The graph of the function f is shown, where y = f(x). Which of the following best describes the function f?",
-    answer: {A: "Decreasing exponential", B:"Increasing exponential", C:"Decreasing linear", D:"Increasing linear"},
+question: "The graph of the function f is shown, where y = f(x). Which of the following best describes the function f?",
+answer: {A:"Decreasing exponential", B:"Increasing exponential", C:"Decreasing linear", D:"Increasing linear"},
     correct: "B",
     hint: "The graph rapidly grows up and to the right",
     steps: [
-        "The graph rapidly grows up and to the right, meaning that it is an increasing exponential function",
-        ],
+        "The graph rapidly grows up and to the right, meaning that it is an increasing exponential function"
+],
     minutes: 1,
     img_question: "../../Images/question10.jpg"
-},
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 ]
 
@@ -1330,6 +1315,13 @@ let time = q.minutes * 60;
 let hintClicked = false;
 const img = document.getElementById("img_question");
 const imgWrapper = document.querySelector(".img_question");
+
+if (q.img_question && q.img_question.trim() !== ""){
+    img.src = q.img_question;
+    imgWrapper.style.display = "block";
+} else{
+    imgWrapper.style.display = "none";
+}
 
 
 
