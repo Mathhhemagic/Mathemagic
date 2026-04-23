@@ -1287,17 +1287,19 @@ answer: {A: "5%", B: "0.5%", C: "99.5%", D: "99.005%"},
     img_question: ""
 },
 {
-    question: "How many distinct real solutions does the equation (x - 4)² = -16?",
-    answer: {A:"Exactly one", B:"Exactly two", C:"Infinitely many", D:"Zero"},
+    question: "If (x + y) = 20, and (x - y) = 4, what is the value of (x - y)(x² - y²)?",
+    answer: {A:"1600", B:"800", C:"3200", D:"320"},
     correct: "D",
-    hint: "A real solution is a noncomplex number",
+    hint:"(x + y)(x - y) = x² - y²",
     steps: [
-        "A real solution is a noncomplex number",
-        "Square both sides: 4i and -4i on the right hand side, which are both complex numbers, meaning there are no real solutions for this equation"
-    ],
+    "Following the difference of squares, (x + y)(x - y) = x² - y²",
+    "Rewrite the equation:\n(x - y)(x + y)(x - y)",
+    "Solve:\n4 * 20 * 4",
+    "320"
+],
     minutes: 2,
     img_question: ""
-},
+}
 
 
 
