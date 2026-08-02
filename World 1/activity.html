@@ -606,6 +606,7 @@ form input:not(:disabled):focus{
                 overflow: hidden;
 
                 box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+                touch-action: none;
             }
 
             .calculator-window.show{
@@ -671,6 +672,12 @@ form input:not(:disabled):focus{
                     margin: 0;
                 }
 
+                .calculator-window{
+                    width: 90vw;
+                    height: 60vh;
+                    left: 5vw;
+                    top: 100px;
+                }
                 .math-toolbar{
                     position: relative;
                     right: auto;
@@ -723,7 +730,7 @@ form input:not(:disabled):focus{
 <div class = "login-container">
     <form id = "form">
 <div class = "math-input-row">
-<button type = "button" id = "calculator-btn">🖩</button>
+<button type = "button" id = "calculator-btn">🔢</button>
 <div class = "answer-wrapper">
    <div id = "answer-input"></div>
     <span id = "answer-suffix"></span>
@@ -1201,21 +1208,35 @@ let dragging = false;
 let offsetX = 0;
 let offsetY = 0;
 
-header.addEventListener("mousedown", (e) => {
+
+function startDrag(e){
     dragging = true;
 
-    offsetX = e.clientX - calculatorWindow.offsetLeft;
-    offsetY = e.clientY - calculatorWindow.offsetTop;
-});
+    const touch = e.touches ? e.touches[0] : e;
 
-document.addEventListener("mousemove", (e) => {
+    offsetX = touch.clientX - calculatorWindow.offsetLeft;
+    offsetY = touch.clientY - calculatorWindow.offsetTop;
+
+}
+
+function moveDrag(e){
+
     if (!dragging) return;
-
-    calculatorWindow.style.left = (e.clientX - offsetX) + "px";
+    const touch = e.touches ? e.touches[0] : e;
+calculatorWindow.style.left = (e.clientX - offsetX) + "px";
     calculatorWindow.style.top = (e.clientY - offsetY) + "px";
-})
+}
 
-document.addEventListener("mouseup", () =>{
+function stopDrag(){
     dragging = false;
-})
+}
+
+header.addEventListener("mousedown", startDrag);
+document.addEventListener("mousemove", moveDrag);
+document.addEventListener("mouseup", stopDrag);
+
+header.addEventListener("touchstart", startDrag, {passive:false});
+document.addEventListener("touchmove", moveDrag, {passive:false});
+document.addEventListener("touchend", stopDrag);
+
 </script>
