@@ -3,14 +3,24 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link ref = "icon" href = "/favicon.ico">
-
+<link rel = "icon" href = "/favicon.ico">
+<script src="https://www.desmos.com/api/v1.12/calculator.js?apiKey=546642c6c37e41b693327c59ab2685e6"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cause:wght@100..900&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libertinus+Math&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/14.6.0/math.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.min.js"></script>
 </head>
 <title>Activity 1</title>
 <meta name = "description" content = "Activity 1!">
@@ -39,6 +49,7 @@ body{
                 box-shadow:  0 0 40px grey;
                 opacity: 1;
                 margin-bottom: 2rem;
+                margin-top: 2rem;
            }
 
            .hint button:hover{
@@ -48,16 +59,19 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
     margin-top: 10rem;
 }
 .question_container{
                 padding: 1.5em;
                 display: flex;
+                flex: 1;
                 flex-direction: column;
                 background-color: white;
                 border: solid 1px black;
                 max-width: 900px;
                 width: 100%;
+                margin: 0 auto;
                 
             }
 
@@ -71,6 +85,16 @@ body{
                 height: auto;
                 margin: 0 auto;
             }
+
+            .question-row{
+                display: flex;
+                align-items: flex-start;
+                gap: 15px;
+                width: 100%;
+                max-width: 960px;
+                margin: 0 auto;
+            }
+            
            
             .question{
                 text-align:center;
@@ -92,7 +116,9 @@ body{
     box-shadow: 0 0 100px rgb(110, 136, 207);
 }
     form{
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: auto;
     width: min(400px, 100%);
     margin-top: 10%;
@@ -230,8 +256,12 @@ form input:not(:disabled):focus{
            }
            .error{
             font-family: "Libertinus Math", system-ui;
+            position: absolute;
             font-size: 1em;
             margin-top: -4%;
+            left: 10rem;
+            width: 5rem;
+            color: rgb(165, 0, 0)
            }
 
             .claim-button{
@@ -460,10 +490,184 @@ form input:not(:disabled):focus{
                 text-align: center;
             }
 
+            #answer-input{
+                width: min(500px, 100%);
+                min-width: 150px;
+                min-height: 50px;
+                background-color: rgb(255, 255, 255);
+                border: 2px solid rgb(132, 208, 255);
+                border-radius: 5px;
+                padding: 10px;
+                font-size: 2rem;
+                margin-bottom: 20%;
+                margin: 0 auto;
+            }
+
+            #answer-input:focus-within{
+                border-color: rgb(41,144,203);
+                outline: none;
+            }
+
+            .mq-editable-field{
+                width: 100%;
+                border: 2px solid rgb(0, 61, 105);
+                text-align: center;
+
+            }
+            *{
+                box-sizing: border-box;
+            }
+            .mq-disabled{
+                opacity: 0.8;
+            }
+            .math-input-row{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                max-width: 900px;
+            }
+            .math-toolbar{
+                position: absolute;
+                right: calc(50% - 260px);
+                top: 50%;
+                transform: translateY(-50%);
+                display: flex;
+                flex-direction: column-reverse;
+                align-items: center;
+                padding-top: 60px;
+            }
+
+            .math-main{
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                border: 2px solid rgb(41,144,203);
+                background: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            .answer-wrapper{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            #answer-suffix{
+                font-family: "Libertinus Math";
+                font-size: 2rem;
+                color: #333;
+            }
+
+            .math-options{
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
+                position: absolute;
+                bottom: 55px;
+                left: 0;
+                opacity: 0;
+                transform: translateY(20px);
+                pointer-events: none;
+
+                transition: 0.3s ease;
+            }
+
+            .math-options button{
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                border: 2px solid rgb(41,144,203);
+                background: white;
+                cursor: pointer;
+                font-family:"Libertinus Math";
+                font-size: 1.2rem
+            }
+            .math-toolbar:hover .math-options{
+                opacity: 1;
+                transform: translateY(0);
+                pointer-events:auto;
+            }
+
+            .calculator-window{
+
+                display: none;
+                position: fixed;
+
+                top: 120px;
+                left: 120px;
+                width: 650px;
+                height: 470px;
+
+                background: white;
+                border-radius: 15px;
+
+                overflow: hidden;
+
+                box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+            }
+
+            .calculator-window.show{
+                display:block;
+            }
+
+            .calculator-header{
+
+                height: 45px;
+                background:#0b5394;
+                color: white;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 15px;
+                cursor: move;
+                user-select: none;
+            }
+
+            .calculator{
+               width: 100%;
+               height: calc(100% - 45px);
+            }
+
+            #close-calculator{
+                background: none;
+                border: none;
+                color: white;
+                font-size: 22px;
+                cursor: pointer;
+            }
+            #calculator-btn{
+                cursor: pointer;
+                font-family: "Libertinus Math", system-ui;
+                font-size: 2em;
+                border-radius: 50px;
+                padding: 10px 30px;
+                background-color: #f7f7f7;
+                color: black;
+                border: 2px solid rgb(41,144,203);
+                position: absolute;
+                right: calc(50% + 260px);
+                top: 50%;
+               
+            }
+
+            #calculator-btn:hover{
+                transform: translateY(-3px);
+                box-shadow: 0 0 25px rgb(41,144,203);
+            }
+            
+            .row-button{
+                margin-top: 100px;
+                gap: 15px;
+                display: flex;
+                flex-direction: row;
+            }
+
 
 </style>
 <div class = "arrow">
-<a href = "../index.html">
+<a href = "./index.html">
 <button>←</button></a>
 
 </div>
@@ -473,22 +677,39 @@ form input:not(:disabled):focus{
         <div class = "battery-fill" id = "battery-fill"></div>
         <div class = "battery-text" id = "battery-text">0%</div>
 </div>
+
 <div class = "question_container">
 <div class = "question" id = "question">
 </div>
 </div>
 <div class = "login-container">
     <form id = "form">
-    <input id = "answer-input" type = "number" step = "any" placeholder = "Enter you answer:">
-    </form>
-</div>
+<div class = "math-input-row">
+<button type = "button" id = "calculator-btn">🖩</button>
+<div class = "answer-wrapper">
+   <div id = "answer-input"></div>
+    <span id = "answer-suffix"></span>
 <div class = "error">
     <p id = "error">
 
     </p>
 </div>
+
+    <div class = "math-toolbar">
+    <button type = "button" class = "math-main">+</button>
+    
+    <div class = "math-options">
+        <button type = "button" onclick = "insertPi()">π</button>
+        <button type = "button" onclick = "insertFraction()">⁄</button>
+        <button type = "button" onclick = "insertExponent()">x²</button>
+</div>
+    </div>
+</div>
+</div>
+</div>
 <div class = "hint">
 <button id = "hint">Hint</button>
+
 </div>
 <div class = "hint-explanation"></div>
 <div class = "check">
@@ -496,11 +717,12 @@ form input:not(:disabled):focus{
 </div>
 <div class ="answer-explanation"></div>
 <div class = "mascot">
-    <img src = "../../../Images/rabbit_carrot.png">
+    <img src = "../../Images/rabbit_carrot.png">
 </div>
 </div>
 </div>
 </div>
+
 <div class = "word" id = "word"></div>
 <div class = "all-cards">
     <div class = "card accuracy-card">
@@ -508,11 +730,20 @@ form input:not(:disabled):focus{
         <div class = "card-value" id = "accuracy-value">0%</div>
     </div>
     <div class = "card xp-card">
-        <div class = "card-title">XP Earned</div>
+        <div class = "card-title">Total XP Earned (out of 100)</div>
         <div class = "card-value" id = "xp-value">0</div>
     </div>
 </div>
+<div id = "calculator-window" class = "calculator-window">
+<div id = "calculator-header" class = "calculator-header">
+    <span>Calculator</span>
+    <button id = "close-calculator" type = "button">✕</button>
+</div>
 
+<div id = "calculator" class = "calculator"></div>
+
+
+</div> 
 
 
 
@@ -521,7 +752,6 @@ form input:not(:disabled):focus{
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script>
-
 const firebaseConfig = {
 
   apiKey: "AIzaSyDRjjvLABEFL-PgbChUFNZW6u38U6c7jP4",
@@ -538,147 +768,112 @@ const firebaseConfig = {
 
 };
 
+    const calculatorButton = document.getElementById("calculator-btn");
+
+    calculatorButton.onclick = () => {
+        calculatorWindow.classList.add("show");
+    };
+
+    var elt = document.getElementById('calculator');
+    var calculator = Desmos.GraphingCalculator(elt);
+
+    const calculatorWindow = document.getElementById("calculator-window");
+
+    calculatorButton.onclick = () => {
+        calculatorWindow.classList.add("show");
+    }
+
+    const closeCalculator = document.getElementById("close-calculator");
+
+    closeCalculator.onclick = () => {
+        calculatorWindow.classList.remove("show");
+    }
+    
 
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
-const questions = 
+const params = new URLSearchParams(window.location.search);
+const lessonNumber = params.get("lesson");
 
-[
-{
-    question: "Solve for x:\n10x + 4 = 44",
-    correct: "4",
-    hint: "Start off by subtracting by 4 on both sides",
-    steps: [
-    "Subtract by 4 on both sides:\n10x = 40",
-    "Divide by 10 on both sides:\nx = 4"
-    ],
-    img_question: ""
-},
 
-{
-    question: "Solve for x:\n2(x + 3) = 56",
-    correct: "25",
-    hint: "Start by distributing the coefficient 2 to each of the terms",
-    steps: [
-    "Distribute the coefficient 2 to each of the terms:\n2x + 6 = 56",
-    "Subtract by 6 on both sides:\n2x = 50",
-    "Divide by 2 on both sides:\nx = 25"
-    ],
-    img_question: ""
-},
-{
-    question: "Solve for x:\n4(5x + 5) = 120",
-    correct: "5",
-    hint: "Start by distributing the coefficient 4 to each of the terms",
-    steps: [
-    "Distribute the coefficient 4 to each of the terms:\n4 * 5x + 4 * 5 = 120\n20x + 20 = 120",
-    "Subtract by 20 on both sides:\n20x = 100",
-    "Divide by 20 on both sides:\nx = 5"
-    ],
-    img_question: ""
-},
-{
-    question: "Solve for x:\n24x + 23 = 2x + 45",
-    correct: "1",
-    hint: "Start by combining like terms (Constants on one side, variables on the other side)",
-    steps: [
-    "Subtract by 23 on both sides:\n24x = 2x + 22",
-    "Subtract by 2x on both sides:\n22x = 22",
-    "Divide by 1 on both sides:\nx = 1"
-    ],
-    img_question: ""
-},
-{
-    question: "Solve for x:\n3(x + 10) = 4x",
-    correct: "30",
-    hint: "Start by distributing the coefficient 3 to each of the terms",
-    steps: [
-    "Start by distributing the coefficient 3 to each of the terms:\n3x + 30 = 4x",
-    "Subtract by 3x on both sides:\nx = 30"
-    ],
-    img_question: ""
-},
-{
-    question: "Solve for x:\n10x + 10 = 2x + 98",
-    correct: "11",
-    hint: "Start by combining like terms (Constants on one side, variables on the other side)",
-    steps: [
-    "Start by combining like terms (Constants on one side, variables on the other side):\n8x = 88",
-    "Divide by 8 on both sides:\nx = 11",
-    "Divide by 3 on both sides\n:x = 10"
-    ],
-    img_question: ""
-},
-{
-    question: "Solve for x:\n10x + 15 = 110x (As a decimal)",
-    correct: "0.15",
-    hint: "Start by subtracting by 10x on both sides",
-    steps: [
-    "Start by subtracting by 10x on both sides:\n15 = 100x",
-    "Divide by 100 on both sides:\nx = 15/100, 0.15, or 3/20",
-    ],
-    img_question: ""
-},
-{
-    question: "Solve for x:\n10(x + 4) = 24x + 12",
-    correct: "2",
-    hint: "Start by distributing the coefficient 10 to each of the terms",
-    steps: [
-    "Start by distributing the coefficient 10 to each of the terms:\n10x + 40 = 24x + 12",
-    "Combine like terms (Constant on one side, variables on the other side):\n28 = 14x",
-    "Divide by 14 on both sides:\nx = 2"
-    ],
-    img_question: ""
-},
-{
-    question: "Solve for x:\n100x + 25 = 75",
-    correct: "0.5",
-    hint: "Start by subtracting by 25 on both sides",
-    steps: [
-    "Subtract by 25 on both sides:\n100x = 50",
-    "Divide by 100 on both sides:\nx = 0.5, 50/100, ½",
-    ],
-    img_question: ""
-},
-{
-    question: "Solve for x:\n22x + 82 = 20x + 120",
-    correct: "19",
-    hint: "Start by combining like terms (Constants on one side, variables on the other side)",
-    steps: [
-    "Combine like terms (Constants on one side, variables on the other side):\n2x = 38",
-    "Divide by 2 on both sides:\nx = 19",
-    ],
-    img_question: ""
+let questions;
+function startActivity(){
+    questions = lessonQuestions;
+    totalQuestions = questions.length;
+    loadQuestion();
 }
 
 
-];
-
+let submitted = false;
 const question = document.getElementById("question");
-const answerInput = document.getElementById("answer-input");
+const answerDiv = document.getElementById("answer-input");
+const MQ = MathQuill.getInterface(2);
+const answerInput = MQ.MathField(answerDiv, {
+    handlers:{
+        edit(){
+            let latex = answerInput.latex();
+            console.log(latex);
+            err.innerText = "";
+        },
+        enter(){
+            handleAnswer();
+        }
+    }
+});
 const submitButton = document.getElementById("submit-answer");
 const hintButton = document.getElementById("hint");
 const hintExplanation = document.querySelector(".hint-explanation");
 const steps = document.querySelector(".answer-explanation")
+const err = document.getElementById("error")
 let correctAnswers = 0;
 let wrongAnswers = 0;
-let totalQuestions = questions.length;
+let totalQuestions = 0;
 document.getElementById("form").addEventListener("submit", function(e){
     e.preventDefault();
     handleAnswer();
 })
 
+function insertPi(){
+    answerInput.write("\\pi");
+    answerInput.focus();
+}
 
-submitButton.addEventListener("click", handleAnswer)
+function insertFraction(){
+    answerInput.cmd("\\frac");
+    answerInput.focus();
+}
+
+function insertExponent(){
+    answerInput.write("^{}");
+    answerInput.keystroke("LEFT");
+    answerInput.focus();
+}   
+
+
 
 let currentIndex = 0;
 let hintShown = false;
 let points = 0;
 
 function loadQuestion(){
+    submitted = false;
+    answerInput.el().style.pointerEvents = "auto";
+    answerInput.el().classList.remove("mq-disabled");
+    answerInput.el().style.pointerEvents = "auto";
+    answerInput.focus();
+    answerDiv.style.backgroundColor = "white";
     hintShown = false;
     const q = questions[currentIndex];
+
+    const suffix = document.getElementById("answer-suffix");
+    if (q.answerSuffix){
+        suffix.textContent = q.answerSuffix;
+        suffix.style.display = "block";
+    }
+    else{
+        suffix.style.display = "none";
+    }
     question.classList.remove("show")
     setTimeout(() => {
         question.innerText = q.question;
@@ -687,10 +882,10 @@ function loadQuestion(){
     hintExplanation.innerText = "";
     hintExplanation.classList.remove("visible");
     steps.innerHTML = "";
-    answerInput.value = "";
-    answerInput.disabled = false;
+    steps.classList.remove("visible");
+    answerInput.latex("");
     submitButton.disabled = false;
-    answerInput.style.borderColor = "white";
+    answerDiv.style.borderColor = "rgb(132, 208, 255)";
     updateHintButton();
 }
 
@@ -714,7 +909,7 @@ function nextQuestion(){
     if(currentIndex < questions.length - 1){
         currentIndex++;
         loadQuestion();
-        answerInput.style.backgroundColor = "white";
+        answerDiv.style.backgroundColor = "white";
 
     }
     else{
@@ -722,35 +917,99 @@ function nextQuestion(){
     }
 }
 let awaitingNext = false;
-const err = document.getElementById("error")
-    answerInput.addEventListener("input", () => {
-        err.innerText = "";
-    });
+
+
+
+function evaluateLatex(latex, scope = {}){
+latex = latex.replace(/\\ /g, "");
+latex = latex.replace(/\s+/g, "");
+latex = latex.replace(/(\d+)\\frac\{([^}]*)\}\{([^}]*)\}/g,
+        "($1+($2/$3))"
+    );
+latex = latex.replace( /\\frac\{([^}]*)\}\{([^}]*)\}/g,
+        "(($1)/($2))")
+
+
+latex = latex.replace(/\\cdot/g, "*").replace(/\^/g, "**");
+return math.evaluate(latex, scope);
+}
 function handleAnswer(){
-    if (awaitingNext){
-        hintButton.disabled = true;
-        nextQuestion();
-        submitButton.innerText = "Check"
-        submitButton.style.borderColor = "rgb(2, 126, 0)";
-        submitButton.classList.remove("next");
+  if (awaitingNext){
+    nextQuestion();
+    submitButton.innerText = "Check";
+    submitButton.style.borderColor = "rgb(2, 126, 0)";
+    submitButton.classList.remove("next");
 
-        awaitingNext = false;
-        return;
-        }
+    awaitingNext = false;
+    submitted = false;
+    return;
 
+
+  }
+   if (submitted) return;
 
     
     const q = questions[currentIndex];
-    const userAnswer = answerInput.value.trim();
+    const userAnswer = answerInput.latex();
+    
+
+
     if (userAnswer === ""){
         err.innerText = "Please enter an answer!"
+        err.style.fontFamily = "'Libertinus Math', system-ui";
                 return;
     }
 
-    answerInput.disabled = true;
-    if(parseFloat(userAnswer) === parseFloat(q.correct)){
-        answerInput.classList.add("correct");
-        setTimeout(() => answerInput.classList.remove("correct"), 400);
+    if (q.type === "arithmetic"){
+        let checkLetters = userAnswer.replace(/\\frac/g, "").replace(/\\pi/g, "").replace(/\\sqrt/g, "").replace(/[{}]/g, "");
+
+        if(/[a-zA-Z]/.test(checkLetters)){
+            err.innerText = "Letters are not allowed in this lesson";
+            return;
+        }
+    }
+
+    answerInput.el().style.pointerEvents = "auto";
+    let userValue;
+    let correctValue;
+
+
+
+    if (q.correct.includes(":")){
+        const normalize = str => str.replace(/\s+/g, "").replace(/\{/g,"").replace(/\}/g, "");
+
+        if (normalize(userAnswer) === normalize(q.correct)){
+            userValue = 1;
+            correctValue = 1;
+        }
+        else{
+            userValue= 0;
+            correctValue = 1;
+        }
+    }
+    else{
+    
+    try{
+        if (q.type === "algebra"){
+            userValue = evaluateLatex(userAnswer, {[q.variable]: Number(q.answer)});
+
+        }
+        else{
+            userValue = evaluateLatex(userAnswer);
+        }
+        correctValue = evaluateLatex(q.correct);
+    }
+    catch{
+        err.innerText = "Invalid math expression";
+        return;
+    
+    }
+    }
+
+
+    if(Math.abs(userValue - correctValue) < 1e-10){
+        answerDiv.classList.add("correct");
+        setTimeout(() => answerDiv.classList.remove("correct"), 400);
         points += 10;
         correctAnswers++;
 
@@ -782,19 +1041,23 @@ setTimeout(() => battery.classList.remove("pop"), 300);
         }
       
         
-        answerInput.style.borderColor = "rgb(48, 133, 24, 0.3)";
+        answerDiv.style.borderColor = "rgb(48, 133, 24, 0.3)";
     }
     else{
-        answerInput.classList.add("wrong");
-        setTimeout(() => answerInput.classList.remove("wrong"), 400);
+        answerDiv.classList.add("wrong");
+        setTimeout(() => answerDiv.classList.remove("wrong"), 400);
         wrongAnswers++;
-        answerInput.style.borderColor = "rgb(135, 24, 24, 0.3)";
+        answerDiv.style.borderColor = "rgb(135, 24, 24, 0.3)";
         const correct = document.createElement("p");
         correct.innerText = `Correct answer: ${q.correct}`;
         correct.style.color = "green";
         steps.appendChild(correct);
     }
-
+    submitted = true;
+    answerInput.blur();
+    answerInput.el().classList.add("mq-disabled");
+    answerInput.el().style.pointerEvents = "none";
+    answerDiv.style.backgroundColor = "rgba(200,200,200,0.3)";
     showSteps(q);
     hintButton.disabled = true;
 
@@ -827,16 +1090,37 @@ function showEndCard(){
   document.querySelector(".mascot img").style.display = "flex";
 
     document.getElementById("accuracy-value").innerText = accuracy + "%";
-document.getElementById("xp-value").innerText = points;
   const user = auth.currentUser;
     if(user){
         const userRef = db.collection("users").doc(user.uid);
-        userRef.set({
-           activity_1: {
-            accuracy: accuracy
+        userRef.get().then((doc) => {
+            let oldXP = 0;
+            let oldAccuracy = 0;
+            let oldActivity = null;
+            if(doc.exists){
+                oldActivity = doc.data()[`activity_${lessonNumber}`];
+            }
+
+            if (oldActivity){
+              oldXP = oldActivity.xp || 0;
+              oldAccuracy = oldActivity.accuracy || 0;
+            }
+            
+            const finalXP = Math.max(points, oldXP);
+            const finalAccuracy = Math.max(accuracy, oldAccuracy);
+
+            document.getElementById("xp-value").innerText = finalXP;
+        return userRef.set({
+           [`activity_${lessonNumber}`]: {
+            accuracy: Math.max(accuracy, oldAccuracy),
+            xp: Math.max(points, oldXP),
+            completed: true
            }
         }, {merge: true});
-    }
+    });
+    
+}
+
 if (accuracy === 100){
         document.getElementById("word").innerText = "Perfect!"
 
@@ -858,9 +1142,42 @@ else{
         document.getElementById("word").innerText = "Try again!"
 
 }
-    
-    
-}
+}    
 
-loadQuestion();
+
+const script = document.createElement("script");
+script.src = `lesson_${lessonNumber}/questions.js`;
+
+script.onload = () => {
+    startActivity();
+};
+
+script.onerror = () => {
+    console.error("Failed to load:", script.src)
+}
+document.head.appendChild(script);
+
+
+const header = document.getElementById("calculator-header");
+let dragging = false;
+let offsetX = 0;
+let offsetY = 0;
+
+header.addEventListener("mousedown", (e) => {
+    dragging = true;
+
+    offsetX = e.clientX - calculatorWindow.offsetLeft;
+    offsetY = e.clientY - calculatorWindow.offsetTop;
+});
+
+document.addEventListener("mousemove", (e) => {
+    if (!dragging) return;
+
+    calculatorWindow.style.left = (e.clientX - offsetX) + "px";
+    calculatorWindow.style.top = (e.clientY - offsetY) + "px";
+})
+
+document.addEventListener("mouseup", () =>{
+    dragging = false;
+})
 </script>

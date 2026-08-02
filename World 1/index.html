@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cause:wght@100..900&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libertinus+Math&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
@@ -115,6 +121,47 @@ flex-direction: column;
 .icon:hover .dropdown, .icon .dropdown:hover{
     display: flex;
 }
+.arrow button{
+                cursor: pointer;
+                font-family: "Libertinus Math", system-ui;
+                font-size: 2rem;
+                border-radius: 50%;
+                border: 2px solid transparent;
+                box-shadow: 0 0 40px grey;
+                margin-bottom: 2%;
+                background-color: white;
+                font-weight: bold;
+                color: #0b5394;
+                font-weight: bold;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 4rem;
+                width: 4rem;
+                padding: 0;
+                font-size: 2rem;
+                border-radius: 50%;
+                appearance: none;
+                -webkit-appearance: none;
+}
+.arrow{
+     position: sticky;
+                top: 80px;
+                left: 1rem;
+                z-index: 500;
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+                margin-left: 1.5rem;
+            }
+
+
+
+            .arrow button:hover{
+                color:#0b5394;
+                box-shadow: 0 0 40px #0b5394;
+                transform: translateY(-4px);
+            }
+
 body{
     min-height: 100vh;
        background-color: rgb(249, 249, 249);
@@ -123,6 +170,11 @@ body{
         linear-gradient(90deg,rgba(0,0,0,0.035) 1px, transparent 1px);
      background-size: 40px 40px;
     
+}
+
+html, body{
+    margin: 0;
+    padding: 0;
 }
 
 .press{
@@ -231,19 +283,23 @@ body{
     <div class = "dropdown"></div>
     </li>
     </ul>
+    <div class = "arrow">
+            <a href = "../Lessons/">
+            <button>←
+            </button>
+            </a>
+            </div>
 <div class = "container">
 <div class = "row left">
 <div class = "full">
-<a href = "article/index.html">
+<a href = "./article.html?article=1">
 <button class = "press">🕮</button>
 </a>
-<div class = "stars">☆ ☆ ☆
-</div>
 </div>
 </div>
 <div class = "row right">
 <div class = "full">
-<a href = "lesson_1/index.html">
+<a href = "./activity.html?lesson=1">
 <button class = "press">✎</button>
 </a>
 <div class = "stars" id = "activity1-stars">
@@ -253,39 +309,145 @@ body{
 </div>
 </div>
 </div>
+<div class = "container">
 <div class = "row left">
 <div class = "full">
-<button class = "inactive">✎</button>
-<div class = "stars">☆ ☆ ☆
-</div>
+<a id = "article2-link" href = "./article.html?article=2">
+<button id = "article2" class = "inactive">🕮</button>
+</a>
 </div>
 </div>
 <div class = "row right">
 <div class = "full">
-<button class = "inactive">✎</button>
-<div class = "stars">☆ ☆ ☆
+<a id = "lesson2-link" href = "../activity.html?lesson=2">
+<button id = "lesson2" class = "inactive">✎</button>
+</a>
+<div class = "stars" id = "activity2-stars">
+<span>☆</span>
+<span>☆</span>
+<span>☆</span>
 </div>
 </div>
 </div>
+<div class = "container">
 <div class = "row left">
 <div class = "full">
-<button class = "inactive">✎</button>
-<div class = "stars">☆ ☆ ☆
-</div>
+<a id = "article3-link" href = "./article.html?article=3">
+<button id = "article3" class = "inactive">🕮</button>
+</a>
 </div>
 </div>
 <div class = "row right">
 <div class = "full">
-<button class = "inactive">✎</button>
-<div class = "stars">☆ ☆ ☆
+<a id = "lesson3-link" href = "./activity.html?lesson=3">
+<button id = "lesson3" class = "inactive">✎</button>
+</a>
+<div class = "stars" id = "activity3-stars">
+<span>☆</span>
+<span>☆</span>
+<span>☆</span>
+</div>
+</div>
+</div><div class = "container">
+<div class = "row left">
+<div class = "full">
+<a id = "article4-link">
+<button id = "article4" class = "inactive">🕮</button>
+</a>
+</div>
+</div>
+<div class = "row right">
+<div class = "full">
+<a id = "lesson4-link" href = "../activity.html?lesson=4">
+<button id = "lesson4" class = "inactive">✎</button>
+</a>
+<div class = "stars" id = "activity4-stars">
+<span>☆</span>
+<span>☆</span>
+<span>☆</span>
+</div>
+</div>
+</div><div class = "container">
+<div class = "row left">
+<div class = "full">
+<a id = "article5-link">
+<button id = "article5" class = "inactive">🕮</button>
+</a>
+</div>
+</div>
+<div class = "row right">
+<div class = "full">
+<a id = "lesson5-link" href = "../activity.html?lesson=5">
+<button id = "lesson5" class = "inactive">✎</button>
+</a>
+<div class = "stars" id = "activity5-stars">
+<span>☆</span>
+<span>☆</span>
+<span>☆</span>
+</div>
+</div>
+</div><div class = "container">
+<div class = "row left">
+<div class = "full">
+<a id = "article6-link">
+<button id = "article6" class = "inactive">🕮</button>
+</a>
+</div>
+</div>
+<div class = "row right">
+<div class = "full">
+<a id = "lesson6-link" href = "../activity.html?lesson=6">
+<button id = "lesson6" class = "inactive">✎</button>
+</a>
+<div class = "stars" id = "activity6-stars">
+<span>☆</span>
+<span>☆</span>
+<span>☆</span>
+</div>
+</div>
+</div><div class = "container">
+<div class = "row left">
+<div class = "full">
+<a id = "article7-link">
+<button id = "article7" class = "inactive">🕮</button>
+</a>
+</div>
+</div>
+<div class = "row right">
+<div class = "full">
+<a id = "lesson7-link" href = "../activity.html?lesson=7">
+<button id = "lesson7" class = "inactive">✎</button>
+</a>
+<div class = "stars" id = "activity7-stars">
+<span>☆</span>
+<span>☆</span>
+<span>☆</span>
+</div>
+</div>
+</div><div class = "container">
+<div class = "row left">
+<div class = "full">
+<a id = "article8-link">
+<button id = "article8" class = "inactive">🕮</button>
+</a>
+</div>
+</div>
+<div class = "row right">
+<div class = "full">
+<a id = "lesson8-link">
+<button id = "lesson8" class = "inactive">✎</button>
+</a>
+<div class = "stars" id = "activity8-stars">
+<span>☆</span>
+<span>☆</span>
+<span>☆</span>
 </div>
 </div>
 </div>
 <div class = "row center">
 <div class = "full">
 <button class = "inactive">🜲</button>
-<div class = "stars">☆ ☆ ☆
-</div>
+
 </div>
 </div>
 </div>
@@ -325,17 +487,38 @@ auth.onAuthStateChanged(async (user) => {
     if (!doc.exists) return;
 
     const data = doc.data();
-    const accuracy = data.activity_1?.accuracy || 0;
+    const accuracies = []
+    const world = data.world1 || {};
+    for (let i = 1; i <= 8; i++){
+        accuracies[i] = world[`activity_${i}`]?.accuracy ||0
+    }
 
-    updateStars(accuracy);
-});
+    for (let i = 1; i <=8; i++){
+        updateStars(i, accuracies[i]);
+    }
+
+
+    for (let i = 1; i < 8; i++){
+
+        if (accuracies[i] >= 70){
+            const nextLesson = i + 1
+
+            document.getElementById(`article${nextLesson}`).className = "press";
+        document.getElementById(`lesson${i + 1}`).className = "press";
+
+        document.getElementById(`article${nextLesson}-link`).href = `./article.html?article=${nextLesson}`;
+
+        document.getElementById(`lesson${nextLesson}-link`).href = `./activity.html?lesson=${nextLesson}`;
+            console.log("Accuracies: ", accuracies)
+    }
+}});
 
 
 
-function updateStars(accuracy){
+function updateStars(lesson, accuracy){
 
     let stars = "☆ ☆ ☆";
-    const starselement = document.querySelectorAll("#activity1-stars span");
+    const starselement = document.querySelectorAll(`#activity${lesson}-stars span`);
 
     let filledCount = 0;
 
@@ -359,10 +542,11 @@ function updateStars(accuracy){
     for (let i = 0; i < filledCount; i++){
         setTimeout(() => {
             starselement[i].textContent = "★";
-            starselement[i].classList.add("filled, pop");
+            starselement[i].classList.add("filled", "pop");
         }, i * 300);
     }
 
+   
 }
 
 firebase.auth().onAuthStateChanged(async user => {
