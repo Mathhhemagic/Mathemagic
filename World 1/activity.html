@@ -606,7 +606,7 @@ form input:not(:disabled):focus{
                 overflow: hidden;
 
                 box-shadow: 0 10px 35px rgba(0,0,0,0.25);
-                touch-action: none;
+            
             }
 
             .calculator-window.show{
@@ -624,6 +624,7 @@ form input:not(:disabled):focus{
                 padding: 0 15px;
                 cursor: move;
                 user-select: none;
+                  touch-action: none;
             }
 
             .calculator{
@@ -641,7 +642,8 @@ form input:not(:disabled):focus{
             #calculator-btn{
                 cursor: pointer;
                 font-family: "Libertinus Math", system-ui;
-                font-size: 2em;
+                font-size: 1em;
+                font-weight: bold;
                 border-radius: 50px;
                 padding: 10px 30px;
                 background-color: #f7f7f7;
@@ -730,7 +732,7 @@ form input:not(:disabled):focus{
 <div class = "login-container">
     <form id = "form">
 <div class = "math-input-row">
-<button type = "button" id = "calculator-btn">🔢</button>
+<button type = "button" id = "calculator-btn">+ ×<br>÷ -</button>
 <div class = "answer-wrapper">
    <div id = "answer-input"></div>
     <span id = "answer-suffix"></span>
@@ -1214,17 +1216,20 @@ function startDrag(e){
 
     const touch = e.touches ? e.touches[0] : e;
 
-    offsetX = touch.clientX - calculatorWindow.offsetLeft;
-    offsetY = touch.clientY - calculatorWindow.offsetTop;
+    const rect = calculatorWindow.getBoundingClientRect();
+    offsetX = touch.clientX - rect.left;
+    offsetY = touch.clientY - rect.top;
 
 }
 
 function moveDrag(e){
 
     if (!dragging) return;
+
+    e.preventDefault();
     const touch = e.touches ? e.touches[0] : e;
-calculatorWindow.style.left = (e.clientX - offsetX) + "px";
-    calculatorWindow.style.top = (e.clientY - offsetY) + "px";
+calculatorWindow.style.left = (touch.clientX - offsetX) + "px";
+    calculatorWindow.style.top = (touch.clientY - offsetY) + "px";
 }
 
 function stopDrag(){
