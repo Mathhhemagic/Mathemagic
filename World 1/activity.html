@@ -49,7 +49,7 @@ body{
                 box-shadow:  0 0 40px grey;
                 opacity: 1;
                 margin-bottom: 2rem;
-                margin-top: 2rem;
+
            }
 
            .hint button:hover{
@@ -72,6 +72,7 @@ body{
                 max-width: 900px;
                 width: 100%;
                 margin: 0 auto;
+             
                 
             }
 
@@ -123,7 +124,7 @@ body{
     width: min(400px, 100%);
     margin-top: 10%;
     font-family: "Zilla Slab", serif;
-    margin-bottom: 20%;
+    margin-bottom: 5%;
 }
 
 form input{
@@ -491,7 +492,7 @@ form input:not(:disabled):focus{
             }
 
             #answer-input{
-                width: min(500px, 100%);
+                width: 500px;
                 min-width: 150px;
                 min-height: 50px;
                 background-color: rgb(255, 255, 255);
@@ -499,8 +500,7 @@ form input:not(:disabled):focus{
                 border-radius: 5px;
                 padding: 10px;
                 font-size: 2rem;
-                margin-bottom: 20%;
-                margin: 0 auto;
+
             }
 
             #answer-input:focus-within{
@@ -525,17 +525,17 @@ form input:not(:disabled):focus{
                 align-items: center;
                 justify-content: center;
                 gap: 10px;
+                width: 100%;
                 max-width: 900px;
+                margin: 0 auto;
             }
             .math-toolbar{
-                position: absolute;
-                right: calc(50% - 260px);
-                top: 50%;
-                transform: translateY(-50%);
+                position: relative;
                 display: flex;
                 flex-direction: column-reverse;
                 align-items: center;
-                padding-top: 60px;
+                padding-top: 40px;
+                flex-shrink: 0;
             }
 
             .math-main{
@@ -546,12 +546,13 @@ form input:not(:disabled):focus{
                 background: white;
                 font-size: 1.5rem;
                 cursor: pointer;
+                transform: translateY(-18px);
             }
             .answer-wrapper{
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                gap: 10px;
+                gap: 15px;
             }
 
             #answer-suffix{
@@ -565,7 +566,7 @@ form input:not(:disabled):focus{
                 flex-direction: row;
                 gap: 10px;
                 position: absolute;
-                bottom: 55px;
+                bottom: 65px;
                 left: 0;
                 opacity: 0;
                 transform: translateY(20px);
@@ -649,9 +650,7 @@ form input:not(:disabled):focus{
                 background-color: #f7f7f7;
                 color: black;
                 border: 2px solid rgb(41,144,203);
-                position: absolute;
-                right: calc(50% + 260px);
-                top: 50%;
+                flex-shrink: 0;
                
             }
 
@@ -710,6 +709,7 @@ form input:not(:disabled):focus{
                     align-items: center;
                     justify-content: center;
                     gap: 8px;
+                    width: 100%;
                 }
             }
 </style>
@@ -726,8 +726,8 @@ form input:not(:disabled):focus{
 </div>
 
 <div class = "question_container">
-<div class = "question" id = "question">
-</div>
+<div class = "question" id = "question"></div>
+<div class = "img_question" id = "img_question"></div>
 </div>
 <div class = "login-container">
     <form id = "form">
@@ -863,11 +863,9 @@ const answerInput = MQ.MathField(answerDiv, {
             console.log(latex);
             err.innerText = "";
         },
-        enter(){
-            handleAnswer();
-        }
     }
 });
+
 const submitButton = document.getElementById("submit-answer");
 const hintButton = document.getElementById("hint");
 const hintExplanation = document.querySelector(".hint-explanation");
@@ -892,8 +890,7 @@ function insertFraction(){
 }
 
 function insertExponent(){
-    answerInput.write("^{}");
-    answerInput.keystroke("LEFT");
+    answerInput.cmd("^");
     answerInput.focus();
 }   
 
@@ -902,6 +899,7 @@ function insertExponent(){
 let currentIndex = 0;
 let hintShown = false;
 let points = 0;
+let activityEnded = false;
 
 function loadQuestion(){
     submitted = false;
@@ -912,7 +910,16 @@ function loadQuestion(){
     answerDiv.style.backgroundColor = "white";
     hintShown = false;
     const q = questions[currentIndex];
+    const imgQuestion = document.getElementById("img_question");
 
+    if (q.img_question){
+        imgQuestion.innerHTML = `<img src = "${q.img_question}" alt = "Question image">`;
+        imgQuestion.style.display = "block";
+    }
+    else{
+        imgQuestion.innerHTML = "";
+        imgQuestion.style.display = "none";
+    }
     const suffix = document.getElementById("answer-suffix");
     if (q.answerSuffix){
         suffix.textContent = q.answerSuffix;
@@ -968,17 +975,76 @@ let awaitingNext = false;
 
 
 function evaluateLatex(latex, scope = {}){
-latex = latex.replace(/\\ /g, "");
-latex = latex.replace(/\s+/g, "");
-latex = latex.replace(/(\d+)\\frac\{([^}]*)\}\{([^}]*)\}/g,
-        "($1+($2/$3))"
-    );
-latex = latex.replace( /\\frac\{([^}]*)\}\{([^}]*)\}/g,
-        "(($1)/($2))")
+latex = latex.replace(/\\left|\\right/g, "").replace(/\\ /g, "").replace(/\s+/g, "");
 
 
-latex = latex.replace(/\\cdot/g, "*").replace(/\^/g, "**");
-return math.evaluate(latex, scope);
+latex = latex.replace(/\\cdot/g, "*").replace(/\\times/g, "*").replace(/\\div/g, "/").replace(/\\pi/g, "pi");
+
+latex = latex.replace(/(\d+)\\frac\{([^{}]*)\}\{([^{}]*)\}/g, "($1+($2)/($3))");
+
+latex = latex.replace(/\\sqrt\{([^{}]*)\}/g, "sqrt($1)");
+
+latex = latex.replace(/\\frac\{([^{}]*)\}\{([^{}]*)\}/g, "(($1)/($2))");
+
+latex = latex.replace(/\^/g, "^");
+
+latex = latex.replace(/(\d)([a-zA-Z])/g, "$1*$2");
+
+latex = latex.replace(/(\d)\(/g, "$1*(");
+
+latex = latex.replace(/([a-zA-Z])\(/g, "$1*(");
+
+
+latex = latex.replace(/\)\(([a-zA-Z])/g, ")*$1");
+
+latex = latex.replace(/([a-zA-Z])([a-zA-Z])/g, "$1*$2");
+
+
+return math.evaluate(latex,scope);
+}
+
+
+function evaluateLatexExpression(latex){
+    latex = latex.replace(/\\left|\\right/g, "").replace(/\\ /g, "").replace(/\s+/g, "");
+    latex = latex.replace(/\\cdot/g, "*").replace(/\\times/g, "*").replace(/\\div/g, "/").replace(/\\pi/g, "pi");
+
+latex = latex.replace(/(\d+)\\frac\{([^{}]*)\}\{([^{}]*)\}/g, "($1+($2)/($3))");
+
+latex = latex.replace(/\\sqrt\{([^{}]*)\}/g, "sqrt($1)");
+
+latex = latex.replace(/\\frac\{([^{}]*)\}\{([^{}]*)\}/g, "(($1)/($2))");
+
+
+latex = latex.replace(/(\d)([a-zA-Z])/g, "$1*$2");
+
+latex = latex.replace(/(\d)\(/g, "$1*(");
+
+latex = latex.replace(/([a-zA-Z])\(/g, "$1*(");
+
+latex = latex.replace(/\)\(/g, ")*(");
+
+return math.parse(latex)
+}
+
+function checkInequality(userAnswer, correctAnswer){
+    userAnswer = userAnswer.replace(/\\geq|\\ge/g, ">=").replace(/\\leq|\\le/g, "<=").replace(/\\gt/g, ">").replace(/\\lt/g, "<").replace(/\s+/g, "").replace(/−/g, "-");
+
+    correctAnswer = correctAnswer.replace(/\\geq|\\ge/g, ">=").replace(/\\leq|\\le/g, "<=").replace(/\\gt/g, ">").replace(/\s+/g, "").replace(/\\lt/g, "<").replace(/−/g, "-");
+    return userAnswer === correctAnswer;
+}
+
+function checkCoordinate(userAnswer, correctAnswer){
+    userAnswer = userAnswer.replace(/\\left|\\right/g, "").replace(/\\ /g, "").replace(/\s+/g, "").replace(/[{}]/g, "");
+correctAnswer = correctAnswer.replace(/\\left|\\right/g, "").replace(/\\ /g, "").replace(/\s+/g, "").replace(/[{}]/g, "");
+  
+const userMatch = userAnswer.match(/\((.*?),(.*?)\)/);
+const correctMatch = correctAnswer.match(/\((.*?),(.*?)\)/);
+
+if (!userMatch || !correctMatch) return false;
+
+return math.evaluate(userMatch[1]) === math.evaluate(correctMatch[1]) &&
+math.evaluate(userMatch[2]) === math.evaluate(correctMatch[2]);
+
 }
 function handleAnswer(){
   if (awaitingNext){
@@ -1008,7 +1074,7 @@ function handleAnswer(){
     }
 
     if (q.type === "arithmetic"){
-        let checkLetters = userAnswer.replace(/\\frac/g, "").replace(/\\pi/g, "").replace(/\\sqrt/g, "").replace(/[{}]/g, "");
+        let checkLetters = userAnswer.replace(/\\frac/g, "").replace(/\\pi/g, "").replace(/\\sqrt/g, "").replace(/[{}]/g, "").replace(/\\cdot/g, "").replace(/\\times/g, "").replace(/\\div/g, "")
 
         if(/[a-zA-Z]/.test(checkLetters)){
             err.innerText = "Letters are not allowed in this lesson";
@@ -1037,14 +1103,49 @@ function handleAnswer(){
     else{
     
     try{
-        if (q.type === "algebra"){
-            userValue = evaluateLatex(userAnswer, {[q.variable]: Number(q.answer)});
+        if (q.correct.includes(",")){
+            if(checkCoordinate(userAnswer, q.correct)){
+                userValue = 1;
+                correctValue = 1;
+            }
+            else{
+                userValue = 0;
+                correctValue = 1;
+            }
+        }
+        else if (q.type === "inequality"){
+            if (checkInequality(userAnswer, q.correct)){
+                userValue = 1;
+                correctValue = 1;
+            }
 
+            else{
+                userValue = 0;
+                correctValue = 1;
+            }
         }
+
+
+        else if (q.type === "algebra"){
+          const userExpression = evaluateLatexExpression(userAnswer);
+          const correctExpression = evaluateLatexExpression(q.correct);
+
+          const difference = math.simplify(`(${userExpression.toString()}) - (${correctExpression.toString()})`
+          );
+          if (difference.toString() === "0"){
+            userValue = 1;
+            correctValue = 1;
+          }
         else{
-            userValue = evaluateLatex(userAnswer);
+           userValue = 0;
+           correctValue = 1;
         }
+    }
+    else{
+        userValue = evaluateLatex(userAnswer);
         correctValue = evaluateLatex(q.correct);
+    }
+    
     }
     catch{
         err.innerText = "Invalid math expression";
@@ -1125,7 +1226,29 @@ updateHintButton();
 
 });
 
+
+document.addEventListener("keydown", function(e) {
+  if (e.key !== "Enter") return;
+
+  e.preventDefault();
+
+  if (activityEnded) return;
+  if(awaitingNext){
+    nextQuestion();
+    submitButton.innerText = "Check";
+    submitButton.style.borderColor = "rgb(2, 126, 0)";
+    submitButton.classList.remove("next");
+
+    awaitingNext = false;
+    submitted = false;
+  }
+  else{
+    handleAnswer();
+  }
+});
 function showEndCard(){
+    if (activityEnded) return;
+    activityEnded = true;
     document.querySelector(".question_container").style.display = "none";
     document.querySelector(".login-container").style.display = "none";
     document.querySelector(".check").style.display = "none";
@@ -1145,7 +1268,7 @@ function showEndCard(){
             let oldAccuracy = 0;
             let oldActivity = null;
             if(doc.exists){
-                oldActivity = doc.data()[`activity_${lessonNumber}`];
+                oldActivity = doc.data().world1?.[`activity_${lessonNumber}`];
             }
 
             if (oldActivity){
@@ -1158,13 +1281,16 @@ function showEndCard(){
 
             document.getElementById("xp-value").innerText = finalXP;
         return userRef.set({
+        world1:{
            [`activity_${lessonNumber}`]: {
             accuracy: Math.max(accuracy, oldAccuracy),
             xp: Math.max(points, oldXP),
             completed: true
            }
-        }, {merge: true});
+        }}, {merge: true});
+    
     });
+    
     
 }
 

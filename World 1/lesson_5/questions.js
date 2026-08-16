@@ -2,6 +2,7 @@ const lessonQuestions = [
 {
     question: "What percent of 50 is 25?",
     correct: "50",
+    answerSuffix: "%",
     type: "arithmetic",
     variable: "",
     hint: "Divide the part by the whole, then multiply by 100.",
@@ -15,6 +16,7 @@ const lessonQuestions = [
 {
     question: "What percent of 20 is 4?",
     correct: "20",
+    answerSuffix: "%",
     type: "arithmetic",
     variable: "",
     hint: "Divide the part by the whole, then multiply by 100.",
@@ -28,6 +30,7 @@ const lessonQuestions = [
 {
     question: "In a class of 40 students, 10 are absent. What percent of students are absent?",
     correct: "25",
+    answerSuffix: "%",
     type: "arithmetic",
     variable: "",
     hint: "Divide the number absent by the total number of students.",
@@ -41,6 +44,7 @@ const lessonQuestions = [
 {
     question: "In a jar of 80 candies, 12 are blue. What percent of the candies are NOT blue?",
     correct: "85",
+    answerSuffix: "%",
     type: "arithmetic",
     variable: "",
     hint: "Find the percent that are blue first, then find the complementary percent.",
@@ -93,6 +97,7 @@ const lessonQuestions = [
 {
     question: "A car's value drops from $24,000 to $18,000. What is the percent decrease?",
     correct: "25",
+    answerSuffix: "%",
     type: "arithmetic",
     variable: "",
     hint: "Use |New − Original| / Original × 100.",
@@ -106,6 +111,7 @@ const lessonQuestions = [
 {
     question: "A school team won 18 out of 24 games. What percent of games did they lose?",
     correct: "25",
+    answerSuffix: "%",
     type: "arithmetic",
     variable: "",
     hint: "Find the percent won first, then use the complementary percent.",
@@ -119,6 +125,7 @@ const lessonQuestions = [
 {
     question: "A population of 12,500 increases by 8%. What is the new population?",
     correct: "13500",
+    answerSuffix: "%",
     type: "arithmetic",
     variable: "",
     hint: "Find 8% of the original, then add it to the original.",

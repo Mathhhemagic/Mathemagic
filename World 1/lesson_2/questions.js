@@ -25,16 +25,16 @@ const lessonQuestions = [
     question: "-5²",
     correct: "-25",
     type: "arithmetic",
-    hint: "Take note of the parentheses",
+    hint: "Take note of the negative sign",
     steps: [
-    "Take note of the parentheses: Square the 5 first, and then multiply by -1",
+    "Take note of the negative sign: Square the 5 first, and then multiply by -1",
     "5² = 25 × -1 = -25"
     ],
     img_question: ""
 },
 {
     question: "11² = ",
-    correct: "16",
+    correct: "121",
     type: "arithmetic",
     hint: "Multiply 11 by itself",
     steps: [
@@ -87,7 +87,7 @@ const lessonQuestions = [
 },
 {
     question: "9² = ",
-    correct: "81 = ",
+    correct: "81",
     type: "arithmetic",
     hint: "Multiply 9 by itself",
     steps: [

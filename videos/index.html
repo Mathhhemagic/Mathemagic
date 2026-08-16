@@ -45,20 +45,23 @@ body, html{
      }
 
 ul{
+            display: flex;
             list-style-type: none;
             margin: 0;
             padding: 0;
             overflow: hidden;
+            position: sticky;
             background-color: rgba(58, 58, 58, 0.1);
             position: sticky;
             z-index: 1000;
             top: 0;
             border-color: rgb(58, 58, 58, 1);
+            overflow: visible;
         }
 
 
         ul li{
-            float: left;
+            position: relative;
         }
 
 
@@ -69,21 +72,19 @@ ul{
             font-family: "Zilla Slab", serif;
             padding: 20px 16px;
         }
-        ul li a.active{
+        ul li a.a{
             text-decoration: underline;
             text-underline-offset: 1em;
             color:#2f82c0;
         }
-        ul li a.inactive:hover{
+        ul li a.ia:hover{
             background-color: #9ed5ff;
         }
-
 
 
         a{
             text-decoration: none;
         }
-
 .video{
     position: relative;
     text-align: center;
@@ -179,9 +180,10 @@ ul{
            }
 </style>
 <body>
-<ul>
-    <li><a class = "inactive" href = "/">Home</a></li>
-    <li><a class = "active" href = "/videos/">Videos</a></li>
+    <ul>
+    <li><a class = "ia" href = "/">Home</a></li>
+    <li><a class = "a" href = "/videos/">Videos</a></li>
+    <li><a class = "ia" href = "/lessons/">Lessons</a></li>
     </ul>
 <div class = "anim">
 <div class = "video">

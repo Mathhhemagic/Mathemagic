@@ -8,7 +8,7 @@ answerSuffix: "",
 hint: "Move the decimal point two places to the left.",
 steps: [
 "To convert a percent to a decimal, divide by 100 (move the decimal two places left).",
-"72% = 72. → 0.72"
+"72% = 0.72"
 ],
 img_question: ""
 },
@@ -35,7 +35,7 @@ hint: "Write the percent over 100, then simplify by finding the GCF.",
 steps: [
 "Write 35% as a fraction over 100: \\frac{35}{100}.",
 "Find the GCF of 35 and 100, which is 5.",
-"\\frac{35 ÷ 5}{100 ÷ 5} = \\frac{7}{20}"
+"(35 ÷ 5)/(100 ÷ 5) = \\frac{7}{20}"
 ],
 img_question: ""
 },
@@ -48,7 +48,7 @@ answerSuffix: "%",
 hint: "Multiply the numerator and denominator by a number that makes the denominator 100.",
 steps: [
 "Multiply both the numerator and denominator by 25 so the denominator becomes 100.",
-"\\frac{3 × 25}{4 × 25} = \\frac{75}{100}",
+"\\(3 × 25)/(4 × 25) = \\frac{75}{100}",
 "\\frac{75}{100} = 75%"
 ],
 img_question: ""
@@ -74,10 +74,10 @@ variable: "",
 answerSuffix: "",
 hint: "Move the decimal three places right, then place the whole number over 10³.",
 steps: [
-"Move the decimal three places to the right: 0.375 → 375.",
+"Move the decimal three places to the right: 0.375 converts to 375.",
 "Place 375 over 10³: \\frac{375}{1000}.",
 "Find the GCF of 375 and 1000, which is 125.",
-"\\frac{375 ÷ 125}{1000 ÷ 125} = \\frac{3}{8}"
+"(375 ÷ 125)/(1000 ÷ 125) = \\frac{3}{8}"
 ],
 img_question: ""
 },
@@ -90,7 +90,7 @@ answerSuffix: "%",
 hint: "Think about what number you can multiply 20 by to get 100.",
 steps: [
 "Multiply both the numerator and denominator by 5 so the denominator becomes 100.",
-"\\frac{13 × 5}{20 × 5} = \\frac{65}{100}",
+"(13 × 5)/(20 × 5) = \\frac{65}{100}",
 "\\frac{65}{100} = 65%"
 ],
 img_question: ""

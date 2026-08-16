@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cause:wght@100..900&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libertinus+Math&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+ul{
+            display: flex;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            position: sticky;
+            background-color: rgba(58, 58, 58, 0.1);
+            position: sticky;
+            z-index: 1000;
+            top: 0;
+            border-color: rgb(58, 58, 58, 1);
+            overflow: visible;
+        }
+
+
+        ul li{
+            position: relative;
+        }
+
+
+        ul li a {
+            display: block;
+            color: rgba(58, 58, 58, 1);
+            text-align: center;
+            font-family: "Zilla Slab", serif;
+            padding: 20px 16px;
+        }
+        ul li a.a{
+            text-decoration: underline;
+            text-underline-offset: 1em;
+            color:#2f82c0;
+        }
+        ul li a.ia:hover{
+            background-color: #9ed5ff;
+        }
+
+
+        a{
+            text-decoration: none;
+        }
+.icon{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    float: right;
+    font-size:  1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: solid white;
+    color: rgb(41, 41, 41);
+    background-color: gray;
+    border-radius: 50%;
+    font-weight: bold;
+    margin: 0.5rem;
+    cursor: pointer;
+    
+
+}
+
+ul li.icon{
+    margin-left: auto;
+    position: relative;
+}
+
+.icon span{
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 2.5rem;
+}
+.icon #user-icon{
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    text-align: center;
+    line-height: center;
+    border-radius: 50%;
+    display: block;
+}
+.icon .dropdown{
+display: none;
+position: absolute;
+top: 100%;
+right: 0;
+background-color: white;
+min-width: 100px;
+border-radius: 0.5rem;
+z-index: 100;
+flex-direction: column;
+}
+
+.icon .dropdown a{
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color:black;
+    display: block
+}
+
+.icon .dropdown a:hover{
+    background-color: rgb(215, 226, 251)
+}
+
+.icon:hover .dropdown, .icon .dropdown:hover{
+    display: flex;
+}
+.arrow button{
+                cursor: pointer;
+                font-family: "Libertinus Math", system-ui;
+                font-size: 2rem;
+                border-radius: 50%;
+                border: 2px solid transparent;
+                box-shadow: 0 0 40px grey;
+                margin-bottom: 2%;
+                background-color: white;
+                font-weight: bold;
+                color: #0b5394;
+                font-weight: bold;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 4rem;
+                width: 4rem;
+                padding: 0;
+                font-size: 2rem;
+                border-radius: 50%;
+                appearance: none;
+                -webkit-appearance: none;
+}
+.arrow{
+     position: sticky;
+                top: 80px;
+                left: 1rem;
+                z-index: 500;
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+                margin-left: 1.5rem;
+            }
+
+
+
+            .arrow button:hover{
+                color:#0b5394;
+                box-shadow: 0 0 40px #0b5394;
+                transform: translateY(-4px);
+            }
+
+body{
+    min-height: 100vh;
+       background-color: rgb(249, 249, 249);
+       background-image: 
+        linear-gradient(rgba(0,0,0,0.035) 1px, transparent 1px),
+        linear-gradient(90deg,rgba(0,0,0,0.035) 1px, transparent 1px);
+     background-size: 40px 40px;
+    
+}
+
+html, body{
+    margin: 0;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.press{
+    background: rgb(0, 136, 136);
+    color: white;
+    border: none;
+    padding: 16px 30px;
+    font-size: 30px; 
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 6px 0 rgb(0, 85, 85);
+    font-family: "Zilla Slab", serif;
+    transition: all 0.1s ease;
+    max-width: 100px;
+}
+
+.press:hover{
+    filter:brightness(1.2);
+}
+
+.press:active{
+    transform:translateY(5px);
+    box-shadow: 0 0 0 rgb(0, 85, 85);
+}
+
+.easy .press:active{
+    box-shadow: 0 0 0 rgb(0, 85, 7);
+}
+
+.easy .press{
+    background: rgb(0, 136, 11);
+    box-shadow: 0 6px 0 rgb(0, 85, 0);
+}
+
+.medium .press:active{
+    box-shadow: 0 0 0 rgb(255, 207, 14);
+}
+
+.medium .press{
+    background: rgb(255, 227, 18);
+    box-shadow: 0 6px 0 rgb(255, 207, 14);
+}
+
+.hard .press:active{
+    box-shadow: 0 0 0 rgb(0, 85, 7);
+}
+
+.hard .press{
+    background: rgb(0, 136, 11);
+    box-shadow: 0 6px 0 rgb(0, 85, 0);
+}
+
+.inactive{
+    background: rgb(174, 174, 174);
+    color: white;
+    border: none;
+    padding: 16px 30px;
+    font-size: 30px; 
+    font-weight: bold;
+    border-radius: 50px;
+    box-shadow: 0 6px 0 rgb(78, 78, 78);
+    font-family: "Zilla Slab", serif;
+    transition: all 0.1s ease;
+    max-width: 100px;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    width: 250px;
+    margin: auto;
+}
+
+.row{
+    width: 100%;
+    display: flex;
+}
+
+.left{
+    justify-content: flex-start;
+}
+
+.right{
+    justify-content: flex-end;
+}
+
+.full{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.center{
+    justify-content: center;
+}
+.stars{
+    font-size: 30px;
+    margin-top: 10px;
+    color:rgb(0, 85, 85);
+    margin-bottom: 40%;
+}
+
+.stars span{
+    display: inline-block;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.stars span.filled{
+    color: gold;
+    transform: scale(1.3);
+}
+
+.stars span.pop{
+    animation: pop 0.3s ease;
+}
+
+@keyframes pop{
+    0%{transform: scale(0.5);}
+    50%{transform: scale(1.5);}
+    100%{transform: scale(1.3);}
+
+}
+
+svg {
+    width:32px;
+    height:32px;
+    fill: none;
+    stroke: white;
+    stroke-width: 2;
+    transform: translateY(5px);
+}
+
+</style>
+
+<ul>
+    <li><a class = "ia" href = "/">Home</a></li>
+    <li><a class = "ia" href = "/videos/">Videos</a></li>
+    <li><a class = "a" href = "/lessons/">Lessons</a></li>
+    <li class = "icon">
+        <span id = "user-icon"></span>
+    <div class = "dropdown"></div>
+    </li>
+    </ul>
+    <div class = "arrow">
+            <a href = "../Lessons/">
+            <button>←
+            </button>
+            </a>
+            </div>
+<div class = "row center">
+<div class = "full">
+<div class = "easy">
+<a href = "./activity.html?lesson=1">
+<button class = "press">🜲</button>
+</a>
+</div>
+<div class = "stars" id = "activity1-stars">
+<span>☆</span>
+<span>☆</span>
+<span>☆</span>
+</div>
+</div>
+</div>
+<div class = "row center">
+<div class = "full">
+<div class = "easy">
+<a id = "lesson2-link" href = "../activity.html?lesson=2">
+<button id = "lesson2" class = "inactive">🜲</button>
+</a>
+</div>
+<div class = "stars" id = "activity2-stars">
+<span>☆</span>
+<span>☆</span>
+<span>☆</span>
+</div>
+</div>
+</div>
+<div class = "row center">
+<div class = "full">
+<div class = "medium">
+<a id = "lesson3-link" href = "./activity.html?lesson=3">
+<button id = "lesson3" class = "inactive">🜲</button>
+</a>
+</div>
+<div class = "stars" id = "activity3-stars">
+<span>☆</span>
+<span>☆</span>
+<span>☆</span>
+</div>
+</div>
+</div>
+<div class = "row center">
+<div class = "full">
+<div class = "medium">
+<a id = "lesson4-link" href = "../activity.html?lesson=4">
+<button id = "lesson4" class = "inactive">🜲</button>
+</a>
+</div>
+<div class = "stars" id = "activity4-stars">
+<span>☆</span>
+<span>☆</span>
+<span>☆</span>
+</div>
+</div>
+</div>
+<div class = "row center">
+<div class = "full">
+<div class = "hard">
+<a id = "lesson5-link" href = "../activity.html?lesson=5">
+<button id = "lesson5" class = "inactive">🜲</button>
+</a>
+</div>
+<div class = "stars" id = "activity5-stars">
+<span>☆</span>
+<span>☆</span>
+<span>☆</span>
+</div>
+</div>
+</div>
+<div class = "row center">
+<div class = "full">
+<div class = "hard">
+<a id = "lesson6-link" href = "../activity.html?lesson=6">
+<button id = "lesson6" class = "inactive">🜲</button>
+</a>
+</div>
+<div class = "stars" id = "activity6-stars">
+<span>☆</span>
+<span>☆</span>
+<span>☆</span>
+</div>
+</div>
+</div>
+</body>
+
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyDRjjvLABEFL-PgbChUFNZW6u38U6c7jP4",
+
+  authDomain: "mathemagic-fcb1d.firebaseapp.com",
+
+  projectId: "mathemagic-fcb1d",
+
+  storageBucket: "mathemagic-fcb1d.firebasestorage.app",
+
+  messagingSenderId: "313453456371",
+
+  appId: "1:313453456371:web:21e60d301936c2333f8086"
+
+};
+
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+auth.onAuthStateChanged(async (user) => {
+    if (!user) return;
+
+    const doc = await db.collection("users").doc(user.uid).get();
+    if (!doc.exists) return;
+
+    const data = doc.data();
+    const accuracies = []
+    const world = data.world10 || {};
+    for (let i = 1; i <= 6; i++){
+        accuracies[i] = world[`activity_${i}`]?.accuracy ||0
+    }
+
+    for (let i = 1; i <=6; i++){
+        updateStars(i, accuracies[i]);
+    }
+
+
+    for (let i = 1; i < 6; i++){
+
+        if (accuracies[i] >= 70){
+            const nextLesson = i + 1
+
+        
+        document.getElementById(`lesson${i + 1}`).className = "press";
+
+
+        document.getElementById(`lesson${nextLesson}-link`).href = `./activity.html?lesson=${nextLesson}`;
+            console.log("Accuracies: ", accuracies)
+    }
+
+}
+});
+function updateStars(lesson, accuracy){
+
+    let stars = "☆ ☆ ☆";
+    const starselement = document.querySelectorAll(`#activity${lesson}-stars span`);
+
+    let filledCount = 0;
+
+    if(accuracy === 100){
+        filledCount = 3;
+    }
+
+    else if (accuracy >= 70){
+        filledCount = 2;
+    }
+
+    else if (accuracy >= 40){
+        filledCount = 1;
+    }
+    
+    starselement.forEach(star => {
+        star.textContent = "☆";
+        star.classList.remove("filled", "pop");
+    });
+
+    for (let i = 0; i < filledCount; i++){
+        setTimeout(() => {
+            starselement[i].textContent = "★";
+            starselement[i].classList.add("filled", "pop");
+        }, i * 300);
+    }
+
+   
+}
+
+firebase.auth().onAuthStateChanged(async user => {
+    const colors = ["#ffb5b0", "#ffd6b0", "#f8ffb0", "#ccffb0", "#b0ffd8", "#b0ffd8", "#b0f8ff", "#b0deff", "#b0deff", "#bbb0ff", "#c5b0ff", "#e6b0ff", "#f5b8ec", "#eba9b7"]
+    const icon = document.getElementById("user-icon");
+    const dropdown = icon.nextElementSibling;
+    if (user){
+    const uid = user.uid
+    icon.textContent = user.displayName ? user.displayName[0].toUpperCase(): "U";
+    let hash = 0;
+    const str = user.uid || user.email;
+    for (let i=0; i<str.length; i++) hash += str.charCodeAt(i);
+    const colorIndex = hash % colors.length;
+    icon.style.backgroundColor = colors[colorIndex];
+    dropdown.innerHTML = 
+    `<a href = "/profile/">Profile</a>
+    <a href = "/login/" id = "logout">Logout</a>`;
+     const logout = document.getElementById("logout");
+    logout.addEventListener("click", async (e) => {
+        e.preventDefault();
+        try{
+            await firebase.auth().signOut();
+            window.location.href = "/login/";
+        }
+        catch(error){
+            console.error("Logout error:", error);
+            alert("Failed to logout: " + error.message);
+        }
+    })
+
+    }
+    else{
+        icon.textContent = "";
+        icon.style.backgroundColor = "gray";
+        dropdown.innerHTML = 
+        `<a href = "/login/">Login</a>
+        <a href = "/signup/">Signup</a>
+        `
+    }
+    
+    });
+
+</script>
+</html>
+
+

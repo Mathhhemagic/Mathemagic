@@ -94,7 +94,7 @@ img_question: ""
 },
 {
 question: "Simplify: (²⁄₃ + ¼) ÷ ⅚",
-correct: "1\\frac{1}{6}",
+correct: "1\\frac{1}{10}",
 type: "arithmetic",
 hint: "Solve inside the parentheses first, using a common denominator.",
 steps: [
@@ -107,14 +107,14 @@ steps: [
 img_question: ""
 },
 {
-question: "If x is a positive integer and ³⁄₈ < x⁄₁₆ < ⅝, what is the value of x?",
+question: "If x is a positive integer and ³⁄₈ < x⁄₁₆ < ⁴⁄₈, what is the value of x?",
 correct: "7",
 type: "arithmetic",
-hint: "Convert ³⁄₈ and ⅝ to equivalent fractions with a denominator of 16.",
+hint: "Convert ³⁄₈ and ⁴⁄₈ to equivalent fractions with a denominator of 16.",
 steps: [
-"Convert ³⁄₈ to ⁶⁄₁₆ and ⅝ to ¹⁰⁄₁₆.",
-"The inequality becomes ⁶⁄₁₆ < x⁄₁₆ < ¹⁰⁄₁₆.",
-"So x must be greater than 6 and less than 10.",
+"Convert ³⁄₈ to ⁴⁄₈ and ⅝ to ¹⁰⁄₁₆.",
+"The inequality becomes ⁶⁄₁₆ < x⁄₁₆ < ⁸⁄₁₆.",
+"So x must be greater than 6 and less than 8.",
 "The only value that fits as intended is x = 7."
 ],
 img_question: ""
