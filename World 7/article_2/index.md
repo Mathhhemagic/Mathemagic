@@ -27,8 +27,6 @@ For a rectangular prism, the formula can be written as:
 V = lwh
 
 
-::contentReference[oaicite:0]{index=0}
-
 
 :::example
 
@@ -71,7 +69,6 @@ V = πr²h
 where r is the radius of the base and h is the height.
 
 
-::contentReference[oaicite:1]{index=1}
 
 
 :::example
@@ -121,7 +118,6 @@ V = 4πr³⁄3
 where r is the radius.
 
 
-::contentReference[oaicite:2]{index=2}
 
 
 :::example

@@ -13,7 +13,6 @@ a² + b² = c²
 where a and b are the legs of the right triangle and c is the **hypotenuse**.
 
 
-::contentReference[oaicite:0]{index=0}
 
 
 :::mini-title
@@ -88,8 +87,6 @@ The person is 5 miles from the starting point.
 
 The same idea can be used on a coordinate plane. The horizontal and vertical changes between two points form the legs of a right triangle.
 
-
-::contentReference[oaicite:1]{index=1}
 
 
 :::example

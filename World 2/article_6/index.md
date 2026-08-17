@@ -67,9 +67,10 @@ Writing from a Table
 To write an equation from a table of values, find the slope using any two points, then use one point to solve for b.
 
 :::example
-| x | y |
-|---|---|
-| 1 | 5 |
+| x | y |  
+
+| 1 | 5 |  
+
 | 3 | 9 |
 
 Slope = (9 − 5)/(3 − 1) = 4/2 = 2

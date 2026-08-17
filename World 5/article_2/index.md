@@ -225,5 +225,3 @@ Since a = 1 is positive, the parabola opens upward.
 :::
 
 The axis of symmetry passes through the midpoint of the two x-intercepts. For this parabola, the x-intercepts are 1 and 3, so their midpoint is 2.
-
-m

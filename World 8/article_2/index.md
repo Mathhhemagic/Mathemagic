@@ -21,7 +21,6 @@ For an angle measured in degrees, the arc length is:
 Arc length = θ⁄360 × 2πr
 
 
-::contentReference[oaicite:0]{index=0}
 
 
 :::example
@@ -69,7 +68,6 @@ The area of a sector is the same fraction of the circle's total area as its cent
 Sector area = θ⁄360 × πr²
 
 
-::contentReference[oaicite:1]{index=1}
 
 
 :::example

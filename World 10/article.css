@@ -243,3 +243,85 @@ strong{
     border-radius: 4px;
     text-align: center;
 }
+
+
+@media (max-width: 600px){
+    html, body{
+        width: 100%;
+        overflow-x: hidden;
+    }
+    .navbar, 
+    ul{
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    ul li a {
+        padding: 14px 10px;
+        font-size: 1rem;
+    }
+
+    .arrow{
+        position: sticky;
+        top: 60px;
+        margin-top: 0.75rem;
+        margin-left: 0.75rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .arrow button{
+        width: 3.2rem;
+        height: 3.2rem;
+        font-size: 1.6rem;
+    }
+
+    .container{
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        padding: 0 18px;
+        gap: 12px;
+        font-size: 1.2rem;
+    }
+
+    .title{
+        font-size: 30px;
+        padding-top: 5px;
+        line-height: 1.15;
+    }
+
+    .mini-title{
+        font-size: 21px;
+        line-height: 1.2;
+    }
+
+    .paragraph{
+        font-size: 18px;
+        line-height: 1.45;
+        width: 100%;
+    }
+
+    .example{
+        width: 100%;
+        box-sizing: border-box;
+        border-left-width: 6px;
+        padding: 10px;
+        margin: 12px 0;
+        font-size: 18px;
+        line-height: 1.4;
+    }
+
+    .tip{
+        width: 100%;
+        box-sizing: border-box;
+        border-left-width: 6px;
+        padding: 10px;
+        font-size: 18px;
+        line-height: 1.4;
+    }
+
+
+
+
+
+}

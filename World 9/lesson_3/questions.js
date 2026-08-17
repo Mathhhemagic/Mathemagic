@@ -53,7 +53,7 @@ const lessonQuestions = [
     "This represents a positive linear trend.",
     "Enter 1."
   ],
-  img_question: "../../Images/world_9_lesson_3_question4.jpg"
+  img_question: "../../Images/world_9_lesson_3_question_4.jpg"
 },
 {
   question: "The scatterplot shows the relationship between altitude and temperature. Which description best fits the trend? Enter 1 for positive linear, 2 for negative linear, and 3 for no association.",
@@ -67,7 +67,7 @@ const lessonQuestions = [
     "This represents a negative linear trend.",
     "Enter 2."
   ],
-  img_question: "../../Images/world_9_lesson_3_question4.jpg"
+  img_question: "../../Images/world_9_lesson_3_question_5.jpg"
 },
 {
   question: "A line of best fit is drawn on a scatterplot. The equation of the line is y = 4x + 12. What is the y-intercept of the line of best fit, and what does it represent in context if x is the number of months and y is the total savings in dollars?",
@@ -125,7 +125,7 @@ const lessonQuestions = [
     "The student is incorrect.",
     "Enter 0."
   ],
-  img_question: "../../Images/world_9_lesson_3_question_9"
+  img_question: "../../Images/world_9_lesson_3_question_9.jpg"
 },
 {
   question: "A line of best fit for a scatterplot has the equation y = 6x + 30, where x is the number of years of experience and y is the annual salary in thousands of dollars. A worker has 7 years of experience. What is their predicted salary?",

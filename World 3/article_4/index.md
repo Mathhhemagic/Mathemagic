@@ -11,14 +11,18 @@ Creating Equations from Words
 To build an equation, identify what is known, what is unknown, and how the quantities relate to each other.
 
 :::example
-A phone plan costs $20 per month plus $0.10 per text message.
-Let x = number of text messages, and y = total monthly cost.
+A phone plan costs $20 per month plus $0.10 per text message.  
+
+Let x = number of text messages, and y = total monthly cost.  
+
 y = 0.10x + 20
 :::
 
 :::example
-A number increased by 8 is equal to twice the number.
-Let x = the number.
+A number increased by 8 is equal to twice the number.  
+
+Let x = the number.  
+
 x + 8 = 2x
 :::
 
@@ -59,14 +63,18 @@ Variables in Context
 On the SAT, variables and expressions often represent real quantities, not just abstract letters. Understanding what a variable or expression represents is key to answering questions correctly, especially when asked to interpret an equation rather than solve it.
 
 :::example
-In the equation y = 15x + 40, where y is total cost and x is number of hours:
-15 represents the cost per hour.
+In the equation y = 15x + 40, where y is total cost and x is number of hours:  
+
+15 represents the cost per hour.  
+
 40 represents a fixed starting cost, such as a flat fee.
 :::
 
 :::example
-In the equation P = 200 − 4t, where P is a plant's height in centimeters and t is time in weeks:
-−4 represents the rate at which the plant's height decreases each week.
+In the equation P = 200 − 4t, where P is a plant's height in centimeters and t is time in weeks:  
+
+−4 represents the rate at which the plant's height decreases each week.  
+
 200 represents the plant's height at t = 0, the starting height.
 :::
 

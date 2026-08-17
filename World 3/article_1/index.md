@@ -11,13 +11,17 @@ Substitution
 **Substitution** works by solving one equation for a variable, then plugging that expression into the other equation.
 
 :::example
-y = x + 3
+y = x + 3  
+
 2x + y = 12
 
 Substitute y = x + 3 into the second equation:
-2x + (x + 3) = 12
-3x + 3 = 12
-3x = 9
+2x + (x + 3) = 12  
+
+3x + 3 = 12  
+
+3x = 9  
+
 x = 3
 
 Then find y:
@@ -37,15 +41,18 @@ Elimination
 **Elimination** works by adding or subtracting the two equations to cancel out one variable.
 
 :::example
-x + y = 10
+x + y = 10  
+
 x − y = 4
 
 Add the equations:
-2x = 14
+2x = 14  
+
 x = 7
 
 Then find y:
-7 + y = 10
+7 + y = 10  
+
 y = 3
 
 Solution: (7, 3)
@@ -54,14 +61,16 @@ Solution: (7, 3)
 Sometimes you need to multiply one or both equations first, so the coefficients of a variable match.
 
 :::example
-2x + 3y = 16
+2x + 3y = 16  
+
 x + y = 7
 
 Multiply the second equation by 2:
 2x + 2y = 14
 
 Subtract from the first equation:
-(2x + 3y) − (2x + 2y) = 16 − 14
+(2x + 3y) − (2x + 2y) = 16 − 14  
+
 y = 2
 
 Then find x:
@@ -82,7 +91,8 @@ Graphing Systems
 A system of equations can also be solved by graphing both lines. The solution is the point where the lines intersect.
 
 :::example
-y = x + 1
+y = x + 1  
+
 y = −x + 5
 
 Both lines can be graphed using slope-intercept form. They intersect at (2, 3), which is the solution to the system.

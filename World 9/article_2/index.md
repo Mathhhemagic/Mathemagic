@@ -19,9 +19,6 @@ For equally likely outcomes, probability is the number of favorable outcomes div
 P(event) = favorable outcomes⁄total outcomes
 
 
-::contentReference[oaicite:0]{index=0}
-
-
 :::example
 
 A fair six-sided die is rolled. What is the probability of rolling a 4?
@@ -73,7 +70,6 @@ Two events are **independent** if the outcome of one event does not affect the p
 For independent events, the probability that both events happen is found by multiplying their probabilities.
 
 
-::contentReference[oaicite:1]{index=1}
 
 
 :::example

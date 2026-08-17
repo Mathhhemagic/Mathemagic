@@ -18,17 +18,14 @@ A **two-way table** organizes data according to two different categories.
 
 The rows and columns represent different groups, while the values inside the table show how many individuals belong to each combination of categories.
 
-:::example
 
 A school surveys 100 students about whether they play a sport.
 
-| | Plays a Sport | Does Not Play a Sport | Total |
-|---|---:|---:|---:|
-| Freshmen | 30 | 20 | 50 |
-| Sophomores | 25 | 25 | 50 |
-| Total | 55 | 45 | 100 |
 
-:::
+![Example Table](../../Images/world_9_article_4_image_1.jpg)
+
+
+
 
 The totals at the ends of the rows and columns are called **marginal totals**.
 

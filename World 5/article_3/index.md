@@ -154,5 +154,5 @@ x = 10
 
 Since x represents hundreds of products, the company should sell 1,000 products to maximize its profit.
 
-:::
+
 

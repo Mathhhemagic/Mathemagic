@@ -89,8 +89,6 @@ Reflecting a point across the y-axis changes the sign of its x-coordinate.
 :::
 
 
-::contentReference[oaicite:0]{index=0}
-
 
 A **rotation** turns a figure around a fixed point.
 
@@ -101,9 +99,6 @@ A 90° counterclockwise rotation about the origin changes (x, y) to (−y, x).
 (2, 4) → (−4, 2)
 
 :::
-
-
-::contentReference[oaicite:1]{index=1}
 
 
 A **dilation** changes the size of a figure by a scale factor while keeping its shape the same.
@@ -132,7 +127,6 @@ Start by identifying the shapes in the problem and writing down the information 
 
 A rectangular garden is 12 feet long and 8 feet wide. A path of equal width is built around the outside of the garden. The total area, including the path, is 192 square feet. Find the width of the path.
 
-:::
 
 Let the width of the path be x.
 

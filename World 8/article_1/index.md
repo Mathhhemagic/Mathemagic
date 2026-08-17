@@ -25,8 +25,6 @@ cos(θ) = adjacent⁄hypotenuse
 tan(θ) = opposite⁄adjacent
 
 
-::contentReference[oaicite:0]{index=0}
-
 
 The **opposite** side is across from the angle. The **adjacent** side is next to the angle, but is not the hypotenuse. The **hypotenuse** is always opposite the right angle.
 
@@ -125,7 +123,6 @@ sin(θ) = 6⁄10
 :::
 
 
-::contentReference[oaicite:1]{index=1}
 
 
 :::example
