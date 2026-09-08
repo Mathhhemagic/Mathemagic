@@ -97,7 +97,7 @@ var lessonQuestions = [
 {
   question: "Factor completely: 5x² + 10x",
   type: "algebra",
-  correct: "5x(x + 2)",
+  correct: "x^2 + 5x - 24",
   variable: "x",
   answerSuffix: "",
   hint: "Look for the greatest common factor of both terms before factoring.",

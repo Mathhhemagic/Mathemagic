@@ -100,7 +100,7 @@ question: "Which is greatest: 0.7, 68%, or ¹⁷⁄₂₅?",
 type: "arithmetic",
 correct: "0.7",
 variable: "",
-answerSuffix: "",
+answerSuffix: "(Or %)",
 hint: "Convert all three values to decimals so they can be compared directly.",
 steps: [
 "Convert each value to a decimal.",
