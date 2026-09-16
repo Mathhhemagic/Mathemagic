@@ -37,7 +37,7 @@ ul{
 
         ul li a {
             display: block;
-            color: rgba(58, 58, 58, 1);
+            color: rgb(255, 255, 255);
             text-align: center;
             font-family: "Zilla Slab", serif;
             padding: 20px 16px;
@@ -132,7 +132,7 @@ flex-direction: column;
                 margin-bottom: 2%;
                 background-color: white;
                 font-weight: bold;
-                color: #0b5394;
+                color: #fac548;
                 font-weight: bold;
                 display: flex;
                 justify-content: center;
@@ -158,19 +158,22 @@ flex-direction: column;
 
 
             .arrow button:hover{
-                color:#0b5394;
-                box-shadow: 0 0 40px #0b5394;
+                color:#fac548;
+                box-shadow: 0 0 40px #f9e1aa;
                 transform: translateY(-4px);
             }
 
 body{
-    min-height: 100vh;
-       background-color: rgb(249, 249, 249);
-       background-image: 
-        linear-gradient(rgba(0,0,0,0.035) 1px, transparent 1px),
-        linear-gradient(90deg,rgba(0,0,0,0.035) 1px, transparent 1px);
-     background-size: 40px 40px;
-    
+    background-image: 
+    radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+    radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+    radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 20px);
+  background-size: 550px 550px, 350px 350px, 250px 250px;
+  background-position: 0 0, 40px 60px, 130px 270px;
+    background: radial-gradient(circle at 50% 50%, #1b2735 0%, #090a0f 100%);
+  margin: 0;
+  height: 100vh;
+  overflow-x: hidden;
 }
 
 html, body{
@@ -180,7 +183,7 @@ html, body{
 }
 
 .press{
-    background: rgb(0, 136, 136);
+    background: rgb(210, 163, 22);
     color: white;
     border: none;
     padding: 16px 30px;
@@ -188,7 +191,7 @@ html, body{
     font-weight: bold;
     border-radius: 50px;
     cursor: pointer;
-    box-shadow: 0 6px 0 rgb(0, 85, 85);
+    box-shadow: 0 6px 0 rgb(108, 84, 13);
     font-family: "Zilla Slab", serif;
     transition: all 0.1s ease;
     max-width: 100px;
@@ -200,7 +203,7 @@ html, body{
 
 .press:active{
     transform:translateY(5px);
-    box-shadow: 0 0 0 rgb(0, 85, 85);
+    box-shadow: 0 0 0 rgb(108, 84, 13);
 }
 
 .inactive{
@@ -283,151 +286,351 @@ svg {
     transform: translateY(5px);
 }
 
-</style>
+.skill-tree-page{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
 
+.skill-tree{
+    position: relative;
+    z-index: 2;
+}
+
+.side-images{
+    position: absolute;
+    top: 0;
+    width: 25%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.side-images-left{
+    left: 0;
+}
+
+.side-images-right{
+    right: 0;
+}
+
+
+.side-images img{
+    position: absolute;
+    width: 150px;
+    max-width: none;
+    height: auto;
+}
+
+.right-images img{
+    width: 220px;
+}
+
+.left-images img{
+    width: 220px;
+}
+
+
+.left-images img:nth-child(1){
+    top: 50px;
+    left: -50%;
+}
+
+.left-images img:nth-child(2){
+    top: 300px;
+    left: -70%;
+}
+
+.left-images img:nth-child(3){
+    top: 500px;
+    left: -110%;
+}
+
+.left-images img:nth-child(4){
+    top: 700px;
+    left: -50%;
+}
+
+.left-images img:nth-child(5){
+    top: 1000px;
+    left: -110%;
+}
+
+
+
+.right-images img:nth-child(1){
+    top: 200px;
+    right: -400px;
+}
+
+.right-images img:nth-child(2){
+    top: 600px;
+    right: -450px;
+}
+
+.right-images img:nth-child(3){
+    top: 1200px;
+    right: -450px;
+}
+
+@media (max-width: 1000px){
+    .left-images img:nth-child(1){
+    top: 85px;
+    left: -50%;
+    width: 90px;
+}
+
+.left-images img:nth-child(2){
+    top: 300px;
+    left: -150%;
+    width: 150px;
+}
+
+.left-images img:nth-child(3){
+    top: 620px;
+    left: 145%;
+    width: 120px;
+}
+
+.left-images img:nth-child(4){
+    top: 750px;
+    left: -120%;
+     width: 120px;
+}
+
+.left-images img:nth-child(5){
+    top: 1000px;
+    left: -110%;
+}
+    .right-images img:nth-child(1),
+    .right-images img:nth-child(2),
+    .right-images img:nth-child(3),
+    .right-images img:nth-child(4)
+{
+        display: none;
+    }
+}
+</style>
 <ul>
-    <li><a class = "ia" href = "/">Home</a></li>
-    <li><a class = "ia" href = "/videos/">Videos</a></li>
-    <li><a class = "a" href = "/lessons/">Lessons</a></li>
-    <li class = "icon">
-        <span id = "user-icon"></span>
-    <div class = "dropdown"></div>
+    <li><a class="ia" href="/">Home</a></li>
+    <li><a class="ia" href="/videos/">Videos</a></li>
+    <li><a class="a" href="/lessons/">Lessons</a></li>
+
+    <li class="icon">
+        <span id="user-icon"></span>
+        <div class="dropdown"></div>
     </li>
-    </ul>
-    <div class = "arrow">
-            <a href = "../Lessons/">
-            <button>←
-            </button>
-            </a>
+</ul>
+
+<div class="arrow">
+    <a href="../Lessons/">
+        <button>←</button>
+    </a>
+</div>
+
+
+<div class="skill-tree-page">
+
+
+    <div class="side-images left-images">
+        <img src="../Images/Moon-Rock-H-L-Slate400@2x.png">
+        <img src="../Images/Planet1-Gas-H-L-Teal400.svg">
+         <img src="../Images/BabyAlienSmiley-Unknown-H-S-Teal400@2x.png">
+          <img src="../Images/Planet4-Rock-H-L-Orange400@2x.png">
+                <img src="../Images/Motorcycle.png">
+        
+    </div>
+    <div class="skill-tree">
+
+        <div class="row left">
+            <div class="full">
+                <a href="./article.html?article=1">
+                    <button class="press">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
+                        </svg>
+                    </button>
+                </a>
             </div>
-<div class = "container">
-<div class = "row left">
-<div class = "full">
-<a href = "./article.html?article=1">
-<button class = "press"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    
-  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
-</svg></button>
-</a>
-</div>
-</div>
-<div class = "row right">
-<div class = "full">
-<a href = "./activity.html?lesson=1">
-<button class = "press">✎</button>
-</a>
-<div class = "stars" id = "activity1-stars">
-<span>☆</span>
-<span>☆</span>
-<span>☆</span>
-</div>
-</div>
-</div>
-<div class = "container">
-<div class = "row left">
-<div class = "full">
-<a id = "article2-link" href = "./article.html?article=2">
-<button id = "article2" class = "inactive"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    
-  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
-</svg></button>
-</a>
-</div>
-</div>
-<div class = "row right">
-<div class = "full">
-<a id = "lesson2-link" href = "../activity.html?lesson=2">
-<button id = "lesson2" class = "inactive">✎</button>
-</a>
-<div class = "stars" id = "activity2-stars">
-<span>☆</span>
-<span>☆</span>
-<span>☆</span>
-</div>
-</div>
-</div>
-<div class = "container">
-<div class = "row left">
-<div class = "full">
-<a id = "article3-link" href = "./article.html?article=3">
-<button id = "article3" class = "inactive"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    
-  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
-</svg></button>
-</a>
-</div>
-</div>
-<div class = "row right">
-<div class = "full">
-<a id = "lesson3-link" href = "./activity.html?lesson=3">
-<button id = "lesson3" class = "inactive">✎</button>
-</a>
-<div class = "stars" id = "activity3-stars">
-<span>☆</span>
-<span>☆</span>
-<span>☆</span>
-</div>
-</div>
-</div><div class = "container">
-<div class = "row left">
-<div class = "full">
-<a id = "article4-link">
-<button id = "article4" class = "inactive"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    
-  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
-</svg></button>
-</a>
-</div>
-</div>
-<div class = "row right">
-<div class = "full">
-<a id = "lesson4-link" href = "../activity.html?lesson=4">
-<button id = "lesson4" class = "inactive">✎</button>
-</a>
-<div class = "stars" id = "activity4-stars">
-<span>☆</span>
-<span>☆</span>
-<span>☆</span>
-</div>
-</div>
-</div><div class = "container">
-<div class = "row left">
-<div class = "full">
-<a id = "article5-link">
-<button id = "article5" class = "inactive"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    
-  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
-</svg></button>
-</a>
-</div>
-</div>
-<div class = "row right">
-<div class = "full">
-<a id = "lesson5-link" href = "../activity.html?lesson=5">
-<button id = "lesson5" class = "inactive">✎</button>
-</a>
-<div class = "stars" id = "activity5-stars">
-<span>☆</span>
-<span>☆</span>
-<span>☆</span>
-</div>
-</div>
-</div>
-<div class = "row center">
-<div class = "full">
-<a id = "lesson6-link" href = "../activity.html?lesson=6">
-<button id = "lesson6" class = "inactive">🜲</button>
-</a>
-<div class = "stars" id = "activity6-stars">
-<span>☆</span>
-<span>☆</span>
-<span>☆</span>
-</div>
-</div>
-</div>
-</div>
+        </div>
+
+
+        <div class="row right">
+            <div class="full">
+                <a href="./activity.html?lesson=1">
+                    <button class="press">✎</button>
+                </a>
+
+                <div class="stars" id="activity1-stars">
+                    <span>☆</span>
+                    <span>☆</span>
+                    <span>☆</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+
+            <div class="row left">
+                <div class="full">
+                    <a id="article2-link" href="./article.html?article=2">
+                        <button id="article2" class="inactive">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 1 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
+                            </svg>
+                        </button>
+                    </a>
+                </div>
+            </div>
+
+            <div class="row right">
+                <div class="full">
+                    <a id="lesson2-link" href="../activity.html?lesson=2">
+                        <button id="lesson2" class="inactive">✎</button>
+                    </a>
+
+                    <div class="stars" id="activity2-stars">
+                        <span>☆</span>
+                        <span>☆</span>
+                        <span>☆</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="container">
+
+                <div class="row left">
+                    <div class="full">
+                        <a id="article3-link" href="./article.html?article=3">
+                            <button id="article3" class="inactive">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round"
+                                          stroke-linejoin="round"
+                                          d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 1 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
+                                </svg>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row right">
+                    <div class="full">
+                        <a id="lesson3-link" href="./activity.html?lesson=3">
+                            <button id="lesson3" class="inactive">✎</button>
+                        </a>
+
+                        <div class="stars" id="activity3-stars">
+                            <span>☆</span>
+                            <span>☆</span>
+                            <span>☆</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="container">
+
+                    <div class="row left">
+                        <div class="full">
+                            <a id="article4-link">
+                                <button id="article4" class="inactive">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round"
+                                              stroke-linejoin="round"
+                                              d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
+                                    </svg>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="row right">
+                        <div class="full">
+                            <a id="lesson4-link" href="../activity.html?lesson=4">
+                                <button id="lesson4" class="inactive">✎</button>
+                            </a>
+
+                            <div class="stars" id="activity4-stars">
+                                <span>☆</span>
+                                <span>☆</span>
+                                <span>☆</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="container">
+
+                        <div class="row left">
+                            <div class="full">
+                                <a id="article5-link">
+                                    <button id="article5" class="inactive">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round"
+                                                  stroke-linejoin="round"
+                                                  d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 1 18 18a8.967 8.967 0 0 1-6 2.292m0-14.25v14.25"/>
+                                        </svg>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="row right">
+                            <div class="full">
+                                <a id="lesson5-link" href="../activity.html?lesson=5">
+                                    <button id="lesson5" class="inactive">✎</button>
+                                </a>
+
+                                <div class="stars" id="activity5-stars">
+                                    <span>☆</span>
+                                    <span>☆</span>
+                                    <span>☆</span>
+                                </div>
+                            </div>
+                        </div>
+                                <div class="container">
+
+                                    <div class="row center">
+                                        <div class="full">
+                                            <a id="lesson6-link" href="../activity.html?lesson=6">
+                                                <button id="lesson6" class="inactive">🜲</button>
+                                            </a>
+
+                                            <div class="stars" id="activity6-stars">
+                                                <span>☆</span>
+                                                <span>☆</span>
+                                                <span>☆</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+              
+    <div class="side-images right-images">
+         <img src="../Images/Planet2-Gas-H-M-Orange500@2x.png">
+              <img src="../Images/Moon-Rock-H-L-Slate400@2x.png">
+          <img src="../Images/BabyAlienEvil-Unknown-H-S-Pink400@2x.png">
+    </div>
+
 </div>
 </body>
+
+
 
 
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>

@@ -132,7 +132,7 @@ flex-direction: column;
                 margin-bottom: 2%;
                 background-color: white;
                 font-weight: bold;
-                color: #0b5394;
+                color: #56a6ec;
                 font-weight: bold;
                 display: flex;
                 justify-content: center;
@@ -158,18 +158,17 @@ flex-direction: column;
 
 
             .arrow button:hover{
-                color:#0b5394;
-                box-shadow: 0 0 40px #0b5394;
+                color:#56a6ec;
+                box-shadow: 0 0 40px #56a6ec;
                 transform: translateY(-4px);
             }
 
 body{
-    min-height: 100vh;
-       background-color: rgb(249, 249, 249);
-       background-image: 
-        linear-gradient(rgba(0,0,0,0.035) 1px, transparent 1px),
-        linear-gradient(90deg,rgba(0,0,0,0.035) 1px, transparent 1px);
+ min-height: 100vh;
+       background-color: #bda07d;
      background-size: 40px 40px;
+     overflow-x: hidden;
+    
     
 }
 
@@ -180,7 +179,7 @@ html, body{
 }
 
 .press{
-    background: rgb(0, 136, 136);
+    background: rgb(6, 128, 150);
     color: white;
     border: none;
     padding: 16px 30px;
@@ -188,7 +187,7 @@ html, body{
     font-weight: bold;
     border-radius: 50px;
     cursor: pointer;
-    box-shadow: 0 6px 0 rgb(0, 85, 85);
+    box-shadow: 0 6px 0 rgb(5, 89, 104);
     font-family: "Zilla Slab", serif;
     transition: all 0.1s ease;
     max-width: 100px;
@@ -200,7 +199,7 @@ html, body{
 
 .press:active{
     transform:translateY(5px);
-    box-shadow: 0 0 0 rgb(0, 85, 85);
+    box-shadow: 0 0 0 rgb(5, 89, 104);
 }
 
 .inactive{
@@ -282,172 +281,405 @@ svg {
     stroke-width: 2;
     transform: translateY(5px);
 }
+.skill-tree-page{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.skill-tree{
+    position: relative;
+    z-index: 2;
+}
+
+.side-images{
+    position: absolute;
+    top: 0;
+    width: 25%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.side-images-left{
+    left: 0;
+}
+
+.side-images-right{
+    right: 0;
+}
+
+
+.side-images img{
+    position: absolute;
+    width: 150px;
+    max-width: none;
+    height: auto;
+}
+
+.right-images img{
+    width: 220px;
+}
+
+.left-images img:nth-child(1){
+    top: 50px;
+    left: -50%;
+}
+
+.left-images img:nth-child(2){
+    top: 400px;
+    left: -70%;
+}
+
+.left-images img:nth-child(3){
+    top: 800px;
+    left: -50%;
+}
+
+.left-images img:nth-child(4){
+    top: 1100px;
+    left: -110%;
+    width: 250px;
+}
+
+
+
+.right-images img:nth-child(1){
+    top: 100px;
+    right: -400px;
+}
+
+.right-images img:nth-child(2){
+    top: 400px;
+    right: -500px;
+}
+
+.right-images img:nth-child(3){
+    top: 600px;
+    right: -450px;
+    transform: scaleX(-1)
+}
+
+.right-images img:nth-child(4){
+    top: 1200px;
+    right: -450px;
+    width: 400px;
+}
+
+@media (max-width: 1000px){
+      .skill-tree {
+        width: 250px;
+        position: relative;
+        z-index: 2;
+    }
+.left-images img:nth-child(1){
+    top: 80px;
+    left: -80%;
+}
+
+.left-images img:nth-child(2){
+    top: 300px;
+    left: -70%;
+}
+
+.left-images img:nth-child(3){
+    top: 800px;
+    left: -50%;
+}
+
+.left-images img:nth-child(4){
+    top: 1200px;
+    left: -110%;
+    width: 120px;
+}
+
+
+
+.right-images img:nth-child(1){
+    top: 100px;
+    right: -150px;
+}
+
+.right-images img:nth-child(2){
+    top: 400px;
+    right: -160px;
+}
+
+    .side-images {
+        position: absolute;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .side-images img {
+        width: 80px;
+        height: auto;
+    }
+
+    
+
+    .right-images img:nth-child(3),
+    .right-images img:nth-child(4) {
+        display: none;
+    }
+}
+
 
 </style>
-
 <ul>
-    <li><a class = "ia" href = "/">Home</a></li>
-    <li><a class = "ia" href = "/videos/">Videos</a></li>
-    <li><a class = "a" href = "/lessons/">Lessons</a></li>
-    <li class = "icon">
-        <span id = "user-icon"></span>
-    <div class = "dropdown"></div>
+    <li><a class="ia" href="/">Home</a></li>
+    <li><a class="ia" href="/videos/">Videos</a></li>
+    <li><a class="a" href="/lessons/">Lessons</a></li>
+
+    <li class="icon">
+        <span id="user-icon"></span>
+        <div class="dropdown"></div>
     </li>
-    </ul>
-    <div class = "arrow">
-            <a href = "../Lessons/">
-            <button>←
-            </button>
-            </a>
+</ul>
+
+<div class="arrow">
+    <a href="../Lessons/">
+        <button>←</button>
+    </a>
+</div>
+
+
+<div class="skill-tree-page">
+
+
+    <div class="side-images left-images">
+        <img src="../Images/BigShellClosed-Organic-H-L-Brown300@2x.png">
+        <img src="../Images/Starfish2-Organic-H-S-Teal500@2x.png">
+        <img src="../Images/SosBottleFloating-Glass-V-S-Lime700@2x.png">
+         <img src="../Images/Malibu palm-1.png">
+    </div>
+    <div class="skill-tree">
+
+        <div class="row left">
+            <div class="full">
+                <a href="./article.html?article=1">
+                    <button class="press">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
+                        </svg>
+                    </button>
+                </a>
             </div>
-<div class = "container">
-<div class = "row left">
-<div class = "full">
-<a href = "./article.html?article=1">
-<button class = "press"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    
-  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
-</svg></button>
-</a>
-</div>
-</div>
-<div class = "row right">
-<div class = "full">
-<a href = "./activity.html?lesson=1">
-<button class = "press">✎</button>
-</a>
-<div class = "stars" id = "activity1-stars">
-<span>☆</span>
-<span>☆</span>
-<span>☆</span>
-</div>
-</div>
-</div>
-<div class = "container">
-<div class = "row left">
-<div class = "full">
-<a id = "article2-link" href = "./article.html?article=2">
-<button id = "article2" class = "inactive"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    
-  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
-</svg></button>
-</a>
-</div>
-</div>
-<div class = "row right">
-<div class = "full">
-<a id = "lesson2-link" href = "../activity.html?lesson=2">
-<button id = "lesson2" class = "inactive">✎</button>
-</a>
-<div class = "stars" id = "activity2-stars">
-<span>☆</span>
-<span>☆</span>
-<span>☆</span>
-</div>
-</div>
-</div>
-<div class = "container">
-<div class = "row left">
-<div class = "full">
-<a id = "article3-link" href = "./article.html?article=3">
-<button id = "article3" class = "inactive"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    
-  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
-</svg></button>
-</a>
-</div>
-</div>
-<div class = "row right">
-<div class = "full">
-<a id = "lesson3-link" href = "./activity.html?lesson=3">
-<button id = "lesson3" class = "inactive">✎</button>
-</a>
-<div class = "stars" id = "activity3-stars">
-<span>☆</span>
-<span>☆</span>
-<span>☆</span>
-</div>
-</div>
-</div><div class = "container">
-<div class = "row left">
-<div class = "full">
-<a id = "article4-link">
-<button id = "article4" class = "inactive"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    
-  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
-</svg></button>
-</a>
-</div>
-</div>
-<div class = "row right">
-<div class = "full">
-<a id = "lesson4-link" href = "../activity.html?lesson=4">
-<button id = "lesson4" class = "inactive">✎</button>
-</a>
-<div class = "stars" id = "activity4-stars">
-<span>☆</span>
-<span>☆</span>
-<span>☆</span>
-</div>
-</div>
-</div><div class = "container">
-<div class = "row left">
-<div class = "full">
-<a id = "article5-link">
-<button id = "article5" class = "inactive"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    
-  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
-</svg></button>
-</a>
-</div>
-</div>
-<div class = "row right">
-<div class = "full">
-<a id = "lesson5-link" href = "../activity.html?lesson=5">
-<button id = "lesson5" class = "inactive">✎</button>
-</a>
-<div class = "stars" id = "activity5-stars">
-<span>☆</span>
-<span>☆</span>
-<span>☆</span>
-</div>
-</div>
-</div><div class = "container">
-<div class = "row left">
-<div class = "full">
-<a id = "article6-link">
-<button id = "article6" class = "inactive"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    
-  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
-</svg></button>
-</a>
-</div>
-</div>
-<div class = "row right">
-<div class = "full">
-<a id = "lesson6-link" href = "../activity.html?lesson=6">
-<button id = "lesson6" class = "inactive">✎</button>
-</a>
-<div class = "stars" id = "activity6-stars">
-<span>☆</span>
-<span>☆</span>
-<span>☆</span>
-</div>
-</div>
-</div>
-<div class = "row center">
-<div class = "full">
-<a id = "lesson7-link" href = "../activity.html?lesson=7">
-<button id = "lesson7" class = "inactive">🜲</button>
-</a>
-<div class = "stars" id = "activity7-stars">
-<span>☆</span>
-<span>☆</span>
-<span>☆</span>
-</div>
-</div>
-</div>
-</div>
+        </div>
+
+
+        <div class="row right">
+            <div class="full">
+                <a href="./activity.html?lesson=1">
+                    <button class="press">✎</button>
+                </a>
+
+                <div class="stars" id="activity1-stars">
+                    <span>☆</span>
+                    <span>☆</span>
+                    <span>☆</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+
+            <div class="row left">
+                <div class="full">
+                    <a id="article2-link" href="./article.html?article=2">
+                        <button id="article2" class="inactive">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 1 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
+                            </svg>
+                        </button>
+                    </a>
+                </div>
+            </div>
+
+            <div class="row right">
+                <div class="full">
+                    <a id="lesson2-link" href="../activity.html?lesson=2">
+                        <button id="lesson2" class="inactive">✎</button>
+                    </a>
+
+                    <div class="stars" id="activity2-stars">
+                        <span>☆</span>
+                        <span>☆</span>
+                        <span>☆</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="container">
+
+                <div class="row left">
+                    <div class="full">
+                        <a id="article3-link" href="./article.html?article=3">
+                            <button id="article3" class="inactive">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round"
+                                          stroke-linejoin="round"
+                                          d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 1 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
+                                </svg>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row right">
+                    <div class="full">
+                        <a id="lesson3-link" href="./activity.html?lesson=3">
+                            <button id="lesson3" class="inactive">✎</button>
+                        </a>
+
+                        <div class="stars" id="activity3-stars">
+                            <span>☆</span>
+                            <span>☆</span>
+                            <span>☆</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="container">
+
+                    <div class="row left">
+                        <div class="full">
+                            <a id="article4-link">
+                                <button id="article4" class="inactive">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round"
+                                              stroke-linejoin="round"
+                                              d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
+                                    </svg>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="row right">
+                        <div class="full">
+                            <a id="lesson4-link" href="../activity.html?lesson=4">
+                                <button id="lesson4" class="inactive">✎</button>
+                            </a>
+
+                            <div class="stars" id="activity4-stars">
+                                <span>☆</span>
+                                <span>☆</span>
+                                <span>☆</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="container">
+
+                        <div class="row left">
+                            <div class="full">
+                                <a id="article5-link">
+                                    <button id="article5" class="inactive">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round"
+                                                  stroke-linejoin="round"
+                                                  d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 1 18 18a8.967 8.967 0 0 1-6 2.292m0-14.25v14.25"/>
+                                        </svg>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="row right">
+                            <div class="full">
+                                <a id="lesson5-link" href="../activity.html?lesson=5">
+                                    <button id="lesson5" class="inactive">✎</button>
+                                </a>
+
+                                <div class="stars" id="activity5-stars">
+                                    <span>☆</span>
+                                    <span>☆</span>
+                                    <span>☆</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="container">
+
+                            <div class="row left">
+                                <div class="full">
+                                    <a id="article6-link">
+                                        <button id="article6" class="inactive">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round"
+                                                      stroke-linejoin="round"
+                                                      d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 1 18 18a8.967 8.967 0 0 1-6 2.292m0-14.25v14.25"/>
+                                            </svg>
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="row right">
+                                <div class="full">
+                                    <a id="lesson6-link" href="../activity.html?lesson=6">
+                                        <button id="lesson6" class="inactive">✎</button>
+                                    </a>
+
+                                    <div class="stars" id="activity6-stars">
+                                        <span>☆</span>
+                                        <span>☆</span>
+                                        <span>☆</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                           
+                                <div class="container">
+
+                                    <div class="row center">
+                                        <div class="full">
+                                            <a id="lesson7-link" href="../activity.html?lesson=7">
+                                                <button id="lesson7" class="inactive">🜲</button>
+                                            </a>
+
+                                            <div class="stars" id="activity7-stars">
+                                                <span>☆</span>
+                                                <span>☆</span>
+                                                <span>☆</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    <div class="side-images right-images">
+        <img src="../Images/Shell1-Organic-H-S-Teal400@2x.png">
+         <img src="../Images/Starfish2-Organic-H-S-Teal500@2x.png">
+<img src="../Images/Malibu palm-1.png">
+        <img src="../Images/SeaTreasure-Gold-V-L-Yellow300@2x.png">
+    </div>
+
 </div>
 </body>
 
@@ -456,6 +688,7 @@ svg {
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script>
+
 
 const firebaseConfig = {
 
