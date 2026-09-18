@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link ref = "icon" href = "/favicon.ico?v=1">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cause:wght@100..900&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libertinus+Math&display=swap" rel="stylesheet">
+
+<title>AMC 8 Question</title>
+<meta name = "description" content = "Solve the AMC 8 question!">
+<style>
+
+body{
+    visibility: hidden;
+}
+
+ .easy-style{
+                margin: auto;
+                margin-top: 2%;
+                display: flex;
+                justify-content: center;
+            }
+            .easy-style p{
+                font-size:1em;
+                border-radius:50px;
+                text-align:center;
+                padding: 10px 25px;
+                box-shadow: 0 0 40px #158C00;
+                font-family: "Libertinus Math", system-ui;
+            }
+
+
+            .medium button{
+                cursor: pointer;
+                font-family: "Libertinus Math", system-ui;
+                font-size: 2rem;
+                border-radius: 50%;
+                border: 2px solid rgb(255, 210, 159);
+                margin-bottom: 2%;
+                background-color: white;
+                font-weight: bold;
+                color:rgb(255, 210, 159);
+                margin-bottom: 2%;;
+                box-shadow: 0 0 40px grey;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 4rem;
+                width: 4rem;
+                padding: 0;
+                font-size: 2rem;
+                border-radius: 50%;
+                appearance: none;
+                -webkit-appearance: none;
+                
+
+   
+            }
+           
+            .medium button:hover{
+                box-shadow: 0 0 40px rgb(255, 210, 159);
+                transform: translateY(-4px);
+            }
+
+  .anim{
+            opacity: 0;
+            transform: translateY(30px);
+            animation: moveUp 0.5s linear forwards;
+        }
+        @keyframes moveUp{
+            to{
+                opacity: 1;
+                transform: translateY(0px);
+            }
+        }
+    body, html{
+        min-height: 100%;
+        margin: 0;
+        padding-top: 0px;
+        padding-right: 1rem;
+        padding-left: 1rem;
+        padding-bottom: 1.2rem;
+    }
+    body{
+       background-color: rgb(249, 249, 249);
+       background-image: 
+       linear-gradient(rgba(0,0,0,0.035) 1px, transparent 1px),
+       linear-gradient(90deg,rgba(0,0,0,0.035) 1px, transparent 1px);
+     background-size: 40px 40px;
+    }
+
+     @media(max-width: 600px){
+        body{
+       background-color: rgb(249, 249, 249);
+       background-image: 
+       linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+       linear-gradient(90deg,rgba(0,0,0,0.05) 1px, transparent 1px);
+     background-size: 40px 40px;
+     padding-bottom: 2rem;
+    }
+     }
+</style>
+<!--Daily Question-->
+    <style>
+            a{
+                text-decoration: none;
+            }
+            h1{
+                font-size: 10rem;
+                text-align: center;
+                margin-top: 1%;
+                font-family: "Libertinus Math", system-ui;
+
+            }
+            .question_container{
+                padding: 1.5em;
+                display: flex;
+                flex-direction: column;
+                background-color: white;
+                border: solid 1px black;
+                margin-bottom: 1rem;
+                width: 90%;
+                max-width: 900px;
+            }
+
+            .img_question{
+                text-align: center;
+                margin-top: 1rem;
+            }
+             .img_question img{
+                display: block;
+                max-width: 100%;
+                height: auto;
+                margin: 0 auto;
+            }
+           
+            .question{
+                text-align:center;
+                font-size: 2em;
+                margin-left: 5%;
+                margin-right: 5%;
+                margin-bottom: 0%;
+                color: #333535;
+                font-family: "Libertinus Math", system-ui;
+                white-space: pre-line; 
+
+            }
+           
+            .option{
+                display: flex;
+                text-align:center;
+                flex-direction: column;
+                align-items: center;
+                gap: 1em;
+                margin-top: 0%;
+            }
+            .option-item{
+                position: relative;
+            }
+
+
+            .option-item img{
+                position: absolute;
+                left: 110%;
+                top:100%;
+                visibility: hidden;
+                width: 50px;
+                transform: translateY(-50%)scaleX(-1)rotate(15deg);
+            }
+
+
+            .answer-explanation{
+                justify-content: center;
+                max-width: 800px;
+                width: 90%;
+                max-height: 0;
+                overflow:hidden;
+                margin: 0 auto;
+                position: relative;
+                font-size: 1.75rem;
+                font-family: "Libertinus Math", system-ui;
+                transform: translateY(-10px);
+                transition: max-height 0.9s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.9s ease, transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+                opacity: 0;
+                color:#333535;
+                text-align: center;
+                padding: 0;
+                min-width: 1rem;
+                margin-bottom: 1.5%;
+                align-items: center;
+                white-space: pre-line; 
+                
+
+            }
+
+            .answer-explanation p.step{
+                background: #ffffff;
+                padding: 0.8em 1em;
+                border-left: 10px solid #6e88cf;
+                margin: 0.5em 0;
+                border-radius: 5px;
+                font-size: 1.5rem;
+                border-top: 1px solid black;
+                border-right: 1px solid black;
+                border-bottom: 1px solid black;
+                white-space: pre-line; 
+            }
+
+
+            .option-item:not(.disabled):hover img{
+                visibility:visible;
+                transition-duration: 1s ease;
+                opacity: 1;
+            }
+
+
+
+
+            .option button{
+                cursor: pointer;
+                font-family: "Libertinus Math", system-ui;
+                font-size: 2em;
+                border-radius: 50px;
+                margin-bottom: 2%;
+                padding: 10px 30px;
+                background-color: #f7f7f7;
+                color: #333535;
+                border: transparent;
+                box-shadow: 0 0 15px #0b5394;
+                transition: background-color 0.6s ease, box-shadow 0.6s ease;
+                min-width: 100px;
+                
+            }
+           
+
+
+   
+
+
+            .option button:hover{
+                background:rgb(201, 244, 255, 0.5);
+            }
+
+
+
+
+            .answer-explanation.visible{
+            max-height: none;
+            overflow: visible;
+            opacity: 1;
+            transform: translateY(0);
+            white-space: pre-line; 
+            }
+            body{
+                margin:0;
+                overflow-x: hidden;
+            }
+
+
+
+
+            .arrow button{
+                cursor: pointer;
+                font-family: "Libertinus Math", system-ui;
+                font-size: 2rem;
+                border-radius: 50%;
+                border: 2px solid transparent;
+                box-shadow: 0 0 40px grey;
+                margin-bottom: 2%;
+                background-color: white;
+                font-weight: bold;
+                color: #0b5394;
+                font-weight: bold;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 4rem;
+                width: 4rem;
+                padding: 0;
+                font-size: 2rem;
+                border-radius: 50%;
+                appearance: none;
+                -webkit-appearance: none;
+            }
+
+
+            .arrow button:hover{
+                color:#0b5394;
+                box-shadow: 0 0 40px #0b5394;
+                transform: translateY(-4px);
+            }
+
+
+           
+            .img{
+                display: block;
+                position: relative;
+                margin: 0 auto;
+                transform:scale(1.2);
+                margin-bottom: 5%;
+            }
+
+
+
+            .header{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .timer{
+                margin-top: 0.5rem;
+            }
+
+            .timer p{
+                font-size: 2rem;
+                font-family: "Libertinus Math", system-ui;
+            }
+
+           .hint-container{
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            align-items: center;
+            gap: 0;
+            justify-content: center;
+           }
+
+           .hint button{
+                cursor: pointer;
+                font-family: "Libertinus Math", system-ui;
+                font-size: 1em;
+                border-radius: 50px;
+                padding: 10px 30px;
+                background-color: #f7f7f7;
+                color: black;
+                border: 2px solid rgb(255, 166, 56);
+                transition: background-color 0.6s ease, box-shadow 0.6s ease;
+                min-width: 1rem;
+                box-shadow:  0 0 40px grey;
+                opacity: 1;
+                margin-bottom: 1rem;
+           }
+
+           .hint button:hover{
+                box-shadow: 0 0 100px rgb(255, 166, 56);
+           }
+           .hint-explanation{
+                font-size: 2em;
+                font-family: "Libertinus Math", system-ui;
+                color:#333535;
+                opacity: 0;
+                transition: 0.5s ease;
+                align-content: center;
+                text-align: center;
+                width: 80%;
+                height: 0;
+                overflow: hidden;
+                opacity: 0;
+                transform: translateY(-10px);
+                transition: height 0.9s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.9s ease, transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+           }
+
+           .hint-explanation.visible{
+                height: auto;
+                opacity: 1;
+           }
+
+           .copyright{
+            text-align: center;
+            font-size: 1rem;
+            color: black;
+           }
+           .contact{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 2rem;
+            align-items: center;
+           }
+           .contact a{
+            text-align: center;
+            font-size: 1rem;
+            color: rgb(99, 136, 191);
+            text-decoration: none;
+            margin: 0;
+           }
+
+           .contact a:hover{
+            text-decoration: underline;
+           }
+
+           .hint.disabled-after-answer{
+            cursor: not-allowed;
+            background-color: rgba(178, 190, 181, 0.5);
+            box-shadow: 0 0 30px rgba(75, 75, 75, 0.5);
+            border-color: grey;
+            pointer-events: none;
+           }
+
+           .top-arrows{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2%;
+           }
+
+           #login-popup-overlay{
+            position: fixed;
+            inset: 0;
+            background: transparent;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+           }
+           
+           #login-popup{
+            background: white;
+            padding: 5rem 2rem;
+            max-width: 600px;
+            width: 90%;
+            border-radius: 16px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.25);
+            text-align: center;
+            font-family: "Libertinus Math", system-ui;
+            position: relative;
+            min-height: 200px;
+           }
+
+           #close-popup{
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+           }
+           .login-button{
+            display:inline-block;
+            margin-top: 1rem;
+            padding: 10px 30px;
+            background: transparent;
+            border-radius: 30px;
+            border: solid 2px #6e88cf;
+            color:#6ecccf;
+            font-size: 2rem;
+            box-shadow: 0 0 40px #6ecccf;
+           }
+           .login-button:hover{
+            transform: translateY(-10px);
+            transition: height 0.9s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.9s ease, transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+           }
+
+           .progress{
+            font-family: "Libertinus Math", system-ui;
+            color:#6e88cf;
+            font-weight:bold;
+            font-size: 3rem;           
+        }
+        .description{
+            font-family: "Libertinus Math", system-ui;
+            color:#6ecccf;
+            font-weight:bold;
+            font-size: 2rem; 
+        }
+        
+</style>
+</head>
+
+
+<body>
+    <div id = "login-popup-overlay">
+        <div id = "login-popup">
+            <button id = "close-popup">X</button>
+            <div class = "progress">
+            <p>Save your progress!</p>
+            </div>
+            <div class = "description">
+            <p>Save your answers, stars, and earn a streak!</p>
+            </div>
+            <a href = "/login/" class = "login-button">Log in</a>
+        </div>
+    </div>
+    <div class = "anim">
+    <div class = "top-arrows">
+            <div class = "arrow">
+            <a href = "../index.html">
+            <button>←
+            </button>
+            </a>
+            </div>
+            <div class = "medium">
+                <a href = "/Competition_Math/AMC_10/">
+                <button>→</button>
+                </a>
+            </div>
+            </div>
+            <div class = "easy-style">
+                <p>AMC 8</p>
+            </div>
+            <div class = "header">
+                 <div class = "timer">
+                    <p id = "timer"></p>
+                </div>
+                <div class = "question_container">
+                <div class = "img_question">
+                    <img alt = "Image of question" id = "img_question">
+                </div>
+                <div class = "question">
+                <p id = "question">
+                </p>
+                </div>
+                </div>
+                <div class = "hint-container">
+                    <div class = "hint">
+                        <button id = "hint">Hint 💡</button>
+                    </div>
+                    <div class = "hint-explanation">
+                        <p id = "hint-explanation"></p>
+                    </div>
+                </div>
+            </div>
+            <div class = "option">
+                <div class = "option-item">
+                <button id ="A"></button>
+                <img alt = "Mathemagic rabbit" src="../../Images/rabbit_no_background.png">
+                </div>
+                <div class = "option-item">
+                <button id = "B"></button>
+                <img alt = "Mathemagic rabbit" src="../../Images/rabbit_no_background.png">
+                </div>
+                <div class = "option-item">
+                 <button id = "C"></button>
+                <img alt = "Mathemagic rabbit" src="../../Images/rabbit_no_background.png">
+                </div>
+                <div class = "option-item">
+                 <button id = "D"></button>
+                <img alt = "Mathemagic rabbit" src="../../Images/rabbit_no_background.png">
+                </div>
+            </div>
+            <div class = "answer-explanation">
+                <p id = "answer_explanation"></p>
+            </div>
+        </div>
+        <div class = "copyright">
+            <p>© 2026 Mathemagic. All rights reserved.
+            </p>
+        </div>
+        <div class = "contact">
+            <a href="mailto:webmaster@example.com">Email</a>
+            <a href = "https://youtube.com/@mathhhemagic?si=saFxbbJ1ndVRRasb">Youtube</a>
+        </div>
+        <div class = "copyright">
+            <p>Practice questions inspired by standardized tests. Not affiliated with CollegeBoard</p>
+        </div>
+
+
+           
+
+
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyDRjjvLABEFL-PgbChUFNZW6u38U6c7jP4",
+
+  authDomain: "mathemagic-fcb1d.firebaseapp.com",
+
+  projectId: "mathemagic-fcb1d",
+
+  storageBucket: "mathemagic-fcb1d.firebasestorage.app",
+
+  messagingSenderId: "313453456371",
+
+  appId: "1:313453456371:web:21e60d301936c2333f8086"
+
+};
+
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+const questions = 
+[
+{
+    question: "What is the value of the following expression?\n1 + 2 - 3 + 4 - 5 + 6 -7 + 8 - 9 + 10",
+    answer: {A:18, B:21, C:25, D:30},
+    correct: "A",
+    hint: "Use mental calculations",
+    steps: [
+        "Use mental calculations to get 1 + 2 - 3 + 4 - 5 + 6 -7 + 8 - 9 + 10 = 18"
+    ],
+    minutes: 1,
+    img_question: ""
+}
+
+
+];
+
+function getDailyDate(resetHour, resetMinute){
+    const now = new Date();
+    const reset = new Date(now);
+
+    reset.setHours(resetHour, resetMinute, 0, 0);
+
+    if (now < reset){
+        reset.setDate(reset.getDate()-1);
+
+    }
+
+    return reset;
+}
+
+const startDate = new Date("2026-02-24T00:00:00");
+const dailyDate = getDailyDate(0, 0);
+const dailyIndex = Math.floor((dailyDate - startDate) / 86400000) % questions.length;
+const dayKey = dailyDate.toISOString().split("T")[0];
+const q = questions[dailyIndex]; 
+const buttons = document.querySelectorAll('.option button');
+const explanation = document.querySelector(".answer-explanation");
+const hintButton = document.getElementById("hint");
+const timer = document.getElementById("timer");
+const hintExplanation = document.querySelector(".hint-explanation");
+const popupOverlay = document.getElementById("login-popup-overlay");
+const closePopupButton = document.getElementById("close-popup");
+document.getElementById('hint-explanation').innerText = q.hint;
+document.getElementById('A').innerText = q.answer.A;
+document.getElementById('B').innerText = q.answer.B;
+document.getElementById('C').innerText = q.answer.C;
+document.getElementById('D').innerText = q.answer.D;
+
+document.getElementById('question').innerText = q.question;
+let hintsUsed = false;
+let points = 0;
+let timeUp = false;
+let timeInterval = null;
+let paused = false;
+let time = q.minutes * 60;
+let hintClicked = false;
+const img = document.getElementById("img_question");
+const imgWrapper = document.querySelector(".img_question");
+
+
+function showLoginPopup(){
+    if(!sessionStorage.getItem("loginPopupShown"))
+   {
+        popupOverlay.style.display = "flex";
+        sessionStorage.setItem("loginPopupShown", "true");
+    }
+}
+closePopupButton.addEventListener("click", () => {
+    popupOverlay.style.display = "none";
+})
+if (q.img_question){
+    img.src = q.img_question;
+    imgWrapper.style.display = "block";
+}
+else{
+    img.removeAttribute("src");
+    imgWrapper.style.display = "none";
+}
+const correctAnswer = q.correct;
+
+auth.onAuthStateChanged(async user => {
+    document.body.style.visibility = "visible";
+  if (!user) {
+    console.log("Guest user - progress not saved");
+    showLoginPopup();
+    return;
+  }
+
+
+
+const userRef = db.collection("users").doc(user.uid);
+const userDoc = await userRef.get();
+if (!userDoc.exists){
+    await userRef.set({
+        email: user.email,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+}
+const dayRef = db.collection("users").doc(user.uid).collection("AMC_8").doc(dayKey);
+const dayDoc = await dayRef.get();
+
+if (dayDoc.exists){
+    const data = dayDoc.data();
+    time = data.remainingTime ?? q.minutes * 60;
+    paused = data.paused ?? false;
+    updateCountdown();
+    if (!paused) startTimer();
+    loadUserData(user.uid);
+}
+else
+{
+    time = q.minutes * 60;
+    paused = false;
+    await dayRef.set({remainingTime: time, paused: false, hintsUsed: false, points: 0});
+    updateCountdown(0);
+    startTimer(0);
+
+}
+});
+    
+
+
+
+
+
+
+
+
+async function loadUserData(uid){
+    const doc = await db
+    .collection("users")
+    .doc(uid)
+    .collection("AMC_8")
+    .doc(dayKey)
+    .get();
+
+    if (doc.exists){
+        const data = doc.data();
+        hintsUsed = data.hintsUsed;
+        hintClicked = data.hintClicked || false;
+        points = data.points || 0;
+
+        if (data.answer){
+            reload(data.answer);
+        }
+
+    }
+    updateHintButton();
+}
+
+function updateHintButton(){
+    if(hintsUsed){
+        hintButton.disabled = true;
+        hintExplanation.classList.add("disabled-after-answer");
+
+        hintButton.style.backgroundColor = "rgb(178, 190, 181, 0.5)";
+        hintButton.style.boxShadow = "0 0 30px rgb(75, 75, 75, 0.5)";
+        hintButton.style.borderColor = "grey";
+
+    if (hintClicked){
+        hintExplanation.classList.add("visible");
+        hintExplanation.style.height = hintExplanation.scrollHeight + "px";
+        hintExplanation.style.opacity = "1";
+        hintExplanation.style.transform = "translateY(0)"
+    }
+        
+        
+
+    
+    else{
+        hintExplanation.classList.remove("visible")
+        hintExplanation.style.height = "0px";
+        hintExplanation.style.opacity = "0";
+        hintExplanation.style.transform = "translateY(-10px)";
+
+    }
+}
+    else{
+    hintButton.disabled = false;
+    hintButton.classList.remove("disabled-after-answer");
+
+    hintButton.style.backgroundColor = "#f7f7f7";
+    hintButton.style.boxShadow = "0 0 40px grey";
+    hintButton.style.borderColor = "rgb(255,166,56)";
+
+    hintExplanation.classList.remove("visible");
+    hintExplanation.style.height = "0px";
+    hintExplanation.style.opacity = "0";
+    hintExplanation.style.transform = "translateY(-10px)"
+    }
+}
+hintButton.addEventListener("click", async () => {
+    if (hintsUsed) return;
+    hintsUsed = true;
+    hintClicked = true;
+    updateHintButton();
+
+    const user = auth.currentUser;
+    if (user){
+        await db.collection("users").doc(user.uid).collection("AMC_8").doc(dayKey).set({hintsUsed: true,hintClicked: true, points: points}, {merge:true});
+    }
+});
+
+function showAnswerExplanation(){
+    explanation.innerHTML = "";
+    q.steps.forEach((step, index) => {
+        const stepDiv = document.createElement("p");
+        stepDiv.classList.add("step");
+        stepDiv.innerHTML = `<strong>Step ${index +1}:</strong><br><br>${step}`;
+        explanation.appendChild(stepDiv);
+    });
+    explanation.classList.add("visible")
+
+}
+function reload(choice){
+    if (timeInterval){
+        clearInterval(timeInterval);
+        timeInterval = null;
+        timer.style.color = "black";
+    }
+    hintsUsed = true;
+    hintClicked = hintClicked || false;
+    updateHintButton();
+    buttons.forEach(button => {
+        button.disabled = true;
+        button.parentElement.classList.add("disabled");
+
+        
+    
+
+        if (button.id === correctAnswer){
+            button.style.backgroundColor = "rgb(48, 133, 24, 0.5)";
+            button.style.boxShadow = "0 0 30px rgb(75, 75, 75, 0.5)";
+
+        }
+        else if (button.id === choice){
+            button.style.backgroundColor = "rgb(135, 24, 24, 0.5)";
+            button.style.boxShadow = "0 0 30px rgb(135, 24, 24, 0.5)";
+
+
+        }
+        else
+        {
+            button.style.backgroundColor = "rgb(178, 190, 181, 0.5)";
+            button.style.boxShadow = "0 0 30px rgb(75, 75, 75, 0.5)";
+        }
+
+    });
+    showAnswerExplanation();
+}
+
+
+const startingMinutes = q.minutes;
+
+
+
+const answer = document.querySelector(".hint-explanation");
+
+
+
+
+
+
+
+
+buttons.forEach(button => {
+    button.addEventListener( "click", async () => {
+        let starsEarned = 0;
+        paused = true;
+        if (timeInterval){
+            clearInterval(timeInterval);
+        }
+        if (button.id === correctAnswer){
+            starsEarned = 1;
+                if (!timeUp){
+                starsEarned++;
+            }
+
+            if (!hintsUsed){
+                starsEarned++;
+            }
+        }
+       
+        reload(button.id)
+    
+        const user = auth.currentUser;
+        if (user){
+            await db.collection("users").doc(user.uid).collection("AMC_8").doc(dayKey).set({
+                answer: button.id,
+                stars: starsEarned,
+                hintsUsed: hintsUsed,
+                hintClicked: hintClicked,
+                paused: true,
+                remainingTime: time
+
+
+            }, {merge:true});
+        }
+        reload(button.id);
+    });
+});
+
+window.addEventListener("focus", () => {
+    if(!timeUp && !paused) startTimer();
+});
+
+function startTimer(){
+    if (!timeInterval){
+    timeInterval = setInterval(async ()=>{
+        updateCountdown();
+
+        const user = auth.currentUser;
+        if(user){
+            await db.collection("users").doc(user.uid).collection("AMC_8").doc(dayKey).set({
+                remainingTime: time, paused: paused,}, {merge:true});
+            
+            }
+        }, 1000);
+        }
+    }
+    
+
+
+function updateCountdown(){
+    if (time<=0){
+        timer.innerHTML = "⏱️0:00";
+        timer.style.color = "#EB5E5E";
+        timeUp = true;
+        
+        clearInterval(timeInterval);
+        timeInterval = null;
+
+    
+        return;
+    }
+    const minutes = Math.floor(time/60);
+    const seconds = time % 60;
+    timer.innerHTML = `⏱️${minutes}:${seconds.toString().padStart(2, "0")}`;
+    time--
+
+
+
+}
+
+window.addEventListener("load", () => {
+    startTimer();
+})
+
+
+
+
+</script>
+</body>
+</html>

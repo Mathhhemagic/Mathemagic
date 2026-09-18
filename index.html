@@ -76,68 +76,6 @@ padding: 4% 0%;
     transform: translateY(-15px)
 }
 
-.lessons{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1%;
-    box-shadow:  0 0 40px grey;
-    background-color: #ffd588;
-    width: fit-content;
-    padding: 0px 50px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    max-width: 90vw;
-    box-shadow: 0 15px 40px rgba(0,0,0,0,.08)
-}
-.lessons p{
-    text-align: center;
-    text-decoration: none;
-    color:white;
-    font-size: 3rem;
-    font-family: "Zilla Slab", serif;
-    margin-top: 0;
-    margin-bottom: 2%;
-}
-
-.lesson button{
-
-            background-color: #2f82c0;
-            box-shadow: 0 0 40px #2f82c0;
-            color: #D7FFC7;
-
-
-}
-
-
-.whole{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1%;
-    box-shadow:  0 0 40px grey;
-    background-color: #9CDCFF;
-    width: fit-content;
-    padding: 0px 50px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    max-width: 90vw;
-    box-shadow: 0 15px 40px rgba(0,0,0,0,.08)
-}
-.whole p{
-    text-align: center;
-    text-decoration: none;
-    color:white;
-    font-size: 3rem;
-    font-family: "Zilla Slab", serif;
-    margin-top: 0;
-    margin-bottom: 2%;
-}
-
        
     ul{
             display: flex;
@@ -223,98 +161,8 @@ padding: 4% 0%;
         color: transparent;
         
        }
-        .difficulty{
-                display: flex;
-                justify-content: center;
-                text-align:center;
-                gap: 3rem;
-        }
 
-
-        .difficulty button{
-                cursor: pointer;
-                font-family: "Zilla Slab", serif;
-                font-size: 1rem;
-                border-radius: 5vw;
-                padding: 1vw 3vw;
-                border-color: transparent;      
-                margin-bottom: 0.5rem;
-        }
-
-        .difficulty-box{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .stars{
-            font-size: 2rem;
-            letter-spacing: 0.25rem;
-            font-family: "Zilla Slab", serif;
-        }
-        .easy button{
-            background-color: #2f82c0;
-            box-shadow: 0 0 40px #2f82c0;
-            color: #D7FFC7;
-        }
-
-
-        .medium button{
-            background-color: #2f82c0;
-            box-shadow: 0 0 40px #2f82c0;
-            color: rgb(255, 214, 168);
-        }
-
-
-        .hard button{
-            background-color: #2f82c0;
-            box-shadow: 0 0 40px #2f82c0;
-            color: #FFD3C7;
-        }
-
-
-        .difficulty button:hover{
-            box-shadow: 0 0 40px white;
-            transform: translateY(-4px);
-        }
-    
-        
-            @media (max-width: 600px){
-                .difficulty{
-                    flex-direction: column;
-                    gap: 1rem;
-                }
-
-                .difficulty button{
-                    font-size: 1.25rem;
-                    padding: 0.75em 2rem;
-                    width: 100%;
-                    margin-top: 1em;
-                }
-
-                .whole p{
-                    font-size: 2.5rem;
-                }
-                body{
-                    background-color: rgb(249, 249, 249);
-                    background-image: 
-                    linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
-                    linear-gradient(90deg,rgba(0,0,0,0.05) 1px, transparent 1px);
-                    background-size: 40px 40px;
-    }
-
-    .mathemagic-logo img{
-         height: 20em;
-    width: 20em;
-    display: block;
-    margin: 0 auto;
-    visibility: visible;
-    margin-bottom: -10%;
-    margin-top: -10%;
-
-        
-    }
-            }
+            
 
              .anim{
             opacity: 0;
@@ -446,6 +294,154 @@ flex-direction: column;
             text-decoration: underline;
            }
 
+.Sat{
+     position: absolute;
+    border-radius: 100%;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-family: "Zilla Slab", serif;
+top: 200px;
+    left: 400px;
+     border: none;
+     box-shadow:0 0 15px 5px rgb(128, 176, 128);
+         background-color: white;
+    color: rgb(9, 52, 9);
+       transition: transform 0.3s ease;
+}
+
+.Sat:hover{
+    transform: translateY(-10px);
+}
+
+.Competition{
+     position: absolute;
+    border-radius: 100%;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-family: "Zilla Slab", serif;
+top: 200px;
+    right: 400px;
+    box-shadow:0 0 15px 5px rgb(176, 156, 128);
+         background-color: white;
+    color: rgb(227, 132, 37);
+       transition: transform 0.3s ease;
+}
+
+.Competition:hover{
+    transform: translateY(-10px);
+
+
+    
+}
+
+.Logic{
+     position: absolute;
+    border-radius: 100%;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-family: "Zilla Slab", serif;
+top: 400px;
+    left: 200px;
+ box-shadow:0 0 15px 5px rgb(128, 166, 176);
+         background-color: white;
+    color: rgb(9, 29, 52);
+       transition: transform 0.3s ease;
+}
+
+.Logic:hover{
+    transform: translateY(-10px);
+}
+
+
+
+.Calculus{
+    position: absolute;
+    border-radius: 100%;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-family: "Zilla Slab", serif;
+top: 400px;
+   right: 200px;
+box-shadow:0 0 15px 5px rgb(161, 128, 176);
+         background-color: white;
+    color: rgb(40, 9, 52);
+       transition: transform 0.3s ease;
+}
+
+.Calculus:hover{
+    transform: translateY(-10px);
+}
+
+
+
+.Videos{
+     position: absolute;
+    border-radius: 100%;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-family: "Zilla Slab", serif;
+top: 600px;
+    left: 400px;
+   box-shadow:0 0 15px 5px rgb(128, 176, 166);
+         background-color: white;
+    color: rgb(9, 52, 51);
+       transition: transform 0.3s ease;
+}
+
+.Videos:hover{
+    transform: translateY(-10px);
+}
+
+
+
+.Blog{
+    position: absolute;
+    border-radius: 100%;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-family: "Zilla Slab", serif;
+top: 600px;
+   right: 400px;
+ box-shadow:0 0 15px 5px rgb(176, 128, 173);
+         background-color: white;
+    color: rgb(40, 9, 52);
+       transition: transform 0.3s ease;
+}
+
+.Blog:hover{
+    transform: translateY(-10px);
+}
+
 
 
 
@@ -455,8 +451,11 @@ flex-direction: column;
 <div class = "math-container"></div>
 <ul>
     <li><a class = "a" href = "/">Home</a></li>
-    <li><a class = "ia" href = "/videos/">Videos</a></li>
-    <li><a class = "ia" href = "/Lessons/">Lessons</a></li>
+    <li><a class = "ia" href = "/Lessons/">SAT</a></li>
+    <li><a class = "ia" href = "/Competition_Math/">Competition Math</a></li>
+    <li><a class = "ia" href = "/Logic/">Logic</a></li>
+    <li><a class = "ia" href = "/Calculus/">Calculus</a></li>
+        <li><a class = "ia" href = "/videos/">Videos</a></li>
     <li class = "icon">
         <span id = "user-icon"></span>
     <div class = "dropdown"></div>
@@ -476,43 +475,21 @@ Mathemagic
 <img alt = "Mathemagic Logo" src = "Images/Mathemagic_Logo.svg">
 </a>
 </div>
-<div class ="lessons">
-<p>NEW: Permanent Lessons, a whole new way to learn!</p>
-    <div class = "difficulty">
-            <a href = "/Lessons/">
-                <button>Go now! →</button>
-            </a>
-            
-</div>
-</div>
-<div class ="whole">
-    <p>Daily SAT challenge:</p>
-    <div class = "difficulty">
-        <div class = "easy difficulty-box">
-            <a href = "/SAT/easy_SAT_question/">
-                <button>Easy →</button>
-            </a>
-            <div class = "stars">
-                <p id = "easy_stars">☆ ☆ ☆</p> 
-            </div>
-        </div>
-        <div class = "medium difficulty-box">
-            <a href = "/SAT/medium_SAT_question/">
-                <button>Medium →</button>
-            </a>
-            <div class = "stars"><p id = "medium_stars"> ☆ ☆ ☆</p>
-            </div>
-        </div>
-        <div class = "hard difficulty-box">
-            <a href = "/SAT/hard_SAT_question/">
-                <button>Hard →</button>
-            </a>
-            <div class = "stars"><p id = "hard_stars"> ☆ ☆ ☆ </p>
-            </div>
-        </div>
-</div>
-</div>
-</div>
+
+<a href = "lessons/"><div class = "Sat">SAT</div></a>
+
+<a href = "Competition_Math/"><div class = "Competition">Competition Math</div></a>
+
+<a href = "/Logic/"><div class = "Logic">Logic</div></a>
+
+<a href = "/Calculus/"><div class = "Calculus">Calculus</div></a>
+
+<a href = "/Videos/"><div class = "Videos">Videos</div></a>
+
+<a href = "lessons/"><div class = "Blog">Blog & Q&A</div></a>
+
+
+
 <div class = "copyright">
             <p>© 2026 Mathemagic. All rights reserved.
             </p>
