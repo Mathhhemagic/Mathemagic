@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html lang = "en">
 <head>
-<title>Lessons</title>
-<meta name = "description" content = "Free SAT math articles and lessons!">
-<link ref = "icon" href = "/favicon.ico?v=1">
+<title>Home</title>
+<meta name = "description" content = "Daily SAT questions! Do the easy, medium, or hard questions!">
+<link rel = "icon" href = "/favicon.ico?v=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cause:wght@100..900&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 <style>
+    body, html{
+        min-height: 100%;
+        margin: 0;
+    }
+    body{
+       background-color: rgb(249, 249, 249);
+       background-image: 
+        linear-gradient(rgba(0,0,0,0.035) 1px, transparent 1px),
+        linear-gradient(90deg,rgba(0,0,0,0.035) 1px, transparent 1px);
+     background-size: 40px 40px;
+    }
+   
 
+       
     ul{
             display: flex;
             list-style-type: none;
@@ -51,6 +64,34 @@
         a{
             text-decoration: none;
         }
+.icon{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    float: right;
+    font-size:  1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: solid white;
+    color: rgb(41, 41, 41);
+    background-color: gray;
+    border-radius: 50%;
+    font-weight: bold;
+    margin: 0.5rem;
+    cursor: pointer;
+    
+
+}
+
+
+
+        a{
+            text-decoration: none;
+        }
+
+      
+    
 .icon{
     display: flex;
     position: relative;
@@ -118,190 +159,120 @@ flex-direction: column;
 .icon:hover .dropdown, .icon .dropdown:hover{
     display: flex;
 }
-body{
-    min-height: 100vh;
-       background-color: rgb(249, 249, 249);
-       background-image: 
-        linear-gradient(rgba(0,0,0,0.035) 1px, transparent 1px),
-        linear-gradient(90deg,rgba(0,0,0,0.035) 1px, transparent 1px);
-     background-size: 40px 40px;
-    
-}
 
-html, body{
-    margin: 0;
-    padding: 0;
-}
-
-
-        .stars{
-            font-family: "Zilla Slab", serif;
-        }
-
-      .AMC_8{
-     position: relative;
-    border-radius: 100%;
-    text-align: center;
-    width: 20rem;
-    height: 20rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
+.title{
+    font-size: 50px;
     font-family: "Zilla Slab", serif;
-     border: none;
-     box-shadow:0 0 15px 5px rgb(198, 255, 198);
-         background-color: white;
-    color: rgb(0, 81, 0);
-       transition: transform 0.3s ease;
-              cursor: pointer;
-
-}
-.AMC_8:hover{
-    transform: translateY(-10px);
-}
-
- .AMC_10{
-     position: relative;
-    border-radius: 100%;
-    text-align: center;
-    width: 20rem;
-    height: 20rem;
+    color:#2f82c0;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    font-size: 2rem;
+    margin-top: 1%;
+}
+
+.text{
+     font-size: 20px;
     font-family: "Zilla Slab", serif;
-     border: none;
-     box-shadow:0 0 15px 5px rgb(255, 168, 131);
-         background-color: white;
-    color: rgb(231, 187, 11);
-       transition: transform 0.3s ease;
-              cursor: pointer;
-
-}
-.AMC_10:hover{
-    transform: translateY(-10px);
-}
-
-.AMC_12{
-     position: relative;
-    border-radius: 100%;
-    text-align: center;
-    width: 20rem;
-    height: 20rem;
+    color:#2f82c0;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    font-family: "Zilla Slab", serif;
-     border: none;
-     box-shadow:0 0 15px 5px rgb(255, 158, 150);
-         background-color: white;
-    color: rgb(106, 27, 21);
-       transition: transform 0.3s ease;
-       cursor: pointer;
+    margin-top: 1%;
+    margin-right: 15%;
+     margin-left: 15%;
+     align-items: center;
 }
-.AMC_12:hover{
-    transform: translateY(-10px);
-}
-
-.together{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    gap: 40px;
-}
-a{
-    text-decoration: none;
-    color: inherit;
-}
-
-
 
 </style>
-
 </head>
 <body>
-
-
+<div class = "math-container"></div>
 <ul>
     <li><a class = "ia" href = "/">Home</a></li>
     <li><a class = "ia" href = "/Lessons/">SAT</a></li>
-    <li><a class = "a" href = "/Competition_Math/">Competition Math</a></li>
+    <li><a class = "ia" href = "/Competition_Math/">Competition Math</a></li>
     <li><a class = "ia" href = "/Logic/">Logic</a></li>
     <li><a class = "ia" href = "/Calculus/">Calculus</a></li>
         <li><a class = "ia" href = "/videos/">Videos</a></li>
-         <li><a class = "ia" href = "/Blog/">Blog & Q&A</a></li>
+         <li><a class = "a" href = "/Blog/">Blog & Q&A</a></li>
     <li class = "icon">
         <span id = "user-icon"></span>
     <div class = "dropdown"></div>
     </li>
     </ul>
-       
-                <div class = "together">
-                    <a class = "AMC_8"
-                    href = "../Competition_Math/AMC_8/index.html">AMC 8
-                    
-                    <div class = "stars">
-                <p id = "AMC_8_stars">☆ ☆ ☆</p> 
-            </div>
-            </a>
-                
-                
-                    <a class = "AMC_10"
-                    href = "../Competition_Math/AMC_10/index.html">AMC 10
-                    
-                    <div class = "stars">
-                <p id = "AMC_10_stars">☆ ☆ ☆</p> 
-            </div>
-            </a>
-          
-                    
-                      <a class = "AMC_12"
-                    href = "../Competition_Math/AMC_12/index.html">AMC 12
-                    
-                    <div class = "stars">
-                <p id = "AMC_12_stars">☆ ☆ ☆</p> 
- </div>
-            </a>
-                
-        </div>
-    
-    
 
+     <div class = "title">
+
+September 2026
+
+</div>
+
+<div class = "text">
+Fall is coming! We hope the school year has gone well so far! Updated 3.0 brings new UI, new math courses, and an overall better experience with bug fixes! Have fun!
+</div>
+       <div class = "title">
+
+August 2026
+
+</div>
+
+<div class = "text">
+
+    The website is back, and just in time for the new school year! Update 2.0 brings added lessons, the Desmos implemented calculator, and articles! Have fun!
+</div>
+
+
+    <div class = "title">
+
+June  2026
+
+</div>
+
+<div class = "text">
+
+Summer is here! Unfortunately, the Mathemagic website will be shutting down until mid-August, but big updates are coming! Thank you for your patience!
+</div>
+
+<div class = "title">
+
+March  2026
+
+</div>
+
+<div class = "text">
+
+Happy spring! Some of the login features are fixed, and there are some bug fixes as well! Have fun!
+</div>
+
+
+<div class = "title">
+
+January  2026
+
+</div>
+
+<div class = "text">
+
+Hi guys! This is the first update to the Website! Currently, there is 3 daily SAT questions. I'm excited to see how the website progresses! Thanks for visiting!
+
+</div>
 
 
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script>
-
-const firebaseConfig = {
-
-  apiKey: "AIzaSyDRjjvLABEFL-PgbChUFNZW6u38U6c7jP4",
-
-  authDomain: "mathemagic-fcb1d.firebaseapp.com",
-
-  projectId: "mathemagic-fcb1d",
-
-  storageBucket: "mathemagic-fcb1d.firebasestorage.app",
-
-  messagingSenderId: "313453456371",
-
-  appId: "1:313453456371:web:21e60d301936c2333f8086"
-
-};
+  const firebaseConfig = {
+    apiKey: "AIzaSyDRjjvLABEFL-PgbChUFNZW6u38U6c7jP4",
+    authDomain: "mathemagic-fcb1d.firebaseapp.com",
+    projectId: "mathemagic-fcb1d",
+    storageBucket: "mathemagic-fcb1d.appspot.com",
+    messagingSenderId: "313453456371",
+    appId: "1:313453456371:web:21e60d301936c2333f8086"
+  };
+  firebase.initializeApp(firebaseConfig);
+</script>
+<script defer>
 
 
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const db = firebase.firestore();
 
 
 firebase.auth().onAuthStateChanged(async user => {
@@ -342,29 +313,6 @@ firebase.auth().onAuthStateChanged(async user => {
     return reset;
 }
 
-
-    const todayKey = getDailyDate(0,0).toISOString().split("T")[0];
-
-    const difficulties = ["AMC_8", "AMC_10", "AMC_12"];
-
-    for (let diff of difficulties){
-        try{
-        const docRef = firebase.firestore().collection("users").doc(uid).collection(diff).doc(todayKey);
-        const docSnap = await docRef.get();
-        let stars = 0;
-        if (docSnap.exists){
-            const data = docSnap.data();
-            stars = data.stars ?? 0;
-        }
-        const starText = "★".repeat(stars) +"☆".repeat(3 - stars);
-        document.getElementById(diff + "_stars").textContent = starText;
-    }
-    catch(err){
-        console.error(`Error loading ${diff} stars:`, err);
-        document.getElementById(diff + "_stars").textContent = "☆ ☆ ☆";
-    }
-    
-}
     }
     else{
         icon.textContent = "";
