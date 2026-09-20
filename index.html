@@ -442,7 +442,52 @@ top: 600px;
     transform: translateY(-10px);
 }
 
+   @media(max-width: 1000px){
 
+    .Sat,
+    .Competition,
+    .Logic,
+    .Calculus,
+    .Videos,
+    .Blog {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+
+        width: 100px;
+        height: 100px;
+
+        margin: 30px auto;
+    }
+
+    .mathemagic-logo img{
+        height: 20em;
+        width: 20em;
+        margin: 0 auto;
+    }
+
+    ul{
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+    }
+
+    ul li{
+        flex-shrink: 0;
+    }
+
+    ul li a{
+        padding: 15px 12px;
+    }
+
+    ul li.icon{
+        flex-shrink: 0;
+        margin-left: auto;
+    }
+   }
 
 
 </style>

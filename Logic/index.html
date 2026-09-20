@@ -170,7 +170,30 @@ a{
     color: inherit;
 }
 
+@media(max-width: 700px){
 
+
+  ul{
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+    }
+
+    ul li{
+        flex-shrink: 0;
+    }
+
+    ul li a{
+        padding: 15px 12px;
+    }
+
+    ul li.icon{
+        flex-shrink: 0;
+        margin-left: auto;
+    }
+   }
 
 </style>
 
