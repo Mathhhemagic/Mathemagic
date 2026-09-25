@@ -13,13 +13,15 @@
         min-height: 100%;
         margin: 0;
     }
-    body{
-       background-color: rgb(249, 249, 249);
-       background-image: 
-        linear-gradient(rgba(0,0,0,0.035) 1px, transparent 1px),
-        linear-gradient(90deg,rgba(0,0,0,0.035) 1px, transparent 1px);
-     background-size: 40px 40px;
-    }
+    body {
+     margin: 0;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+    background-image:
+        linear-gradient(rgba(50, 80, 60, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(50, 80, 60, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
    
     .mathemagic{
         text-align: center;
@@ -293,247 +295,682 @@ flex-direction: column;
            .contact a:hover{
             text-decoration: underline;
            }
-
-.Sat{
-     position: absolute;
-    border-radius: 100%;
-    text-align: center;
-    width: 100px;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1rem;
-    font-family: "Zilla Slab", serif;
-top: 200px;
-    left: 400px;
-     border: none;
-     box-shadow:0 0 15px 5px rgb(128, 176, 128);
-         background-color: white;
-    color: rgb(9, 52, 9);
-       transition: transform 0.3s ease;
+  
+.background {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
 }
 
-.Sat:hover{
-    transform: translateY(-10px);
-}
-
-.Competition{
-     position: absolute;
-    border-radius: 100%;
-    text-align: center;
-    width: 100px;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1rem;
-    font-family: "Zilla Slab", serif;
-top: 200px;
-    right: 400px;
-    box-shadow:0 0 15px 5px rgb(176, 156, 128);
-         background-color: white;
-    color: rgb(227, 132, 37);
-       transition: transform 0.3s ease;
-}
-
-.Competition:hover{
-    transform: translateY(-10px);
-
-
-    
-}
-
-.Logic{
-     position: absolute;
-    border-radius: 100%;
-    text-align: center;
-    width: 100px;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1rem;
-    font-family: "Zilla Slab", serif;
-top: 400px;
-    left: 200px;
- box-shadow:0 0 15px 5px rgb(128, 166, 176);
-         background-color: white;
-    color: rgb(9, 29, 52);
-       transition: transform 0.3s ease;
-}
-
-.Logic:hover{
-    transform: translateY(-10px);
-}
-
-
-
-.Calculus{
+.glow {
     position: absolute;
-    border-radius: 100%;
-    text-align: center;
-    width: 100px;
-    height: 100px;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    filter: blur(100px);
+}
+
+.glow-blue {
+    top: -150px;
+    left: -100px;
+    background: rgba(70, 160, 255, 0.18);
+}
+
+.glow-green {
+    top: 30%;
+    right: -150px;
+    background: rgba(70, 210, 160, 0.13);
+}
+
+.glow-purple {
+    bottom: -200px;
+    left: 35%;
+    background: rgba(140, 110, 255, 0.12);
+}
+
+.navbar {
+    position: sticky;
+    top: 16px;
+    z-index: 1000;
+
+    width: min(1100px, calc(100% - 32px));
+    height: 64px;
+    margin: 16px auto 0;
+
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 1rem;
-    font-family: "Zilla Slab", serif;
-top: 400px;
-   right: 200px;
-box-shadow:0 0 15px 5px rgb(161, 128, 176);
-         background-color: white;
-    color: rgb(40, 9, 52);
-       transition: transform 0.3s ease;
+
+    padding: 0 18px;
+    box-sizing: border-box;
+
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 22px;
+
+    box-shadow:
+        0 8px 30px rgba(60, 90, 120, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
-.Calculus:hover{
-    transform: translateY(-10px);
-}
-
-
-
-.Videos{
-     position: absolute;
-    border-radius: 100%;
-    text-align: center;
-    width: 100px;
-    height: 100px;
+.nav-logo {
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 1rem;
-    font-family: "Zilla Slab", serif;
-top: 600px;
-    left: 400px;
-   box-shadow:0 0 15px 5px rgb(128, 176, 166);
-         background-color: white;
-    color: rgb(9, 52, 51);
-       transition: transform 0.3s ease;
+
+    text-decoration: none;
 }
 
-.Videos:hover{
-    transform: translateY(-10px);
+.nav-logo img {
+    width: 42px;
+    height: 42px;
+    display: block;
 }
 
-
-
-.Blog{
-    position: absolute;
-    border-radius: 100%;
-    text-align: center;
-    width: 100px;
-    height: 100px;
+.nav-links {
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 1rem;
+    gap: 6px;
+    margin-left: 28px;
+}
+
+.nav-links a,
+.nav-right > a {
+    padding: 10px 14px;
+
+    color: #2f82c0;
+    text-decoration: none;
+
     font-family: "Zilla Slab", serif;
-top: 600px;
-   right: 400px;
- box-shadow:0 0 15px 5px rgb(176, 128, 173);
-         background-color: white;
-    color: rgb(40, 9, 52);
-       transition: transform 0.3s ease;
+    font-size: 1.05rem;
+
+    border-radius: 14px;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: auto;
+}
+.nav-links a:hover,
+.nav-right > a:hover {
+    background: #cae8ff;
+    transform: translateY(-1px);
 }
 
-.Blog:hover{
-    transform: translateY(-10px);
-}
+@media (max-width: 700px) {
 
-   @media(max-width: 1000px){
-
-    .Sat,
-    .Competition,
-    .Logic,
-    .Calculus,
-    .Videos,
-    .Blog {
-        position: relative;
-        top: auto;
-        left: auto;
-        right: auto;
-
-        width: 100px;
-        height: 100px;
-
-        margin: 30px auto;
+    .navbar {
+        top: 10px;
+        width: calc(100% - 20px);
+        height: 58px;
+        margin-top: 10px;
+        padding: 0 8px;
+        border-radius: 18px;
     }
 
-    .mathemagic-logo img{
-        height: 20em;
-        width: 20em;
-        margin: 0 auto;
+    .nav-logo img {
+        width: 34px;
+        height: 34px;
     }
 
-    ul{
+    .nav-links {
+        margin-left: 6px;
+        gap: 1px;
+    }
+
+    .nav-links a,
+    .nav-right > a {
+        padding: 7px 6px;
+        font-size: 0.82rem;
+    }
+
+    .nav-right {
+        gap: 1px;
+    }
+}
+@media (max-width: 500px) {
+    .nav-links a,
+    .nav-right > a {
+        padding: 7px 4px;
+        font-size: 0.76rem;
+    }
+
+    .nav-logo img {
+        width: 31px;
+        height: 31px;
+    }
+}
+.dashboard{
+    width: min(1200px, calc(100% - 40px));
+    margin: 45px auto 100px;
+}
+
+.welcome {
+    min-height: 280px;
+    color: #2f82c0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 45px 55px;
+    box-sizing: border-box;
+
+  background: #fff;
+border: 2px solid #dce7df;
+border-radius: 12px;
+box-shadow: 3px 4px 0 rgba(40, 70, 50, 0.08);
+
+    box-shadow:
+        0 15px 45px rgba(50, 80, 110, 0.09),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.title {
+    margin: 0 0 8px;
+
+    font-family: "Zilla Slab", serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+
+    color: #2f82c0;
+}
+
+.welcome h1 {
+    margin: 0;
+
+    font-family: "Zilla Slab", serif;
+    font-size: clamp(2.8rem, 5vw, 5rem);
+    line-height: 0.95;
+
+    color: #2f82c0;
+}
+
+.welcome-text {
+    margin-top: 22px;
+
+    font-family: "Zilla Slab", serif;
+    font-size: 1.2rem;
+
+    color: #2f82c0;
+}
+
+.welcome-art img {
+    width: 190px;
+    height: 190px;
+    object-fit: contain;
+}
+
+
+.dashboard-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 25px;
+
+    margin-top: 25px;
+}
+
+.subjects {
+    min-width: 0;
+}
+
+.section-heading {
+    margin: 5px 5px 18px;
+}
+
+.section-heading h2,
+.progress-header h2 {
+    margin: 0;
+
+    font-family: "Zilla Slab", serif;
+    font-size: 2rem;
+
+    color: #2f82c0;
+}
+
+.subject-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.subject-card {
+    position: relative;
+
+    min-height: 175px;
+    padding: 28px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    text-decoration: none;
+
+    background: rgba(255, 255, 255, 0.48);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 26px;
+
+    box-shadow:
+        0 10px 30px rgba(50, 80, 110, 0.07),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.subject-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 18px 40px rgba(50, 80, 110, 0.13),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+.subject-icon {
+    position: absolute;
+    top: 24px;
+    right: 27px;
+
+    width: 55px;
+    height: 55px;
+
+    opacity: 0.7;
+}
+
+.subject-icon img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+}
+
+.subject-card h3 {
+    margin: 0;
+
+    font-family: "Zilla Slab", serif;
+    font-size: 1.8rem;
+
+    color: #2f82c0;
+}
+
+.subject-card p {
+    margin: 5px 0 0;
+
+    font-family: "Zilla Slab", serif;
+    font-size: 1rem;
+
+    color: #2f82c0;
+}
+
+.subject-arrow {
+    position: absolute;
+    right: 25px;
+    bottom: 22px;
+
+    font-size: 1.5rem;
+
+    color: #2f82c0;
+
+    transition: transform 0.2s ease;
+}
+
+.subject-card:hover .subject-arrow {
+    transform: translateX(5px);
+}
+
+
+.progress-panel {
+    padding: 28px;
+
+    background: rgba(255, 255, 255, 0.58);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255, 255, 255, 0.82);
+    border-radius: 28px;
+
+    box-shadow:
+        0 15px 40px rgba(50, 80, 110, 0.09),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+
+    margin: 25px 0 30px;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+
+    font-family: "Zilla Slab", serif;
+}
+
+.stat-icon {
+    font-size: 1.2rem;
+    margin-bottom: 3px;
+}
+
+.stat strong {
+    font-size: 1.55rem;
+    color: #2f82c0;
+}
+
+.stat span:last-child {
+    font-size: 0.8rem;
+    color: #2f82c0;
+}
+
+.subject-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 7px;
+
+    font-family: "Zilla Slab", serif;
+    font-size: 0.95rem;
+
+    color: #2f82c0;
+}
+
+.progress-track {
+    width: 100%;
+    height: 9px;
+
+    overflow: hidden;
+
+    background: rgba(80, 110, 140, 0.10);
+    border-radius: 20px;
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: inherit;
+}
+
+
+.sat-progress {
+    background: #4d9be8;
+}
+
+.competition-progress {
+    background: #e89b4d;
+}
+
+.logic-progress {
+    background: #8d78d8;
+}
+
+.calculus-progress {
+    background: #5ebd91;
+}
+
+@media (max-width: 800px) {
+
+    .dashboard {
+        width: calc(100% - 20px);
+        margin-top: 25px;
+    }
+
+    .welcome {
+        min-height: 230px;
+        padding: 30px;
+    }
+
+    .welcome h1 {
+        font-size: 2.7rem;
+    }
+
+    .welcome-art img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .dashboard-layout {
         display: flex;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        overflow-y: hidden;
-        white-space: nowrap;
+        flex-direction: column;
     }
 
-    ul li{
-        flex-shrink: 0;
+  
+    .progress-panel {
+        order: 1;
     }
 
-    ul li a{
-        padding: 15px 12px;
+    .subjects {
+        order: 2;
     }
 
-    ul li.icon{
-        flex-shrink: 0;
-        margin-left: auto;
+    .subject-grid {
+        grid-template-columns: 1fr;
     }
-   }
 
+    .subject-card {
+        min-height: 145px;
+    }
+}
 
+.sat-card {
+    border-left: 7px solid #158c00;
+}
+
+.competition-card {
+    border-left: 7px solid #e89b4d;
+}
+
+.calculus-card {
+    border-left: 7px solid #8d78d8;
+}
+
+.logic-card {
+    border-left: 7px solid #4f9ca8;
+}
+
+.subject-arrow img {
+    width: 32px;
+    height: 32px;
+    transition: transform 0.2s ease;
+    transform: rotate(225deg);
+}
+
+.subject-card:hover .subject-arrow img {
+    transform: rotate(225deg) translateX(-10px);
+}
 </style>
 </head>
 <body>
+<div class="background">
+    <div class="glow glow-blue"></div>
+    <div class="glow glow-green"></div>
+    <div class="glow glow-purple"></div>
+</div>
 <div class = "math-container"></div>
-<ul>
-    <li><a class = "a" href = "/">Home</a></li>
-    <li><a class = "ia" href = "/Lessons/">SAT</a></li>
-    <li><a class = "ia" href = "/Competition_Math/">Competition Math</a></li>
-    <li><a class = "ia" href = "/Logic/">Logic</a></li>
-    <li><a class = "ia" href = "/Calculus/">Calculus</a></li>
-        <li><a class = "ia" href = "/videos/">Videos</a></li>
-         <li><a class = "ia" href = "/Blog/">Blog & Q&A</a></li>
-    <li class = "icon">
-        <span id = "user-icon"></span>
-    <div class = "dropdown"></div>
-    </li>
-    </ul>
-<div class = "anim">
-<div class = "mathemagic">
-<div class = "mathemagic-color">
-Mathemagic
-</div>
-</div>  
-    <div class = "time">
-    <p id = "time"></p>
-    </div>
-<div class = "mathemagic-logo">
-<a href = "https://youtube.com/@mathhhemagic?si=o6KcnAMeMG3JY0SJ" target ="_blank">
-<img alt = "Mathemagic Logo" src = "Images/Mathemagic_Logo.svg">
+
+<nav class = "navbar">
+<a class = "nav-logo" href = "/">
+    <img src = "Images/Mathemagic_Logo.svg" alt = "Mathemagic">
 </a>
+
+<div class = "nav-links">
+    <a href = "/Lessons/">Learn</a>
+    <a href = "/Competition_Math/">Practice</a>
+    <a href = "/Logic/">Challenges</a>
 </div>
 
-<a href = "/Lessons/"><div class = "Sat">SAT</div></a>
+<div class = "nav-right">
+    <a href = "/videos/">Videos</a>
+    <a href = "/Blog/">Blog</a>
 
-<a href = "Competition_Math/"><div class = "Competition">Competition Math</div></a>
+    <div class = "profile">
 
-<a href = "/Logic/"><div class = "Logic">Logic</div></a>
+    </div>
+</div>
+</nav>
+<main class = "dashboard">
 
-<a href = "/Calculus/"><div class = "Calculus">Calculus</div></a>
+    <section class = "welcome">
+        <div>
+            <p class = "title">Welcome to Mathemagic!</p>
+            <h1>Math taught so easy, it's like magic</h1>
+            <p class = "welcome-text">
+                Free math education for curious students.
+            </p>
+        </div>
 
-<a href = "/videos/"><div class = "Videos">Videos</div></a>
+    </section>
 
-<a href = "/Blog/"><div class = "Blog">Blog & Q&A</div></a>
+<div class = "dashboard-layout">
+    <section class = "subjects">
+        <div class = "section-heading">
+            <p class = "title">Learn</p>
+            <h2>What do you want to practice?</h2>
+        </div>
+        <div class = "subject-grid">
+            <a href = "/Lessons/" class = "subject-card sat-card">
+               <span class = "subject-icon">
+                <img src = "/Images/calculator.svg" alt = "">
+            </span>
+                <h3>SAT Math</h3>
+                <p>Daily practice & Lessons</p>
 
+
+            <span class = "subject-arrow">
+                <img src = "/Images/carrot.svg" alt = "">
+            </span>
+            </a>
+            <a href = "/Competition_Math/" class = "subject-card competition-card">
+              <span class = "subject-icon">
+                <img src = "/Images/graph.svg" alt = "">
+            </span>
+                <h3>Competition Math</h3>
+                <p>AMC 8, AMC 10, and AIME</p>
+
+
+            <span class = "subject-arrow">
+                <img src = "/Images/carrot.svg" alt = "">
+            </span>
+            </a>
+              <a href = "/Calculus/" class = "subject-card calculus-card">
+              <span class = "subject-icon">
+                <img src = "/Images/calculus.svg" alt = "">
+            </span>
+                <h3>Calculus AB</h3>
+                <p>Limits, derivatives, and integrals</p>
+
+                <span class = "subject-arrow">
+                <img src = "/Images/carrot.svg" alt = "">
+            </span>
+            </a>
+
+              <a href = "/Logic/" class = "subject-card logic-card">
+                <span class = "subject-icon">
+                <img src = "/Images/puzzle.svg" alt = "">
+            </span>
+                <h3>Logic</h3>
+                <p>Puzzles and critical thinking</p>
+
+            <span class = "subject-arrow">
+                <img src = "/Images/carrot.svg" alt = "">
+            </span>
+            </a>
+        </div>
+    </section>
+
+    <aside class = "progress-panel">
+        <div class = "progress-header">
+            <div>
+                <p class = "title">Your Dashboard</p>
+                <h2>THIS IS IN BETA PHASE</h2>
+            </div>
+        </div>
+
+        <div class = "stats">
+            <div class = "stat">
+                <span class = "stat-icon">test</span>
+                <strong id = "dashboard-streak">0</strong>
+                <span>streak</span>
+            </div>
+             <div class = "stat">
+                <span class = "stat-icon">test</span>
+                <strong id = "dashboard-stars">0</strong>
+                <span>stars</span>
+            </div>
+
+            <div class = "stat">
+                <span class = "stat-icon">test</span>
+                <strong id = "dashboard-solved">0</strong>
+                <span>solved</span>
+            </div>
+        </div>
+
+        <div class = "subject-progress">
+            <div class = "progress-row">
+                <div class = "progress-label">
+                    <span>SAT Math</span>
+                    <span>72%</span>
+                </div>
+                 <div class = "progress-track">
+                    <div class = "progress-fill sat-progress" style = "width:72%"></div>
+
+                    <span>SAT Math</span>
+                    <span>72%</span>
+                </div>
+                </div>
+                 <div class = "progress-row">
+                    <div class = "progress-label">
+                        <span>Competition Math</span>
+                        <span>38%</span>
+                    </div>
+                    <div class = "progress-track">
+                        <div class = "progress-fill competition-progress" style = "width: 38%"></div>
+                    </div>
+                    </div>
+                    <div class = "progress-row">
+                        <div class = "progress-label">
+                            <span>Logic</span>
+                            <span>21%</span>
+                        </div>
+                        <div class = "progress-track">
+                            <div class = "progress-fill logic-progress" style = "width: 21%"></div>
+                        </div>
+                    </div>
+
+                    <div class = "progress-row">
+                        <div class = "progress-label">
+                            <span>Calculus AB</span>
+                            <span>0%</span>
+                        </div>
+                        <div class = "progress-track">
+                            <div class = "progress-fill calculus-progress" style = "width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+        </main>
 
 
 <div class = "copyright">

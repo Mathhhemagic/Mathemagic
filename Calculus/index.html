@@ -10,47 +10,124 @@
 <link href="https://fonts.googleapis.com/css2?family=Cause:wght@100..900&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 <style>
 
-    ul{
-            display: flex;
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            position: sticky;
-            background-color: rgba(58, 58, 58, 0.1);
-            position: sticky;
-            z-index: 1000;
-            top: 0;
-            border-color: rgb(58, 58, 58, 1);
-            overflow: visible;
-        }
+.navbar {
+    position: sticky;
+    top: 16px;
+    z-index: 1000;
 
+    width: min(1100px, calc(100% - 32px));
+    height: 64px;
+    margin: 16px auto 0;
 
-        ul li{
-            position: relative;
-        }
+    display: flex;
+    align-items: center;
 
+    padding: 0 18px;
+    box-sizing: border-box;
 
-        ul li a {
-            display: block;
-            color: rgba(58, 58, 58, 1);
-            text-align: center;
-            font-family: "Zilla Slab", serif;
-            padding: 20px 16px;
-        }
-        ul li a.a{
-            text-decoration: underline;
-            text-underline-offset: 1em;
-            color:#2f82c0;
-        }
-        ul li a.ia:hover{
-            background-color: #9ed5ff;
-        }
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
 
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 22px;
 
-        a{
-            text-decoration: none;
-        }
+    box-shadow:
+        0 8px 30px rgba(60, 90, 120, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+
+    text-decoration: none;
+}
+
+.nav-logo img {
+    width: 42px;
+    height: 42px;
+    display: block;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 28px;
+}
+
+.nav-links a,
+.nav-right > a {
+    padding: 10px 14px;
+
+    color: #2f82c0;
+    text-decoration: none;
+
+    font-family: "Zilla Slab", serif;
+    font-size: 1.05rem;
+
+    border-radius: 14px;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: auto;
+}
+.nav-links a:hover,
+.nav-right > a:hover {
+    background: #cae8ff;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 700px) {
+
+    .navbar {
+        top: 10px;
+        width: calc(100% - 20px);
+        height: 58px;
+        margin-top: 10px;
+        padding: 0 8px;
+        border-radius: 18px;
+    }
+
+    .nav-logo img {
+        width: 34px;
+        height: 34px;
+    }
+
+    .nav-links {
+        margin-left: 6px;
+        gap: 1px;
+    }
+
+    .nav-links a,
+    .nav-right > a {
+        padding: 7px 6px;
+        font-size: 0.82rem;
+    }
+
+    .nav-right {
+        gap: 1px;
+    }
+}
+@media (max-width: 500px) {
+    .nav-links a,
+    .nav-right > a {
+        padding: 7px 4px;
+        font-size: 0.76rem;
+    }
+
+    .nav-logo img {
+        width: 31px;
+        height: 31px;
+    }
+}
 .icon{
     display: flex;
     position: relative;
@@ -322,20 +399,26 @@ a{
 </head>
 <body>
 
+<nav class = "navbar">
+<a class = "nav-logo" href = "/">
+    <img src = "../Images/Mathemagic_Logo.svg" alt = "Mathemagic">
+</a>
 
-<ul>
-    <li><a class = "ia" href = "/">Home</a></li>
-    <li><a class = "ia" href = "/Lessons/">SAT</a></li>
-    <li><a class = "ia" href = "/Competition_Math/">Competition Math</a></li>
-    <li><a class = "ia" href = "/Logic/">Logic</a></li>
-    <li><a class = "a" href = "/Calculus/">Calculus</a></li>
-        <li><a class = "ia" href = "/videos/">Videos</a></li>
-         <li><a class = "ia" href = "/Blog/">Blog & Q&A</a></li>
-    <li class = "icon">
-        <span id = "user-icon"></span>
-    <div class = "dropdown"></div>
-    </li>
-    </ul>
+<div class = "nav-links">
+    <a href = "/Lessons/">Learn</a>
+    <a href = "/Competition_Math/">Practice</a>
+    <a href = "/Logic/">Challenges</a>
+</div>
+
+<div class = "nav-right">
+    <a href = "/videos/">Videos</a>
+    <a href = "/Blog/">Blog</a>
+
+    <div class = "profile">
+
+    </div>
+</div>
+</nav>
        
                 <div class = "together">
                     <a class = "Limits"
