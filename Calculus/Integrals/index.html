@@ -818,7 +818,7 @@ function reload(choice){
         timeInterval = null;
         timer.style.color = "black";
     }
-    hintsUsed = true;
+
     hintClicked = hintClicked || false;
     updateHintButton();
     buttons.forEach(button => {
@@ -856,6 +856,27 @@ const startingMinutes = q.minutes;
 
 const answer = document.querySelector(".hint-explanation");
 
+
+
+async function awardXP(uid) {
+    const userRef = db.collection("users").doc(uid);
+
+    const dayRef = userRef.collection("integrals").doc(dayKey);
+    const daySnap = await dayRef.get();
+    const dayData = daySnap.data() || {};
+
+    if (dayData.xpAwarded) {
+        return;
+    }
+
+    await userRef.set({
+        globalXP: firebase.firestore.FieldValue.increment(3)
+    }, { merge: true });
+
+    await dayRef.set({
+        xpAwarded: true
+    }, { merge: true });
+}
 
 
 

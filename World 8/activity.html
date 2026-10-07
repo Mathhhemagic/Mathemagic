@@ -1352,12 +1352,15 @@ function showEndCard(){
               oldAccuracy = oldActivity.accuracy || 0;
             }
             
-            const finalXP = Math.max(points, oldXP);
+                       const finalXP = Math.max(points, oldXP);
             const finalAccuracy = Math.max(accuracy, oldAccuracy);
+            const xpGain = Math.max(0, points - oldXP);
 
             document.getElementById("xp-value").innerText = finalXP;
         return userRef.set({
-        world8:{
+
+            globalXP: firebase.firestore.FieldValue.increment(xpGain),
+        world1:{
            [`activity_${lessonNumber}`]: {
             accuracy: Math.max(accuracy, oldAccuracy),
             xp: Math.max(points, oldXP),

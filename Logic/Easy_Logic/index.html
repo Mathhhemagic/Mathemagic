@@ -495,6 +495,15 @@ const questions = [
 
 
 
+
+
+
+
+
+
+
+
+
 ]
 
 function getDailyDate(resetHour, resetMinute){
@@ -521,9 +530,6 @@ const explanation = document.querySelector(".answer-explanation");
 const hintButton = document.getElementById("hint");
 const timer = document.getElementById("timer");
 const hintExplanation = document.querySelector(".hint-explanation");
-const popupOverlay = document.getElementById("login-popup-overlay");
-const closePopupButton = document.getElementById("close-popup");
-const correctAnswer = q.correct;
 document.getElementById('hint-explanation').innerText = q.hint;
 document.getElementById('A').innerText = q.answer.A;
 document.getElementById('B').innerText = q.answer.B;
@@ -543,6 +549,16 @@ const imgWrapper = document.querySelector(".img_question");
 
 
 
+if (q.img_question){
+    img.src = q.img_question;
+    imgWrapper.style.display = "block";
+}
+else{
+    img.removeAttribute("src");
+    imgWrapper.style.display = "none";
+}
+const correctAnswer = q.correct;
+
 auth.onAuthStateChanged(async user => {
     document.body.style.visibility = "visible";
   if (!user) {
@@ -560,7 +576,7 @@ if (!userDoc.exists){
         createdAt: firebase.firestore.FieldValue.serverTimestamp()
     });
 }
-const dayRef = db.collection("users").doc(user.uid).collection("hard").doc(dayKey);
+const dayRef = db.collection("users").doc(user.uid).collection("easy_logic").doc(dayKey);
 const dayDoc = await dayRef.get();
 
 if (dayDoc.exists){
@@ -594,7 +610,7 @@ async function loadUserData(uid){
     const doc = await db
     .collection("users")
     .doc(uid)
-    .collection("hard")
+    .collection("easy_logic")
     .doc(dayKey)
     .get();
 
@@ -661,7 +677,7 @@ hintButton.addEventListener("click", async () => {
 
     const user = auth.currentUser;
     if (user){
-        await db.collection("users").doc(user.uid).collection("hard").doc(dayKey).set({hintsUsed: true,hintClicked: true, points: points}, {merge:true});
+        await db.collection("users").doc(user.uid).collection("easy_logic").doc(dayKey).set({hintsUsed: true,hintClicked: true, points: points}, {merge:true});
     }
 });
 
@@ -682,7 +698,7 @@ function reload(choice){
         timeInterval = null;
         timer.style.color = "black";
     }
-    hintsUsed = true;
+
     hintClicked = hintClicked || false;
     updateHintButton();
     buttons.forEach(button => {
@@ -722,9 +738,25 @@ const answer = document.querySelector(".hint-explanation");
 
 
 
+async function awardXP(uid) {
+    const userRef = db.collection("users").doc(uid);
 
+    const dayRef = userRef.collection("easy_logic").doc(dayKey);
+    const daySnap = await dayRef.get();
+    const dayData = daySnap.data() || {};
 
+    if (dayData.xpAwarded) {
+        return;
+    }
 
+    await userRef.set({
+        globalXP: firebase.firestore.FieldValue.increment(1)
+    }, { merge: true });
+
+    await dayRef.set({
+        xpAwarded: true
+    }, { merge: true });
+}
 
 
 buttons.forEach(button => {
@@ -749,7 +781,7 @@ buttons.forEach(button => {
     
         const user = auth.currentUser;
         if (user){
-            await db.collection("users").doc(user.uid).collection("hard").doc(dayKey).set({
+            await db.collection("users").doc(user.uid).collection("easy_logic").doc(dayKey).set({
                 answer: button.id,
                 stars: starsEarned,
                 hintsUsed: hintsUsed,
@@ -759,6 +791,10 @@ buttons.forEach(button => {
 
 
             }, {merge:true});
+
+                    if (button.id === correctAnswer){
+            await awardXP(user.uid);
+            }
         }
         reload(button.id);
     });
@@ -775,7 +811,7 @@ function startTimer(){
 
         const user = auth.currentUser;
         if(user){
-            await db.collection("users").doc(user.uid).collection("hard").doc(dayKey).set({
+            await db.collection("users").doc(user.uid).collection("easy_logic").doc(dayKey).set({
                 remainingTime: time, paused: paused,}, {merge:true});
             
             }

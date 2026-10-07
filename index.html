@@ -246,31 +246,77 @@ ul li.icon{
     border-radius: 50%;
     display: block;
 }
-.icon .dropdown{
-display: none;
-position: absolute;
-top: 100%;
-right: 0;
-background-color: white;
-min-width: 100px;
-border-radius: 0.5rem;
-z-index: 100;
-flex-direction: column;
-}
 
-.icon .dropdown a{
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    color:black;
-    display: block
-}
-
-.icon .dropdown a:hover{
-    background-color: rgb(215, 226, 251)
-}
-
-.icon:hover .dropdown, .icon .dropdown:hover{
+.profile{
+    position: relative;
     display: flex;
+    align-items: center;
+    padding: 8px;
+}
+
+#user-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 2.5rem;
+    height: 2.5rem;
+
+    margin: 0.5rem;
+
+    border: 2px solid white;
+    border-radius: 50%;
+
+    color: rgb(41,41,41);
+    background-color: gray;
+    font-family: "Zilla slab", serif;
+    font-size: 1rem;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+.profile-dropdown {
+    display: none;
+
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+
+    min-width: 130px;
+    padding: 6px;
+
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 14px;
+
+    box-shadow: 0 10px 30px rgba(50, 80, 110, 0.15);
+
+    z-index: 2000;
+}
+
+.profile-dropdown a {
+    display: block;
+
+    padding: 9px 12px;
+
+    color: #2f82c0;
+    text-decoration: none;
+
+    font-family: "Zilla Slab", serif;
+    font-size: 1rem;
+
+    border-radius: 10px;
+}
+
+.profile-dropdown a:hover {
+    background: #cae8ff;
+}
+
+.profile:hover .profile-dropdown {
+    display: block;
 }
 .copyright{
             text-align: center;
@@ -668,6 +714,10 @@ box-shadow: 3px 4px 0 rgba(40, 70, 50, 0.08);
     font-size: 1.2rem;
     margin-bottom: 3px;
 }
+.stat-icon img{
+    height: 2rem;
+    width:2rem;
+}
 
 .stat strong {
     font-size: 1.55rem;
@@ -709,6 +759,8 @@ box-shadow: 3px 4px 0 rgba(40, 70, 50, 0.08);
 
 .progress-fill {
     height: 100%;
+    width: 0;
+    transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
     border-radius: inherit;
 }
 
@@ -824,9 +876,10 @@ box-shadow: 3px 4px 0 rgba(40, 70, 50, 0.08);
     <a href = "/videos/">Videos</a>
     <a href = "/Blog/">Blog</a>
 
-    <div class = "profile">
-
-    </div>
+   <div class="profile">
+    <div id="user-icon"></div>
+    <div class="profile-dropdown"></div>
+</div>
 </div>
 </nav>
 <main class = "dashboard">
@@ -903,24 +956,30 @@ box-shadow: 3px 4px 0 rgba(40, 70, 50, 0.08);
         <div class = "progress-header">
             <div>
                 <p class = "title">Your Dashboard</p>
-                <h2>THIS IS IN BETA PHASE</h2>
+                <h2>Track your progress!</h2>
             </div>
         </div>
 
         <div class = "stats">
             <div class = "stat">
-                <span class = "stat-icon">test</span>
+                 <span class="stat-icon">
+            <img src="/Images/trophy.svg" alt="">
+        </span>
                 <strong id = "dashboard-streak">0</strong>
                 <span>streak</span>
             </div>
              <div class = "stat">
-                <span class = "stat-icon">test</span>
-                <strong id = "dashboard-stars">0</strong>
-                <span>stars</span>
+                 <span class="stat-icon">
+            <img src="/Images/sparkles.svg" alt="">
+        </span>
+                <strong id = "dashboard-xp">0</strong>
+                <span>XP</span>
             </div>
 
             <div class = "stat">
-                <span class = "stat-icon">test</span>
+                 <span class="stat-icon">
+            <img src="/Images/correct.svg" alt="">
+        </span>
                 <strong id = "dashboard-solved">0</strong>
                 <span>solved</span>
             </div>
@@ -930,41 +989,40 @@ box-shadow: 3px 4px 0 rgba(40, 70, 50, 0.08);
             <div class = "progress-row">
                 <div class = "progress-label">
                     <span>SAT Math</span>
-                    <span>72%</span>
+                    <span id = "sat-progress-percent">0%</span>
                 </div>
                  <div class = "progress-track">
-                    <div class = "progress-fill sat-progress" style = "width:72%"></div>
+                    <div id = "sat-progress" class = "progress-fill sat-progress"></div>
 
-                    <span>SAT Math</span>
-                    <span>72%</span>
+   
                 </div>
                 </div>
                  <div class = "progress-row">
                     <div class = "progress-label">
                         <span>Competition Math</span>
-                        <span>38%</span>
+                        <span id = "competition-progress-percent">0%</span>
                     </div>
                     <div class = "progress-track">
-                        <div class = "progress-fill competition-progress" style = "width: 38%"></div>
+                        <div id = "competition-progress" class = "progress-fill competition-progress"></div>
                     </div>
                     </div>
                     <div class = "progress-row">
                         <div class = "progress-label">
                             <span>Logic</span>
-                            <span>21%</span>
+                            <span id = "logic-progress-percent">0%</span>
                         </div>
                         <div class = "progress-track">
-                            <div class = "progress-fill logic-progress" style = "width: 21%"></div>
+                            <div id = "logic-progress" class = "progress-fill logic-progress"></div>
                         </div>
                     </div>
 
                     <div class = "progress-row">
                         <div class = "progress-label">
                             <span>Calculus AB</span>
-                            <span>0%</span>
+                            <span id = "calculus-progress-percent">0%</span>
                         </div>
                         <div class = "progress-track">
-                            <div class = "progress-fill calculus-progress" style = "width: 0%"></div>
+                            <div id = "calculus-progress" class = "progress-fill calculus-progress"></div>
                         </div>
                     </div>
                 </div>
@@ -1087,26 +1145,25 @@ setInterval(spawnMath, 2000);
 
 
 
+function getDailyDate(resetHour, resetMinute){
+    const now = new Date();
+    const reset = new Date(now);
+
+    reset.setHours(resetHour, resetMinute, 0, 0);
+
+    if (now < reset){
+        reset.setDate(reset.getDate()-1);
+
+    }
+
+    return reset;
+}
+
+const startDate = new Date("2026-02-24T00:00:00");
+const dailyDate = getDailyDate(0, 0);
+const dayKey = dailyDate.toISOString().split("T")[0];
 
 
-
-
-
-
-
-const today_text = document.getElementById("time");
-const today = new Date();
-
-const formattedDate = today.toLocaleDateString(undefined, {
-    weekday: "short",
-    month: "long",
-    day: "numeric",
-    year: "numeric"
-
-});
-
-
-today_text.textContent = formattedDate;
 
 
 
@@ -1119,6 +1176,72 @@ firebase.auth().onAuthStateChanged(async user => {
     const dropdown = icon.nextElementSibling;
     if (user){
     const uid = user.uid
+
+    const userRef = firebase.firestore().collection("users").doc(uid);
+
+const userSnap = await userRef.get();
+const userData = userSnap.data() || {}
+   function updateProgressBar(subject, answered){
+        const percent = Math.min(answered, 3) / 3 * 100;
+
+        document.getElementById(`${subject}-progress`).style.width = `${percent}%`;
+        document.getElementById(`${subject}-progress-percent`).textContent= `${Math.round(percent)}%`;
+
+    }
+    //SAT personal reference
+    const easyDoc = await userRef.collection("easy").doc(dayKey).get();
+const mediumDoc = await userRef.collection("medium").doc(dayKey).get();
+const hardDoc = await userRef.collection("hard").doc(dayKey).get();
+
+let SAT_answered = 0;
+
+if (easyDoc.exists && easyDoc.data().answer) SAT_answered++;
+if (mediumDoc.exists && mediumDoc.data().answer) SAT_answered++;
+if (hardDoc.exists && hardDoc.data().answer) SAT_answered++;
+
+updateProgressBar("sat", SAT_answered)
+
+//Comp math personal reference
+
+const AMC_8Doc = await userRef.collection("AMC_8").doc(dayKey).get();
+const AMC_10Doc = await userRef.collection("AMC_10").doc(dayKey).get();
+const AMC_12Doc = await userRef.collection("AMC_12").doc(dayKey).get();
+
+let AMC_answered = 0;
+
+if (AMC_8Doc.exists && AMC_8Doc.data().answer) AMC_answered++;
+if (AMC_10Doc.exists && AMC_10Doc.data().answer) AMC_answered++;
+if (AMC_12Doc.exists && AMC_12Doc.data().answer) AMC_answered++;
+
+updateProgressBar("competition", AMC_answered);
+
+//Calculus personal reference
+const LimitsDoc = await userRef.collection("Limits").doc(dayKey).get();
+const DerivativesDoc = await userRef.collection("Derivatives").doc(dayKey).get();
+const IntegralsDoc = await userRef.collection("Integrals").doc(dayKey).get();
+
+let Calculus_answered = 0;
+
+if (LimitsDoc.exists && LimitsDoc.data().answer) Calculus_answered++;
+if (DerivativesDoc.exists && DerivativesDoc.data().answer) Calculus_answered++;
+if (IntegralsDoc.exists && IntegralsDoc.data().answer) Calculus_answered++;
+
+updateProgressBar("calculus", Calculus_answered);
+
+
+//Logic (needs more)
+const LogicDoc = await userRef.collection("easy_logic").doc(dayKey).get();
+let Logic_answered = 0;
+
+if (LogicDoc.exists && LogicDoc.data().answer) Logic_answered++;
+
+updateProgressBar("logic", Logic_answered);
+console.log("USER DATA:", userData);
+console.log("GLOBAL XP:", userData.globalXP);
+
+document.getElementById("dashboard-xp").textContent = userData.globalXP ?? 0;
+
+    document.getElementById("dashboard-xp").textContent = userData.globalXP ?? 0;
     icon.textContent = user.displayName ? user.displayName[0].toUpperCase(): "U";
     let hash = 0;
     const str = user.uid || user.email;
@@ -1139,41 +1262,9 @@ firebase.auth().onAuthStateChanged(async user => {
             console.error("Logout error:", error);
             alert("Failed to logout: " + error.message);
         }
-    })
-    function getDailyDate(resetHour, resetMinute){
-    const now = new Date();
-    const reset = new Date(now);
-    reset.setHours(resetHour, resetMinute, 0, 0)
-
-    if (now < reset){
-        reset.setDate(reset.getDate()-1);
-    }
-    return reset;
-}
-
-
-    const todayKey = getDailyDate(0,0).toISOString().split("T")[0];
-
-    const difficulties = ["easy", "medium", "hard"];
-
-    for (let diff of difficulties){
-        try{
-        const docRef = firebase.firestore().collection("users").doc(uid).collection(diff).doc(todayKey);
-        const docSnap = await docRef.get();
-        let stars = 0;
-        if (docSnap.exists){
-            const data = docSnap.data();
-            stars = data.stars ?? 0;
-        }
-        const starText = "★".repeat(stars) +"☆".repeat(3 - stars);
-        document.getElementById(diff + "_stars").textContent = starText;
-    }
-    catch(err){
-        console.error(`Error loading ${diff} stars:`, err);
-        document.getElementById(diff + "_stars").textContent = "☆ ☆ ☆";
     }
     
-}
+    )
     }
     else{
         icon.textContent = "";
@@ -1184,6 +1275,8 @@ firebase.auth().onAuthStateChanged(async user => {
         `
     }
     
+
+ 
     });
 
 </script>
