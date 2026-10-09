@@ -1188,54 +1188,50 @@ const userData = userSnap.data() || {}
         document.getElementById(`${subject}-progress-percent`).textContent= `${Math.round(percent)}%`;
 
     }
-    //SAT personal reference
-    const easyDoc = await userRef.collection("easy").doc(dayKey).get();
-const mediumDoc = await userRef.collection("medium").doc(dayKey).get();
-const hardDoc = await userRef.collection("hard").doc(dayKey).get();
 
-let SAT_answered = 0;
+    function updateProgressBar(subject, answered){
+        const percent = Math.min(answered, 3) / 3 * 100;
 
-if (easyDoc.exists && easyDoc.data().answer) SAT_answered++;
-if (mediumDoc.exists && mediumDoc.data().answer) SAT_answered++;
-if (hardDoc.exists && hardDoc.data().answer) SAT_answered++;
+        document.getElementById(`${subject}-progress`).style.width = `${percent}%`;
+        document.getElementById(`${subject}-progress-percent`).textContent = `${Math.round(percent)}%`;
+    }
 
-updateProgressBar("sat", SAT_answered)
+    const collections = [
+        "easy", "medium", "hard", "AMC_8", "AMC_10", "AMC_12", "Limits", "Derivatives", "Integrals", "easy_logic"
+    ];
 
-//Comp math personal reference
+    const docs = await Promise.all(
+        collections.map(name =>
+            userRef.collection(name).doc(dayKey).get()
+        )
+    );
 
-const AMC_8Doc = await userRef.collection("AMC_8").doc(dayKey).get();
-const AMC_10Doc = await userRef.collection("AMC_10").doc(dayKey).get();
-const AMC_12Doc = await userRef.collection("AMC_12").doc(dayKey).get();
+    const answered = {};
 
-let AMC_answered = 0;
+    collections.forEach((name, i) => {
+        answered[name] = docs[i].exists && docs[i].data().answer ? 1 : 0;
+    });
 
-if (AMC_8Doc.exists && AMC_8Doc.data().answer) AMC_answered++;
-if (AMC_10Doc.exists && AMC_10Doc.data().answer) AMC_answered++;
-if (AMC_12Doc.exists && AMC_12Doc.data().answer) AMC_answered++;
+    updateProgressBar(
+        "sat",
+        answered.easy + answered.medium + answered.hard
+);
 
-updateProgressBar("competition", AMC_answered);
+ updateProgressBar(
+        "competition",
+        answered.AMC_8 + answered.AMC_10 + answered.AMC_12
+);
 
-//Calculus personal reference
-const LimitsDoc = await userRef.collection("Limits").doc(dayKey).get();
-const DerivativesDoc = await userRef.collection("Derivatives").doc(dayKey).get();
-const IntegralsDoc = await userRef.collection("Integrals").doc(dayKey).get();
+ updateProgressBar(
+        "calculus",
+        answered.Limits + answered.Derivatives + answered.Integrals
+);
 
-let Calculus_answered = 0;
-
-if (LimitsDoc.exists && LimitsDoc.data().answer) Calculus_answered++;
-if (DerivativesDoc.exists && DerivativesDoc.data().answer) Calculus_answered++;
-if (IntegralsDoc.exists && IntegralsDoc.data().answer) Calculus_answered++;
-
-updateProgressBar("calculus", Calculus_answered);
-
-
-//Logic (needs more)
-const LogicDoc = await userRef.collection("easy_logic").doc(dayKey).get();
-let Logic_answered = 0;
-
-if (LogicDoc.exists && LogicDoc.data().answer) Logic_answered++;
-
-updateProgressBar("logic", Logic_answered);
+ updateProgressBar(
+        "logic",
+        answered.easy_logic
+);
+    
 console.log("USER DATA:", userData);
 console.log("GLOBAL XP:", userData.globalXP);
 
