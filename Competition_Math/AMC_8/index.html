@@ -648,6 +648,7 @@ let timeInterval = null;
 let paused = false;
 let time = q.minutes * 60;
 let hintClicked = false;
+let answerSubmitted = false;
 const img = document.getElementById("img_question");
 const imgWrapper = document.querySelector(".img_question");
 
@@ -733,7 +734,7 @@ async function loadUserData(uid){
 }
 
 function updateHintButton(){
-    if(hintsUsed){
+    if(hintsUsed || answerSubmitted){
         hintButton.disabled = true;
         hintExplanation.classList.add("disabled-after-answer");
 
@@ -867,6 +868,7 @@ buttons.forEach(button => {
     button.addEventListener( "click", async () => {
         let starsEarned = 0;
         paused = true;
+        answerSubmitted = true;
         if (timeInterval){
             clearInterval(timeInterval);
         }

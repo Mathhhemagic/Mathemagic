@@ -147,185 +147,280 @@ html, body{
             font-family: "Zilla Slab", serif;
         }
 
-      .AMC_8{
-     position: relative;
-    border-radius: 100%;
-    text-align: center;
-    width: 20rem;
-    height: 20rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    font-family: "Zilla Slab", serif;
-     border: none;
-     box-shadow:0 0 15px 5px rgb(198, 255, 198);
-         background-color: white;
-    color: rgb(0, 81, 0);
-       transition: transform 0.3s ease;
-              cursor: pointer;
+        .together{
+            width: min(1000px, calc(100% - 40px));
+            margin: 64px auto;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+            align-items: stretch;
+        }
 
-}
-.AMC_8:hover{
-    transform: translateY(-10px);
-}
-
- .AMC_10{
-     position: relative;
-    border-radius: 100%;
-    text-align: center;
-    width: 20rem;
-    height: 20rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    font-family: "Zilla Slab", serif;
-     border: none;
-     box-shadow:0 0 15px 5px rgb(255, 168, 131);
-         background-color: white;
-    color: rgb(231, 187, 11);
-       transition: transform 0.3s ease;
-              cursor: pointer;
-
-}
-.AMC_10:hover{
-    transform: translateY(-10px);
-}
-
-.AMC_12{
-     position: relative;
-    border-radius: 100%;
-    text-align: center;
-    width: 20rem;
-    height: 20rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    font-family: "Zilla Slab", serif;
-     border: none;
-     box-shadow:0 0 15px 5px rgb(255, 158, 150);
-         background-color: white;
-    color: rgb(106, 27, 21);
-       transition: transform 0.3s ease;
-       cursor: pointer;
-}
-.AMC_12:hover{
-    transform: translateY(-10px);
-}
-
-.together{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    gap: 40px;
-}
-a{
-    text-decoration: none;
-    color: inherit;
-}
-@media(max-width: 700px){
-
-    .AMC_8{
-     position: relative;
-    border-radius: 100%;
-    text-align: center;
-    width: 10rem;
-    height: 10rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    font-family: "Zilla Slab", serif;
-     border: none;
-     box-shadow:0 0 15px 5px rgb(198, 255, 198);
-         background-color: white;
-    color: rgb(0, 81, 0);
-       transition: transform 0.3s ease;
-              cursor: pointer;
-              margin-top: 10%;
-    }
-
-    .AMC_10{
-     position: relative;
-    border-radius: 100%;
-    text-align: center;
-    width: 10rem;
-    height: 10rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    font-family: "Zilla Slab", serif;
-     border: none;
-     box-shadow:0 0 15px 5px rgb(255, 168, 131);
-         background-color: white;
-    color: rgb(231, 187, 11);
-       transition: transform 0.3s ease;
-              cursor: pointer;
-
-}
-
-.AMC_12{
-     position: relative;
-    border-radius: 100%;
-    text-align: center;
-    width: 10rem;
-    height: 10rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  font-size: 1.5rem;
-    font-family: "Zilla Slab", serif;
-     border: none;
-     box-shadow:0 0 15px 5px rgb(255, 158, 150);
-         background-color: white;
-    color: rgb(106, 27, 21);
-       transition: transform 0.3s ease;
-       cursor: pointer;
-}
-  ul{
+     .AMC_8, .AMC_10, .AMC_12{
+        width: min(72vw, 245px);
+        font-size: 1.65rem;
+        --accent: 22, 139, 69;
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        text-decoration: none;
         display: flex;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        overflow-y: hidden;
-        white-space: nowrap;
-    }
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 
-    ul li{
+        width: 20rem;
+        height: 20rem;
         flex-shrink: 0;
-    }
+        box-sizing: border-box;
 
-    ul li a{
-        padding: 15px 12px;
-    }
+        border-radius: 26px;
+        border: 1px solid rgba(255, 255, 255, 0.95);
 
-    ul li.icon{
-        flex-shrink: 0;
-        margin-left: auto;
-    }
+        background: radial-gradient(
+            ellipse at 29% 19%
+            rgba(255, 255, 255, 0.98) 0%,
+            rgba(255, 255, 255, 0.48) 28%,
+            transparent 58%
+        ),
+        radial-gradient(
+            circle at 75% 85%,
+            rgba(var(--accent), 0.13),
+            transparent 55%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.78),
+            rgba(255, 255, 255, 0.24) 48%,
+            rgba(255, 255, 255, 0.55)
+        );
 
-    
-.together{
+        -webkit-backdrop-filter: blur(24px) saturate(175%);
+        backdrop-filter: blur(24px) saturate(175%);
+
+        box-shadow:
+        0 22px 50px rgba(var(--accent), 0.11),
+        0 8px 24px rgba(50, 75, 100, 0.08),
+        inset 0 24px 3px rgba(255, 255, 255, 1),
+        inset 0 -2px 5px rgba(var(--accent), 0.08),
+        inset 2px 0 4px rgba(255, 255, 255, 0.7);
+
+        color: rgb(var(--accent));
+        font-family: "Zilla Slab", serif;
+        font-size: 2rem;
+        font-weight: 600;
+
+        cursor: pointer;
+        text-align: center;
+
+        transition:
+        transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 0.45s ease,
+        border-color 0.35s ease;
+
+     }
+
+     .AMC_8::after,
+     .AMC_10::after,
+     .AMC_12::after {
+        content: "";
+        position: absolute;
+        inset: 5px;
+        z-index: -1;
+
+        border-radius: inherit;
+        border: 1px solid rgba(255, 255, 255, 0.72);
+        box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, 0.9),
+        0 0 12px rgba(255, 255, 255, 0.15);
+        
+        pointer-events: none;
+     }
+
+     .AMC_8{
+        --accent: 22, 139, 69;
+     }
+
+     .AMC_10{
+        --accent: 220, 139, 48;
+     }
+
+     .AMC_8{
+        --accent: 210, 88, 94;
+     }
+
+     .AMC_8 > span, .AMC_10 > span, .AMC_12 > span, .AMC_8 .stars, .AMC_10 .stars, .AMC_12 .stars{
+        position: relative;
+        z-index: 1;
+     }
+
+     .stars{
+        margin-top: 10px;
+        font-family: "Zilla Slab", serif;
+        font-size: 1.3rem;
+        letter-spacing: 0.06em;
+     }
+
+     @media (hover: hover) and (pointer: fine){
+        .AMC_8:hover,
+        .AMC_10:hover,
+        .AMC_12:hover{
+            transform: translateY(-9px) scale(1.035);
+            border-color: white;
+
+            box-shadow:
+            0 30px 65px rgba(var(--accent), 0.18),
+            0 12px 30px rgba(50, 75, 100, 0.09),
+            inset 0 2px 4px white,
+            inset 0 -2px 8px rgba(var(--accent), 0.12),
+            inset 2px 0 6px rgba(255, 255, 255, 0.9);
+        }
+     }
+     
+     .AMC_8:focus-visible,
+     .AMC_10:focus-visible,
+     .AMC_12:focus-visible{
+        outline: 3px solid rgb(var(--accent));
+        outline-offset: 5px;
+     }
+     
+     @media (prefers-reduced-motion: reduce){
+        .AMC_8, .AMC_10, .AMC_12{
+            transition: none;
+        }
+     }
+     .icon span{
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 2.5rem;
+}
+.icon #user-icon{
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    text-align: center;
+    line-height: center;
+    border-radius: 50%;
+    display: block;
+}
+
+.profile{
+    position: relative;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+}
+
+#user-icon{
+    display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    gap: 40px;
+
+    width: 2.5rem;
+    height: 2.5rem;
+
+    margin: 0.5rem;
+
+    border: 2px solid white;
+    border-radius: 50%;
+
+    color: rgb(41,41,41);
+    background-color: gray;
+    font-family: "Zilla slab", serif;
+    font-size: 1rem;
+    font-weight: bold;
+
+    cursor: pointer;
 }
-   }
+.profile-dropdown {
+    display: none;
 
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
 
+    min-width: 130px;
+    padding: 6px;
+
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 14px;
+
+    box-shadow: 0 10px 30px rgba(50, 80, 110, 0.15);
+
+    z-index: 2000;
+}
+
+.profile-dropdown a {
+    display: block;
+
+    padding: 9px 12px;
+
+    color: #2f82c0;
+    text-decoration: none;
+
+    font-family: "Zilla Slab", serif;
+    font-size: 1rem;
+
+    border-radius: 10px;
+}
+
+.profile-dropdown a:hover {
+    background: #cae8ff;
+}
+
+.profile:hover .profile-dropdown {
+    display: block;
+}
+
+@media (max-width: 700px) {
+
+    .navbar {
+        top: 10px;
+        width: calc(100% - 20px);
+        height: 58px;
+        margin-top: 10px;
+        padding: 0 8px;
+        border-radius: 18px;
+    }
+
+    .nav-logo img {
+        width: 34px;
+        height: 34px;
+    }
+
+    .nav-links {
+        margin-left: 6px;
+        gap: 1px;
+    }
+
+    .nav-links a,
+    .nav-right > a {
+        padding: 7px 6px;
+        font-size: 0.82rem;
+    }
+
+    .nav-right {
+        gap: 1px;
+    }
+}
+@media (max-width: 500px) {
+    .nav-links a,
+    .nav-right > a {
+        padding: 7px 4px;
+        font-size: 0.76rem;
+    }
+
+    .nav-logo img {
+        width: 31px;
+        height: 31px;
+    }
+}
 </style>
 
 </head>
@@ -338,24 +433,30 @@ a{
 </a>
 
 <div class = "nav-links">
-    <a href = "/Lessons/">Learn</a>
-    <a href = "/Competition_Math/">Practice</a>
-    <a href = "/Logic/">Challenges</a>
+    <a href = "/Lessons/">SAT</a>
+    <a href = "/Competition_Math/">Competition</a>
+    <a href = "/Calculus/">Calculus</a>
+    <a href = "/Logic/">Logic</a>
 </div>
-
 <div class = "nav-right">
     <a href = "/videos/">Videos</a>
     <a href = "/Blog/">Blog</a>
 
     <div class = "profile">
 
+   <div class="profile">
+    <div id="user-icon"></div>
+    <div class="profile-dropdown"></div>
+</div>
+</div>
+</nav>
     </div>
 </div>
 </nav>
                 <div class = "together">
                     <a class = "AMC_8"
-                    href = "../Competition_Math/AMC_8/index.html">AMC 8
-                    
+                    href = "../Competition_Math/AMC_8/index.html">
+                    <span>AMC 8</span>
                     <div class = "stars">
                 <p id = "AMC_8_stars">☆ ☆ ☆</p> 
             </div>
@@ -363,7 +464,8 @@ a{
                 
                 
                     <a class = "AMC_10"
-                    href = "../Competition_Math/AMC_10/index.html">AMC 10
+                    href = "../Competition_Math/AMC_10/index.html">
+                    <span>AMC 10</span>
                     
                     <div class = "stars">
                 <p id = "AMC_10_stars">☆ ☆ ☆</p> 
@@ -372,8 +474,8 @@ a{
           
                     
                       <a class = "AMC_12"
-                    href = "../Competition_Math/AMC_12/index.html">AMC 12
-                    
+                    href = "../Competition_Math/AMC_12/index.html">
+                    <span>AMC 12</span>
                     <div class = "stars">
                 <p id = "AMC_12_stars">☆ ☆ ☆</p> 
  </div>
@@ -381,7 +483,7 @@ a{
                 
         </div>
     
-    
+    </main>
 
 
 

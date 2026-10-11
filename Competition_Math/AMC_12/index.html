@@ -755,7 +755,7 @@ async function loadUserData(uid){
 }
 
 function updateHintButton(){
-    if(hintsUsed){
+    if(hintsUsed || answerSubmitted){
         hintButton.disabled = true;
         hintExplanation.classList.add("disabled-after-answer");
 
@@ -892,6 +892,7 @@ buttons.forEach(button => {
     button.addEventListener( "click", async () => {
         let starsEarned = 0;
         paused = true;
+        answerSubmitted = true;
         if (timeInterval){
             clearInterval(timeInterval);
         }
