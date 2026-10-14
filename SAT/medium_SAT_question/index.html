@@ -1948,10 +1948,11 @@ function getDailyDate(resetHour, resetMinute){
 const startDate = new Date("2026-02-24T00:00:00");
 const dailyDate = getDailyDate(0, 0);
 const dailyIndex = Math.floor((dailyDate - startDate) / 86400000) % questions.length;
-const dayKey = dailyDate.toISOString().split("T")[0];
+const dayKey = getLocalDayKey(dailyDate);
 const q = questions[dailyIndex]; 
 const buttons = document.querySelectorAll('.option button');
 const explanation = document.querySelector(".answer-explanation");
+let answerSubmitted = false;
 const hintButton = document.getElementById("hint");
 const timer = document.getElementById("timer");
 const hintExplanation = document.querySelector(".hint-explanation");
@@ -1972,8 +1973,6 @@ let hintClicked = false;
 const img = document.getElementById("img_question");
 const imgWrapper = document.querySelector(".img_question");
 
-
-
 if (q.img_question){
     img.src = q.img_question;
     imgWrapper.style.display = "block";
@@ -1986,21 +1985,10 @@ const correctAnswer = q.correct;
 
 auth.onAuthStateChanged(async user => {
     document.body.style.visibility = "visible";
-  if (!user) {
-    console.log("Guest user - progress not saved");
-    return;
-  }
+  
 
 
 
-const userRef = db.collection("users").doc(user.uid);
-const userDoc = await userRef.get();
-if (!userDoc.exists){
-    await userRef.set({
-        email: user.email,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    });
-}
 const dayRef = db.collection("users").doc(user.uid).collection("medium").doc(dayKey);
 const dayDoc = await dayRef.get();
 
@@ -2046,8 +2034,9 @@ async function loadUserData(uid){
         points = data.points || 0;
 
         if (data.answer){
-            reload(data.answer);
-        }
+          answerSubmitted = true;
+    reload(data.answer);
+}
 
     }
     updateHintButton();
@@ -2160,28 +2149,59 @@ const startingMinutes = q.minutes;
 
 
 const answer = document.querySelector(".hint-explanation");
+function getLocalDayKey(date = new Date()){
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
 
-
+    return `${year}-${month}-${day}`;
+}
 
 async function awardXP(uid) {
     const userRef = db.collection("users").doc(uid);
 
     const dayRef = userRef.collection("medium").doc(dayKey);
-    const daySnap = await dayRef.get();
-    const dayData = daySnap.data() || {};
 
-    if (dayData.xpAwarded) {
-        return;
+    const today = getLocalDayKey();
+
+    const yesterdayDate = new Date();
+
+    yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+    const yesterday = getLocalDayKey(yesterdayDate);
+
+    await db.runTransaction(async transaction => {
+        const userSnap = await transaction.get(userRef);
+        const daySnap = await transaction.get(dayRef);
+
+        const userData = userSnap.exists ? userSnap.data() : {};
+
+        const dayData = daySnap.exists ? daySnap.data() : {};
+
+        if (dayData.xpAwarded) return;
+
+        const lastActiveDate = userData.lastActiveDate || null;
+        let streak = userData.dailyStreak || 0;
+
+        if (lastActiveDate !== today){
+            streak = lastActiveDate === yesterday ? streak + 1 : 1;
+        }
+           transaction.set(userRef, {
+            globalXP: (Number(userData.globalXP) || 0) + 2,
+            dailyXP: (lastActiveDate === today ? (Number(userData.dailyXP) || 0) + 2 : 2),
+            dailyStreak: streak,
+            lastActiveDate: today
+        }, {merge: true});
+
+        transaction.set(dayRef, {
+            xpAwarded: true},
+            {merge: true});
+        });
     }
 
-    await userRef.set({
-        globalXP: firebase.firestore.FieldValue.increment(2)
-    }, { merge: true });
 
-    await dayRef.set({
-        xpAwarded: true
-    }, { merge: true });
-}
+
+
+
 
 
 buttons.forEach(button => {
@@ -2207,6 +2227,8 @@ buttons.forEach(button => {
     
         const user = auth.currentUser;
         if (user){
+
+            const dayRef = db.collection("users").doc(user.uid).collection("medium").doc(dayKey);
             await db.collection("users").doc(user.uid).collection("medium").doc(dayKey).set({
                 answer: button.id,
                 stars: starsEarned,
@@ -2218,8 +2240,8 @@ buttons.forEach(button => {
 
             }, {merge:true});
 
-                      if (button.id === correctAnswer){
-            await awardXP(user.uid);
+            if (button.id === correctAnswer){
+                await awardXP(user.uid);
             }
         }
         reload(button.id);

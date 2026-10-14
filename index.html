@@ -1166,8 +1166,45 @@ const dayKey = dailyDate.toISOString().split("T")[0];
 
 
 
+function getLocalDayKey(date = new Date()){
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
 
+    return `${year}-${month}-${day}`;
+}
 
+async function awardXP(uid, amount = 1){
+    const db = firebase.firestore();
+    const userRef = db.collection("users").doc(uid);
+
+    const today = getLocalDayKey();
+    const yesterdayDate = new Date();
+    yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+    const yesterday = getLocalDayKey(yesterdayDate);
+
+    await db.runTransaction(async transaction => {
+        const snapshot = await transaction.get(userRef);
+        const data = snapshot.data() || {};
+        const lastActiveDate = data.lastActiveDate || null;
+        let streak = data.dailyStreak || 0;
+
+        if (lastActiveDate !== today){
+            if(lastActiveDate === yesterday){
+                streak += 1;
+            } else{
+                streak = 1;
+            }
+        }
+
+        transaction.set(userRef, {
+            globalXP: (data.globalXP || 0) + amount,
+            dailyXP: (lastActiveDate === today ? (data.dailyXP || 0) + amount : amount),
+            dailyStreak: streak,
+            lastActiveDate: today
+        }, {merge: true});
+        });
+    }
 
 
 
@@ -1182,6 +1219,7 @@ firebase.auth().onAuthStateChanged(async user => {
 
 const userSnap = await userRef.get();
 const userData = userSnap.data() || {}
+document.getElementById("dashboard-streak").textContent = userData.dailyStreak ?? 0;
    function updateProgressBar(subject, answered){
         const percent = Math.min(answered, 3) / 3 * 100;
 
@@ -1190,16 +1228,11 @@ const userData = userSnap.data() || {}
 
     }
 
-    function updateProgressBar(subject, answered){
-        const percent = Math.min(answered, 3) / 3 * 100;
-
-        document.getElementById(`${subject}-progress`).style.width = `${percent}%`;
-        document.getElementById(`${subject}-progress-percent`).textContent = `${Math.round(percent)}%`;
-    }
-
     const collections = [
         "easy", "medium", "hard", "AMC_8", "AMC_10", "AMC_12", "Limits", "Derivatives", "Integrals", "easy_logic"
     ];
+
+    const db = firebase.firestore();
 
     const docs = await Promise.all(
         collections.map(name =>
@@ -1210,13 +1243,15 @@ const userData = userSnap.data() || {}
     const answered = {};
 
     collections.forEach((name, i) => {
-        answered[name] = docs[i].exists && docs[i].data().answer ? 1 : 0;
-    });
+        const data = docs[i].exists ? docs[i].data() : {};
+       
 
+    answered[name] = 
+    data.answer !== undefined && data.answer !== null && data.answer !== "" ? 1 :0;
     updateProgressBar(
         "sat",
         answered.easy + answered.medium + answered.hard
-);
+    )});
 
  updateProgressBar(
         "competition",
@@ -1232,6 +1267,31 @@ const userData = userSnap.data() || {}
         "logic",
         answered.easy_logic
 );
+
+const allQuestionDocs = await Promise.all(
+    collections.map(name =>
+        userRef.collection(name).get()
+    )
+);
+
+let totalAnswered = 0;
+
+allQuestionDocs.forEach(snapshot => {
+    snapshot.forEach(doc => {
+        const data = doc.data();
+
+        if (
+            data.answer !== undefined &&
+            data.answer !== null &
+            data.answer !== ""
+        )
+        {
+            totalAnswered++;
+        }
+    })
+});
+
+document.getElementById("dashboard-solved").textContent = totalAnswered;
     
 console.log("USER DATA:", userData);
 console.log("GLOBAL XP:", userData.globalXP);

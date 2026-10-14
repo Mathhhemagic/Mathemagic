@@ -20,7 +20,77 @@ body{
      background-size: 40px 40px;
     }
 
+.profile{
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+}
 
+#user-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 2.5rem;
+    height: 2.5rem;
+
+    margin: 0.5rem;
+
+    border: 2px solid white;
+    border-radius: 50%;
+
+    color: rgb(41,41,41);
+    background-color: gray;
+    font-family: "Zilla slab", serif;
+    font-size: 1rem;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+.profile-dropdown {
+    display: none;
+
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+
+    min-width: 130px;
+    padding: 6px;
+
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 14px;
+
+    box-shadow: 0 10px 30px rgba(50, 80, 110, 0.15);
+
+    z-index: 2000;
+}
+
+.profile-dropdown a {
+    display: block;
+
+    padding: 9px 12px;
+
+    color: #2f82c0;
+    text-decoration: none;
+
+    font-family: "Zilla Slab", serif;
+    font-size: 1rem;
+
+    border-radius: 10px;
+}
+
+.profile-dropdown a:hover {
+    background: #cae8ff;
+}
+
+.profile:hover .profile-dropdown {
+    display: block;
+}
 
  ul{
             display: flex;
@@ -160,7 +230,7 @@ flex-direction: column;
         }
     }
 
-.profile{
+.large-profile{
     font-family: "Zilla Slab", serif;
     text-align: center;
     color:rgb(44, 135, 162);
@@ -386,6 +456,159 @@ flex-direction: column;
 }
 
 
+.modal-overlay[hidden] {
+    display: none;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(8, 15, 30, 0.48);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    animation: modalFadeIn 0.2s ease;
+}
+
+.modal-card {
+    position: relative;
+    width: min(100%, 400px);
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow:
+        0 24px 80px rgba(28, 44, 75, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    text-align: center;
+    color: #17243a;
+    animation: modalPopIn 0.25s ease;
+}
+
+.modal-icon {
+    display: grid;
+    place-items: center;
+    width: 62px;
+    height: 62px;
+    margin: 0 auto 18px;
+    border-radius: 20px;
+    background: rgba(255, 91, 105, 0.12);
+    color: #dc4757;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.modal-card h2 {
+    margin: 0 0 12px;
+    font-size: 24px;
+}
+
+.modal-card p {
+    margin: 0;
+    color: #627087;
+    font-size: 15px;
+    line-height: 1.65;
+}
+
+.modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 26px;
+}
+
+.modal-actions button {
+    min-height: 48px;
+    border: 0;
+    border-radius: 15px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.18s, opacity 0.18s;
+}
+
+.modal-actions button:hover {
+    transform: translateY(-1px);
+}
+
+.modal-actions button:focus-visible {
+    outline: 3px solid #8db8ff;
+    outline-offset: 3px;
+}
+
+.modal-cancel {
+    background: rgba(112, 132, 160, 0.12);
+    color: #344258;
+}
+
+.modal-confirm {
+    background: linear-gradient(135deg, #f16c77, #dc4757);
+    color: white;
+    box-shadow: 0 5px 16px rgba(220, 71, 87, 0.2);
+}
+
+.modal-confirm:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes modalPopIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .modal-overlay,
+    .modal-card {
+        animation: none;
+    }
+
+    .modal-actions button {
+        transition: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-card {
+        padding: 25px 21px;
+        border-radius: 24px;
+    }
+}
+
+
+#modal-password:not([hidden]) {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 18px;
+    padding: 14px 16px;
+    border: 1px solid rgba(130, 150, 180, 0.3);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.75);
+    color: #17243a;
+    font: inherit;
+    outline: none;
+}
+
+#modal-password:focus {
+    border-color: #6599f5;
+    box-shadow: 0 0 0 3px rgba(101, 153, 245, 0.15);
+}
 
 
 
@@ -408,43 +631,21 @@ flex-direction: column;
     <a href = "/Blog/">Blog</a>
 
     <div class = "profile">
-
+<div id="user-icon"></div>
+    <div class="profile-dropdown"></div>
     </div>
 </div>
 </nav>
 <div class = "math-container"></div>
-<div class = "profile">
+<div class = "large-profile">
 <h1>Profile</h1>
 </div>
 <div class = "email-username-streak-stars">
 <p>Email: <span id = "profile-email"></span></p>
 <p>Username: <span id = "profile-username"></span></p>
-<p>Daily Streak 🔥: <span id = "profile-streak"></span> </p>
-</div>
-<div class = "difficulty-container">
-<div class = "card">
-<div class = "easy">
-<p>Easy questions done: <span id = "profile-easy-done"></span></p>
-</div>
-</div>
-<div class = "card">
-<div class = "medium">
-<p>Medium questions done: <span id = "profile-medium-done"></span></p>
-</div>
-</div>
-<div class = "card">
-<div class = "hard">
-<p>Hard questions done: <span id = "profile-hard-done"></span></p>
-</div>
-</div>
-</div>
-<div class = "card">
-<div class = "star">
-<div class = "email-username-streak-stars">
-<p>Stars earned: <span id = "profile-stars"></span></p>
-</div>
-</div>
-</div>
+<button id = "delete-account" class = "delete-account-btn">
+    Delete account
+</button>
 <div class = "copyright">
             <p>© 2026 Mathemagic. All rights reserved.
             </p>
@@ -456,6 +657,35 @@ flex-direction: column;
         <div class = "copyright">
             <p>Practice questions inspired by standardized tests. Not affiliated with CollegeBoard</p>
         </div>
+
+<div id="custom-modal" class="modal-overlay" hidden>
+    <div class="modal-card" role="dialog"
+         aria-modal="true" aria-labelledby="modal-title">
+
+        <div class="modal-icon" id="modal-icon">
+            <span>!</span>
+        </div>
+
+        <h2 id="modal-title">Are you sure?</h2>
+
+        <p id="modal-message"></p>
+<input
+  id="modal-password"
+  type="password"
+  placeholder="Enter your password"
+  autocomplete="current-password"
+  hidden
+/>
+        <div class="modal-actions">
+            <button id="modal-cancel" class="modal-cancel">
+                Cancel
+            </button>
+            <button id="modal-confirm" class="modal-confirm">
+                Continue
+            </button>
+        </div>
+    </div>
+</div>
 
 
 
@@ -475,113 +705,117 @@ flex-direction: column;
   const db = firebase.firestore();
 
 
-  function getTodayKey(){
-    const d = new Date();
-    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
-  }
+ 
 
-  function getYesterdayKey(){
-    const d = new Date();
-    d.setDate(d.getDate() - 1);
-    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
-  }
-  function submitAnswer(diff, starsEarned){
-    if(starsEarned < 1 || starsEarned > 3) return;
+function showModal({
+    title,
+    message,
+    confirmText = "Continue",
+    cancelText = "Cancel",
+    danger = false,
+    password = false,
+    error = false,
+    success = false,
+    showCancel = true
+}) {
+    const overlay = document.getElementById("custom-modal");
+    const titleEl = document.getElementById("modal-title");
+    const messageEl = document.getElementById("modal-message");
+    const confirmBtn = document.getElementById("modal-confirm");
+    const cancelBtn = document.getElementById("modal-cancel");
+    const icon = document.getElementById("modal-icon");
+    const passwordInput = document.getElementById("modal-password");
 
-    const user = firebase.auth().currentUser;
-    if(!user) return;
+    titleEl.textContent = title;
+    messageEl.textContent = message;
+    confirmBtn.textContent = confirmText;
+    cancelBtn.textContent = cancelText;
 
-    const uid = user.uid;
-    const todayKey = getTodayKey();
+    cancelBtn.hidden = !showCancel;
+    passwordInput.hidden = !password;
+    passwordInput.value = "";
+    passwordInput.required = password;
 
-    db.collection("users").doc(uid).collection(diff).doc(todayKey).set({
-        stars: starsEarned}, {merge:true}
-    ).then (async () => {
-        console.log(`${starsEarned} stars added for ${diff}`);
-        await updateDailyStreak();
-        await updateProfileUI();
-    })
-    .catch(err => console.error(err));
-  }
-async function updateDailyStreak(){
-    const user = firebase.auth().currentUser;
-    if (!user) return;
-
-    const uid = user.uid;
-    const userRef = db.collection("users").doc(uid);
-
-    const todayKey = getTodayKey();
-    const yesterdayKey = getYesterdayKey();
-    try{
-        const userDoc = await userRef.get();
-        let streak = 0;
-        let lastActive = null;
-
-        if (userDoc.exists){
-            const data = userDoc.data();
-            streak = data.dailyStreak ?? 0;
-            lastActive = data.lastActive ?? null;
-
-        }
-        if(lastActive === todayKey){
-
-        }
-
-        else if (lastActive === yesterdayKey){
-            streak += 1;
-        }
-
-        else{
-            streak = 1;
-        }
-        
-            await userRef.set({
-                dailyStreak: streak,
-                lastActive: todayKey},
-                {merge : true});
-
-            document.getElementById("profile-streak").textContent = streak + (streak === 1 ? " day" : " days");
-        }
-        catch (err){
-            console.error("Error updating daily streak: ", err);
-            document.getElementById("profile-streak").textContent = "0 days";
-        }
-}
-  async function updateProfileUI(){
-    const user = firebase.auth().currentUser;
-    if(!user) return;
-    const uid = user.uid;
-
-    const difficulties = ["easy", "medium", "hard"];
-
-    let totalStars = 0;
-    let totalDone = {easy: 0, medium: 0, hard: 0};
-
-    for (let diff of difficulties){
-        try{
-            const snapshot = await db.collection("users").doc(uid).collection(diff).get();
-            snapshot.forEach(doc => {
-                const data = doc.data();
-                const stars = data.stars ?? 0;
-                totalStars += stars;
-                if (stars >= 1){
-                    totalDone[diff] += 1;
-                }
-             
-            });
-        } catch(err){
-            console.error(`Error fetching ${diff} questions:`, err);
-        }
+    if (error || danger) {
+        confirmBtn.style.background =
+            "linear-gradient(135deg, #f16c77, #dc4757)";
+        icon.innerHTML = "<span>!</span>";
+    } else if (success) {
+        confirmBtn.style.background =
+            "linear-gradient(135deg, #16a878, #0d9668)";
+        icon.innerHTML = "<span>✓</span>";
+    } else {
+        confirmBtn.style.background =
+            "linear-gradient(135deg, #3985f7, #655ce6)";
+        icon.innerHTML = "<span>i</span>";
     }
-    
 
-    document.getElementById("profile-easy-done").textContent = totalDone.easy;
-    document.getElementById("profile-medium-done").textContent = totalDone.medium;
-    document.getElementById("profile-hard-done").textContent = totalDone.hard;
-    document.getElementById("profile-stars").textContent = totalStars +  "★";
+    overlay.hidden = false;
+
+    if (password) {
+        passwordInput.focus();
+    } else {
+        confirmBtn.focus();
+    }
+
+    return new Promise(resolve => {
+        let finished = false;
+
+        function finish(result) {
+            if (finished) return;
+            finished = true;
+
+            overlay.hidden = true;
+            passwordInput.value = "";
+
+            confirmBtn.removeEventListener("click", onConfirm);
+            cancelBtn.removeEventListener("click", onCancel);
+            overlay.removeEventListener("click", onBackdrop);
+            document.removeEventListener("keydown", onKeydown);
+
+            resolve(result);
+        }
+
+        function onConfirm() {
+            if (password && !passwordInput.value.trim()) {
+                passwordInput.focus();
+                return;
+            }
+
+            finish(password ? passwordInput.value : true);
+        }
+
+        function onCancel() {
+            finish(false);
+        }
+
+        function onBackdrop(event) {
+            if (event.target === overlay && showCancel) {
+                finish(false);
+            }
+        }
+
+        function onKeydown(event) {
+            if (event.key === "Escape" && showCancel) {
+                finish(false);
+            }
+
+            if (event.key === "Enter" && !overlay.hidden) {
+                event.preventDefault();
+                onConfirm();
+            }
+        }
+
+        confirmBtn.addEventListener("click", onConfirm);
+
+        if (showCancel) {
+            cancelBtn.addEventListener("click", onCancel);
+        }
+
+        overlay.addEventListener("click", onBackdrop);
+        document.addEventListener("keydown", onKeydown);
+    });
 }
-
-  
 
 
 
@@ -590,6 +824,7 @@ async function updateDailyStreak(){
 if (!user){
     window.location.href = "/login/";
     return;
+    
 }
 
 const uid = user.uid;
@@ -620,9 +855,6 @@ const uid = user.uid;
 
     document.getElementById("profile-email").textContent = user.email || "-";
     document.getElementById("profile-username").textContent = user.displayName || "-";
-    await updateDailyStreak();
-    await updateProfileUI();
-    
 });
 const container = document.querySelector(".math-container");
 const symbols = ["+", "-", "x", "/", "±", "∞", "π","Σ", "√", "∛", "∜", "ε", "⊾", "⊢", "≠","≅", "≈",
@@ -700,6 +932,138 @@ function spawnMath(){
 setInterval(spawnMath, 2000);
 
 
+document.getElementById("delete-account").addEventListener("click", async () =>{
+    const user = firebase.auth().currentUser;
+
+    if (!user){
+        alert("Please log in first!")
+        return;
+    }
+
+   const confirmed = await showModal({
+    title: "Delete your account?",
+    message:
+        "Your Mathemagic account and saved progress will be permanently deleted. This action cannot be undone.",
+    confirmText: "Delete account",
+    cancelText: "Keep my account",
+    danger: true
+});
+
+if (!confirmed) return;
+    if (!user.email){
+        alert("Please contact support to delete your account");
+        return;
+    }
+
+  const password = await showModal({
+    title: "Confirm your identity",
+    message: "Enter your password to securely delete your account.",
+    confirmText: "Verify & delete",
+    cancelText: "Cancel",
+    danger: true,
+    password: true
+});
+
+if (password === false) return;
+    try {
+        const credential =
+            firebase.auth.EmailAuthProvider.credential(
+                user.email,
+                password
+            );
+
+        await user.reauthenticateWithCredential(credential);
+
+        const uid = user.uid;
+
+        const collections = [
+            "easy", "medium", "hard",
+            "AMC_8", "AMC_10", "AMC_12",
+            "Limits", "Derivatives", "Integrals",
+            "easy_logic"
+        ];
+
+        for (const name of collections) {
+            const ref = firebase.firestore()
+                .collection("users")
+                .doc(uid)
+                .collection(name);
+
+            while (true) {
+                const snapshot = await ref.limit(400).get();
+
+                if (snapshot.empty) break;
+
+                const batch = firebase.firestore().batch();
+
+                snapshot.docs.forEach(doc => {
+                    batch.delete(doc.ref);
+                });
+
+                await batch.commit();
+            }
+        }
+
+        await firebase.firestore()
+            .collection("users")
+            .doc(uid)
+            .delete();
+
+        await user.delete();
+
+     
+await showModal({
+    title: "Account deleted",
+    message: "Your Mathemagic account has been successfully deleted. We're sorry to see you go!",
+    confirmText: "Return home",
+    success: true,
+    showCancel: false
+});
+
+window.location.replace("/");
+
+
+    } catch (error) {
+    console.error("Account deletion failed:", error);
+
+    let title = "Something went wrong";
+    let message =
+        "We couldn't delete your account. Please try again.";
+
+    if (
+        error.code === "auth/wrong-password" ||
+        error.code === "auth/invalid-credential"
+    ) {
+        title = "Incorrect password";
+        message =
+            "That password doesn't match your account. Please check it and try again.";
+    } else if (error.code === "auth/too-many-requests") {
+        title = "Too many attempts";
+        message =
+            "For your security, please wait a little before trying again.";
+    } else if (
+        error.code === "auth/requires-recent-login"
+    ) {
+        title = "Please sign in again";
+        message =
+            "Your session has expired. Sign in again before deleting your account.";
+    } else if (
+        error.code === "permission-denied" ||
+        error.code === "firestore/permission-denied"
+    ) {
+        title = "Permission denied";
+        message =
+            "We couldn't access all the data needed to complete this request. Please try again later.";
+    }
+
+    await showModal({
+        title,
+        message,
+        confirmText: "Got it",
+        error: true,
+        showCancel: false
+    });
+    }});
 
 
 </script>

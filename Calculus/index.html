@@ -407,21 +407,24 @@ html, body{
         font-size: 0.82rem;
     }
 
-    .nav-right {
-        gap: 1px;
-    }
-}
-@media (max-width: 500px) {
-    .nav-links a,
-    .nav-right > a {
-        padding: 7px 4px;
-        font-size: 0.76rem;
-    }
 
-    .nav-logo img {
-        width: 31px;
-        height: 31px;
-    }
+     .together{
+            width: calc(100% - 32px);
+            margin: 32px auto;
+            display: flex;
+            gap: 24px;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .Limits,
+        .Derivatives,
+        .Integrals{
+            width: 100%;
+            max-width: 320px;
+            height: 220px;
+            box-sizing: border-box;
+        }
 }
 </style>
 
