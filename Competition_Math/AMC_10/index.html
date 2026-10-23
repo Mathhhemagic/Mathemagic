@@ -595,19 +595,138 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 const questions = 
 [
-{
-    question: "Andy and Betsy both live in Mathville. Andy leaves Mathville on his bicycle at 1:30, traveling due north at a steady 8 miles per hour. Betsy leaves on her bicycle from the same point at 2:30, traveling due east at a steady 12 miles per hour. At what time will they be exactly the same distance from their common starting point?",
-    answer: {A:"3:30", B:"3:45", C:"4:15", D:"4:30"},
-    correct: "D",
-    hint: "For every hour they travel, Betsy gains 4 hours on Andy.",
-    steps: [
-        "At 2:30, Andy is 8 miles ahead. For every hour that they both travel, Betsy gains 4 miles on Andy.",
-        "Therefore, it will take her 2 more hours to be the same distance from the starting point as Andy, which occurs at 4:30."
-    ],
-    minutes: 2,
-    img_question: ""
-}
-
+[
+    {
+        question: "What is the value of (2^10 + 2^10) / 2^9?",
+        answer: {A: 2, B: 4, C: 8, D: 16, E: 32},
+        correct: "B",
+        hint: "Add the two equal terms in the numerator first.",
+        steps: [
+            "2^10 + 2^10 = 2 × 2^10 = 2^11.",
+            "2^11 / 2^9 = 2^2 = 4."
+        ],
+        minutes: 1,
+        img_question: ""
+    },
+    {
+        question: "What is the sum of the first 20 positive odd integers minus the sum of the first 10 positive even integers?",
+        answer: {A: 270, B: 280, C: 290, D: 300, E: 310},
+        correct: "C",
+        hint: "The sum of the first n odd integers is n^2.",
+        steps: [
+            "The sum of the first 20 odd integers is 20^2 = 400.",
+            "The sum of the first 10 even integers is 2(1 + 2 + ... + 10) = 2 × 55 = 110.",
+            "400 − 110 = 290."
+        ],
+        minutes: 2,
+        img_question: ""
+    },
+    {
+        question: "The roots of x^2 − 7x + 5 = 0 are r and s. What is the value of r^2 + s^2?",
+        answer: {A: 29, B: 34, C: 39, D: 44, E: 49},
+        correct: "C",
+        hint: "Use (r + s)^2 = r^2 + 2rs + s^2 and Vieta's formulas.",
+        steps: [
+            "By Vieta's formulas, r + s = 7 and rs = 5.",
+            "r^2 + s^2 = (r + s)^2 − 2rs = 49 − 10 = 39."
+        ],
+        minutes: 2,
+        img_question: ""
+    },
+    {
+        question: "How many positive divisors of 360 are perfect squares?",
+        answer: {A: 3, B: 4, C: 5, D: 6, E: 8},
+        correct: "B",
+        hint: "Start with the prime factorization of 360. A perfect square has only even exponents.",
+        steps: [
+            "360 = 2^3 × 3^2 × 5^1.",
+            "A square divisor needs even exponents: the exponent of 2 can be 0 or 2 (2 choices), the exponent of 3 can be 0 or 2 (2 choices), and the exponent of 5 must be 0 (1 choice).",
+            "Total = 2 × 2 × 1 = 4 (they are 1, 4, 9, 36)."
+        ],
+        minutes: 2,
+        img_question: ""
+    },
+    {
+        question: "What is the units digit of 3^2026 + 7^2026?",
+        answer: {A: 0, B: 2, C: 4, D: 6, E: 8},
+        correct: "E",
+        hint: "Look at the pattern of units digits of the powers of 3 and 7.",
+        steps: [
+            "Units digits of powers of 3 repeat every 4: 3, 9, 7, 1. Since 2026 leaves remainder 2 when divided by 4, the units digit of 3^2026 is 9.",
+            "Units digits of powers of 7 repeat every 4: 7, 9, 3, 1. The units digit of 7^2026 is also 9.",
+            "9 + 9 = 18, so the units digit is 8."
+        ],
+        minutes: 2,
+        img_question: ""
+    },
+    {
+        question: "Two fair six-sided dice are rolled. What is the probability that the sum of the numbers shown is a prime number?",
+        answer: {A: "1/3", B: "5/12", C: "7/18", D: "4/9", E: "1/2"},
+        correct: "B",
+        hint: "The possible prime sums are 2, 3, 5, 7, and 11.",
+        steps: [
+            "There are 6 × 6 = 36 equally likely outcomes.",
+            "Ways to get each prime sum: 2 → 1, 3 → 2, 5 → 4, 7 → 6, 11 → 2.",
+            "Total favorable = 1 + 2 + 4 + 6 + 2 = 15.",
+            "Probability = 15/36 = 5/12."
+        ],
+        minutes: 2,
+        img_question: ""
+    },
+    {
+        question: "A right triangle has legs of length 6 and 8. What is the area of the circle inscribed in the triangle?",
+        answer: {A: "2π", B: "3π", C: "4π", D: "5π", E: "6π"},
+        correct: "C",
+        hint: "Find the hypotenuse, then use area = r × (semiperimeter).",
+        steps: [
+            "The hypotenuse is √(6^2 + 8^2) = 10.",
+            "The area of the triangle is (1/2)(6)(8) = 24, and the semiperimeter is (6 + 8 + 10)/2 = 12.",
+            "Area = r × s gives 24 = 12r, so r = 2.",
+            "The area of the circle is π × 2^2 = 4π."
+        ],
+        minutes: 3,
+        img_question: ""
+    },
+    {
+        question: "If x + 1/x = 5, what is the value of x^3 + 1/x^3?",
+        answer: {A: 100, B: 105, C: 110, D: 115, E: 120},
+        correct: "C",
+        hint: "Cube the expression x + 1/x.",
+        steps: [
+            "(x + 1/x)^3 = x^3 + 3x + 3/x + 1/x^3 = x^3 + 1/x^3 + 3(x + 1/x).",
+            "So 125 = x^3 + 1/x^3 + 3(5), which gives x^3 + 1/x^3 = 125 − 15 = 110."
+        ],
+        minutes: 3,
+        img_question: ""
+    },
+    {
+        question: "How many 4-digit positive integers have digits that sum to 3?",
+        answer: {A: 8, B: 10, C: 12, D: 16, E: 20},
+        correct: "B",
+        hint: "The first digit must be at least 1. Subtract 1 from it and count distributions of the remaining sum.",
+        steps: [
+            "Let the digits be a, b, c, d with a ≥ 1. Set a' = a − 1, so a' + b + c + d = 2 with all variables nonnegative.",
+            "By stars and bars, the number of solutions is C(2 + 3, 3) = C(5, 3) = 10.",
+            "No digit exceeds 9, so all 10 solutions are valid."
+        ],
+        minutes: 3,
+        img_question: ""
+    },
+    {
+        question: "How many ordered pairs (a, b) of positive integers satisfy 1/a + 1/b = 1/6?",
+        answer: {A: 6, B: 8, C: 9, D: 10, E: 12},
+        correct: "C",
+        hint: "Clear denominators and try to factor (Simon's Favorite Factoring Trick).",
+        steps: [
+            "Multiply by 6ab: 6b + 6a = ab, so ab − 6a − 6b = 0.",
+            "Add 36 to both sides: (a − 6)(b − 6) = 36.",
+            "Since a, b > 6 is required (if a − 6 and b − 6 were both negative, the product would be at most 25 < 36), both factors are positive divisors of 36.",
+            "36 has 9 positive divisors, each giving one ordered pair, so there are 9 pairs."
+        ],
+        minutes: 4,
+        img_question: ""
+    }
+]
 
 
 

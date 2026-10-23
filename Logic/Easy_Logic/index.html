@@ -474,20 +474,71 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 
 const questions = [
-
 {
-    question: "🍉 + 🍉 + 🍉 = 36\n🍉 + 🥕 + 🥕 = 22\n🥕 - 🥑 = 4\nWhat does 🥑 equal?",
-    answer: {A:"12", B:"f(x) = 10", C:"5", D:"1"},
-    correct: "D",
-    hint: "3🍉 = 36, 🍉🥕 = 22, and 🥕 - 🥑 = 4. Set up a system of equations.",
-    steps: [
-        "3🍉 = 36. Divide by 3 on both sides to get 🍉 = 12.",
-        "12 + 2🥕 = 22. Subtract by 12 on both sides:\n2🥕 = 10\nDivide by 2 on both sides:🥕 = 5.\n",
-        "5 - 🥑 = 4, so 🥑 = 1."
-    ],
-    minutes: 3,
-    img_question: ""
-},
+        question: "A drawer contains 10 red socks, 10 blue socks, and 10 black socks. You pull socks out in the dark. What is the smallest number of socks you must pull out to guarantee at least one matching pair?",
+        answer: {A: 2, B: 3, C: 4, D: 11},
+        correct: "C",
+        hint: "Think about the worst case: what is the most socks you can pull without a match?",
+        steps: [
+            "In the worst case, the first three socks are all different colors (one red, one blue, one black), and there is still no pair.",
+            "The 4th sock must match one of the three colors already drawn.",
+            "So 4 socks guarantee a matching pair."
+        ],
+        minutes: 1,
+        img_question: ""
+    },
+    {
+        question: "Ana is taller than Ben. Cal is shorter than Ben. Dev is taller than Ana. Who is the second tallest?",
+        answer: {A: "Ana", B: "Ben", C: "Cal", D: "Dev"},
+        correct: "A",
+        hint: "Line the four people up from tallest to shortest.",
+        steps: [
+            "Dev is taller than Ana, Ana is taller than Ben, and Ben is taller than Cal.",
+            "The order from tallest to shortest is Dev, Ana, Ben, Cal.",
+            "The second tallest is Ana."
+        ],
+        minutes: 1,
+        img_question: ""
+    },
+    {
+        question: "Knights always tell the truth and knaves always lie. Alex says: 'Bo is a knave.' Bo says: 'Alex and I are both knights.' What are Alex and Bo?",
+        answer: {A: "Both are knights", B: "Alex is a knight, Bo is a knave", C: "Alex is a knave, Bo is a knight", D: "Both are knaves"},
+        correct: "B",
+        hint: "Start by testing whether Bo could be a knight.",
+        steps: [
+            "If Bo were a knight, his statement would be true, so Alex would also be a knight. But then Alex's statement 'Bo is a knave' would be false, a contradiction.",
+            "So Bo is a knave, which makes Alex's statement true, so Alex is a knight.",
+            "Check: Bo (a knave) says 'we are both knights,' which is false, as it should be."
+        ],
+        minutes: 2,
+        img_question: ""
+    },
+    {
+        question: "If the day after tomorrow is Saturday, what day was it yesterday?",
+        answer: {A: "Tuesday", B: "Wednesday", C: "Thursday", D: "Friday"},
+        correct: "B",
+        hint: "Work backwards from Saturday one day at a time.",
+        steps: [
+            "The day after tomorrow is Saturday, so tomorrow is Friday.",
+            "That makes today Thursday.",
+            "Yesterday was Wednesday."
+        ],
+        minutes: 1,
+        img_question: ""
+    },
+    {
+        question: "I am thinking of a two-digit number. Its digits add up to 9, it is a multiple of 5, and it is odd. What is the number?",
+        answer: {A: 35, B: 45, C: 54, D: 90},
+        correct: "B",
+        hint: "A multiple of 5 ends in 0 or 5. Which of those is odd?",
+        steps: [
+            "The number is odd and a multiple of 5, so it ends in 5.",
+            "If the tens digit is t, then t + 5 = 9, so t = 4.",
+            "The number is 45."
+        ],
+        minutes: 1,
+        img_question: ""
+    },
 
 
 

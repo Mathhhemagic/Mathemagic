@@ -590,26 +590,143 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 const questions = 
 [
-{
-    question: "A team of students is going to compete against a team of teachers in a trivia contest. The total number of students and teachers is $15$. Ash, a cousin of one of the students, wants to join the contest. If Ash plays with the students, the average age on that team will increase from 12 to 14. If Ash plays with the teachers, the average age on that team will decrease from 55 to 52. How old is Ash?",
-    answer: {A:28, B:29, C:30, D:32},
-    correct: "C",
-    hint: "There are 60 minutes in one hour",
-    steps: [
-    "When Ash joins a team, the team's average is pulled towards his age. Let A be Ash's age and N be the number of people on the student team. This means that there are 15 - N people in the teacher team.",
-    "Let us write an expression for the change in the average for each team. The students originally had an average of 12, which became 14 when Ash joined, so there was an increase of 2.",
-    "The term A-12 represents how much older Ash is compared to the average of the students'. If we divide this by N + 1, which is the number of people on the student team when Ash joins, we get the average change per team member once Ash is added. Therefore,\n(A - 12)/(N + 1) = 2.",
-    "Similarly, for teachers, the average was originally 55, which decreased by 3 to become 52 when Ash joined. Intuitively, 55 - A represents how much younger Ash is than the average age of the teachers.",
-    "Dividing this by the expression (15 - N) + 1, which is the new total number of people on the teacher team, represents the average change per team member once Ash joins.",
-    "We can write the equation:\n(55 - A)/(16 - N) = 3.",
-    "To solve the system, multiply equation (1) by N + 1, and similarly multiply equation (2) by 16 - N. Then add the equations together, canceling A, leaving equation 43 = 50 - N. From this we get N = 7 and A = 28."
+[
+    {
+        question: "What is the value of log_2(32) + log_3(81) − log_5(25)?",
+        answer: {A: 5, B: 6, C: 7, D: 8, E: 9},
+        correct: "C",
+        hint: "Evaluate each logarithm separately by asking what power gives the number.",
+        steps: [
+            "log_2(32) = 5 because 2^5 = 32.",
+            "log_3(81) = 4 because 3^4 = 81.",
+            "log_5(25) = 2 because 5^2 = 25.",
+            "5 + 4 − 2 = 7."
+        ],
+        minutes: 1,
+        img_question: ""
+    },
+    {
+        question: "What is the value of i + i^2 + i^3 + ... + i^2026, where i^2 = −1?",
+        answer: {A: 0, B: "i", C: "−1", D: "−1 + i", E: "1 + i"},
+        correct: "D",
+        hint: "The powers of i repeat every 4 terms. What does one full cycle add up to?",
+        steps: [
+            "i + i^2 + i^3 + i^4 = i − 1 − i + 1 = 0, so every block of 4 consecutive powers sums to 0.",
+            "2026 = 4 × 506 + 2, so the first 2024 terms cancel completely.",
+            "The remaining terms are i^2025 + i^2026 = i + (−1) = −1 + i."
+        ],
+        minutes: 2,
+        img_question: ""
+    },
+    {
+        question: "If sin θ + cos θ = 1/3, what is the value of sin 2θ?",
+        answer: {A: "−8/9", B: "−7/9", C: "−2/3", D: "2/9", E: "8/9"},
+        correct: "A",
+        hint: "Square both sides of the given equation.",
+        steps: [
+            "(sin θ + cos θ)^2 = sin^2 θ + 2 sin θ cos θ + cos^2 θ = 1 + sin 2θ.",
+            "The left side equals (1/3)^2 = 1/9.",
+            "So sin 2θ = 1/9 − 1 = −8/9."
+        ],
+        minutes: 2,
+        img_question: ""
+    },
+    {
+        question: "The roots of x^3 − 6x^2 + 11x − 7 = 0 are a, b, and c. What is the value of a^3 + b^3 + c^3?",
+        answer: {A: 33, B: 36, C: 39, D: 42, E: 45},
+        correct: "C",
+        hint: "Use Vieta's formulas, then Newton's sums (or the identity for a^3 + b^3 + c^3).",
+        steps: [
+            "By Vieta's formulas: a + b + c = 6, ab + bc + ca = 11, abc = 7.",
+            "a^2 + b^2 + c^2 = 6^2 − 2(11) = 14.",
+            "Use a^3 + b^3 + c^3 = (a + b + c)(a^2 + b^2 + c^2 − (ab + bc + ca)) + 3abc.",
+            "= 6(14 − 11) + 3(7) = 18 + 21 = 39."
+        ],
+        minutes: 3,
+        img_question: ""
+    },
+    {
+        question: "What are the last two digits of 7^2026?",
+        answer: {A: "07", B: "43", C: "49", D: "51", E: "99"},
+        correct: "C",
+        hint: "Compute 7^4 and look at it modulo 100.",
+        steps: [
+            "7^2 = 49 and 7^4 = 2401 ≡ 1 (mod 100).",
+            "2026 = 4 × 506 + 2, so 7^2026 = (7^4)^506 × 7^2 ≡ 1 × 49 (mod 100).",
+            "The last two digits are 49."
+        ],
+        minutes: 2,
+        img_question: ""
+    },
+    {
+        question: "For positive real numbers x, what is the minimum value of x + 4/x^2?",
+        answer: {A: 2, B: "5/2", C: 3, D: "7/2", E: 4},
+        correct: "C",
+        hint: "Split x into two equal parts, x/2 + x/2, and apply AM-GM to three terms.",
+        steps: [
+            "Write the expression as x/2 + x/2 + 4/x^2.",
+            "By AM-GM, the sum is at least 3 × ((x/2)(x/2)(4/x^2))^(1/3) = 3 × (1)^(1/3) = 3.",
+            "Equality holds when x/2 = 4/x^2, i.e., x^3 = 8, so x = 2 (check: 2 + 4/4 = 3).",
+            "The minimum value is 3."
+        ],
+        minutes: 3,
+        img_question: ""
+    },
+    {
+        question: "A triangle has side lengths 13, 14, and 15. What is the radius of its circumscribed circle?",
+        answer: {A: 8, B: "65/8", C: "33/4", D: "17/2", E: 9},
+        correct: "B",
+        hint: "Find the area first (Heron's formula), then use R = abc / (4K).",
+        steps: [
+            "The semiperimeter is s = (13 + 14 + 15)/2 = 21.",
+            "By Heron's formula, K = √(21 × 8 × 7 × 6) = √7056 = 84.",
+            "R = abc / (4K) = (13 × 14 × 15) / (4 × 84) = 2730 / 336 = 65/8."
+        ],
+        minutes: 3,
+        img_question: ""
+    },
+    {
+        question: "A fair coin is flipped 8 times. What is the probability that no two consecutive flips are both heads?",
+        answer: {A: "21/128", B: "55/256", C: "13/64", D: "89/256", E: "1/4"},
+        correct: "B",
+        hint: "Let a(n) be the number of valid sequences of length n. Consider what the last flip is.",
+        steps: [
+            "Let a(n) count valid sequences of length n. If the last flip is T, the first n − 1 flips can be any valid sequence: a(n − 1) ways.",
+            "If the last flip is H, the one before it must be T, and the first n − 2 flips are any valid sequence: a(n − 2) ways.",
+            "So a(n) = a(n − 1) + a(n − 2) with a(1) = 2, a(2) = 3, giving 2, 3, 5, 8, 13, 21, 34, 55.",
+            "a(8) = 55, and there are 2^8 = 256 total outcomes, so the probability is 55/256."
+        ],
+        minutes: 4,
+        img_question: ""
+    },
+    {
+        question: "In how many distinct ways can the letters of the word MISSISSIPPI be arranged so that no two S's are adjacent?",
+        answer: {A: 5250, B: 6300, C: 7350, D: 8400, E: 9450},
+        correct: "C",
+        hint: "Arrange the non-S letters first, then place the S's in the gaps.",
+        steps: [
+            "The non-S letters are M, I, I, I, I, P, P (7 letters). They can be arranged in 7! / (4! × 2!) = 105 ways.",
+            "These 7 letters create 8 gaps (including both ends). The 4 S's must go in 4 different gaps: C(8, 4) = 70 ways.",
+            "Total = 105 × 70 = 7350."
+        ],
+        minutes: 4,
+        img_question: ""
+    },
+    {
+        question: "What is the value of the infinite sum (2·1+1)/(1^2·2^2) + (2·2+1)/(2^2·3^2) + (2·3+1)/(3^2·4^2) + ... , where the nth term is (2n + 1)/(n^2 (n + 1)^2)?",
+        answer: {A: "1/2", B: "3/4", C: 1, D: "5/4", E: "3/2"},
+        correct: "C",
+        hint: "Try writing each term as a difference of two simple fractions: 1/n^2 − 1/(n + 1)^2.",
+        steps: [
+            "Note that 1/n^2 − 1/(n + 1)^2 = ((n + 1)^2 − n^2) / (n^2 (n + 1)^2) = (2n + 1) / (n^2 (n + 1)^2).",
+            "So the sum telescopes: (1/1^2 − 1/2^2) + (1/2^2 − 1/3^2) + (1/3^2 − 1/4^2) + ...",
+            "All middle terms cancel, leaving 1/1^2 − (a term that tends to 0) = 1."
+        ],
+        minutes: 3,
+        img_question: ""
+    }
+]
 
-
-],
-    minutes: 2,
-    img_question: ""
-}
-,
 
 
 

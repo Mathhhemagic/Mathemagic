@@ -888,9 +888,9 @@ box-shadow: 3px 4px 0 rgba(40, 70, 50, 0.08);
     <section class = "welcome">
         <div>
             <p class = "title">Welcome to Mathemagic!</p>
-            <h1>Math taught so easy, it's like magic</h1>
+            <h1 id = "date"></h1>
             <p class = "welcome-text">
-                Free math education for curious students.
+                Free math problems for everyone!
             </p>
         </div>
 
@@ -1141,11 +1141,6 @@ setInterval(spawnMath, 2000);
 
 
 
-
-
-
-
-
 function getDailyDate(resetHour, resetMinute){
     const now = new Date();
     const reset = new Date(now);
@@ -1165,7 +1160,6 @@ const dailyDate = getDailyDate(0, 0);
 const dayKey = dailyDate.toISOString().split("T")[0];
 
 
-
 function getLocalDayKey(date = new Date()){
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -1173,7 +1167,16 @@ function getLocalDayKey(date = new Date()){
 
     return `${year}-${month}-${day}`;
 }
+const dateElement = document.getElementById("date");
 
+const today = new Date();
+
+dateElement.innerHTML = today.toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric"
+});
 async function awardXP(uid, amount = 1){
     const db = firebase.firestore();
     const userRef = db.collection("users").doc(uid);
@@ -1205,7 +1208,36 @@ async function awardXP(uid, amount = 1){
         }, {merge: true});
         });
     }
+    async function resetMissedStreak(uid){
+        const db = firebase.firestore();
+        const userRef = db.collection("users").doc(uid);
 
+        const today = getLocalDayKey();
+
+        const yesterdayDate = new Date();
+        yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+        const yesterday = getLocalDayKey(yesterdayDate);
+
+        await db.runTransaction(async transaction => {
+            const snapshot = await transaction.get(userRef);
+
+            if (!snapshot.exists) return;
+
+            const data = snapshot.data();
+            const lastActiveDate = data.lastActiveDate;
+
+            if (
+                lastActiveDate &&
+                lastActiveDate !== today && 
+                lastActiveDate !== yesterday &&
+                (data.dailyStreak || 0) !== 0
+            ){
+                transaction.update(userRef, {
+                    dailyStreak: 0
+                });
+            }
+        });
+    }
 
 
 firebase.auth().onAuthStateChanged(async user => {
@@ -1216,6 +1248,8 @@ firebase.auth().onAuthStateChanged(async user => {
     const uid = user.uid
 
     const userRef = firebase.firestore().collection("users").doc(uid);
+
+    await resetMissedStreak(uid);
 
 const userSnap = await userRef.get();
 const userData = userSnap.data() || {}
@@ -1229,7 +1263,7 @@ document.getElementById("dashboard-streak").textContent = userData.dailyStreak ?
     }
 
     const collections = [
-        "easy", "medium", "hard", "AMC_8", "AMC_10", "AMC_12", "Limits", "Derivatives", "Integrals", "easy_logic"
+        "easy", "medium", "hard", "AMC_8", "AMC_10", "AMC_12", "Limits", "Derivatives", "Integrals", "easy_logic", "medium_logic", "hard_logic"
     ];
 
     const db = firebase.firestore();
@@ -1265,7 +1299,7 @@ document.getElementById("dashboard-streak").textContent = userData.dailyStreak ?
 
  updateProgressBar(
         "logic",
-        answered.easy_logic
+        answered.easy_logic + answered.medium_logic + answered.hard_logic
 );
 
 const allQuestionDocs = await Promise.all(
