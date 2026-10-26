@@ -589,7 +589,7 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 const questions = 
-[
+
 [
     {
         question: "What is the value of log_2(32) + log_3(81) − log_5(25)?",
@@ -725,17 +725,10 @@ const questions =
         minutes: 3,
         img_question: ""
     }
-]
-
-
-
-
-
-
-
-
-
 ];
+
+
+
 
 function getDailyDate(resetHour, resetMinute){
     const now = new Date();
