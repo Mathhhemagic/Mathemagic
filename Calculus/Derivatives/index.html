@@ -595,18 +595,148 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 const questions = 
 [
-{
-    question: "What is the derivative of x⁵ at x = 2?",
-    answer: {A:"64", B:"32", C:"48", D:"80"},
-    correct: "D",
-    hint: "The derivative of x⁵ = 5x⁴.",
-    steps: [
-        "The derivative of x⁵, using power rule, = 5x⁴.",
-        "Plug in 2: 4(2)⁴  = 5 × 16 = 80"
+
+  {
+    "question": "Find d/dx of f(x) = 3x⁴ − 2x² + 7",
+    "answer": { "A": "12x³ − 4x", "B": "12x³ − 4x + 7", "C": "3x³ − 2x", "D": "12x⁴ − 4x²" },
+    "correct": "A",
+    "hint": "Use the power rule on each term: d/dx (xⁿ) = n·xⁿ⁻¹. The derivative of a constant is 0.",
+    "steps": [
+      "Differentiate 3x⁴: 3 · 4x³ = 12x³",
+      "Differentiate −2x²: −2 · 2x = −4x",
+      "Differentiate the constant 7: 0",
+      "Combine: f'(x) = 12x³ − 4x"
     ],
-    minutes: 2,
-    img_question: ""
-}
+    "minutes": 1,
+    "img_question": ""
+  },
+  {
+    "question": "Find d/dx of f(x) = 1/x³",
+    "answer": { "A": "3/x²", "B": "−3/x²", "C": "−3/x⁴", "D": "−1/(3x²)" },
+    "correct": "C",
+    "hint": "Rewrite 1/x³ as x⁻³ and then use the power rule.",
+    "steps": [
+      "Rewrite: f(x) = x⁻³",
+      "Apply the power rule: f'(x) = −3 · x⁻³⁻¹ = −3x⁻⁴",
+      "Rewrite with a positive exponent: f'(x) = −3/x⁴"
+    ],
+    "minutes": 1,
+    "img_question": ""
+  },
+  {
+    "question": "Find d/dx of f(x) = x² sin x",
+    "answer": { "A": "2x cos x", "B": "2x sin x", "C": "2x sin x + x² cos x", "D": "2x cos x − x² sin x" },
+    "correct": "C",
+    "hint": "This is a product of two functions. Use the product rule: (uv)' = u'v + uv'.",
+    "steps": [
+      "Let u = x² and v = sin x",
+      "Then u' = 2x and v' = cos x",
+      "Apply the product rule: u'v + uv' = 2x · sin x + x² · cos x",
+      "f'(x) = 2x sin x + x² cos x"
+    ],
+    "minutes": 1.5,
+    "img_question": ""
+  },
+  {
+    "question": "Find d/dx of f(x) = x/(x + 1)",
+    "answer": { "A": "1/(x + 1)²", "B": "1/(x + 1)", "C": "(2x + 1)/(x + 1)²", "D": "x/(x + 1)²" },
+    "correct": "A",
+    "hint": "Use the quotient rule: (u/v)' = (u'v − uv')/v².",
+    "steps": [
+      "Let u = x and v = x + 1, so u' = 1 and v' = 1",
+      "Apply the quotient rule: [(1)(x + 1) − (x)(1)] / (x + 1)²",
+      "Simplify the numerator: x + 1 − x = 1",
+      "f'(x) = 1/(x + 1)²"
+    ],
+    "minutes": 2,
+    "img_question": ""
+  },
+  {
+    "question": "Find d/dx of f(x) = (3x + 1)⁵",
+    "answer": { "A": "5(3x + 1)⁴", "B": "15(3x + 1)⁴", "C": "15(3x + 1)⁵", "D": "3(3x + 1)⁴" },
+    "correct": "B",
+    "hint": "Use the chain rule: differentiate the outer power, then multiply by the derivative of the inside.",
+    "steps": [
+      "Outer function: u⁵ with u = 3x + 1. Its derivative is 5u⁴",
+      "Inner function: u = 3x + 1. Its derivative is 3",
+      "Multiply: 5(3x + 1)⁴ · 3",
+      "f'(x) = 15(3x + 1)⁴"
+    ],
+    "minutes": 1.5,
+    "img_question": ""
+  },
+  {
+    "question": "Find d/dx of f(x) = e^(x²)",
+    "answer": { "A": "e^(x²)", "B": "x² e^(x²)", "C": "2x e^(x)", "D": "2x e^(x²)" },
+    "correct": "D",
+    "hint": "The derivative of e^u is e^u · u'. Don't forget the chain rule.",
+    "steps": [
+      "Outer function: e^u, whose derivative is e^u",
+      "Inner function: u = x², whose derivative is 2x",
+      "Multiply: e^(x²) · 2x",
+      "f'(x) = 2x e^(x²)"
+    ],
+    "minutes": 1.5,
+    "img_question": ""
+  },
+  {
+    "question": "Find d/dx of f(x) = ln(x² + 1)",
+    "answer": { "A": "1/(x² + 1)", "B": "2x/(x² + 1)", "C": "2x ln(x² + 1)", "D": "(x² + 1)/2x" },
+    "correct": "B",
+    "hint": "The derivative of ln(u) is u'/u.",
+    "steps": [
+      "Let u = x² + 1, so u' = 2x",
+      "Apply d/dx ln(u) = u'/u",
+      "f'(x) = 2x/(x² + 1)"
+    ],
+    "minutes": 1.5,
+    "img_question": ""
+  },
+  {
+    "question": "Find d/dx of f(x) = x ln x",
+    "answer": { "A": "ln x", "B": "ln x + 1", "C": "1/x", "D": "1 + 1/x" },
+    "correct": "B",
+    "hint": "Use the product rule with u = x and v = ln x.",
+    "steps": [
+      "Let u = x and v = ln x",
+      "Then u' = 1 and v' = 1/x",
+      "Apply the product rule: u'v + uv' = (1)(ln x) + (x)(1/x)",
+      "Simplify: ln x + 1"
+    ],
+    "minutes": 1.5,
+    "img_question": ""
+  },
+  {
+    "question": "What is the slope of the tangent line to f(x) = x³ − 2x at x = 2?",
+    "answer": { "A": "4", "B": "6", "C": "10", "D": "12" },
+    "correct": "C",
+    "hint": "The slope of the tangent line at a point is the derivative evaluated at that point.",
+    "steps": [
+      "Find the derivative: f'(x) = 3x² − 2",
+      "Evaluate at x = 2: f'(2) = 3(2)² − 2",
+      "Compute: 3(4) − 2 = 12 − 2 = 10",
+      "The slope of the tangent line is 10"
+    ],
+    "minutes": 1.5,
+    "img_question": ""
+  },
+  {
+    "question": "If x² + y² = 25, find dy/dx using implicit differentiation.",
+    "answer": { "A": "x/y", "B": "−x/y", "C": "−y/x", "D": "y/x" },
+    "correct": "B",
+    "hint": "Differentiate both sides with respect to x, remembering that d/dx (y²) = 2y · dy/dx.",
+    "steps": [
+      "Differentiate both sides with respect to x: 2x + 2y · dy/dx = 0",
+      "Subtract 2x from both sides: 2y · dy/dx = −2x",
+      "Divide by 2y: dy/dx = −2x/(2y)",
+      "Simplify: dy/dx = −x/y"
+    ],
+    "minutes": 2,
+    "img_question": ""
+  }
+
+
+
 
 
 

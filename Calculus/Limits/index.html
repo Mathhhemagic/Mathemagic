@@ -595,17 +595,154 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 const questions = 
 [
-{
-    question: "lim x → 2 (x + 2)?",
-    answer: {A:1, B:4, C:0, D:-2},
-    correct: "B",
-    hint: "Use direct substitution",
-    steps: [
-        "Directly substitute 2 into the equation: 2 + 2 = 4."
+[
+  {
+    "question": "Evaluate: lim (x→3) (x² − 9)/(x − 3)",
+    "answer": { "A": "0", "B": "3", "C": "6", "D": "Does not exist" },
+    "correct": "C",
+    "hint": "Plugging in x = 3 gives 0/0. Try factoring the numerator.",
+    "steps": [
+      "Direct substitution gives (9 − 9)/(3 − 3) = 0/0, an indeterminate form",
+      "Factor the numerator as a difference of squares: x² − 9 = (x − 3)(x + 3)",
+      "Cancel the common factor: (x − 3)(x + 3)/(x − 3) = x + 3, for x ≠ 3",
+      "Now substitute x = 3: 3 + 3 = 6"
     ],
-    minutes: 1,
-    img_question: ""
-}
+    "minutes": 1,
+    "img_question": ""
+  },
+  {
+    "question": "Evaluate: lim (x→0) sin(5x)/x",
+    "answer": { "A": "0", "B": "1", "C": "5", "D": "1/5" },
+    "correct": "C",
+    "hint": "Use the special limit lim (u→0) sin(u)/u = 1. Make the inside of sine match the denominator.",
+    "steps": [
+      "Direct substitution gives 0/0",
+      "Multiply and divide by 5: sin(5x)/x = 5 · sin(5x)/(5x)",
+      "As x → 0, 5x → 0, so sin(5x)/(5x) → 1",
+      "Therefore the limit is 5 · 1 = 5"
+    ],
+    "minutes": 1.5,
+    "img_question": ""
+  },
+  {
+    "question": "Evaluate: lim (x→∞) (3x² + 2x − 1)/(5x² − 4)",
+    "answer": { "A": "0", "B": "3/5", "C": "5/3", "D": "∞" },
+    "correct": "B",
+    "hint": "When the numerator and denominator have the same degree, compare the leading coefficients.",
+    "steps": [
+      "Both numerator and denominator have degree 2",
+      "Divide every term by x²: (3 + 2/x − 1/x²)/(5 − 4/x²)",
+      "As x → ∞, the terms 2/x, 1/x², and 4/x² all approach 0",
+      "The limit is 3/5"
+    ],
+    "minutes": 1.5,
+    "img_question": ""
+  },
+  {
+    "question": "Evaluate: lim (x→2) (x² − 5x + 6)/(x − 2)",
+    "answer": { "A": "−1", "B": "0", "C": "1", "D": "Does not exist" },
+    "correct": "A",
+    "hint": "Factor the quadratic in the numerator and look for a common factor.",
+    "steps": [
+      "Direct substitution gives (4 − 10 + 6)/0 = 0/0",
+      "Factor the numerator: x² − 5x + 6 = (x − 2)(x − 3)",
+      "Cancel (x − 2): the expression simplifies to x − 3, for x ≠ 2",
+      "Substitute x = 2: 2 − 3 = −1"
+    ],
+    "minutes": 1,
+    "img_question": ""
+  },
+  {
+    "question": "Evaluate: lim (x→0) (√(x + 4) − 2)/x",
+    "answer": { "A": "0", "B": "1/4", "C": "1/2", "D": "4" },
+    "correct": "B",
+    "hint": "Multiply the numerator and denominator by the conjugate of the numerator.",
+    "steps": [
+      "Direct substitution gives (2 − 2)/0 = 0/0",
+      "Multiply top and bottom by the conjugate (√(x + 4) + 2)",
+      "The numerator becomes (x + 4) − 4 = x",
+      "The expression becomes x / [x(√(x + 4) + 2)] = 1/(√(x + 4) + 2), for x ≠ 0",
+      "Substitute x = 0: 1/(2 + 2) = 1/4"
+    ],
+    "minutes": 2,
+    "img_question": ""
+  },
+  {
+    "question": "Evaluate: lim (x→0) (1 − cos x)/x²",
+    "answer": { "A": "0", "B": "1/2", "C": "1", "D": "2" },
+    "correct": "B",
+    "hint": "Multiply by (1 + cos x)/(1 + cos x) and use the identity sin²x = 1 − cos²x.",
+    "steps": [
+      "Direct substitution gives 0/0",
+      "Multiply top and bottom by (1 + cos x): (1 − cos²x)/[x²(1 + cos x)]",
+      "Use sin²x = 1 − cos²x: sin²x/[x²(1 + cos x)]",
+      "Rewrite as (sin x / x)² · 1/(1 + cos x)",
+      "As x → 0, sin x / x → 1 and 1/(1 + cos x) → 1/2",
+      "The limit is 1² · 1/2 = 1/2"
+    ],
+    "minutes": 2.5,
+    "img_question": ""
+  },
+  {
+    "question": "Evaluate: lim (x→∞) (1 + 2/x)^x",
+    "answer": { "A": "e", "B": "2", "C": "e²", "D": "∞" },
+    "correct": "C",
+    "hint": "Recall that lim (n→∞) (1 + 1/n)^n = e. Try substituting n = x/2.",
+    "steps": [
+      "Let n = x/2, so x = 2n, and n → ∞ as x → ∞",
+      "Rewrite: (1 + 2/x)^x = (1 + 1/n)^(2n) = [(1 + 1/n)^n]²",
+      "As n → ∞, (1 + 1/n)^n → e",
+      "Therefore the limit is e²"
+    ],
+    "minutes": 2,
+    "img_question": ""
+  },
+  {
+    "question": "Evaluate: lim (x→1) (x³ − 1)/(x − 1)",
+    "answer": { "A": "0", "B": "1", "C": "3", "D": "Does not exist" },
+    "correct": "C",
+    "hint": "Use the difference of cubes: a³ − b³ = (a − b)(a² + ab + b²).",
+    "steps": [
+      "Direct substitution gives 0/0",
+      "Factor: x³ − 1 = (x − 1)(x² + x + 1)",
+      "Cancel (x − 1): the expression simplifies to x² + x + 1, for x ≠ 1",
+      "Substitute x = 1: 1 + 1 + 1 = 3"
+    ],
+    "minutes": 1.5,
+    "img_question": ""
+  },
+  {
+    "question": "Evaluate: lim (x→0) |x|/x",
+    "answer": { "A": "−1", "B": "1", "C": "0", "D": "Does not exist" },
+    "correct": "D",
+    "hint": "Check the limit from the left and from the right separately.",
+    "steps": [
+      "For x > 0, |x| = x, so |x|/x = 1",
+      "Right-hand limit: lim (x→0⁺) |x|/x = 1",
+      "For x < 0, |x| = −x, so |x|/x = −1",
+      "Left-hand limit: lim (x→0⁻) |x|/x = −1",
+      "The one-sided limits are not equal (1 ≠ −1)",
+      "So the two-sided limit does not exist"
+    ],
+    "minutes": 1.5,
+    "img_question": ""
+  },
+  {
+    "question": "Evaluate: lim (x→∞) (ln x)/x",
+    "answer": { "A": "1", "B": "e", "C": "0", "D": "∞" },
+    "correct": "C",
+    "hint": "This is ∞/∞. Try L'Hôpital's Rule, or recall that x grows much faster than ln x.",
+    "steps": [
+      "As x → ∞, both ln x and x approach ∞, giving the form ∞/∞",
+      "Apply L'Hôpital's Rule: differentiate the numerator and denominator",
+      "d/dx (ln x) = 1/x and d/dx (x) = 1",
+      "The limit becomes lim (x→∞) (1/x)/1 = lim (x→∞) 1/x",
+      "As x → ∞, 1/x → 0"
+    ],
+    "minutes": 2,
+    "img_question": ""
+  }
+]
 
 
 ];
